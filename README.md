@@ -2,8 +2,8 @@
 
 ## Description
 
-Version control is the beating heart of every productive programmer's workflow.
-It allow people to keep track of what they've done,
+Version control is the beating heart of every productive data scientist's workflow.
+It allows people to keep track of what they've done,
 and to share what they're currently doing with colleagues.
 This lesson will introduce a popular version control tool called Git,
 a hosting platform called GitHub that is built on top of it,
