@@ -33,6 +33,17 @@ Please see the [DataCamp Learner Profiles][profile-site] for details.
 
 ## Step 2: Summative Assessment
 
+1. Clone the Git repository whose URL you have been given.
+2. View the changes made in the most recent commit.
+3. Create a new branch called `rewriting-conclusion` and switch to it.
+4. In that branch, remove every occurrence of the word "not" from the last paragraph of the file `report.txt`.
+5. Commit your changes with the log message "Correcting conclusions".
+6. While still in that branch, pull in the content of the `rewriting-intro` branch from the repository you cloned.
+7. Merge the changes in that branch with the changes you just made,
+   keeping your changes to the last paragraph
+   and all of their changes to the other paragraphs.
+8. Push the merged to a newly-created branch called `rewriting-conclusion` in the repository you cloned.
+
 ## Step 3: Formative Assessments
 
 ## Step 4: Course Outline
