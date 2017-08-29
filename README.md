@@ -200,13 +200,30 @@ The "datasets" are:
 
 ## Step 5: Course Overview
 
-### Course Description
+**Course Description**
 
-### Learning Objectives
+Version control is one of the power tools of programming.
+It allows you to keep track of what you did when,
+undo any changes you have decided you don't want,
+and collaborate at scale with other people.
+This lesson will introduce you to Git,
+a modern version control tool that is very popular with data scientists and software developers alike,
+and show you how it can help you get more done in less time and with less pain.
 
-- objective
+**Learning Objectives**
 
-### Prerequisites
+- Explain the pros and cons of version control compared to alternatives like Dropbox and Google Docs.
+- Create new repositories and turn existing projects into repositories.
+- Configure basic settings in Git.
+- View and explain a repository's history.
+- Save changes to files.
+- Resolve conflicts that arise when changing files.
+- Create and navigate branches.
+- Undo changes to files.
+- Explain the relationships between commits, branches, and remote repositories.
+- Pull changes from, and push changes to, remote repositories.
+
+**Prerequisites**
 
 - [Introduction to the Unix Shell for Data Scientists][course-shell-intro]
 
