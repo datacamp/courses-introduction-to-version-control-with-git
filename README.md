@@ -23,10 +23,6 @@ Please see the [DataCamp Learner Profiles][profile-site] for details.
   This course will show him what's going on under the hood when he does a commit,
   and how to collaborate with colleagues through GitHub.
 
-[profile-anya]: https://github.com/datacamp/learner-profiles#anya
-[profile-jasmine]: https://github.com/datacamp/learner-profiles#jasmine
-[profile-thanh]: https://github.com/datacamp/learner-profiles#thanh
-
 ## Step 1: Concept Map
 
 ![Basic Git Concepts](img/git.png)
