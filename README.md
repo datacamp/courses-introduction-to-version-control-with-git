@@ -13,6 +13,10 @@ Please see the [DataCamp Learner Profiles][profile-site] for details.
   but has never used Git.
   This course will show her the similarities and differences between the two.
 
+- [Catalina][profile-catalina] will take this course herself if she has time,
+  as it would help her with her own research,
+  but it is too advanced for her students.
+
 - [Jasmine][profile-jasmine] has never used version control,
   and has only just completed DataCamp's "Introduction to the Unix Shell".
   Most of the ideas in this course will be new to her.
@@ -22,6 +26,8 @@ Please see the [DataCamp Learner Profiles][profile-site] for details.
   but has never branched or merged.
   This course will show him what's going on under the hood when he does a commit,
   and how to collaborate with colleagues through GitHub.
+
+- [Yngve][profile-yngve] already knows the material in this course.
 
 ## Step 1: Concept Map
 
@@ -225,6 +231,8 @@ and show you how it can help you get more done in less time and with less pain.
 
 [course-shell-intro]: https://www.datacamp.com/courses/intro-to-unix-shell
 [profile-anya]: https://github.com/datacamp/learner-profiles#anya
+[profile-catalina]: https://github.com/datacamp/learner-profiles#catalina
 [profile-jasmine]: https://github.com/datacamp/learner-profiles#jasmine
 [profile-site]: https://github.com/datacamp/learner-profiles
 [profile-thanh]: https://github.com/datacamp/learner-profiles#thanh
+[profile-yngve]: https://github.com/datacamp/learner-profiles#yngve
