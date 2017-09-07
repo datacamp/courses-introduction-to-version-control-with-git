@@ -190,7 +190,7 @@ to create a repository called `work` in your home directory.
    1. Amending log messages with `git commit --amend`
    2. Undoing changes with `git reset`
    3. Undoing changes with `git revert`
-   4. Taggig with `git tag`
+   4. Tagging with `git tag`
    5. Strategies for handling very large files
    6. Srategies for handling binary files
 
