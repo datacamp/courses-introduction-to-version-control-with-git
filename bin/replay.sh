@@ -1,17 +1,26 @@
-# Definitions.
-REPO=./g
-CMD="git -C ${REPO}"
+#!/usr/bin/env bash
+# Regenerate repository used in introductory Git lesson.
 
-# Make sure this isn't already a Git repository.
-if [ -d .git ]; then
-  echo 'Do not run this script inside a Git repository.'
+# Use first command-line argument as path to repository directory.
+if [ "$#" -ne 1 ]; then
+  echo "Error: must provide path to Git repository as first command-line argument."
   exit 1
 fi
+REPO=$1
+
+# Make sure the directory doesn't already exist.
+if [ -d ${REPO} ]; then
+  echo "Error: '${REPO}' already exists."
+  exit 1
+fi
+
+# Shortcut to run Git in that repo.
+G="git -C ${REPO}"
 
 # initial empty repository.
 rm -rf ${REPO}
 mkdir ${REPO}
-${CMD} init
+${G} init
 
 # add-report-as-markdown: adding first Markdown file.
 cat > ${REPO}/report.md <<EOF
@@ -21,29 +30,29 @@ TODO: write executive summary.
 
 TODO: include link to raw data.
 EOF
-${CMD} add report.md
-${CMD} commit -m "Adding summary report file."
-${CMD} tag add-report-as-markdown
+${G} add report.md
+${G} commit -m "Adding summary report file."
+${G} tag add-report-as-markdown
 
 # change-report-filetype-to-text: change file suffix to .txt.
-${CMD} mv report.md report.txt
-${CMD} commit -m "Renaming report as plain text file rather than Markdown."
-${CMD} tag change-report-filetype-to-text
+${G} mv report.md report.txt
+${G} commit -m "Renaming report as plain text file rather than Markdown."
+${G} tag change-report-filetype-to-text
 
 # add-line-to-report: append some lines to the report file.
 cat >> ${REPO}/report.txt <<EOF
 
 TODO: remember to cite funding sources!
 EOF
-${CMD} add report.txt
-${CMD} commit -m "Reminder to cite funding sources."
-${CMD} tag add-line-to-report
+${G} add report.txt
+${G} commit -m "Reminder to cite funding sources."
+${G} tag add-line-to-report
 
 # change-report-title: change the title line of the report in situ.
 sed -i ${REPO}/report.txt 's/Northwestern Dental Surgeries/Seasonal Dental Surgeries/g'
-${CMD} add report.txt
-${CMD} commit -m "Changing title because purpose of report has changed."
-${CMD} tag change-report-title
+${G} add report.txt
+${G} commit -m "Changing title because purpose of report has changed."
+${G} tag change-report-title
 
 # adding-data-files: adding the four seasonal data files.
 mkdir ${REPO}/data
@@ -151,8 +160,8 @@ Date,Tooth
 2017-08-11,wisdom
 2017-08-13,canine
 EOF
-${CMD} add data
-${CMD} commit -m "Adding seasonal CSV data files"
-${CMD} tag adding-data-files
+${G} add data
+${G} commit -m "Adding seasonal CSV data files"
+${G} tag adding-data-files
 
 # adding-scripts-for-dates-and-teeth: adding shell scripts to extract dates and teeth from data files.
