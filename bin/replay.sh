@@ -2,6 +2,12 @@
 REPO=./g
 CMD="git -C ${REPO}"
 
+# Make sure this isn't already a Git repository.
+if [ -d .git ]; then
+  echo 'Do not run this script inside a Git repository.'
+  exit 1
+fi
+
 # initial empty repository.
 rm -rf ${REPO}
 mkdir ${REPO}
