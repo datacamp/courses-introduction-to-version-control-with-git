@@ -49,12 +49,12 @@ ${GIT} commit -m "Added reminder to cite funding sources."
 ${GIT} tag add-line-to-report
 
 # change-report-title: change the title line of the report in situ.
-sed -i -e 's/Northwestern Dental Surgeries/Seasonal Dental Surgeries/g' ${REPO}/report.txt
+sed -e 's/Northwestern Dental Surgeries/Seasonal Dental Surgeries/g' -i '' ${REPO}/report.txt
 ${GIT} add report.txt
 ${GIT} commit -m "Changed title because purpose of report has changed."
 ${GIT} tag change-report-title
 
-# adding-data-files: add the four seasonal data files.
+# add-data-files: add the four seasonal data files.
 mkdir ${REPO}/data
 cat > ${REPO}/data/spring.csv <<EOF
 Date,Tooth
@@ -164,17 +164,37 @@ ${GIT} add ${REPO}/data
 ${GIT} commit -m "Added seasonal CSV data files"
 ${GIT} tag add-data-files
 
-# adding-scripts-for-dates-and-teeth: add shell scripts to extract dates and teeth from data files.
+# add-scripts-for-dates-and-teeth: add scripts to extract dates and teeth from data files (bug in bin/teeth).
 mkdir ${REPO}/bin
 cat > ${REPO}/bin/dates <<EOF
 #!/usr/bin/env bash
-cut -d , -f 1 $@ | grep -v Date | sort | uniq
+cut -d , -f 1 \$@ | grep -v Date | sort | uniq
 EOF
 cat > ${REPO}/bin/teeth <<EOF
 #!/usr/bin/env bash
-cut -d , -f 2 $@ | grep -v Tooth | sort | uniq
+cut -d , -f 1 \$@ | grep -v Tooth | sort | uniq
 EOF
 chmod u+x ${REPO}/bin/dates ${REPO}/bin/teeth
 ${GIT} add ${REPO}/bin
 ${GIT} commit -m "Added shell scripts to extract dates and teeth from data files."
 ${GIT} tag add-scripts-for-dates-and-teeth
+
+# generate-axis-labels: use scripts to save lists of dates and teeth.
+mkdir ${REPO}/results
+${REPO}/bin/dates ${REPO}/data/*.csv > ${REPO}/results/dates.csv
+${REPO}/bin/teeth ${REPO}/data/*.csv > ${REPO}/results/teeth.csv
+${GIT} add ${REPO}/results
+${GIT} commit -m "Generated lists of dates and teeth for use as axis labels."
+${GIT} tag generate-axis-labels
+
+# correct-bug-and-regenerate-labels: correct bug in bin/teeth and regenerate axis labels.
+sed -e 's/-f 1/-f 2/g' -i '' ${REPO}/bin/teeth
+${REPO}/bin/teeth ${REPO}/data/*.csv > ${REPO}/results/teeth.csv
+${GIT} add ${REPO}
+${GIT} commit -F - <<EOF
+Fixed bug and regenerated results.
+
+1. bin/teeth was selecting column 1 instead of column 2: fixed.
+2. Regenerated dependent results.
+EOF
+${GIT} tag correct-bug-and-regenerate-labels
