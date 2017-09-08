@@ -198,3 +198,36 @@ Fixed bug and regenerated results.
 2. Regenerated dependent results.
 EOF
 ${GIT} tag correct-bug-and-regenerate-labels
+
+# branch-add-summary-statistics: add files in a branch for later merging without conflicts.
+${GIT} checkout master
+${GIT} checkout -b summary-statistics
+cat > ${REPO}/bin/summary <<EOF
+#!/usr/bin/env bash
+
+echo \$(wc -l < ${REPO}/results/dates.csv) 'unique dates'
+echo \$(wc -l < ${REPO}/results/teeth.csv) 'unique teeth'
+EOF
+chmod u+x ${REPO}/bin/summary
+${REPO}/bin/summary > ${REPO}/results/summary.txt
+${GIT} add ${REPO}/bin/summary ${REPO}/results/summary.txt
+${GIT} commit -F - <<EOF
+Creating human-readable summary statistics.
+
+1. bin/summary to regenerate from fixed input files.
+2. results/summary.txt containing summary statistics.
+EOF
+${GIT} tag branch-add-summary-statistics
+
+# alter-report-title-{branch,master}: create a branch with one change to the report title and make another in master.
+${GIT} checkout master
+${GIT} checkout -b alter-report-title
+sed -e 's/Seasonal Dental Surgeries/Dental Work by Season/g' -i '' ${REPO}/report.txt
+${GIT} add report.txt
+${GIT} commit -m "Changed report title."
+${GIT} tag alter-report-title-branch
+${GIT} checkout master
+sed -e 's/Seasonal Dental Surgeries/Seasonal Dental Surgeries (2017)/g' -i '' ${REPO}/report.txt
+${GIT} add report.txt
+${GIT} commit -m "Added year to report title."
+${GIT} tag alter-report-title-master
