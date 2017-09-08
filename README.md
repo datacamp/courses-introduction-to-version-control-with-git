@@ -58,7 +58,7 @@ Go into the directory `regional` and look at its history.
 ### Credit and blame
 
 1. Go into the directory `regional`.
-2. Who was the last person to change the first line of the file `central.csv`?
+2. How many different commits have been made to `report.txt`?
 
 ### Viewing differences
 
