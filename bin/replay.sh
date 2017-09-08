@@ -15,14 +15,14 @@ if [ -d ${REPO} ]; then
 fi
 
 # Shortcut to run Git in that repo.
-G="git -C ${REPO}"
+GIT="git -C ${REPO}"
 
 # initial empty repository.
 rm -rf ${REPO}
 mkdir ${REPO}
-${G} init
+${GIT} init
 
-# add-report-as-markdown: adding first Markdown file.
+# add-report-as-markdown: add first Markdown file.
 cat > ${REPO}/report.md <<EOF
 # Northwestern Dental Surgeries 2017-18
 
@@ -30,31 +30,31 @@ TODO: write executive summary.
 
 TODO: include link to raw data.
 EOF
-${G} add report.md
-${G} commit -m "Adding summary report file."
-${G} tag add-report-as-markdown
+${GIT} add report.md
+${GIT} commit -m "Added summary report file."
+${GIT} tag add-report-as-markdown
 
 # change-report-filetype-to-text: change file suffix to .txt.
-${G} mv report.md report.txt
-${G} commit -m "Renaming report as plain text file rather than Markdown."
-${G} tag change-report-filetype-to-text
+${GIT} mv report.md report.txt
+${GIT} commit -m "Renamed report as plain text file rather than Markdown."
+${GIT} tag change-report-filetype-to-text
 
 # add-line-to-report: append some lines to the report file.
 cat >> ${REPO}/report.txt <<EOF
 
 TODO: remember to cite funding sources!
 EOF
-${G} add report.txt
-${G} commit -m "Reminder to cite funding sources."
-${G} tag add-line-to-report
+${GIT} add report.txt
+${GIT} commit -m "Added reminder to cite funding sources."
+${GIT} tag add-line-to-report
 
 # change-report-title: change the title line of the report in situ.
-sed -i ${REPO}/report.txt 's/Northwestern Dental Surgeries/Seasonal Dental Surgeries/g'
-${G} add report.txt
-${G} commit -m "Changing title because purpose of report has changed."
-${G} tag change-report-title
+sed -i -e 's/Northwestern Dental Surgeries/Seasonal Dental Surgeries/g' ${REPO}/report.txt
+${GIT} add report.txt
+${GIT} commit -m "Changed title because purpose of report has changed."
+${GIT} tag change-report-title
 
-# adding-data-files: adding the four seasonal data files.
+# adding-data-files: add the four seasonal data files.
 mkdir ${REPO}/data
 cat > ${REPO}/data/spring.csv <<EOF
 Date,Tooth
@@ -160,8 +160,21 @@ Date,Tooth
 2017-08-11,wisdom
 2017-08-13,canine
 EOF
-${G} add data
-${G} commit -m "Adding seasonal CSV data files"
-${G} tag adding-data-files
+${GIT} add ${REPO}/data
+${GIT} commit -m "Added seasonal CSV data files"
+${GIT} tag add-data-files
 
-# adding-scripts-for-dates-and-teeth: adding shell scripts to extract dates and teeth from data files.
+# adding-scripts-for-dates-and-teeth: add shell scripts to extract dates and teeth from data files.
+mkdir ${REPO}/bin
+cat > ${REPO}/bin/dates <<EOF
+#!/usr/bin/env bash
+cut -d , -f 1 $@ | grep -v Date | sort | uniq
+EOF
+cat > ${REPO}/bin/teeth <<EOF
+#!/usr/bin/env bash
+cut -d , -f 2 $@ | grep -v Tooth | sort | uniq
+EOF
+chmod u+x ${REPO}/bin/dates ${REPO}/bin/teeth
+${GIT} add ${REPO}/bin
+${GIT} commit -m "Added shell scripts to extract dates and teeth from data files."
+${GIT} tag add-scripts-for-dates-and-teeth
