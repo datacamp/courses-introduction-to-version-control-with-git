@@ -64,7 +64,7 @@ ${GIT} tag change-report-title
 
 # add-data-files: add the four seasonal data files.
 mkdir ${REPO}/data
-cat > ${REPO}/data/spring.csv <<EOF
+cat > ${REPO}/data/northern.csv <<EOF
 Date,Tooth
 2017-01-25,wisdom
 2017-02-19,canine
@@ -90,7 +90,7 @@ Date,Tooth
 2017-08-13,wisdom
 2017-09-07,molar
 EOF
-cat > ${REPO}/data/summer.csv <<EOF
+cat > ${REPO}/data/eastern.csv <<EOF
 Date,Tooth
 2017-01-11,canine
 2017-01-18,wisdom
@@ -117,7 +117,7 @@ Date,Tooth
 2017-08-03,bicuspid
 2017-08-04,canine
 EOF
-cat > ${REPO}/data/autumn.csv <<EOF
+cat > ${REPO}/data/southern.csv <<EOF
 Date,Tooth
 2017-01-05,canine
 2017-01-17,wisdom
@@ -140,7 +140,7 @@ Date,Tooth
 2017-08-09,canine
 2017-08-16,canine
 EOF
-cat > ${REPO}/data/winter.csv <<EOF
+cat > ${REPO}/data/western.csv <<EOF
 Date,Tooth
 2017-01-03,bicuspid
 2017-01-05,incisor
@@ -206,6 +206,31 @@ Fixed bug and regenerated results.
 2. Regenerated dependent results.
 EOF
 ${GIT} tag correct-bug-and-regenerate-labels
+
+# append-southern-western-data: add data to two files.
+cat >> ${REPO}/data/southern.csv <<EOF
+2017-09-20,bicuspid
+2017-09-22,molar
+2017-08-23,molar
+EOF
+cat >> ${REPO}/data/western.csv <<EOF
+2017-10-05,molar
+2017-10-06,incisor
+2017-10-07,incisor
+EOF
+${GIT} add ${REPO}/data
+${GIT} commit -m "Adding fresh data for southern and western regions."
+${GIT} tag append-southern-western-data
+
+# append-more-western-data: add data to one file.
+cat >> ${REPO}/data/western.csv <<EOF
+2017-10-15,molar
+2017-10-17,bicuspid
+2017-10-18,bicuspid
+EOF
+${GIT} add ${REPO}/data
+${GIT} commit -m "Adding fresh data for western region."
+${GIT} tag append-more-western-data
 
 # branch-add-summary-statistics: add files in a branch for later merging without conflicts.
 ${GIT} checkout master

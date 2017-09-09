@@ -50,111 +50,106 @@ Please see the [DataCamp Learner Profiles][profile-site] for details.
 
 ### Looking at history
 
-Go into the directory `regional` and look at its history.
+Go into the directory `dental` and look at its history.
 
-1. What is the log message of the very first commit?
+1. What is the log message of the most recent commit?
 2. Who made that commit?
 
 ### Credit and blame
 
-1. Go into the directory `regional`.
+1. Go into the directory `dental`.
 2. How many different commits have been made to `report.txt`?
 
 ### Viewing differences
 
-1. Go into the directory `regional`.
-2. How many lines were changed in the file `northern.csv` in the most recent commit?
-3. What files were added in the second-most-recent commit?
-
-### Turning a project into a repository
-
-1. Go into the directory `report`.
-2. Use `git init` to initialize Git in that directory.
-3. Add all of the files in that directory and its sub-directories to the newly-created repository
-   with "Starting to use Git" as the log message.
+1. Go into the directory `dental`.
+2. What files were added in the most recent commit?
+2. How many lines were changed in the file `data/western.csv` in the most recent commit that affected it?
 
 ### Creating a new repository
 
-1. Create a new Git repository called `thesis` inside your home directory.
-2. Add these three files (replacing "[your name]" with your name in each case):
-   - `README.md` containing the sentence "PhD thesis of [your name]."
-   - `LICENSE.md` containing the sentence "Copyright (c) [your name]".
-3. Add and commit those two files (and *only* those two files) with the log message "Initializing."
+1. Create a directory called `workspace`.
+2. Use `git init` to initialize Git in that directory.
+3. Move the four data files from `dental/data` to the top level of `workspace`,
+   add them,
+   and commit the change with "Starting to use Git" as the log message.
 
 ### Saving changes
 
-1. Go into the directory `regional`.
+1. Go into the directory `dental`.
 2. Add a line containing the data shown below to the file `eastern.csv`.
+   Do not add any blank lines before or after this line.
 3. Commit your change with the log message "Adding September's data."
 
 ```
-2017,9,30,27,11
+2017-11-30,bicuspid
 ```
 
 ### Undoing changes
 
-1. Go into the directory `regional`.
+1. Go into the directory `dental`.
 2. Undo the most recent *two* commits.
 
 ### Listing branches
 
-1. What branches are there in the directory `regional`?
+1. What branches are there in the directory `dental`?
 2. Which of these branches are you currently on?
 
 ### Comparing branches
 
-1. Go into the directory `regional`.
-2. Compare the contents of the `master` branch with the `analysis` branch.
+1. Go into the directory `dental`.
+2. Compare the contents of the `master` branch with the `summary-statistics` branch.
 3. Which files contain differences?
-
 
 ### Creating branches
 
-1. Go into the directory `regional`.
-2. Create a new branch called `reporting`.
-3. Delete the file `reporting.sh` in that branch and commit your changes
+1. Go into the directory `dental`.
+2. Create a new branch called `restarting`.
+3. Delete the file `report.txt` in that branch and commit your changes
    *without* affecting any other branch.
+   Leave `restarting` as the active branch when you are finished.
 
 ### Merging without conflicts
 
-1. Go into the directory `regional`.
-2. Merge the branch `update` into the branch `master`
+1. Go into the directory `dental`.
+2. Merge the branch `summary-statistics` into the branch `master`
    using "Consolidating work" as the log message.
 
 ### Merging with conflicts
 
-1. Go into the directory `regional`.
-2. Merge the branch `update` into the branch `master`.
-3. Resolve the conflicts to keep all of the lines containing the word "KEEP".
+1. Go into the directory `dental`.
+2. Merge the branch `alter-report-title-branch` into the branch `master`.
+3. Resolve the conflicts so that the final title is "Dental Work by Season".
 4. Commit the reconciled version with the log message "Integrating changes".
 
 ### Cloning repositories
 
-Clone the repository `file:///home/thanh/work`
-to create a repository called `work` in your home directory.
+Clone the repository `file:///tmp/dental`
+to create a repository called `dental` in your home directory.
 
 ### Exploring remotes
 
-1. Go into the repository `regional`.
-2. Which of the following is *not* a remote repository for `regional`?
+1. Go into the repository `dental`.
+2. Add a remote called `upstream` with the URL `file:///tmp/dental`.
 
 ### Pulling in changes
 
-1. Go into the repository `regional`.
-2. Pull changes from the `master` branch of the remote `upstream` into the `master` branch of your repository.
+1. Go into the repository `dental`.
+2. Pull changes from the `master` branch of the remote `upstream`
+   into the `master` branch of your repository.
 
 ### Pushing changes
 
-1. Go into the repository `regional`.
-2. Delete the file `temporary.csv`.
-3. Commit your change with the log message "Getting rid of temporary file".
+1. Go into the repository `dental`.
+2. Delete the file `report.txt`.
+3. Commit your change with the log message "Getting rid of report".
 4. Push your change to the remote repository `upstream`.
 
 ### Resolving remote conflicts
 
-1. Go into the repository `regional`.
+1. Go into the repository `dental`.
 2. Pull changes from the `master` branch of the remote `upstream` into the `master branch of your repository.
-3. Resolve the conflicts in `report.txt` to keep all of the lines containing the word "KEEP".
+3. Resolve the conflicts in `report.txt` so that the title is "Final Report: Regional Dental Work".
 4. Commit your resolution with the log message "Integrating changes".
 
 ## Step 4: Course Outline
@@ -180,25 +175,25 @@ to create a repository called `work` in your home directory.
    5. Recognizing conflicts
    6. Resolving conflicts
    7. Avoiding conflicts
-4. Collaborating
+4. Advanced features
+   1. Undoing changes with `git reset`
+   2. Undoing changes with `git revert`
+   3. Tagging with `git tag`
+   4. Strategies for handling very large files
+   5. Srategies for handling binary files
+5. Collaborating
    1. Listing remotes with `git remote`
    2. Adding and removing remotes
    3. Pulling from branches in remote repositories with `git pull`
    4. Pushing to branches in remote repositories with `git push`
    5. Branch-per-feature development
-5. Advanced features
-   1. Amending log messages with `git commit --amend`
-   2. Undoing changes with `git reset`
-   3. Undoing changes with `git revert`
-   4. Tagging with `git tag`
-   5. Strategies for handling very large files
-   6. Srategies for handling binary files
 
 The "datasets" are:
 
-- A repository called `regional` with some history and branches.
-- A directory called `report` containing some files and sub-directories for the learner to initialize as a Git repository.
-- A repository in `/home/thanh/work` for the learner to clone, pull from, and push to.
+1. A repository called `dental` with some history and branches.
+   This repository will be in the user's home directory for most exercises;
+   for others, it will be moved to `/tmp/dental` for the user to clone
+   and/or set as a remote.
 
 ## Step 5: Course Overview
 
