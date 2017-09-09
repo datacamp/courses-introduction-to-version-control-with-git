@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
 # Regenerate repository used in introductory Git lesson.
 
-# Use first command-line argument as path to repository directory.
-if [ "$#" -ne 1 ]; then
-  echo "Error: must provide path to Git repository as first command-line argument."
-  exit 1
+# Use first command-line argument as path to repository directory,
+# or use $HOME/dental if none provided.
+if [ "$#" -eq 1 ]; then
+  REPO=$1;
+else
+  REPO=${HOME}/dental
 fi
-REPO=$1
+
+# Report start.
+echo ''
+echo '----------------------------------------'
+echo 'STARTING requirements.sh at ' $(date)
+echo 'REPO: ' ${REPO}
+echo
 
 # Make sure the directory doesn't already exist.
 if [ -d ${REPO} ]; then
@@ -14,10 +22,10 @@ if [ -d ${REPO} ]; then
   exit 1
 fi
 
-# Shortcut to run Git in that repo.
+# Create shortcut to run Git in that repo.
 GIT="git -C ${REPO}"
 
-# initial empty repository.
+# Initial an empty repository.
 rm -rf ${REPO}
 mkdir ${REPO}
 ${GIT} init
@@ -231,3 +239,13 @@ sed -e 's/Seasonal Dental Surgeries/Seasonal Dental Surgeries (2017)/g' -i '' ${
 ${GIT} add report.txt
 ${GIT} commit -m "Added year to report title."
 ${GIT} tag alter-report-title-master
+
+# Show what has been created. (Pipe log to cat to make sure paging isn't triggered.)
+echo
+${GIT} log | cat
+
+# Report end.
+echo
+echo 'ENDING requirements.sh'
+echo '----------------------------------------'
+echo ''
