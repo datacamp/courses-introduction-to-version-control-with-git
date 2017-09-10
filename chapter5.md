@@ -1,8 +1,19 @@
 ---
-title       : Collaborating
+title       : Working with branches
 description : >-
-  Version control is not just a way to keep track of your own work:
-  it's a scalable way to collaborate with other people.  This chapter
-  shows how to use the features you have already seen, plus a special
-  kind of bookmark called a *remote*, to share your code, data, and
-  conclusions with others.
+  Git's most powerful feature is *branching*, which allows you to work
+  independently on several things at once.  This chapter shows you how
+  to create and manage branches.
+
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:
+## FIXME so that chapter will build
+
+<hr>
+
+*** =possible_answers
+- FIXME
+
+*** =hint
+
+*** =feedbacks
+- [correct]

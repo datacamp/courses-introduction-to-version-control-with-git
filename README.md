@@ -154,20 +154,30 @@ to create a repository called `dental` in your home directory.
 
 ## Step 4: Course Outline
 
-1. Basic operations
+1. Viewing a project's history
    1. Viewing the log with `git log`
    2. Line-by-line history with `git blame`
-   3. Saving changes to existing files with `git add` and `git commit`
    4. Log messages
    5. Viewing differences with `git diff`
    6. Naming commits with hashes
    7. Naming commits with `HEAD~N`
-2. Setting up a new project
+2. Making changes
+   1. Viewing work in progress with `git status`
+   2. Saving changes to existing files with `git add` and `git commit`
+   3. Adding new files with `git add` and `git commit`
+   4. Canceling changes in progress
+3. Setting up a new project
    1. Viewing and configuring preferences with `git config`
    2. Initializing a repository with `git init`
    3. Ignoring files with `.gitignore`
    4. Common files: `README.md`, `LICENSE.md`, and `CITATION.md`
-3. Working with branches
+4. Advanced features
+   1. Undoing changes with `git reset`
+   2. Undoing changes with `git revert`
+   3. Tagging with `git tag`
+   4. Strategies for handling very large files
+   5. Srategies for handling binary files
+5. Working with branches
    1. Listing branches with `git branch`
    2. Switching between branches with `git checkout`
    3. Viewing differences between branches
@@ -175,13 +185,7 @@ to create a repository called `dental` in your home directory.
    5. Recognizing conflicts
    6. Resolving conflicts
    7. Avoiding conflicts
-4. Advanced features
-   1. Undoing changes with `git reset`
-   2. Undoing changes with `git revert`
-   3. Tagging with `git tag`
-   4. Strategies for handling very large files
-   5. Srategies for handling binary files
-5. Collaborating
+5. Collaborating (**probably not included because platform won't support it yet**)
    1. Listing remotes with `git remote`
    2. Adding and removing remotes
    3. Pulling from branches in remote repositories with `git pull`
