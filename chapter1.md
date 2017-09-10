@@ -4,7 +4,7 @@ description : >-
   This chapter shows you how to use Git to back up your work, and how
   to view the history of what you have done.
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:a3732cc273
 ## Introducing version control
 
 FIXME: a bit of terminology and motivation.
@@ -21,7 +21,7 @@ Which of the following *doesn't* version control do?
 *** =feedbacks
 - [correct]
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:74e878cc1b
 ## Comparison with other system
 
 FIXME: comparison with Dropbox and Google Docs.
@@ -38,7 +38,7 @@ Why don't more people already use version control?
 *** =feedbacks
 - [fixme]
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:1dac2b0a28
 ## Where version control stores information
 
 FIXME: the `.git` directory.
@@ -62,7 +62,7 @@ Where is information about the history of the directory `dental/data` stored?
 Ex().test_mc(1, ['correct'])
 ```
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:97ae2f8613
 ## Viewing a repository's history
 
 <hr>
@@ -87,7 +87,7 @@ test_student_typed(r'\s*cd\s+dental\s+git\s+log\s*',
 Ex().test_mc(1, ['correct'])
 ```
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:77aa525e25
 ## Viewing a file's history
 
 <hr>
@@ -112,7 +112,7 @@ test_student_typed(r'\s*cd\s+dental\s+git\s+log\s+data/southern.csv\s*',
 Ex().test_mc(1, ['correct'])
 ```
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:f76c7f5965
 ## Viewing a file's details
 
 <hr>
@@ -138,7 +138,7 @@ test_student_typed(r'\s*cd\s+dental\s+git\s+blame\s+data/northern.csv\s*',
 Ex().test_mc(1, ['correct'])
 ```
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:d03c5fa3e6
 ## Viewing a change
 
 <hr>
@@ -163,7 +163,7 @@ test_student_typed(r'\s*cd\s+dental\s+git\s+show\s+HEAD~2\s*',
 Ex().test_mc(1, ['correct'])
 ```
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:9862ae22bd
 ## Viewing changes
 
 <hr>
@@ -188,7 +188,7 @@ test_student_typed(r'\s*cd\s+dental\s+git\s+diff\s-r\s+HEAD~2\s*',
 Ex().test_mc(1, ['correct'])
 ```
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:eef645517f
 ## Using hashes to refer to commits
 
 <hr>
@@ -214,7 +214,7 @@ test_student_typed(r'\s*cd\s+dental\s+git\s+log\s*',
 Ex().test_mc(1, ['correct'])
 ```
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:ca41bfc36a
 ## Viewing differences between two changes
 
 <hr>
