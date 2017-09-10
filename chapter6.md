@@ -7,7 +7,7 @@ description : >-
   kind of bookmark called a *remote*, to share your code, data, and
   conclusions with others.
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:472d48ccf8
 ## FIXME so that chapter will build
 
 <hr>
