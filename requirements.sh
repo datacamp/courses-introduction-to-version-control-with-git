@@ -8,78 +8,70 @@ python3 -c "import sys; print('sys.version:', sys.version); import git; print('g
 #----------------------------------------
 # Regenerate repository used in introductory Git lesson.
 
-# Configure Git for the "repl" user.
+# Locations and shortcuts.
+REPL_HOME=/home/repl
+REPL_REPO=${REPL_HOME}/dental
 REPL_SUDO="sudo -u repl -i"
+REPL_GIT="${REPL_SUDO} git -C ${REPL_REPO}"
+
+# Configure Git for the "repl" user.
 ${REPL_SUDO} git config --global user.email "repl@datacamp.com"
 ${REPL_SUDO} git config --global user.name "Rep Loop"
-
-# Locations.
-REPL_HOME=/home/repl
-REPO=${REPL_HOME}/dental
-
-# Create shortcut to run Git in that repo.
-GIT="git -C ${REPO}"
 
 # Report start.
 echo ''
 echo '----------------------------------------'
 echo 'STARTING requirements.sh at ' $(date)
 echo 'REPL_HOME: ' ${REPL_HOME}
-echo 'REPO: ' ${REPO}
-echo 'GIT: ' ${GIT}
-echo "${REPL_SUDO} git config user.name: " $(git config user.name)
-echo "${REPL_SUDO} git config user.email: " $(git config user.email)
+echo 'REPL_REPO: ' ${REPL_REPO}
+echo 'REPL_GIT: ' ${REPL_GIT}
+echo "${REPL_SUDO} git config user.name: " $(${REPL_SUDO} git config user.name)
+echo "${REPL_SUDO} git config user.email: " $(${REPL_SUDO} git config user.email)
 echo
 
-# Make sure the directory doesn't already exist.
-if [ -d ${REPO} ]; then
-  echo "Error: '${REPO}' already exists."
-  exit 1
-fi
-
 # Initialize an empty repository.
-rm -rf ${REPO}
-mkdir ${REPO}
-${GIT} init
+rm -rf ${REPL_REPO}
+${REPL_SUDO} mkdir ${REPL_REPO}
+${REPL_SUDO} git init ${REPL_REPO}
 
 #----------------------------------------
 # Make changes to repo as user "repl".
 
 # add-report-as-markdown: add first Markdown file.
-cat > ${REPO}/report.md <<EOF
+cat > ${REPL_REPO}/report.md <<EOF
 # Northwestern Dental Surgeries 2017-18
 
 TODO: write executive summary.
 
 TODO: include link to raw data.
 EOF
-${GIT} add report.md
-${GIT} commit -m "Added summary report file."
-${GIT} tag add-report-as-markdown
+${REPL_GIT} add report.md
+${REPL_GIT} commit -m "Added summary report file."
+${REPL_GIT} tag add-report-as-markdown
 
 # change-report-filetype-to-text: change file suffix to .txt.
-${GIT} mv report.md report.txt
-${GIT} commit -m "Renamed report as plain text file rather than Markdown."
-${GIT} tag change-report-filetype-to-text
+${REPL_GIT} mv report.md report.txt
+${REPL_GIT} commit -m "Renamed report as plain text file rather than Markdown."
+${REPL_GIT} tag change-report-filetype-to-text
 
 # add-line-to-report: append some lines to the report file.
-cat >> ${REPO}/report.txt <<EOF
+cat >> ${REPL_REPO}/report.txt <<EOF
 
 TODO: remember to cite funding sources!
 EOF
-${GIT} add report.txt
-${GIT} commit -m "Added reminder to cite funding sources."
-${GIT} tag add-line-to-report
+${REPL_GIT} add report.txt
+${REPL_GIT} commit -m "Added reminder to cite funding sources."
+${REPL_GIT} tag add-line-to-report
 
 # change-report-title: change the title line of the report in situ.
-sed -i -e 's/Northwestern Dental Surgeries/Seasonal Dental Surgeries/g' ${REPO}/report.txt
-${GIT} add report.txt
-${GIT} commit -m "Changed title because purpose of report has changed."
-${GIT} tag change-report-title
+sed -i -e 's/Northwestern Dental Surgeries/Seasonal Dental Surgeries/g' ${REPL_REPO}/report.txt
+${REPL_GIT} add report.txt
+${REPL_GIT} commit -m "Changed title because purpose of report has changed."
+${REPL_GIT} tag change-report-title
 
 # add-data-files: add the four seasonal data files.
-mkdir ${REPO}/data
-cat > ${REPO}/data/northern.csv <<EOF
+mkdir ${REPL_REPO}/data
+cat > ${REPL_REPO}/data/northern.csv <<EOF
 Date,Tooth
 2017-01-25,wisdom
 2017-02-19,canine
@@ -105,7 +97,7 @@ Date,Tooth
 2017-08-13,wisdom
 2017-09-07,molar
 EOF
-cat > ${REPO}/data/eastern.csv <<EOF
+cat > ${REPL_REPO}/data/eastern.csv <<EOF
 Date,Tooth
 2017-01-11,canine
 2017-01-18,wisdom
@@ -132,7 +124,7 @@ Date,Tooth
 2017-08-03,bicuspid
 2017-08-04,canine
 EOF
-cat > ${REPO}/data/southern.csv <<EOF
+cat > ${REPL_REPO}/data/southern.csv <<EOF
 Date,Tooth
 2017-01-05,canine
 2017-01-17,wisdom
@@ -155,7 +147,7 @@ Date,Tooth
 2017-08-09,canine
 2017-08-16,canine
 EOF
-cat > ${REPO}/data/western.csv <<EOF
+cat > ${REPL_REPO}/data/western.csv <<EOF
 Date,Tooth
 2017-01-03,bicuspid
 2017-01-05,incisor
@@ -183,107 +175,107 @@ Date,Tooth
 2017-08-11,wisdom
 2017-08-13,canine
 EOF
-${GIT} add ${REPO}/data
-${GIT} commit -m "Added seasonal CSV data files"
-${GIT} tag add-data-files
+${REPL_GIT} add ${REPL_REPO}/data
+${REPL_GIT} commit -m "Added seasonal CSV data files"
+${REPL_GIT} tag add-data-files
 
 # add-scripts-for-dates-and-teeth: add scripts to extract dates and teeth from data files (bug in bin/teeth).
-mkdir ${REPO}/bin
-cat > ${REPO}/bin/dates <<EOF
+mkdir ${REPL_REPO}/bin
+cat > ${REPL_REPO}/bin/dates <<EOF
 #!/usr/bin/env bash
 cut -d , -f 1 \$@ | grep -v Date | sort | uniq
 EOF
-cat > ${REPO}/bin/teeth <<EOF
+cat > ${REPL_REPO}/bin/teeth <<EOF
 #!/usr/bin/env bash
 cut -d , -f 1 \$@ | grep -v Tooth | sort | uniq
 EOF
-chmod u+x ${REPO}/bin/dates ${REPO}/bin/teeth
-${GIT} add ${REPO}/bin
-${GIT} commit -m "Added shell scripts to extract dates and teeth from data files."
-${GIT} tag add-scripts-for-dates-and-teeth
+chmod u+x ${REPL_REPO}/bin/dates ${REPL_REPO}/bin/teeth
+${REPL_GIT} add ${REPL_REPO}/bin
+${REPL_GIT} commit -m "Added shell scripts to extract dates and teeth from data files."
+${REPL_GIT} tag add-scripts-for-dates-and-teeth
 
 # generate-axis-labels: use scripts to save lists of dates and teeth.
-mkdir ${REPO}/results
-${REPO}/bin/dates ${REPO}/data/*.csv > ${REPO}/results/dates.csv
-${REPO}/bin/teeth ${REPO}/data/*.csv > ${REPO}/results/teeth.csv
-${GIT} add ${REPO}/results
-${GIT} commit -m "Generated lists of dates and teeth for use as axis labels."
-${GIT} tag generate-axis-labels
+mkdir ${REPL_REPO}/results
+${REPL_REPO}/bin/dates ${REPL_REPO}/data/*.csv > ${REPL_REPO}/results/dates.csv
+${REPL_REPO}/bin/teeth ${REPL_REPO}/data/*.csv > ${REPL_REPO}/results/teeth.csv
+${REPL_GIT} add ${REPL_REPO}/results
+${REPL_GIT} commit -m "Generated lists of dates and teeth for use as axis labels."
+${REPL_GIT} tag generate-axis-labels
 
 # correct-bug-and-regenerate-labels: correct bug in bin/teeth and regenerate axis labels.
-sed -i -e 's/-f 1/-f 2/g' ${REPO}/bin/teeth
-${REPO}/bin/teeth ${REPO}/data/*.csv > ${REPO}/results/teeth.csv
-${GIT} add ${REPO}
-${GIT} commit -F - <<EOF
+sed -i -e 's/-f 1/-f 2/g' ${REPL_REPO}/bin/teeth
+${REPL_REPO}/bin/teeth ${REPL_REPO}/data/*.csv > ${REPL_REPO}/results/teeth.csv
+${REPL_GIT} add ${REPL_REPO}
+${REPL_GIT} commit -F - <<EOF
 Fixed bug and regenerated results.
 
 1. bin/teeth was selecting column 1 instead of column 2: fixed.
 2. Regenerated dependent results.
 EOF
-${GIT} tag correct-bug-and-regenerate-labels
+${REPL_GIT} tag correct-bug-and-regenerate-labels
 
 # append-southern-western-data: add data to two files.
-cat >> ${REPO}/data/southern.csv <<EOF
+cat >> ${REPL_REPO}/data/southern.csv <<EOF
 2017-09-20,bicuspid
 2017-09-22,molar
 2017-08-23,molar
 EOF
-cat >> ${REPO}/data/western.csv <<EOF
+cat >> ${REPL_REPO}/data/western.csv <<EOF
 2017-10-05,molar
 2017-10-06,incisor
 2017-10-07,incisor
 EOF
-${GIT} add ${REPO}/data
-${GIT} commit -m "Adding fresh data for southern and western regions."
-${GIT} tag append-southern-western-data
+${REPL_GIT} add ${REPL_REPO}/data
+${REPL_GIT} commit -m "Adding fresh data for southern and western regions."
+${REPL_GIT} tag append-southern-western-data
 
 # append-more-western-data: add data to one file.
-cat >> ${REPO}/data/western.csv <<EOF
+cat >> ${REPL_REPO}/data/western.csv <<EOF
 2017-10-15,molar
 2017-10-17,bicuspid
 2017-10-18,bicuspid
 EOF
-${GIT} add ${REPO}/data
-${GIT} commit -m "Adding fresh data for western region."
-${GIT} tag append-more-western-data
+${REPL_GIT} add ${REPL_REPO}/data
+${REPL_GIT} commit -m "Adding fresh data for western region."
+${REPL_GIT} tag append-more-western-data
 
 # branch-add-summary-statistics: add files in a branch for later merging without conflicts.
-${GIT} checkout master
-${GIT} checkout -b summary-statistics
-cat > ${REPO}/bin/summary <<EOF
+${REPL_GIT} checkout master
+${REPL_GIT} checkout -b summary-statistics
+cat > ${REPL_REPO}/bin/summary <<EOF
 #!/usr/bin/env bash
 
-echo \$(wc -l < ${REPO}/results/dates.csv) 'unique dates'
-echo \$(wc -l < ${REPO}/results/teeth.csv) 'unique teeth'
+echo \$(wc -l < ${REPL_REPO}/results/dates.csv) 'unique dates'
+echo \$(wc -l < ${REPL_REPO}/results/teeth.csv) 'unique teeth'
 EOF
-chmod u+x ${REPO}/bin/summary
-${REPO}/bin/summary > ${REPO}/results/summary.txt
-${GIT} add ${REPO}/bin/summary ${REPO}/results/summary.txt
-${GIT} commit -F - <<EOF
+chmod u+x ${REPL_REPO}/bin/summary
+${REPL_REPO}/bin/summary > ${REPL_REPO}/results/summary.txt
+${REPL_GIT} add ${REPL_REPO}/bin/summary ${REPL_REPO}/results/summary.txt
+${REPL_GIT} commit -F - <<EOF
 Creating human-readable summary statistics.
 
 1. bin/summary to regenerate from fixed input files.
 2. results/summary.txt containing summary statistics.
 EOF
-${GIT} tag branch-add-summary-statistics
+${REPL_GIT} tag branch-add-summary-statistics
 
 # alter-report-title-{branch,master}: create a branch with one change to the report title and make another in master.
-${GIT} checkout master
-${GIT} checkout -b alter-report-title
-sed -i -e 's/Seasonal Dental Surgeries/Dental Work by Season/g' ${REPO}/report.txt
-${GIT} add report.txt
-${GIT} commit -m "Changed report title."
-${GIT} tag alter-report-title-branch
-${GIT} checkout master
-sed -i -e 's/Seasonal Dental Surgeries/Seasonal Dental Surgeries (2017)/g' ${REPO}/report.txt
-${GIT} add report.txt
-${GIT} commit -m "Added year to report title."
-${GIT} tag alter-report-title-master
+${REPL_GIT} checkout master
+${REPL_GIT} checkout -b alter-report-title
+sed -i -e 's/Seasonal Dental Surgeries/Dental Work by Season/g' ${REPL_REPO}/report.txt
+${REPL_GIT} add report.txt
+${REPL_GIT} commit -m "Changed report title."
+${REPL_GIT} tag alter-report-title-branch
+${REPL_GIT} checkout master
+sed -i -e 's/Seasonal Dental Surgeries/Seasonal Dental Surgeries (2017)/g' ${REPL_REPO}/report.txt
+${REPL_GIT} add report.txt
+${REPL_GIT} commit -m "Added year to report title."
+${REPL_GIT} tag alter-report-title-master
 
 #----------------------------------------
 # Add activity by another user.
 
-# Create the "thunk" user and configure her Git.
+# Create the "thunk" user and configure their Git.
 sudo useradd -m thunk
 THUNK_HOME=/home/thunk
 THUNK_REPO=${THUNK_HOME}/repo
@@ -302,7 +294,7 @@ echo 'sudo -u thunk git config user.name' $(${THUNK_SUDO} git config user.name)
 echo 'sudo -u thunk git config user.email' $(${THUNK_SUDO} git config user.email)
 
 # Clone the repository as user "thunk".
-${THUNK_SUDO} git clone file://${REPO} ${THUNK_REPO}
+${THUNK_SUDO} git clone file://${REPL_REPO} ${THUNK_REPO}
 
 # Add some references to the report.
 ${THUNK_SUDO} cat >> ${THUNK_REPO}/report.txt <<EOF
@@ -315,7 +307,7 @@ ${THUNK_GIT} commit -m "Reminder to add references to report."
 # Show what has been created. (Pipe log to cat to make sure paging isn't triggered.)
 echo
 echo 'LOG'
-${GIT} log | cat
+${REPL_GIT} log | cat
 
 # Report end.
 echo
