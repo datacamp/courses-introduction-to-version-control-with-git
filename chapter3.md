@@ -5,7 +5,7 @@ description : >-
   how to turn an existing project into a Git repository.  It also
   introduces some of the files that most Git repositories contain.
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:e0d582bf75
 ## FIXME so that chapter will build
 
 <hr>
