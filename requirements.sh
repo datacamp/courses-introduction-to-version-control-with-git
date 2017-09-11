@@ -2,8 +2,8 @@
 
 #----------------------------------------
 # Package installation.
-pip install gitpython
-python -c "import git; print('gitpython version', git.__version__)"
+pip3 install gitpython
+python3 -c "import sys; print('sys.version:', sys.version); import git; print('gitpython version:', git.__version__)"
 
 #----------------------------------------
 # Regenerate repository used in introductory Git lesson.
