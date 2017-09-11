@@ -3,6 +3,7 @@
 #----------------------------------------
 # Package installation.
 pip install gitpython
+python -c "import git; print('gitpython version', git.__version__)"
 
 #----------------------------------------
 # Regenerate repository used in introductory Git lesson.
@@ -277,6 +278,7 @@ ${GIT} tag alter-report-title-master
 
 # Show what has been created. (Pipe log to cat to make sure paging isn't triggered.)
 echo
+echo 'LOG'
 ${GIT} log | cat
 
 # Report end.
