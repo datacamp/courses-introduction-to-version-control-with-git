@@ -282,25 +282,29 @@ ${GIT} tag alter-report-title-master
 #----------------------------------------
 # Add activity by another user.
 
-# Create the "thunk" user.
-echo
-echo "About to create user thunk"
+# Create the "thunk" user and configure her Git.
 sudo useradd -m thunk
 THUNK_HOME=/home/thunk
+THUNK_REPO=${THUNK_HOME}/repo
+THUNK_SUDO='sudo -u thunk'
+THUNK_GIT="${THUNK_SUDO} git -C ${THUNK_REPO}"
+${THUNK_SUDO} git config --global user.email "thunk@datacamp.com"
+${THUNK_SUDO} git config --global user.name "Thun Ka"
+
+echo
 echo "Contents of /home are now:"
 ls -al /home
-echo
-
-THUNK_REPO=${THUNK_HOME}/repo
-THUNK_GIT="sudo -u thunk git -C ${THUNK_REPO}"
-sudo -u thunk git config --global user.email "thunk@datacamp.com"
-sudo -u thunk git config --global user.name "Thun Ka"
+echo 'THUNK_REPO: ' ${THUNK_REPO}
+echo 'THUNK_SUDO: ' ${THUNK_SUDO}
+echo 'THUNK_GIT: ' ${THUNK_GIT}
+echo 'sudo -u thunk git config user.name' $(${THUNK_SUDO} git config user.name)
+echo 'sudo -u thunk git config user.email' $(${THUNK_SUDO} git config user.email)
 
 # Clone the repository as user "thunk".
-sudo -u thunk git clone file://${REPO} ${THUNK_REPO}
+${THUNK_SUDO} git clone file://${REPO} ${THUNK_REPO}
 
 # Add some references to the report.
-sudo -u thunk cat >> ${THUNK_REPO}/report.txt <<EOF
+${THUNK_SUDO} cat >> ${THUNK_REPO}/report.txt <<EOF
 
 TODO: add references.
 EOF
