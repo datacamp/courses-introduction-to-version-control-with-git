@@ -283,8 +283,14 @@ ${GIT} tag alter-report-title-master
 # Add activity by another user.
 
 # Create the "thunk" user.
+echo
+echo "About to create user thunk"
 sudo useradd -m thunk
 THUNK_HOME=/home/thunk
+echo "Contents of /home are now:"
+ls -al /home
+echo
+
 THUNK_REPO=${THUNK_HOME}/repo
 THUNK_GIT="sudo -u thunk git -C ${THUNK_REPO}"
 sudo -u thunk git config --global user.email "thunk@datacamp.com"
