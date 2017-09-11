@@ -9,7 +9,7 @@ python -c "import git; print('gitpython version', git.__version__)"
 # Regenerate repository used in introductory Git lesson.
 
 # Configure Git for the "repl" user.
-REPL_SUDO="sudo -i -u repl"
+REPL_SUDO="sudo -u repl -i"
 ${REPL_SUDO} git config --global user.email "repl@datacamp.com"
 ${REPL_SUDO} git config --global user.name "Rep Loop"
 
@@ -287,7 +287,7 @@ ${GIT} tag alter-report-title-master
 sudo useradd -m thunk
 THUNK_HOME=/home/thunk
 THUNK_REPO=${THUNK_HOME}/repo
-THUNK_SUDO='sudo -i -u thunk'
+THUNK_SUDO='sudo -u thunk -i'
 THUNK_GIT="${THUNK_SUDO} git -C ${THUNK_REPO}"
 ${THUNK_SUDO} git config --global user.email "thunk@datacamp.com"
 ${THUNK_SUDO} git config --global user.name "Thun Ka"
