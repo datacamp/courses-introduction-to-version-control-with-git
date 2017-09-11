@@ -67,7 +67,7 @@ ${GIT} commit -m "Added reminder to cite funding sources."
 ${GIT} tag add-line-to-report
 
 # change-report-title: change the title line of the report in situ.
-sed -e 's/Northwestern Dental Surgeries/Seasonal Dental Surgeries/g' -i '' ${REPO}/report.txt
+sed -i -e 's/Northwestern Dental Surgeries/Seasonal Dental Surgeries/g' ${REPO}/report.txt
 ${GIT} add report.txt
 ${GIT} commit -m "Changed title because purpose of report has changed."
 ${GIT} tag change-report-title
@@ -206,7 +206,7 @@ ${GIT} commit -m "Generated lists of dates and teeth for use as axis labels."
 ${GIT} tag generate-axis-labels
 
 # correct-bug-and-regenerate-labels: correct bug in bin/teeth and regenerate axis labels.
-sed -e 's/-f 1/-f 2/g' -i '' ${REPO}/bin/teeth
+sed -i -e 's/-f 1/-f 2/g' ${REPO}/bin/teeth
 ${REPO}/bin/teeth ${REPO}/data/*.csv > ${REPO}/results/teeth.csv
 ${GIT} add ${REPO}
 ${GIT} commit -F - <<EOF
@@ -265,12 +265,12 @@ ${GIT} tag branch-add-summary-statistics
 # alter-report-title-{branch,master}: create a branch with one change to the report title and make another in master.
 ${GIT} checkout master
 ${GIT} checkout -b alter-report-title
-sed -e 's/Seasonal Dental Surgeries/Dental Work by Season/g' -i '' ${REPO}/report.txt
+sed -i -e 's/Seasonal Dental Surgeries/Dental Work by Season/g' ${REPO}/report.txt
 ${GIT} add report.txt
 ${GIT} commit -m "Changed report title."
 ${GIT} tag alter-report-title-branch
 ${GIT} checkout master
-sed -e 's/Seasonal Dental Surgeries/Seasonal Dental Surgeries (2017)/g' -i '' ${REPO}/report.txt
+sed -i -e 's/Seasonal Dental Surgeries/Seasonal Dental Surgeries (2017)/g' ${REPO}/report.txt
 ${GIT} add report.txt
 ${GIT} commit -m "Added year to report title."
 ${GIT} tag alter-report-title-master
