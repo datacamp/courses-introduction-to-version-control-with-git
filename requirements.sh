@@ -27,8 +27,8 @@ echo 'STARTING requirements.sh at ' $(date)
 echo 'REPL_HOME: ' ${REPL_HOME}
 echo 'REPO: ' ${REPO}
 echo 'GIT: ' ${GIT}
-echo 'git config user.name' $(git config user.name)
-echo 'git config user.email' $(git config user.email)
+echo "${REPL_SUDO} git config user.name: " $(git config user.name)
+echo "${REPL_SUDO} git config user.email: " $(git config user.email)
 echo
 
 # Make sure the directory doesn't already exist.
