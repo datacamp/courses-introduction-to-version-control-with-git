@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+
+#----------------------------------------
+# Package installation.
+pip install gitpython
+
+#----------------------------------------
 # Regenerate repository used in introductory Git lesson.
 
 # Use first command-line argument as path to repository directory,
