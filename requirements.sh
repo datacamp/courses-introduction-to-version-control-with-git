@@ -8,13 +8,13 @@ python -c "import git; print('gitpython version', git.__version__)"
 #----------------------------------------
 # Regenerate repository used in introductory Git lesson.
 
-# Configure Git.
+# Configure Git for the "repl" user.
 git config --global user.email "repl@datacamp.com"
 git config --global user.name "Rep Loop"
 
 # Locations.
-HOME_DIR=/home/repl
-REPO=${HOME_DIR}/dental
+REPL_HOME=/home/repl
+REPO=${REPL_HOME}/dental
 
 # Create shortcut to run Git in that repo.
 GIT="git -C ${REPO}"
@@ -23,7 +23,7 @@ GIT="git -C ${REPO}"
 echo ''
 echo '----------------------------------------'
 echo 'STARTING requirements.sh at ' $(date)
-echo 'HOME_DIR: ' ${HOME_DIR}
+echo 'REPL_HOME: ' ${REPL_HOME}
 echo 'REPO: ' ${REPO}
 echo 'GIT: ' ${GIT}
 echo 'git config user.name' $(git config user.name)
@@ -36,10 +36,13 @@ if [ -d ${REPO} ]; then
   exit 1
 fi
 
-# Initial an empty repository.
+# Initialize an empty repository.
 rm -rf ${REPO}
 mkdir ${REPO}
 ${GIT} init
+
+#----------------------------------------
+# Make changes to repo as user "repl".
 
 # add-report-as-markdown: add first Markdown file.
 cat > ${REPO}/report.md <<EOF
@@ -275,6 +278,28 @@ sed -i -e 's/Seasonal Dental Surgeries/Seasonal Dental Surgeries (2017)/g' ${REP
 ${GIT} add report.txt
 ${GIT} commit -m "Added year to report title."
 ${GIT} tag alter-report-title-master
+
+#----------------------------------------
+# Add activity by another user.
+
+# Create the "thunk" user.
+sudo useradd -m thunk
+THUNK_HOME=/home/thunk
+THUNK_REPO=${THUNK_HOME}/repo
+THUNK_GIT="sudo -u thunk git -C ${THUNK_REPO}"
+sudo -u thunk git config --global user.email "thunk@datacamp.com"
+sudo -u thunk git config --global user.name "Thun Ka"
+
+# Clone the repository as user "thunk".
+sudo -u thunk git clone file://${REPO} ${THUNK_REPO}
+
+# Add some references to the report.
+sudo -u thunk cat >> ${THUNK_REPO}/report.txt <<EOF
+
+TODO: add references.
+EOF
+${THUNK_GIT} add report.txt
+${THUNK_GIT} commit -m "Reminder to add references to report."
 
 # Show what has been created. (Pipe log to cat to make sure paging isn't triggered.)
 echo
