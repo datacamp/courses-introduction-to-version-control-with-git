@@ -5,7 +5,7 @@ description : >-
   its history. Along the way, it also shows you how to cancel or undo work
   in progress.
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:bc52cf1174
 ## Checking repository status
 
 FIXME
@@ -34,7 +34,7 @@ EOF
 Ex().test_mc(1, ['FIXME'])
 ```
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:55204eee61
 ## Staging files
 
 FIXME
@@ -75,7 +75,7 @@ test_student_typed(r'\s*cd\s+dental\s+git\s+add\s+report.txt\s+git\s+status\s*',
                    msg='Use `cd`, `git add`, and `git status`.')
 ```
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:23e6c3b701
 ## Committing changes
 
 FIXME
@@ -117,7 +117,7 @@ test_student_typed(r'\s*cd\s+dental\s+git\s+add\s+report.txt\s+git\s+commit\s+-m
                    msg='Use `cd`, `git add`, and `git status`.')
 ```
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:6e15806f83
 ## Committing changes selectively.
 
 *** =instructions
