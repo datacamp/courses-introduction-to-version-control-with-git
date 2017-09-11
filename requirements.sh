@@ -15,6 +15,10 @@ else
   REPO=${HOME}/dental
 fi
 
+# Configure Git.
+git config --global user.email "repl@datacamp.com"
+git config --global user.name "Rep Loop"
+
 # Report start.
 echo ''
 echo '----------------------------------------'
