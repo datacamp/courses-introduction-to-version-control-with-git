@@ -7,23 +7,26 @@ pip install gitpython
 #----------------------------------------
 # Regenerate repository used in introductory Git lesson.
 
-# Use first command-line argument as path to repository directory,
-# or use $HOME/dental if none provided.
-if [ "$#" -eq 1 ]; then
-  REPO=$1;
-else
-  REPO=${HOME}/dental
-fi
-
 # Configure Git.
 git config --global user.email "repl@datacamp.com"
 git config --global user.name "Rep Loop"
+
+# Locations.
+HOME_DIR=/home/repl
+REPO=${HOME_DIR}/dental
+
+# Create shortcut to run Git in that repo.
+GIT="git -C ${REPO}"
 
 # Report start.
 echo ''
 echo '----------------------------------------'
 echo 'STARTING requirements.sh at ' $(date)
+echo 'HOME_DIR: ' ${HOME_DIR}
 echo 'REPO: ' ${REPO}
+echo 'GIT: ' ${GIT}
+echo 'git config user.name' $(git config user.name)
+echo 'git config user.email' $(git config user.email)
 echo
 
 # Make sure the directory doesn't already exist.
@@ -31,9 +34,6 @@ if [ -d ${REPO} ]; then
   echo "Error: '${REPO}' already exists."
   exit 1
 fi
-
-# Create shortcut to run Git in that repo.
-GIT="git -C ${REPO}"
 
 # Initial an empty repository.
 rm -rf ${REPO}
