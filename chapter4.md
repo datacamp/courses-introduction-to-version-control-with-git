@@ -5,7 +5,7 @@ description : >-
   independently on several things at once.  This chapter shows you how
   to create and manage branches.
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:bab34c226b
 ## Listing branches
 
 <hr>
@@ -39,7 +39,7 @@ Ex().test_mc(4, ['No: every repository has at least one branch.',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:83f0aded4e
 ## Comparing branches
 
 <hr>
