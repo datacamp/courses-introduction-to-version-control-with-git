@@ -83,7 +83,7 @@ test_student_typed(r'\s*git\s+add\s+report.txt\s+git\s+status\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:f208f45d7d
 ## Viewing changes in staged files
 
 FIXME
@@ -128,7 +128,7 @@ test_student_typed(r'\s*git\s+status\s+git\s+diff\s+-r\s+HEAD\s+data/northern.cs
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:dbf5aa722c
 ## Committing changes
 
 FIXME
@@ -174,7 +174,7 @@ test_student_typed(r'\s*git\s+add\s+report.txt\s+git\s+commit\s+-m\s+"Adding\s+a
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:70a86d3080
 ## Re-staging files
 
 FIXME
@@ -223,7 +223,7 @@ test_student_typed(r'\s*git\s+add\s+report.txt\s+data/northern.csv\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:54325e15f1
 ## Committing changes selectively.
 
 *** =instructions
@@ -266,7 +266,7 @@ test_student_typed(r'\s*git\s+add\s+data/northern.csv\s+git\s+commit\s+-m\s+"Add
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:7ff1cc0a0e
 ## Undoing changes to unstaged files
 
 *** =instructions
@@ -308,7 +308,7 @@ test_student_typed(r'\s*git\s+checkout\s+--\s+data/northern.csv\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:fba584b9f1
 ## Unstaging files
 
 *** =instructions
@@ -351,7 +351,7 @@ test_student_typed(r'\s*git\s+reset\s+data/northern.csv\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:d45eca9a34
 ## Undoing all changes
 
 *** =instructions
