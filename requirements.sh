@@ -8,6 +8,10 @@ ARCHIVE=setup.zip
 pip3 install gitpython
 python3 -c "import sys; print('sys.version:', sys.version); import git; print('gitpython version:', git.__version__)"
 
+# Make sure we have unzip.
+apt-get update
+apt-get -y install unzip
+
 # Echo shell commands as they are executed.
 set -x
 
