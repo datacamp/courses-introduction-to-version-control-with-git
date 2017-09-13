@@ -113,3 +113,56 @@ test_student_typed(r'\s*git\s+clone\s+file:///home/thunk/repo\s+(/home/repl/|~/|
                    fixed=False,
                    msg='Use `git clone` and the absolute or relative path of the directory to clone to.')
 ```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:
+## Ignoring files
+
+<hr>
+
+Which of the following files would *not* be ignored by a `.gitignore` that contained the lines:
+
+```
+pdf
+*.pyc
+backup
+```
+
+*** =possible_answers
+- `report.pdf`
+- `bin/analyze.pyc`
+- `backup/northern.csv`
+- None of the above.
+
+*** =hint
+
+*** =feedbacks
+- [Correct: `pdf` does not contain any wildcards, so it only matches files called `pdf`.]
+- This file *is* matched because the pattern `*.pyc` matches files in sub-directories.
+- This file *is* matched because `backup` is a directory, so all files in it are ignored.
+- No: at least one of the files above is not ignored.
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:
+## Standard files
+
+<hr>
+
+Which of these do you *not* need if your project is stored in a private Git repository
+behind your employer's firewall?
+
+*** =possible_answers
+- `README.md`
+- `LICENSE.md`
+- `CITATION.md`
+- You still need all of these files.
+
+*** =hint
+
+*** =feedbacks
+- Your project should have more than just this file.
+- Your project should have more than just this file.
+- Your project should have more than just this file.
+- [Correct: you should still have all of these files.]
