@@ -146,7 +146,7 @@ backup
 <!-- -------------------------------------------------------------------------------- -->
 
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:ee41a600fb
-## Title
+## Examining configuration
 
 <hr>
 
