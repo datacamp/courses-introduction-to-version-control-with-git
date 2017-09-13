@@ -75,18 +75,23 @@ Ex().test_mc(3, ['No: some files differ.',
 <!-- -------------------------------------------------------------------------------- -->
 
 --- type:NormalExercise lang:shell xp:100 skills:1 key:3812382b52
-## Merging branches
+## Merging without conflict
 
 *** =instructions
 
-You are in the `dental` repository.
-Merge the changes from the 
+You are in the `master` branch of the `dental` repository.
+Merge the changes from the `summary-statistics` branch into the `master` branch with the message "Merging summary statistics."
+
+**Please remember to use the `--no-edit` flag to prevent Git from trying to launch an editor.**
+
+**Please also remember that `--no-edit` is crazy dangerous.**
 
 *** =hint
 
 *** =pre_exercise_code
 ```{shell}
-
+repl = connect('bash')
+repl.run_command('cd dental')
 ```
 
 *** =sample_code
@@ -96,10 +101,12 @@ Merge the changes from the
 
 *** =solution
 ```{shell}
-
+git merge --no-edit -m "Merging summary statistics." summary-statistics master
 ```
 
 *** =sct
 ```{python}
-
+test_student_typed(r'\s*git\s+merge\s+--no-edit\s+-m\s+"Merging\s+summary\s+statistics."\s+summary-statistics\s+master\s*',
+                   fixed=False,
+                   msg='Use `git merge --no-edit -m "message" branch..branch`.')
 ```
