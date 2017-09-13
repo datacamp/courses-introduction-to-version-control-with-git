@@ -169,9 +169,9 @@ to create a repository called `dental` in your home directory.
    3. Adding new files with `git add` and `git commit`
    4. Canceling changes in progress
 3. Managing repositories
-   1. Viewing and configuring preferences with `git config`
-   2. Initializing a repository with `git init`
-   3. Ignoring files with `.gitignore`
+   1. Initializing a repository with `git init`
+   2. Ignoring files with `.gitignore`
+   3. Viewing and configuring preferences with `git config`
    5. Listing remotes with `git remote`
    6. Adding and removing remotes
    7. Pulling from branches in remote repositories with `git pull`

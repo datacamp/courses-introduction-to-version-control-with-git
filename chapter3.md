@@ -174,3 +174,196 @@ correct = 'Correct!'
 yes_there_is = 'Oh yes it is.'
 Ex().test_mc(3, [wrong, wrong, correct, yes_there_is])
 ```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:NormalExercise lang:shell xp:100 skills:1 key:
+## Changing configuration
+
+*** =instructions
+
+Change the email address configured for the current user
+for *all* projects
+to `rep.loop@datacamp.com`.
+
+*** =hint
+
+Use `git config --global`.
+
+*** =pre_exercise_code
+```{shell}
+
+```
+
+*** =sample_code
+```{shell}
+
+```
+
+*** =solution
+```{shell}
+git config --global user.email rep.loop@datacamp.com
+```
+
+*** =sct
+```{python}
+test_student_typed(r'\s*git\s+config\s+--global\s+user.email\s+["\']?rep.loop@datacamp.com["\']?\s*',
+                   fixed=False,
+                   msg='Use `git config --global` with the `user.email` property and the email address.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+## Listing remotes
+
+<hr>
+
+How many distinct remotes are configured for the repository in `dental`?
+
+*** =instructions
+- None.
+- 1.
+- 2.
+
+*** =hint
+
+Run `git remote` in the `dental` repository.
+
+*** =pre_exercise_code
+```{shell}
+repl = connect('bash')
+repl.run_command('rm -rf dental')
+repl.run_command('git clone file:///home/thunk/repo dental')
+```
+
+*** =sct
+```{python}
+Ex().test_mc(2, ['No: remotes exist.', 'Correct!', 'No: there is one remote used for both fetching and pushing.'])
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:NormalExercise lang:shell xp:100 skills:1 key:
+## Pulling changes from remote repositories
+
+*** =instructions
+
+You are in the directory `dental`,
+which is a Git repository with a remote called `origin`.
+Pull in all of the changes made in the master branch of that remote repository
+that are not yet in your local repository.
+
+*** =hint
+
+*** =pre_exercise_code
+```{shell}
+repl = connect('bash')
+repl.run_command('rm -rf dental')
+repl.run_command('git clone file:///home/thunk/repo dental')
+repl.run_command('cd dental')
+repl.run_command('git reset --hard HEAD~2')
+```
+
+*** =sample_code
+```{shell}
+
+```
+
+*** =solution
+```{shell}
+git pull origin master
+```
+
+*** =sct
+```{python}
+test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
+                   fixed=False,
+                   msg='Use `git pull` with the name of the remote and the name of the branch.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:NormalExercise lang:shell xp:100 skills:1 key:
+## Pushing changes to remote repositories
+
+*** =instructions
+
+You are in the `dental` directory,
+which is a Git repository with a remote called `origin`.
+You have changed one file;
+save your changes with a meaningful commit message,
+then push those changes to the remote repository's `master` branch.
+
+*** =hint
+
+*** =pre_exercise_code
+```{shell}
+repl = connect('bash')
+repl.run_command('rm -rf dental')
+repl.run_command('git clone file:///home/thunk/repo dental')
+repl.run_command('cd dental')
+with open('dental/data/northern.csv', 'w') as writer:
+    writer.write('2017-11-01,bicuspid\n')
+```
+
+*** =sample_code
+```{shell}
+# Use two Git commands to save changes.
+
+
+# Push changes.
+
+```
+
+*** =solution
+```{shell}
+git add data/northern.csv
+git commit -m "Saving changes"
+git push origin master
+```
+
+*** =sct
+```{python}
+test_student_typed(r'\s*git\s+add\s+[^\n]+\s+git\s+commit\s+-m\s+[^\n]+\s+git\s+push\s+origin\s+master\s*',
+                   fixed=False,
+                   msg='Use `git pull` with the name of the remote and the name of the branch.')
+```
+
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:NormalExercise lang:shell xp:100 skills:1 key:
+## Configuring remotes
+
+*** =instructions
+
+You are in the directory `dental`, which is a Git repository.
+Use a single Git command
+to add `file:///home/thunk/repo` as a remote called `thunk` to this repository.
+
+*** =hint
+
+Be sure to count the slashes properly in the remote URL.
+
+*** =pre_exercise_code
+```{shell}
+
+```
+
+*** =sample_code
+```{shell}
+
+```
+
+*** =solution
+```{shell}
+git remote add thunk file:///home/thunk/repo
+```
+
+*** =sct
+```{python}
+test_student_typed(r'\s*git\s+remote\s+add\s+thunk\s+file:///home/thunk/repo\s*',
+                   fixed=False,
+                   msg='Use `git remote add` with the name and URL of the remote.')
+```
