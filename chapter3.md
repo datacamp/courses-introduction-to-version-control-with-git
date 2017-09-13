@@ -116,7 +116,7 @@ test_student_typed(r'\s*git\s+clone\s+file:///home/thunk/repo\s+(/home/repl/|~/|
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:d10c46c6d0
 ## Ignoring files
 
 <hr>
@@ -145,7 +145,7 @@ backup
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:fe7697fdef
 ## Standard files
 
 <hr>
