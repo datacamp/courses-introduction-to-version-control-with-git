@@ -5,15 +5,69 @@ description : >-
   independently on several things at once.  This chapter shows you how
   to create and manage branches.
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:31ea650c62
-## FIXME so that chapter will build
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+## Listing branches
 
 <hr>
 
-*** =possible_answers
-- FIXME
+You are in the `dental` repository.
+How many branches are in this repository?
+
+*** =instructions
+- None.
+- 1.
+- 2.
+- 3.
 
 *** =hint
 
-*** =feedbacks
-- [correct]
+Use `git branch` to list branches.
+
+*** =pre_exercise_code
+```{shell}
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
+*** =sct
+```{python}
+Ex().test_mc(4, ['No: every repository has at least one branch.',
+                 'No: there are more branches than that.',
+                 'No: there are more branches than that.',
+                 'Correct!'])
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+## Comparing branches
+
+<hr>
+
+You are in the `dental` repository.
+How many files in the `summary-statistics` branch
+contain differences compared to their equivalents in the `master` branch?
+
+*** =instructions
+- None.
+- 1.
+- 2.
+- 3.
+
+*** =hint
+
+Use `git diff branch..branch` to list the differences.
+
+*** =pre_exercise_code
+```{shell}
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
+*** =sct
+```{python}
+Ex().test_mc(3, ['No: some files differ.',
+                 'No: please count both files that have changed and files that are being added.',
+                 'Correct!',
+                 'No: please count the number of files, not the number of differences.'])
+```
