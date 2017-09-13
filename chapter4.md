@@ -1,12 +1,11 @@
 ---
-title       : Advanced features
+title       : Working with branches
 description : >-
-  Sooner or later, everyone wants to undo something that seemed like a
-  good idea at the time.  This chapter shows you how to do that with
-  Git, and also how to manage large datasets and other kinds of files
-  frequently encountered in data science.
+  Git's most powerful feature is *branching*, which allows you to work
+  independently on several things at once.  This chapter shows you how
+  to create and manage branches.
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:5cf236a9cb
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:31ea650c62
 ## FIXME so that chapter will build
 
 <hr>

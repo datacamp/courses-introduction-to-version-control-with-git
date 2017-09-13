@@ -168,18 +168,15 @@ to create a repository called `dental` in your home directory.
    2. Saving changes to existing files with `git add` and `git commit`
    3. Adding new files with `git add` and `git commit`
    4. Canceling changes in progress
-3. Setting up a new project
-   1. Viewing and configuring preferences with `git config`
+3. Managing repositories
+   1. **Viewing and configuring preferences with `git config`**
    2. Initializing a repository with `git init`
    3. Ignoring files with `.gitignore`
-   4. Common files: `README.md`, `LICENSE.md`, and `CITATION.md`
-4. Advanced features
-   1. Undoing changes with `git reset`
-   2. Undoing changes with `git revert`
-   3. Tagging with `git tag`
-   4. Strategies for handling very large files
-   5. Srategies for handling binary files
-5. Working with branches
+   5. Listing remotes with `git remote`
+   6. Adding and removing remotes
+   7. Pulling from branches in remote repositories with `git pull`
+   8. Pushing to branches in remote repositories with `git push`
+4. Working with branches
    1. Listing branches with `git branch`
    2. Switching between branches with `git checkout`
    3. Viewing differences between branches
@@ -187,12 +184,14 @@ to create a repository called `dental` in your home directory.
    5. Recognizing conflicts
    6. Resolving conflicts
    7. Avoiding conflicts
-5. Collaborating (**probably not included because platform won't support it yet**)
-   1. Listing remotes with `git remote`
-   2. Adding and removing remotes
-   3. Pulling from branches in remote repositories with `git pull`
-   4. Pushing to branches in remote repositories with `git push`
-   5. Branch-per-feature development
+   8. Undoing changes with `git reset`
+   9. Undoing changes with `git revert`
+   10. Tagging with `git tag`
+5. Advanced features
+   1. Common files: `README.md`, `LICENSE.md`, and `CITATION.md`
+   2. Srategies for handling binary files
+   3. Strategies for handling very large files
+   4. Branch-per-feature development
 
 The "datasets" are:
 

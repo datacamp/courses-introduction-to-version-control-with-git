@@ -1,19 +1,31 @@
 ---
-title       : Working with branches
+title       : Advanced features
 description : >-
-  Git's most powerful feature is *branching*, which allows you to work
-  independently on several things at once.  This chapter shows you how
-  to create and manage branches.
+  Sooner or later, everyone wants to undo something that seemed like a
+  good idea at the time.  This chapter shows you how to do that with
+  Git, and also how to manage large datasets and other kinds of files
+  frequently encountered in data science.
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:31ea650c62
-## FIXME so that chapter will build
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:fe7697fdef
+## Standard files
 
 <hr>
 
+Which of these do you *not* need if your project is stored in a private Git repository
+behind your employer's firewall?
+
 *** =possible_answers
-- FIXME
+- `README.md`
+- `LICENSE.md`
+- `CITATION.md`
+- You still need all of these files.
 
 *** =hint
 
 *** =feedbacks
-- [correct]
+- Your project should have more than just this file.
+- Your project should have more than just this file.
+- Your project should have more than just this file.
+- [Correct: you should still have all of these files.]

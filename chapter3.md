@@ -1,9 +1,9 @@
 ---
-title       : Setting up a new project
+title       : Managing repositories
 description : >-
-  This chapter shows you how to set up a Git project from scratch, and
-  how to turn an existing project into a Git repository.  It also
-  introduces some of the files that well-structured projects contain.
+  This chapter shows you how to set up a Git project from scratch, how
+  to turn an existing project into a Git repository, and how to
+  connect your repository to others.
 
 --- type:NormalExercise lang:shell xp:100 skills:1 key:a87bbd3948
 ## Starting from scratch
@@ -142,27 +142,3 @@ backup
 - This file *is* matched because the pattern `*.pyc` matches files in sub-directories.
 - This file *is* matched because `backup` is a directory, so all files in it are ignored.
 - No: at least one of the files above is not ignored.
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:fe7697fdef
-## Standard files
-
-<hr>
-
-Which of these do you *not* need if your project is stored in a private Git repository
-behind your employer's firewall?
-
-*** =possible_answers
-- `README.md`
-- `LICENSE.md`
-- `CITATION.md`
-- You still need all of these files.
-
-*** =hint
-
-*** =feedbacks
-- Your project should have more than just this file.
-- Your project should have more than just this file.
-- Your project should have more than just this file.
-- [Correct: you should still have all of these files.]
