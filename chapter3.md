@@ -5,7 +5,7 @@ description : >-
   how to turn an existing project into a Git repository.  It also
   introduces some of the files that well-structured projects contain.
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:a87bbd3948
 ## Starting from scratch
 
 *** =instructions
@@ -39,7 +39,7 @@ test_student_typed(r'\s*git\s+init\s+optical\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:a4330ec681
 ## Starting with an existing project
 
 *** =instructions
@@ -77,7 +77,7 @@ test_student_typed(r'\s*git\s+init\s+\.\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:9fb3b2ed49
 ## Cloning a repository
 
 *** =instructions
