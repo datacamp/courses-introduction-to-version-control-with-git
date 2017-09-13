@@ -168,15 +168,7 @@ to create a repository called `dental` in your home directory.
    2. Saving changes to existing files with `git add` and `git commit`
    3. Adding new files with `git add` and `git commit`
    4. Canceling changes in progress
-3. Managing repositories
-   1. Initializing a repository with `git init`
-   2. Ignoring files with `.gitignore`
-   3. Viewing and configuring preferences with `git config`
-   5. Listing remotes with `git remote`
-   6. Adding and removing remotes
-   7. Pulling from branches in remote repositories with `git pull`
-   8. Pushing to branches in remote repositories with `git push`
-4. Working with branches
+3. Working with branches
    1. Listing branches with `git branch`
    2. Switching between branches with `git checkout`
    3. Viewing differences between branches
@@ -187,11 +179,14 @@ to create a repository called `dental` in your home directory.
    8. Undoing changes with `git reset`
    9. Undoing changes with `git revert`
    10. Tagging with `git tag`
-5. Advanced features
-   1. Common files: `README.md`, `LICENSE.md`, and `CITATION.md`
-   2. Srategies for handling binary files
-   3. Strategies for handling very large files
-   4. Branch-per-feature development
+4. Managing repositories
+   1. Initializing a repository with `git init`
+   2. Ignoring files with `.gitignore`
+   3. Viewing and configuring preferences with `git config`
+   5. Listing remotes with `git remote`
+   6. Adding and removing remotes
+   7. Pulling from branches in remote repositories with `git pull`
+   8. Pushing to branches in remote repositories with `git push`
 
 The "datasets" are:
 
