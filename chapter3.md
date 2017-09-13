@@ -145,7 +145,7 @@ backup
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:ee41a600fb
 ## Title
 
 <hr>
@@ -177,7 +177,7 @@ Ex().test_mc(3, [wrong, wrong, correct, yes_there_is])
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:7c0dce348b
 ## Changing configuration
 
 *** =instructions
@@ -214,7 +214,7 @@ test_student_typed(r'\s*git\s+config\s+--global\s+user.email\s+["\']?rep.loop@da
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:61567f27d4
 ## Listing remotes
 
 <hr>
@@ -244,7 +244,7 @@ Ex().test_mc(2, ['No: remotes exist.', 'Correct!', 'No: there is one remote used
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:4d5be24350
 ## Pulling changes from remote repositories
 
 *** =instructions
@@ -284,7 +284,7 @@ test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:b3ba4dd987
 ## Pushing changes to remote repositories
 
 *** =instructions
@@ -333,7 +333,7 @@ test_student_typed(r'\s*git\s+add\s+[^\n]+\s+git\s+commit\s+-m\s+[^\n]+\s+git\s+
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:1e327efda1
 ## Configuring remotes
 
 *** =instructions
