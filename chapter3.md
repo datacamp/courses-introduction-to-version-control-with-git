@@ -142,3 +142,35 @@ backup
 - This file *is* matched because the pattern `*.pyc` matches files in sub-directories.
 - This file *is* matched because `backup` is a directory, so all files in it are ignored.
 - No: at least one of the files above is not ignored.
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+## Title
+
+<hr>
+
+What is the configuration value `core.ignorecase` set to?
+
+*** =instructions
+- `false`
+- `always_on`
+- `true`
+- There is no such value.
+
+*** =hint
+
+Use `git config` and `grep`.
+
+*** =pre_exercise_code
+```{shell}
+
+```
+
+*** =sct
+```{python}
+wrong = 'That is not the correct value.'
+correct = 'Correct!'
+yes_there_is = 'Oh yes it is.'
+Ex().test_mc(3, [wrong, wrong, correct, yes_there_is])
+```
