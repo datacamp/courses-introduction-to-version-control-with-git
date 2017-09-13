@@ -3,7 +3,12 @@
 # Regenerate repository used in introductory Git lesson.
 # RUN THIS SCRIPT AS USER 'thunk' *after* running repl's script.
 
+# Echo shell commands as they are executed.
+set -x
+
 # Locations and shortcuts.
+R_HOME=/home/repl
+R_REPO=${R_HOME}/dental
 T_HOME=/home/thunk
 T_REPO=${T_HOME}/repo
 T_GIT="git -C ${T_REPO}"

@@ -3,6 +3,9 @@
 # Regenerate repository used in introductory Git lesson.
 # RUN THIS SCRIPT AS USER 'repl'.
 
+# Echo shell commands as they are executed.
+set -x
+
 # Locations and shortcuts.
 R_HOME=/home/repl
 R_REPO=${R_HOME}/dental
