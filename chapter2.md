@@ -5,7 +5,7 @@ description : >-
   update its history. Along the way, it also shows you how to cancel
   changes before they are committed.
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:bc52cf1174
 ## Checking repository status
 
 FIXME
@@ -39,7 +39,7 @@ Ex().test_mc(1, ['FIXME'])
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:55204eee61
 ## Staging files
 
 FIXME
