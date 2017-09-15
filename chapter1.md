@@ -14,12 +14,12 @@ FIXME: a bit of terminology and motivation.
 Which of the following *doesn't* version control do?
 
 *** =possible_answers
-- FIXME
+- [FIXME]
 
 *** =hint
 
 *** =feedbacks
-- [correct]
+- correct
 
 --- type:PureMultipleChoiceExercise lang:bash xp:50 key:74e878cc1b
 ## Comparison with other system
@@ -31,12 +31,12 @@ FIXME: comparison with Dropbox and Google Docs.
 Why don't more people already use version control?
 
 *** =possible_answers
-- FIXME
+- [FIXME]
 
 *** =hint
 
 *** =feedbacks
-- [fixme]
+- fixme
 
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:1dac2b0a28
 ## Where version control stores information
@@ -48,7 +48,7 @@ FIXME: the `.git` directory.
 Where is information about the history of the directory `dental/data` stored?
 
 *** =instructions
-- FIXME
+- [FIXME]
 
 *** =hint
 
@@ -118,7 +118,6 @@ Ex().test_mc(1, ['correct'])
 <hr>
 
 Who made the last change to the last line of `data/southern.csv`?
-FIXME: this is a weak question if we don't have multiple user accounts.
 
 *** =instructions
 - FIXME
