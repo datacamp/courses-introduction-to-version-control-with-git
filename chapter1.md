@@ -41,7 +41,7 @@ Why don't more people already use version control?
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:1dac2b0a28
 ## Where version control stores information
 
-FIXME: the `.git` directory.
+FIXME: introduce the `.git` directory.
 
 <hr>
 
@@ -67,7 +67,7 @@ Ex().test_mc(1, ['correct'])
 
 <hr>
 
-`cd dental` and view the log with `git log`.
+FIXME: have the learner view the log with `git log`.
 
 *** =instructions
 - FIXME
@@ -76,7 +76,8 @@ Ex().test_mc(1, ['correct'])
 
 *** =pre_exercise_code
 ```{shell}
-
+repl = connect('bash')
+repl.run_command('cd dental')
 ```
 
 *** =sct
@@ -90,6 +91,8 @@ Ex().test_mc(1, ['correct'])
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:77aa525e25
 ## Viewing a file's history
 
+FIXME: use `git log` and count.
+
 <hr>
 
 How many commits have been made to `data/southern.csv`?
@@ -101,7 +104,8 @@ How many commits have been made to `data/southern.csv`?
 
 *** =pre_exercise_code
 ```{shell}
-
+repl = connect('bash')
+repl.run_command('cd dental')
 ```
 
 *** =sct
@@ -115,6 +119,8 @@ Ex().test_mc(1, ['correct'])
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:f76c7f5965
 ## Viewing a file's details
 
+FIXME: use `git blame`.
+
 <hr>
 
 Who made the last change to the last line of `data/southern.csv`?
@@ -126,7 +132,8 @@ Who made the last change to the last line of `data/southern.csv`?
 
 *** =pre_exercise_code
 ```{shell}
-
+repl = connect('bash')
+repl.run_command('cd dental')
 ```
 
 *** =sct
@@ -138,11 +145,13 @@ Ex().test_mc(1, ['correct'])
 ```
 
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:d03c5fa3e6
-## Viewing a change
+## Viewing an absolute commit
+
+FIXME: introduce hashes.
 
 <hr>
 
-Use `git show hash`.
+Use `git show` and the hash ID.
 
 *** =instructions
 - FIXME
@@ -151,23 +160,26 @@ Use `git show hash`.
 
 *** =pre_exercise_code
 ```{shell}
-
+repl = connect('bash')
+repl.run_command('cd dental')
 ```
 
 *** =sct
 ```{python}
-test_student_typed(r'\s*cd\s+dental\s+git\s+show\s+HEAD~2\s*',
+test_student_typed(r'\s*git\s+show\s+fb2d2576\s*',
                    fixed=False,
-                   msg='Use `git show` and remember that `HEAD~N` is current minus that many.')
+                   msg='Use `git show` and the first few digits of the commit hash.')
 Ex().test_mc(1, ['correct'])
 ```
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:9862ae22bd
-## Viewing changes
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:d03c5fa3e6
+## Viewing a relative commitl
+
+FIXME: introduce `HEAD`.
 
 <hr>
 
-Use `git diff` to view differences between current states and previous-but-one revision.
+Use `git show` and `HEAD~N`.
 
 *** =instructions
 - FIXME
@@ -176,14 +188,15 @@ Use `git diff` to view differences between current states and previous-but-one r
 
 *** =pre_exercise_code
 ```{shell}
-
+repl = connect('bash')
+repl.run_command('cd dental')
 ```
 
 *** =sct
 ```{python}
-test_student_typed(r'\s*cd\s+dental\s+git\s+diff\s-r\s+HEAD~2\s*',
+test_student_typed(r'\s*git\s+show\s+HEAD~2\s*',
                    fixed=False,
-                   msg='Use `git diff` and remember that `HEAD~N` is current minus that many.')
+                   msg='Use `git show` and remember that `HEAD~N` is current minus that many.')
 Ex().test_mc(1, ['correct'])
 ```
 
@@ -202,19 +215,50 @@ What HEAD-based reference corresponds to the hash FIXME?
 
 *** =pre_exercise_code
 ```{shell}
-
+repl = connect('bash')
+repl.run_command('cd dental')
 ```
 
 *** =sct
 ```{python}
-test_student_typed(r'\s*cd\s+dental\s+git\s+log\s*',
+test_student_typed(r'\s*git\s+log\s*',
                    fixed=False,
                    msg='Use `git log` and scroll through the output.')
 Ex().test_mc(1, ['correct'])
 ```
 
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:9862ae22bd
+## Viewing changes
+
+FIXME: introduce `git diff -r`.
+
+<hr>
+
+Use `git diff` to view differences between current states and previous-but-one revision.
+
+*** =instructions
+- FIXME
+
+*** =hint
+
+*** =pre_exercise_code
+```{shell}
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
+*** =sct
+```{python}
+test_student_typed(r'\s*git\s+diff\s-r\s+HEAD~2\s*',
+                   fixed=False,
+                   msg='Use `git diff` and remember that `HEAD~N` is current minus that many.')
+Ex().test_mc(1, ['correct'])
+```
+
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:ca41bfc36a
 ## Viewing differences between two changes
+
+FIXME: introduce `rev..rev` notation.
 
 <hr>
 
@@ -227,12 +271,13 @@ List the files that changed between `HEAD~2` and `HEAD~4`.
 
 *** =pre_exercise_code
 ```{shell}
-
+repl = connect('bash')
+repl.run_command('cd dental')
 ```
 
 *** =sct
 ```{python}
-test_student_typed(r'\s*cd\s+dental\s+git\s+diff\s+-r\s+HEAD~2\.\.HEAD~4\s*',
+test_student_typed(r'\s*git\s+diff\s+-r\s+HEAD~2\.\.HEAD~4\s*',
                    fixed=False,
                    msg='Use `git diff REV..REV`.')
 Ex().test_mc(1, ['correct'])
