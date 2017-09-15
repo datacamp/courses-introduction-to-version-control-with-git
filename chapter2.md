@@ -266,6 +266,45 @@ test_student_typed(r'\s*git\s+add\s+data/northern.csv\s+git\s+commit\s+-m\s+"Add
 
 <!-- -------------------------------------------------------------------------------- -->
 
+--- type:NormalExercise lang:shell xp:100 skills:1 key:
+## Removing unwanted files
+
+*** =instructions
+
+You are in the `dental` repository.
+Use `ls` to see what files are present,
+then a single Git command to remove unwanted files,
+and use `ls` again to see what effects your Git command has had.
+
+*** =hint
+
+*** =pre_exercise_code
+```{shell}
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
+*** =sample_code
+```{shell}
+
+```
+
+*** =solution
+```{shell}
+ls
+git clean -f
+ls
+```
+
+*** =sct
+```{python}
+test_student_typed(r'\s*ls\s+git\s+clean\s+-f\s+ls\s*',
+                   fixed=False,
+                   msg='Use `ls`, `git clean` with the right flag(s), and `ls` again.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
 --- type:NormalExercise lang:shell xp:100 skills:1 key:7ff1cc0a0e
 ## Undoing changes to unstaged files
 

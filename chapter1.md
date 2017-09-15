@@ -21,6 +21,8 @@ Which of the following *doesn't* version control do?
 *** =feedbacks
 - correct
 
+<!-- -------------------------------------------------------------------------------- -->
+
 --- type:PureMultipleChoiceExercise lang:bash xp:50 key:74e878cc1b
 ## Comparison with other system
 
@@ -37,6 +39,8 @@ Why don't more people already use version control?
 
 *** =feedbacks
 - fixme
+
+<!-- -------------------------------------------------------------------------------- -->
 
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:1dac2b0a28
 ## Where version control stores information
@@ -61,6 +65,8 @@ Where is information about the history of the directory `dental/data` stored?
 ```{python}
 Ex().test_mc(1, ['correct'])
 ```
+
+<!-- -------------------------------------------------------------------------------- -->
 
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:97ae2f8613
 ## Viewing a repository's history
@@ -87,6 +93,8 @@ test_student_typed(r'\s*cd\s+dental\s+git\s+log\s*',
                    msg='Use `cd` followed by `git log`.')
 Ex().test_mc(1, ['correct'])
 ```
+
+<!-- -------------------------------------------------------------------------------- -->
 
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:77aa525e25
 ## Viewing a file's history
@@ -116,6 +124,8 @@ test_student_typed(r'\s*cd\s+dental\s+git\s+log\s+data/southern.csv\s*',
 Ex().test_mc(1, ['correct'])
 ```
 
+<!-- -------------------------------------------------------------------------------- -->
+
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:f76c7f5965
 ## Viewing a file's details
 
@@ -143,6 +153,8 @@ test_student_typed(r'\s*cd\s+dental\s+git\s+blame\s+data/northern.csv\s*',
                    msg='Use `git blame` and the name of a file.')
 Ex().test_mc(1, ['correct'])
 ```
+
+<!-- -------------------------------------------------------------------------------- -->
 
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:d03c5fa3e6
 ## Viewing an absolute commit
@@ -172,6 +184,8 @@ test_student_typed(r'\s*git\s+show\s+fb2d2576\s*',
 Ex().test_mc(1, ['correct'])
 ```
 
+<!-- -------------------------------------------------------------------------------- -->
+
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:d03c5fa3e6
 ## Viewing a relative commitl
 
@@ -200,6 +214,8 @@ test_student_typed(r'\s*git\s+show\s+HEAD~2\s*',
 Ex().test_mc(1, ['correct'])
 ```
 
+<!-- -------------------------------------------------------------------------------- -->
+
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:eef645517f
 ## Using hashes to refer to commits
 
@@ -226,6 +242,8 @@ test_student_typed(r'\s*git\s+log\s*',
                    msg='Use `git log` and scroll through the output.')
 Ex().test_mc(1, ['correct'])
 ```
+
+<!-- -------------------------------------------------------------------------------- -->
 
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:9862ae22bd
 ## Viewing changes
@@ -254,6 +272,8 @@ test_student_typed(r'\s*git\s+diff\s-r\s+HEAD~2\s*',
                    msg='Use `git diff` and remember that `HEAD~N` is current minus that many.')
 Ex().test_mc(1, ['correct'])
 ```
+
+<!-- -------------------------------------------------------------------------------- -->
 
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:ca41bfc36a
 ## Viewing differences between two changes
