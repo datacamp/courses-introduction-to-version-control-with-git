@@ -231,4 +231,3 @@ and show you how it can help you get more done in less time and with less pain.
 [profile-site]: https://github.com/datacamp/learner-profiles
 [profile-thanh]: https://github.com/datacamp/learner-profiles#thanh
 [profile-yngve]: https://github.com/datacamp/learner-profiles#yngve
->>>>>>> b5ad2099e642a9bdb828c2ea8b4766b0001d79b6
