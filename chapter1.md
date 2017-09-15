@@ -172,7 +172,7 @@ test_student_typed(r'\s*git\s+show\s+fb2d2576\s*',
 Ex().test_mc(1, ['correct'])
 ```
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:d03c5fa3e6
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:1704d9b2dc
 ## Viewing a relative commitl
 
 FIXME: introduce `HEAD`.
