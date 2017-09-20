@@ -266,7 +266,7 @@ test_student_typed(r'\s*git\s+add\s+data/northern.csv\s+git\s+commit\s+-m\s+"Add
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:ed5fd1a850
 ## Removing unwanted files
 
 *** =instructions
