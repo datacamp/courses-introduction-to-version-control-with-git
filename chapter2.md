@@ -238,7 +238,7 @@ test_student_typed(r'\s*git\s+add\s+report.txt\s+git\s+commit\s+-m\s+"Adding\s+a
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:b91e72ac0c
 ## How do I add new files?
 
 Git does not track files by default.
@@ -410,7 +410,7 @@ test_student_typed(r'\s*git\s+status\s+git\s+add\s+data/northern.csv\s+git\s+com
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:3949f5c938
 ## How can I remove unwanted files?
 
 Data analysis often produces temporary or intermediate files that you don't want to save.
