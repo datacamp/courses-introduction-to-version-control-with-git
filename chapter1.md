@@ -301,6 +301,7 @@ Ex().test_mc(3, [e_more, e_more, correct, e_fewer])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
+
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:1704d9b2dc
 ## Viewing a relative commitl
 
