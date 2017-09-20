@@ -375,7 +375,7 @@ Ex().test_mc(2, [err_some, correct, err_fewer, err_fewer])
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:d03c5fa3e6
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:1bc30ab583
 ## What is Git's equivalent of a relative path?
 
 A hash is like an absolute path:
