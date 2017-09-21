@@ -473,7 +473,7 @@ test_student_typed(r'\s*ls\s+git\s+clean\s+-f\s+ls\s*',
 <!-- -------------------------------------------------------------------------------- -->
 
 --- type:NormalExercise lang:shell xp:100 skills:1 key:7ff1cc0a0e
-## Undoing changes to unstaged files
+## How can I undo changes to unstaged files?
 
 Suppose you have made changes to a file,
 then decide you want to go back to your starting point.
