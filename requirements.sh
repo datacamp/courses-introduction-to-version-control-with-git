@@ -39,4 +39,4 @@ rm -f ${HOME_DIR}/run-as-repl.sh ${HOME_DIR}/run-as-thunk.sh
 
 # Report.
 ls -lR /home
-git -C ${HOME_DIR}/dental log
+git -C ${HOME_DIR}/dental log | cat
