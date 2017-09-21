@@ -320,11 +320,11 @@ Fehrenbach: "Dental Anatomy Coloring Book" (2e), 2013.
 '''
 with open('dental/report.txt', 'w') as writer:
     writer.write(append)
+with open('dental/data/northern.csv', 'w') as writer:
+    writer.write('2017-11-01,bicuspid\n')
 repl = connect('bash')
 repl.run_command('cd dental')
 repl.run_command('git add report.txt')
-with open('data/northern.csv', 'w') as writer:
-    writer.write('2017-11-01,bicuspid\n')
 ```
 
 *** =sample_code
