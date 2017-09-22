@@ -244,23 +244,21 @@ you can use the command `git show` with the first few characters of the commit's
 (5 or 6 characters is usually enough to tell Git which hash you mean.)
 For example, the command `git show 043070` produces this:
 
-```
-commit 0430705487381195993bac9c21512ccfb511056d
-Author: Rep Loop <repl@datacamp.com>
-Date:   Wed Sep 20 13:42:26 2017 +0000
-
-    Added year to report title.
-
-diff --git a/report.txt b/report.txt
-index e713b17..4c0742a 100644
---- a/report.txt
-+++ b/report.txt
-@@ -1,4 +1,4 @@
--# Seasonal Dental Surgeries 2017-18
-+# Seasonal Dental Surgeries (2017) 2017-18
- 
- TODO: write executive summary.
-```
+    commit 0430705487381195993bac9c21512ccfb511056d
+    Author: Rep Loop <repl@datacamp.com>
+    Date:   Wed Sep 20 13:42:26 2017 +0000
+    
+        Added year to report title.
+    
+    diff --git a/report.txt b/report.txt
+    index e713b17..4c0742a 100644
+    --- a/report.txt
+    +++ b/report.txt
+    @@ -1,4 +1,4 @@
+    -# Seasonal Dental Surgeries 2017-18
+    +# Seasonal Dental Surgeries (2017) 2017-18
+     
+     TODO: write executive summary.
 
 The first part is the log entry you have seen before.
 The second part shows what changes the commit made:
@@ -309,17 +307,15 @@ A *diff* is a formatted display of the differences between two sets of files.
 By default,
 Git displays diffs like this:
 
-```
-diff --git a/report.txt b/report.txt
-index e713b17..4c0742a 100644
---- a/report.txt
-+++ b/report.txt
-@@ -1,4 +1,4 @@
--# Seasonal Dental Surgeries 2017-18
-+# Seasonal Dental Surgeries (2017) 2017-18
- 
- TODO: write executive summary.
-```
+    diff --git a/report.txt b/report.txt
+    index e713b17..4c0742a 100644
+    --- a/report.txt
+    +++ b/report.txt
+    @@ -1,4 +1,4 @@
+    -# Seasonal Dental Surgeries 2017-18
+    +# Seasonal Dental Surgeries (2017) 2017-18
+     
+     TODO: write executive summary.
 
 This shows:
 - The command `diff --git` used to produce the output.
