@@ -1,2 +1,2 @@
-design/concept.png : design/concept.dot
-	dot -Tpng -odesign/concept.png design/concept.dot
+design/concept.svg : design/concept.dot
+	dot -Tsvg -odesign/concept.svg design/concept.dot
