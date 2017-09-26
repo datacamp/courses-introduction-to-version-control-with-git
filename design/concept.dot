@@ -1,0 +1,44 @@
+digraph conda_concepts {
+    node [shape = rectangle];
+    repository
+    remote
+    files
+    branch
+    history
+    commit
+    differences
+    "log message"
+    author
+
+    {
+      rank=same
+      rankdir=LR
+      remote
+      files
+      branch
+    }
+
+    {
+      rank=same
+      rankdir=LR
+      history
+      commit
+    }
+
+    i01 [shape=point, width=0, height=0]
+
+    repository -> remote [label="may have"]
+    remote -> repository [label="identifies"]
+    repository -> files [label="contains"]
+    repository -> branch [label="has many"]
+    branch -> branch [label="can be merged with"]
+    branch -> commit [label="consists of"]
+    files -> branch [label="can differ in"]
+    files -> history [label="have"]
+    differences -> history [label="make up"]
+    commit -> i01 [dir="none", label="records"]
+      i01 -> author
+      i01 -> differences
+      i01 -> "log message"
+    author -> commit [label="creates"]
+}

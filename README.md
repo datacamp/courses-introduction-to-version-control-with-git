@@ -33,7 +33,7 @@ Please see the [DataCamp Learner Profiles][profile-site] for details.
 
 ## Step 1: Concept Map
 
-![Basic Git Concepts](img/git.png)
+![Basic Git Concepts](design/concept.png)
 
 ## Step 2: Summative Assessment
 
