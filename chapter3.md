@@ -1,14 +1,14 @@
 ---
 title       : Working with branches
 description : >-
-  *Branching* is one of Git's most powerful features, since it allows
+  Branching is one of Git's most powerful features, since it allows
   you to work on several things at once without tripping over
   yourself.  This chapter shows you how to create and manage branches.
 
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:9db055a148
 ## What is a branch?
 
-One of the main reasons for Git's popularity is its support for creating *branches*.
+One of the main reasons for Git's popularity is its support for creating **branches**.
 A branch is like a parallel universe:
 changes you make to files in one branch do not affect other branches until you want them to.
 It's like creating sub-directories called `final`, `final-updated`, `final-updated-revised`, and so on,
@@ -99,10 +99,11 @@ Ex().test_mc(3, ['No: some files differ.',
 *** =instructions
 
 You are in the `master` branch of the `dental` repository.
-Merge the changes from the `summary-statistics` branch into the `master` branch with the message "Merging summary statistics."
+Merge the changes from the `summary-statistics` branch into the `master` branch
+with the message "Merging summary statistics."
 
-**Please remember to use the `--no-edit` flag to prevent Git from trying to launch an editor.
-Please also remember that `--no-edit` is crazy dangerous.**
+*Please remember to use the `--no-edit` flag to prevent Git from trying to launch an editor.
+Please also remember that `--no-edit` is a crazy dangerous thing to do.*
 
 *** =hint
 

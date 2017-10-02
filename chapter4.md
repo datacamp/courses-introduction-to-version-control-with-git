@@ -14,7 +14,7 @@ you can remove these with `git clean`,
 but a simpler approach is to tell Git to ignore them entirely.
 To do this,
 create a file in the root directory of your repository called `.gitignore`
-and store a list of shell wildcard patterns that specify the files you don't want Git to pay attention to.
+and store a list of **wildcard** patterns that specify the files you don't want Git to pay attention to.
 For example,
 if `.gitignore` contains:
 
@@ -60,13 +60,13 @@ Git allows you to change its default settings.
 To see what the settings are,
 you can use the command `git config --list` with one of three additional options:
 
-* `--system`: settings for every user on this computer.
-* `--global`: settings for every one of your projects.
-* `--local`: settings for one specific project.
+- `--system`: settings for every user on this computer.
+- `--global`: settings for every one of your projects.
+- `--local`: settings for one specific project.
 
 Each level overrides the one above it,
-so local (per-project) settings take precedence over global (per-user) settings,
-which in turn take precedence over system-wide settings.
+so **local settings** (per-project) take precedence over **global settings** (per-user),
+which in turn take precedence over **system settings** (for all users on the computer).
 
 <hr>
 
@@ -164,7 +164,7 @@ where "project-name" is the name you want the new repository's root directory to
 
 One thing you should *not* do is create one Git repository inside another.
 While Git does allow this,
-updating nested repositories becomes very complicated very quickly,
+updating **nested repositories** becomes very complicated very quickly,
 since you need to tell Git which of the two `.git` directories the update is to be stored in.
 Very large projects occasionally need to do this,
 but most programmers and data analysts try to avoid getting into this situation.
@@ -259,7 +259,7 @@ Sometimes you will join a project that is already running,
 inherit a project from someone else,
 or continue working on one of your own projects on a new machine.
 In each case,
-you will *clone* an existing repository instead of creating a new one.
+you will **clone** an existing repository instead of creating a new one.
 Cloning a repository does exactly what the name suggests:
 it creates a copy of an existing repository (including all of its history) in a new directory.
 
@@ -268,7 +268,7 @@ use the command `git clone URL`,
 where `URL` identifies the repository you want to clone.
 This will normally be something like `https://github.com/datacamp/project.git`,
 but for this lesson,
-we will use filesystem URLs of the form `file:///existing/project`.
+we will use **filesystem URLs** of the form `file:///existing/project`.
 The number of slashes at the start is important:
 the first part of the URL is `file://`,
 and then there is a third slash to start the absolute path `/existing/project`.
@@ -323,7 +323,7 @@ test_student_typed(r'\s*git\s+clone\s+file:///home/thunk/repo\s+(/home/repl/|~/|
 
 When you a clone a repository,
 Git remembers where the original repository was.
-It does this by storing a *remote* in the new repository's configuration.
+It does this by storing a **remote** in the new repository's configuration.
 A remote is like a browser bookmark with a name and a URL.
 If you are in a repository,
 you can list the names of its remotes using `git remote`.
@@ -368,9 +368,9 @@ Ex().test_mc(2, ['No: there are some remotes.',
 --- type:NormalExercise lang:shell xp:100 skills:1 key:4d5be24350
 ## How can I pull in changes from a remote repository?
 
-Git keeps track of remote repositories so that you can collaborate
-by pulling changes from those repositories
-and pushing changes to them.
+Git keeps track of remote repositories so that you can
+**pull** changes from those repositories
+and **push** changes to them.
 Pulling changes is straightforward:
 the command `git pull remote branch`
 gets everything in `branch` in the remote repository identified by `remote`

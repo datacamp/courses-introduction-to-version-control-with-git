@@ -12,7 +12,7 @@ The previous chapter showed you how to look at a repository's history.
 To create that history,
 you must save the changes you make to the repository's contents.
 
-The first step is to see what state the repository's files are in.
+The first step is to check the **status** of the repository's files.
 To do this,
 run the command `git status`,
 which displays a list of the files that have been modified
@@ -61,7 +61,7 @@ Ex().test_mc(2, ['No, that file has not changed.',
 ## What's the first step in saving changes?
 
 You commit changes to a Git repository in two steps:
-you use Git to add one or more files to a *staging area*,
+you use Git to add one or more files to a **staging area**,
 and then you use it to commit everything in the staging area.
 Putting files in the staging area is like putting things in a box,
 while committing is like putting the box in the mail.
@@ -187,9 +187,11 @@ when you want to undo changes to a project,
 you undo all of a commit or none of it.
 
 When you commit changes,
-Git requires you to enter a comment called a *log message*.
-This serves the same purpose as a comment in a program:
+Git requires you to enter a log message.
+As you saw in the previous chapter,
+this serves the same purpose as a comment in a program:
 it tells the next person to examine the repository why you made a change.
+
 By default,
 Git launches a text editor to let you enter this message,
 but you can also use the flag `-m "some message in quotes"` on the command line
@@ -421,7 +423,7 @@ The command `git clean -n` will show you a list of files that are in the reposit
 but whose history Git is not currently tracking.
 
 A similar command `git clean -f` will delete all of those files.
-**Use this command carefully.**
+*Use this command carefully:*
 `git clean` only works on untracked files,
 so by definition,
 their history has not been saved.
@@ -476,8 +478,8 @@ test_student_typed(r'\s*ls\s+git\s+clean\s+-f\s+ls\s*',
 ## How can I undo changes to unstaged files?
 
 Suppose you have made changes to a file,
-then decide you want to go back to your starting point.
-Your text editor may be able to undo your changes,
+then decide you want to **undo** them.
+Your text editor may be able to do this,
 but a more reliable way is to let Git do the work.
 The command:
 
@@ -489,8 +491,8 @@ will discard the changes that have not yet been staged.
 (The double dash `--` must be there to separate the `git checkout` command
 from the names of the file or files you want to recover.)
 
-**Use this command carefully.**
-Once you discard changes in this way,
+*Use this command carefully:*
+once you discard changes in this way,
 they are gone forever.
 
 *** =instructions
@@ -554,7 +556,7 @@ you may be wondering why there are two commands for re-setting changes.
 Part of the answer is that unstaging a file and undoing changes are both special cases
 of more powerful Git operations that you have not yet seen.
 The other part of the answer is that Git is a large and complex system
-whose syntax is no more regular than that of English.
+whose syntax is as irregular as that of English.
 
 *** =instructions
 
