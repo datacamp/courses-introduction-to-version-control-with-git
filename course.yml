@@ -6,6 +6,6 @@ description: Version control is one of the power tools of programming.  It allow
   and software developers alike, and show you how it can help you get more done in
   less time and with less pain.
 programming_language: shell
-from: shell-base-prod:15
+from: shell-base-prod:18
 datasets:
   setup.zip: Setup
