@@ -93,7 +93,7 @@ Ex().test_mc(3, ['No: some files differ.',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:c418145d13
 ## How can I switch from one branch to another?
 
 When you run `git branch`,
@@ -148,7 +148,7 @@ test_student_typed(r'\s*git\s+checkout\s+summary-statistics\s+git\s+rm\s+report.
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:51c4cb1dc0
 ## How can I create a branch?
 
 The easiest way to create a new branch is to run `git checkout -b branch-name`,
