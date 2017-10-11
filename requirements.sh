@@ -38,5 +38,7 @@ sudo -u thunk -i bash ${HOME_DIR}/run-as-thunk.sh
 rm -f ${HOME_DIR}/run-as-repl.sh ${HOME_DIR}/run-as-thunk.sh
 
 # Report.
+echo "Home directory:"
 ls -lR /home
+echo "Dental repository log:"
 git -C ${HOME_DIR}/dental log | cat
