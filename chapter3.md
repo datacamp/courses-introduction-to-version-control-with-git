@@ -239,7 +239,7 @@ repl.run_command('cd dental')
 
 *** =solution
 ```{shell}
-git merge summary-statistics master
+git merge --no-edit -m "Merging summary statistics" summary-statistics master
 ```
 
 *** =sct
