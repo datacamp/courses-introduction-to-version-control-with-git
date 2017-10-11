@@ -16,6 +16,7 @@ T_GIT="git -C ${T_REPO}"
 # Configure Git for the "thunk" user.
 git config --global user.email "thunk@datacamp.com"
 git config --global user.name "Thun Ka"
+git config --global core.editor "nano"
 
 # Clone the repository.
 git clone file://${R_REPO} ${T_REPO}
