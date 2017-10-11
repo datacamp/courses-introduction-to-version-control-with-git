@@ -163,7 +163,7 @@ repl.run_command('git add data/northern.csv')
 *** =solution
 ```{shell}
 git status
-git diff -r HEAD data/northern.csv
+git diff -r HEAD data/northern.csv | cat
 git add data/eastern.csv
 ```
 
