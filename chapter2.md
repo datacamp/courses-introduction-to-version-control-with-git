@@ -193,11 +193,13 @@ this serves the same purpose as a comment in a program:
 it tells the next person to examine the repository why you made a change.
 
 By default,
-Git launches a text editor to let you enter this message,
+Git launches a text editor to let you write this message,
 but you can also use the flag `-m "some message in quotes"` on the command line
-to enter a single-line message.
-To keep things simple,
-you will use the `-m` flag throughout this course.
+to enter a single-line message like this:
+
+```
+git commit -m "Program appears to have become self-aware."
+```
 
 *** =instructions
 
@@ -236,6 +238,74 @@ git commit -m "Adding a reference."
 test_student_typed(r'\s*git\s+add\s+report.txt\s+git\s+commit\s+-m\s+"Adding\s+a\s+reference."\s*',
                    fixed=False,
                    msg='Use `cd`, `git add`, and `git status`.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:NormalExercise lang:shell xp:100 skills:1 key:
+## How do I write a better log message?
+
+Writing a one-line log message with `git commit -m "message"`is good enough for very small changes,
+but your collaborators (including your future self) will appreciate more information.
+If you run `git commit` *without* `-m "message"`,
+Git launches a text editor with a template like this:
+
+```
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#       modified:   skynet.R
+#
+```
+
+The lines starting with `#` are comments, and won't be saved.
+(They are there to remind you what you are supposed to do and what files you have changed.)
+Your message should go at the top, and may be as long and as detailed as you want.
+
+> To keep things simple,
+> we have configured Git to use the Nano editor for this course.
+> The final chapter of this course will show you how to set up a different editor.
+
+*** =instructions
+
+You are in the `dental` repository.
+The changes to `report.txt` have already been staged.
+Use `git commit` *without* `-m` to commit the changes.
+
+*** =hint
+
+*** =pre_exercise_code
+```{python}
+append = '''
+
+Fehrenbach: "Dental Anatomy Coloring Book" (2e), 2013.
+'''
+with open('dental/report.txt', 'w') as writer:
+    writer.write(append)
+repl = connect('bash')
+repl.run_command('cd dental')
+repl.run_command('git add report.txt')
+```
+
+*** =sample_code
+```{shell}
+
+```
+
+*** =solution
+```{shell}
+git commit -m "Adding a reference."
+```
+
+*** =sct
+```{python}
+test_student_typed(r'\s*git\s+commit\s*',
+                   fixed=False,
+                   msg='Use `git add` without `-m`.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
