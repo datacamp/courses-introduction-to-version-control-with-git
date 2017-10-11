@@ -242,7 +242,7 @@ test_student_typed(r'\s*git\s+add\s+report.txt\s+git\s+commit\s+-m\s+"Adding\s+a
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:1be0ce9219
 ## How do I write a better log message?
 
 Writing a one-line log message with `git commit -m "message"`is good enough for very small changes,
