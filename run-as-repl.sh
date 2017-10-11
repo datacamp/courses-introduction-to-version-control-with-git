@@ -14,6 +14,7 @@ R_GIT="git -C ${R_REPO}"
 # Configure Git for the "repl" user.
 git config --global user.email "repl@datacamp.com"
 git config --global user.name "Rep Loop"
+git config --global core.editor "nano"
 
 # Initialize an empty repository.
 rm -rf ${R_REPO}
