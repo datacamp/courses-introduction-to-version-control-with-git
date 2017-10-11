@@ -248,3 +248,75 @@ test_student_typed(r'\s*git\s+merge\s+summary-statistics\s+master\s*',
                    fixed=False,
                    msg='Use `git merge branch branch`.')
 ```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:NormalExercise lang:shell xp:100 skills:1 key:
+## How can I merge two branches with conflicts?
+
+Sometimes the changes in two branches will conflict with each other:
+for example,
+bug fixes might touch the same lines of code,
+or analyses in two different branches may both have appended their own record
+to a summary data file.
+When this happens,
+`git merge` tells you that there's a problem,
+and running `git status` after the merge
+reminds you which files have conflicts that you need to resolve
+by printing `both modified:` beside the files' names.
+
+Inside the file,
+Git leaves markers that look like this to tell you where the conflicts occurred:
+
+```
+<<<<<<< destination-branch-name
+...changes from the destination branch...
+=======
+...changes from the source branch...
+>>>>>>> source-branch-name
+```
+
+(In many cases,
+the destination branch name will be `HEAD`,
+because you will be merging into the current branch.)
+To resolve the conflict,
+you must edit the file to remove the markers
+and make whatever other changes are needed to reconcile the changes,
+then commit those changes.
+
+*** =instructions
+
+You are in the `master` branch of the `dental` repository.
+1. Merge the changes *from* the `alter-report-title` branch (the source)
+   into the `master` branch (the destination).
+2. Use `git status` to see which file has conflicts.
+3. Use `nano` to edit the file and remove the conflict markers.
+4. Use `git add` with the file's name and then `git commit` with a message to save your changes.
+
+*** =hint
+
+*** =pre_exercise_code
+```{shell}
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
+*** =sample_code
+```{shell}
+
+```
+
+*** =solution
+```{shell}
+git merge --no-edit -m "Merging altered report title" alter-report-title master
+git status
+git add report.txt
+git commit -m "Reconciling"
+```
+
+*** =sct
+```{python}
+test_student_typed(r'\s*git merge.+alter-report-title\s*master\s+git\s*status\s+(.*\s+)?git\s*add\s*report.txt\s+git\s+commit.+\s*',
+                   fixed=False,
+                   msg='Use `git merge branch branch`, `git status`, edit, `git add`, and `git commit`.')
+```
