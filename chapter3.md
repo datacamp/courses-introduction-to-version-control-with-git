@@ -251,7 +251,7 @@ test_student_typed(r'\s*git\s+merge\s+summary-statistics\s+master\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:
+--- type:NormalExercise lang:shell xp:100 skills:1 key:3a4ba0eda1
 ## How can I merge two branches with conflicts?
 
 Sometimes the changes in two branches will conflict with each other:
