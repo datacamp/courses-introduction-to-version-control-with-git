@@ -11,6 +11,9 @@ R_HOME=/home/repl
 R_REPO=${R_HOME}/dental
 R_GIT="git -C ${R_REPO}"
 
+# Change prompt.
+echo "export PS1='\$ '" >> ${R_HOME}/.bashrc
+
 # Configure Git for the "repl" user.
 git config --global user.email "repl@datacamp.com"
 git config --global user.name "Rep Loop"
