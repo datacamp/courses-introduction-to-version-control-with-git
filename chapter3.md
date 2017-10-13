@@ -456,7 +456,7 @@ git merge --no-edit -m "Merging summary statistics" summary-statistics master
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+merge\s+summary-statistics\s+master\s*',
+Ex() >> test_student_typed(r'\s*git\s+merge.*\s+summary-statistics\s+master\s*',
                            fixed=False,
                            msg='Use `git merge branch branch`.')
 ```
@@ -576,12 +576,12 @@ Use `nano` to edit the file and remove the conflict markers.
 
 *** =solution3
 ```{shell}
-touch report.txt
+echo nano report.txt
 ```
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*nano\s+report\.txt.*',
+Ex() >> test_student_typed(r'.*nano\s+report\.txt.*',
                            fixed=False,
                            msg='Use `nano filename`.')
 ```
