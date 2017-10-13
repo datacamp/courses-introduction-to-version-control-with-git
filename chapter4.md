@@ -91,15 +91,15 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex().test_mc(3, ['No, some configuration values are set.',
-                 'No, more configuration values are set than that.',
-                 'Correct!',
-                 'No, fewer configuration values are set than that.'])
+Ex() >> test_mc(3, ['No, some configuration values are set.',
+                    'No, more configuration values are set than that.',
+                    'Correct!',
+                    'No, fewer configuration values are set than that.'])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:7c0dce348b
+--- type:ConsoleExercise lang:shell xp:100 skills:1 key:
 ## How can I change my Git configuration?
 
 Most of Git's settings should be left as they are.
@@ -125,20 +125,6 @@ The keys that identify your name and email address are `user.name` and `user.ema
 Change the email address configured for the current user for *all* projects
 to `rep.loop@datacamp.com`.
 
-*** =hint
-
-Use `git config --global key value`.
-
-*** =pre_exercise_code
-```{shell}
-
-```
-
-*** =sample_code
-```{shell}
-
-```
-
 *** =solution
 ```{shell}
 git config --global user.email rep.loop@datacamp.com
@@ -146,14 +132,14 @@ git config --global user.email rep.loop@datacamp.com
 
 *** =sct
 ```{python}
-test_student_typed(r'\s*git\s+config\s+--global\s+user.email\s+["\']?rep.loop@datacamp.com["\']?\s*',
-                   fixed=False,
-                   msg='Use `git config --global` with the `user.email` property and the email address.')
+Ex() >> test_student_typed(r'\s*git\s+config\s+--global\s+user\.email\s+["\']?rep\.loop@datacamp.com["\']?\s*',
+                           fixed=False,
+                           msg='Use `git config --global` with the `user.email` property and the email address.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:a87bbd3948
+--- type:ConsoleExercise lang:shell xp:100 skills:1 key:
 ## How can I create a brand new repository?
 
 So far,
@@ -173,18 +159,6 @@ but most programmers and data analysts try to avoid getting into this situation.
 
 Use a single command to create a new Git repository called `optical` below your home directory.
 
-*** =hint
-
-*** =pre_exercise_code
-```{shell}
-
-```
-
-*** =sample_code
-```{shell}
-
-```
-
 *** =solution
 ```{shell}
 git init optical
@@ -192,14 +166,14 @@ git init optical
 
 *** =sct
 ```{python}
-test_student_typed(r'\s*git\s+init\s+optical\s*',
-                   fixed=False,
-                   msg='Use `git init` and a directory name.')
+Ex() >> test_student_typed(r'\s*git\s+init\s+optical\s*',
+                           fixed=False,
+                           msg='Use `git init` and a directory name.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:a4330ec681
+--- type:BulletConsoleExercise key:
 ## How can I turn an existing project into a Git repository?
 
 Experienced Git users instinctively start new projects by creating repositories.
@@ -211,48 +185,74 @@ Doing so is simple:
 just run `git init` in the project's root directory,
 or `git init /path/to/project` from anywhere else on your computer.
 
-*** =instructions
+*** =pre_exercise_code
+```{python}
+repl = connect('bash')
+repl.run_command('cd dental')
+repl.run_command('rm -rf .git')
+repl.run_command('pwd')
+```
+
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
 
 You are in the directory `dental`,
 which contains data, analysis scripts, and other files,
 but is not yet a Git repository.
-Use a single command to convert it to a Git repository,
-and then check its status.
+Use a single command to convert it to a Git repository.
 
-*** =hint
+*** =hint1
 
-*** =pre_exercise_code
+*** =sample_code1
 ```{shell}
-repl = connect('bash')
-repl.run_command('cd dental')
-repl.run_command('rm -rf .git')
 ```
 
-*** =sample_code
-```{shell}
-# Turn this directory into a Git repository.
-
-
-# Check this newly-created repository's status.
-
-```
-
-*** =solution
+*** =solution1
 ```{shell}
 git init
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+init\s*',
+                           fixed=False,
+                           msg='Use `git init`.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2:
+
+*** =xp2: 10
+
+*** =instructions2
+
+Check the status of your new repository.
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
 git status
 ```
 
-*** =sct
+*** =sct2
 ```{python}
-test_student_typed(r'\s*git\s+init\s+git\s+status\s*',
-                   fixed=False,
-                   msg='Use `git init` and `git status`.')
+Ex() >> test_student_typed(r'\s*git\s+status\s*',
+                           fixed=False,
+                           msg='Check the status as you normally would.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:9fb3b2ed49
+--- type:BulletConsoleExercise key:
 ## How can I create a copy of an existing repository?
 
 Sometimes you will join a project that is already running,
@@ -281,7 +281,18 @@ below the directory you are in.
 If you want to call the clone something else,
 add the directory name you want to the command.
 
-*** =instructions
+*** =pre_exercise_code
+```{python}
+repl = connect('bash')
+repl.run_command('rm -rf dental')
+```
+
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
 
 You have just inherited the dental data analysis project from a colleague,
 who tells you that all of their work is in a repository in `/home/thunk/repo`.
@@ -289,31 +300,24 @@ Use a single command to clone this repository
 to create a new repository called `dental` inside your home directory
 (so that the new repository is in `/home/repl/dental`).
 
-*** =hint
+*** =hint1
 
 Remember to count the slashes after `file:` carefully.
 
-*** =pre_exercise_code
+*** =sample_code1
 ```{shell}
-repl = connect('bash')
-repl.run_command('rm -rf dental')
 ```
 
-*** =sample_code
-```{shell}
-
-```
-
-*** =solution
+*** =solution1
 ```{shell}
 git clone file:///home/thunk/repo dental
 ```
 
-*** =sct
+*** =sct1
 ```{python}
-test_student_typed(r'\s*git\s+clone\s+file:///home/thunk/repo\s+(/home/repl/|~/|\./|)dental\s*',
-                   fixed=False,
-                   msg='Use `git clone` and the absolute or relative path of the directory to clone to.')
+Ex() >> test_student_typed(r'\s*git\s+clone\s+file:///home/thunk/repo\s+(/home/repl/|~/|\./|)dental\s*',
+                           fixed=False,
+                           msg='Use `git clone` and the absolute or relative path of the directory to clone to.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -358,14 +362,14 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex().test_mc(2, ['No: there are some remotes.',
-                 'Correct!',
-                 'No: there is just one remote.'])
+Ex() >> test_mc(2, ['No: there are some remotes.',
+                    'Correct!',
+                    'No: there is just one remote.'])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:4d5be24350
+--- type:BulletConsoleExercise key:
 ## How can I pull in changes from a remote repository?
 
 Git keeps track of remote repositories so that you can
@@ -387,17 +391,8 @@ would get changes from `latest-analysis` branch
 in the repository associated with the remote called `thunk`
 and merge them into your `quarterly-report` branch.
 
-*** =instructions
-
-You are in the `master` branch of the repository `dental`,
-which has a remote called `origin`.
-Pull all of the changes in the `master` branch of that remote repository
-into the `master` branch of your repository.
-
-*** =hint
-
 *** =pre_exercise_code
-```{shell}
+```{python}
 repl = connect('bash')
 repl.run_command('rm -rf dental')
 repl.run_command('git clone file:///home/thunk/repo dental')
@@ -405,26 +400,39 @@ repl.run_command('cd dental')
 repl.run_command('git reset --hard HEAD~2')
 ```
 
-*** =sample_code
-```{shell}
+*** =type1: ConsoleExercise
+*** =key1:
 
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `master` branch of the repository `dental`,
+which has a remote called `origin`.
+Pull all of the changes in the `master` branch of that remote repository
+into the `master` branch of your repository.
+
+*** =hint1
+
+*** =sample_code1
+```{shell}
 ```
 
-*** =solution
+*** =solution1
 ```{shell}
 git pull origin master
 ```
 
-*** =sct
+*** =sct1
 ```{python}
-test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
-                   fixed=False,
-                   msg='Use `git pull` with the name of the remote and the name of the branch.')
+Ex() >> test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
+                           fixed=False,
+                           msg='Use `git pull` with the name of the remote and the name of the branch.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:b3ba4dd987
+--- type:BulletConsoleExercise key:
 ## How can I push my changes to a remote repository?
 
 The complement of `git pull` is `git push`,
@@ -442,18 +450,8 @@ It's possible to use different branch names at your end and the remote's end,
 but doing this quickly becomes confusing:
 it's almost always better to use the same names for branches across repositories.
 
-*** =instructions
-
-You are in the `master` branch of the `dental` repository,
-which has a remote called `origin`.
-You have changed one file;
-commit your changes with the message "Added more northern data."
-and then push your changes to the remote repository's `master` branch.
-
-*** =hint
-
 *** =pre_exercise_code
-```{shell}
+```{python}
 repl = connect('bash')
 repl.run_command('rm -rf dental')
 repl.run_command('git clone file:///home/thunk/repo dental')
@@ -462,33 +460,93 @@ with open('dental/data/northern.csv', 'w') as writer:
     writer.write('2017-11-01,bicuspid\n')
 ```
 
-*** =sample_code
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `master` branch of the `dental` repository,
+which has a remote called `origin`.
+You have changed `data/northern.csv`;
+add it to the staging area.
+
+*** =hint1
+
+*** =sample_code1
 ```{shell}
-# Use 'git add' and 'git commit' to commit your changes.
-
-
-# Push your changes.
-
 ```
 
-*** =solution
+*** =solution1
 ```{shell}
 git add data/northern.csv
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+add.+\s*',
+                           fixed=False,
+                           msg='Use `git add` as normal.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2:
+
+*** =xp2: 10
+
+*** =instructions2
+
+Commit your changes with the message "Added more northern data."
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
 git commit -m "Added more northern data."
+```
+
+*** =sct2
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+commit\s+-m\s*"[^"]+".+\s*',
+                           fixed=False,
+                           msg='Use `git commit -m "message"` as normal.')
+```
+
+*** =type3: ConsoleExercise
+*** =key3:
+
+*** =xp3: 10
+
+*** =instructions3
+
+Push your changes to the remote repository's `master` branch.
+
+*** =hint3
+
+*** =sample_code3
+```{shell}
+```
+
+*** =solution3
+```{shell}
 git push origin master
 ```
 
-*** =sct
+*** =sct3
 ```{python}
-test_student_typed(r'\s*git\s+add\s+[^\n]+\s+git\s+commit\s+-m\s+[^\n]+\s+git\s+push\s+origin\s+master\s*',
-                   fixed=False,
-                   msg='Use `git pull` with the name of the remote and the name of the branch.')
+Ex() >> test_student_typed(r'\s*git\s+push\s+origin\s+master\s*',
+                           fixed=False,
+                           msg='Use `git push` with a remote name and a branch name.')
 ```
-
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:1e327efda1
+--- type:BulletConsoleExercise key:
 ## How can I define remotes?
 
 When you clone a repository,
@@ -510,34 +568,38 @@ You can connect any two Git repositories this way,
 but in practice,
 you will almost always connect repositories that share some common ancestry.
 
-*** =instructions
-
-You are in the `dental` repository.
-Add `file:///home/thunk/repo` as a remote called `thunk` to it.
-
-*** =hint
-
-Be sure to count the slashes properly in the remote URL.
-
 *** =pre_exercise_code
-```{shell}
+```{python}
 repl = connect('bash')
 repl.run_command('cd dental')
 ```
 
-*** =sample_code
-```{shell}
+*** =type1: ConsoleExercise
+*** =key1:
 
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `dental` repository.
+Add `file:///home/thunk/repo` as a remote called `thunk` to it.
+
+*** =hint1
+
+Be sure to count the slashes properly in the remote URL.
+
+*** =sample_code1
+```{shell}
 ```
 
-*** =solution
+*** =solution1
 ```{shell}
 git remote add thunk file:///home/thunk/repo
 ```
 
-*** =sct
+*** =sct1
 ```{python}
-test_student_typed(r'\s*git\s+remote\s+add\s+thunk\s+file:///home/thunk/repo\s*',
-                   fixed=False,
-                   msg='Use `git remote add` with the name and URL of the remote.')
+Ex() >> test_student_typed(r'\s*git\s+remote\s+add\s+thunk\s+file:///home/thunk/repo\s*',
+                           fixed=False,
+                           msg='Use `git remote add` with the name and URL of the remote.')
 ```
