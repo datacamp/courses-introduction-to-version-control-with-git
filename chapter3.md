@@ -44,10 +44,10 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex().test_mc(4, ['No: every repository has at least one branch.',
-                 'No: there are more branches than that.',
-                 'No: there are more branches than that.',
-                 'Correct!'])
+Ex() >> test_mc(4, ['No: every repository has at least one branch.',
+                    'No: there are more branches than that.',
+                    'No: there are more branches than that.',
+                    'Correct!'])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -85,15 +85,15 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex().test_mc(3, ['No: some files differ.',
-                 'No: please count both files that have changed and files that are being added.',
-                 'Correct!',
-                 'No: please count the number of files that differ, not the number of lines that are different.'])
+Ex() >> test_mc(3, ['No: some files differ.',
+                    'No: please count both files that have changed and files that are being added.',
+                    'Correct!',
+                    'No: please count the number of files that differ, not the number of lines that are different.'])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:c418145d13
+--- type:BulletConsoleExercise key:
 ## How can I switch from one branch to another?
 
 When you run `git branch`,
@@ -102,53 +102,182 @@ To switch to another branch,
 you use `git checkout branch-name`.
 
 Note: Git will only let you do this if all of your changes have been committed.
-You can get around this using the `git stash` command,
+You can get around this,
 but it is outside the scope of this course.
 
-*** =instructions
-
-You are in the `master` branch of the `dental` repository.
-
-1. Switch to the `summary-statistics` branch.
-2. Use `git rm` to delete `report.txt`.
-3. Commit your change with `-m "Removing report" as a message.
-4. Use `ls` to check that it's gone.
-5. Switch back to the `master` branch.
-6. Use `ls` to ensure that `report.txt` is still there.
-
-*** =hint
-
 *** =pre_exercise_code
-```{shell}
+```{python}
 repl = connect('bash')
 repl.run_command('cd dental')
+repl.run_command('git branch')
 ```
 
-*** =sample_code
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `master` branch of the `dental` repository.
+Switch to the `summary-statistics` branch.
+
+*** =hint1
+
+*** =sample_code1
 ```{shell}
-
 ```
 
-*** =solution
+*** =solution1
 ```{shell}
 git checkout summary-statistics
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+checkout\s+summary-statistics\s*',
+                           fixed=False,
+                           msg='Use `git checkout` to switch between branches.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2:
+
+*** =xp2: 10
+
+*** =instructions2
+
+Use `git rm` to delete `report.txt`.
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
 git rm report.txt
+```
+
+*** =sct2
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+rm\s+report\.txt\s*',
+                           fixed=False,
+                           msg='Use `git rm filename`.')
+```
+
+*** =type3: ConsoleExercise
+*** =key3:
+
+*** =xp3: 10
+
+*** =instructions3
+
+Commit your change with `-m "Removing report" as a message.
+
+*** =hint3
+
+*** =sample_code3
+```{shell}
+```
+
+*** =solution3
+```{shell}
 git commit -m "Removing report"
-ls
-git checkout master
+```
+
+*** =sct3
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+commit.+\s*',
+                           fixed=False,
+                           msg='Use `git commit -m "message"`.')
+```
+
+*** =type4: ConsoleExercise
+*** =key4:
+
+*** =xp4: 10
+
+*** =instructions4
+
+Use `ls` to check that it's gone.
+
+*** =hint4
+
+*** =sample_code4
+```{shell}
+```
+
+*** =solution4
+```{shell}
 ls
 ```
 
-*** =sct
+*** =sct4
 ```{python}
-test_student_typed(r'\s*git\s+checkout\s+summary-statistics\s+git\s+rm\s+report.txt\s+git\s+commit.+\s+ls\s+git\s+checkout\s+master\s+ls\s*',
-                   fixed=False,
-                   msg='Use `git checkout` to switch between branches.')
+Ex() >> test_student_typed(r'\s*ls\s*',
+                           fixed=False,
+                           msg='Use `ls` without any parameters.')
+```
+
+*** =type5: ConsoleExercise
+*** =key5:
+
+*** =xp5: 10
+
+*** =instructions5
+
+Switch back to the `master` branch.
+
+*** =hint5
+
+*** =sample_code5
+```{shell}
+```
+
+*** =solution5
+```{shell}
+git checkout master
+```
+
+*** =sct5
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+checkout\s+master\s*',
+                           fixed=False,
+                           msg='Use `git checkout` to switch between branches.')
+```
+
+*** =type6: ConsoleExercise
+*** =key6:
+
+*** =xp6: 10
+
+*** =instructions6
+
+Use `ls` to ensure that `report.txt` is still there.
+
+*** =hint6
+
+*** =sample_code6
+```{shell}
+```
+
+*** =solution6
+```{shell}
+ls
+```
+
+*** =sct6
+```{python}
+Ex() >> test_student_typed(r'\s*ls\s*',
+                           fixed=False,
+                           msg='Use `ls` without any parameters.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:51c4cb1dc0
+--- type:BulletConsoleExercise key:
 ## How can I create a branch?
 
 The easiest way to create a new branch is to run `git checkout -b branch-name`,
@@ -157,47 +286,126 @@ The contents of the new branch are initially identical to the contents of the or
 Once you start making changes,
 they only affect the new branch.
 
-*** =instructions
-
-You are in the `master` branch of the `dental` repository.
-
-1. Create a new branch called `deleting-report`.
-2. Use `git rm report.txt` to delete the report.
-3. Commit your changes with a log message.
-4. Use `git diff` with appropriate arguments to compare the `master` branch
-   with the new state of the `deleting-report` branch.
-
-*** =hint
-
 *** =pre_exercise_code
-```{shell}
+```{python}
 repl = connect('bash')
 repl.run_command('cd dental')
+repl.run_command('git branch')
 ```
 
-*** =sample_code
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `master` branch of the `dental` repository.
+Create a new branch called `deleting-report`.
+
+*** =hint1
+
+*** =sample_code1
 ```{shell}
-
 ```
 
-*** =solution
+*** =solution1
 ```{shell}
 git checkout -b deleting-report
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+checkout\s+-b\s+deleting-report\s*',
+                           fixed=False,
+                           msg='Use `git checkout -b` to create a branch.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2:
+
+*** =xp2: 10
+
+*** =instructions2
+
+Use `git rm report.txt` to delete the report.
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
 git rm report.txt
+```
+
+*** =sct2
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+rm\s+report\.txt\s*',
+                           fixed=False,
+                           msg='Use `git rm filename`.')
+```
+
+*** =type3: ConsoleExercise
+*** =key3:
+
+*** =xp3: 10
+
+*** =instructions3
+
+Commit your changes with a log message.
+
+*** =hint3
+
+*** =sample_code3
+```{shell}
+```
+
+*** =solution3
+```{shell}
 git commit -m "Deleting report"
+```
+
+*** =sct3
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+commit\s+.*\s*',
+                           fixed=False,
+                           msg='Use `git commit -m "message"`.')
+```
+
+*** =type4: ConsoleExercise
+*** =key4:
+
+*** =xp4: 10
+
+*** =instructions4
+
+Use `git diff` with appropriate arguments to compare the `master` branch
+with the new state of the `deleting-report` branch.
+
+*** =hint4
+
+*** =sample_code4
+```{shell}
+```
+
+*** =solution4
+```{shell}
 git diff master..deleting-report
 ```
 
-*** =sct
+*** =sct4
 ```{python}
-test_student_typed(r'\s*git\s+checkout\s+-b\s+deleting-report\s+git\s+rm\s+report.txt\s+git\s+commit\s+.*\s+git\s+diff\s+(master\.\.deleting-report|deleting-report\.\.master)\s*',
-                   fixed=False,
-                   msg='Use `git checkout -b` to create a branch and `git diff branch-1..branch-2` to compare branches.')
+Ex() >> test_student_typed(r'\s*git\s+diff\s+(master\.\.deleting-report|deleting-report\.\.master)\s*',
+                           fixed=False,
+                           msg='Use `git diff branch-1..branch-2` to compare branches.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:3812382b52
+--- type:BulletConsoleExercise key:
 ## How can I merge two branches?
 
 Branching lets you create parallel universes;
@@ -217,41 +425,45 @@ you run `git merge source destination`
 Git automatically opens an editor so that you can write a log message for the merge;
 you can either keep its default message or fill in something more informative.
 
-*** =instructions
+*** =pre_exercise_code
+```{python}
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
 
 You are in the `master` branch of the `dental` repository.
 Merge the changes *from* the `summary-statistics` branch (the source)
 into the `master` branch (the destination)
 with the message "Merging summary statistics."
 
-*** =hint
+*** =hint1
 
-*** =pre_exercise_code
+*** =sample_code1
 ```{shell}
-repl = connect('bash')
-repl.run_command('cd dental')
 ```
 
-*** =sample_code
-```{shell}
-
-```
-
-*** =solution
+*** =solution1
 ```{shell}
 git merge --no-edit -m "Merging summary statistics" summary-statistics master
 ```
 
-*** =sct
+*** =sct1
 ```{python}
-test_student_typed(r'\s*git\s+merge\s+summary-statistics\s+master\s*',
-                   fixed=False,
-                   msg='Use `git merge branch branch`.')
+Ex() >> test_student_typed(r'\s*git\s+merge\s+summary-statistics\s+master\s*',
+                           fixed=False,
+                           msg='Use `git merge branch branch`.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:3a4ba0eda1
+--- type:BulletConsoleExercise key:
 ## How can I merge two branches with conflicts?
 
 Sometimes the changes in two branches will conflict with each other:
@@ -284,39 +496,147 @@ you must edit the file to remove the markers
 and make whatever other changes are needed to reconcile the changes,
 then commit those changes.
 
-*** =instructions
-
-You are in the `master` branch of the `dental` repository.
-1. Merge the changes *from* the `alter-report-title` branch (the source)
-   into the `master` branch (the destination).
-2. Use `git status` to see which file has conflicts.
-3. Use `nano` to edit the file and remove the conflict markers.
-4. Use `git add` with the file's name and then `git commit` with a message to save your changes.
-
-*** =hint
-
 *** =pre_exercise_code
-```{shell}
+```{python}
 repl = connect('bash')
 repl.run_command('cd dental')
+repl.run_command('git branch')
 ```
 
-*** =sample_code
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `master` branch of the `dental` repository.
+Merge the changes *from* the `alter-report-title` branch (the source)
+into the `master` branch (the destination).
+
+*** =hint1
+
+*** =sample_code1
 ```{shell}
-
 ```
 
-*** =solution
+*** =solution1
 ```{shell}
 git merge --no-edit -m "Merging altered report title" alter-report-title master
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git merge.+alter-report-title\s*master\s*',
+                           fixed=False,
+                           msg='Use `git merge branch branch`.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2:
+
+*** =xp2: 10
+
+*** =instructions2
+
+Use `git status` to see which file has conflicts.
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
 git status
+```
+
+*** =sct2
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+status(.+)?\s*',
+                           fixed=False,
+                           msg='Use `git status`.')
+```
+
+*** =type3: ConsoleExercise
+*** =key3:
+
+*** =xp3: 10
+
+*** =instructions3
+
+Use `nano` to edit the file and remove the conflict markers.
+
+*** =hint3
+
+*** =sample_code3
+```{shell}
+```
+
+*** =solution3
+```{shell}
+touch report.txt
+```
+
+*** =sct3
+```{python}
+Ex() >> test_student_typed(r'\s*nano\s+report\.txt.*',
+                           fixed=False,
+                           msg='Use `nano filename`.')
+```
+
+*** =type4: ConsoleExercise
+*** =key4:
+
+*** =xp4: 10
+
+*** =instructions4
+
+Add the merged file to the staging area.
+
+*** =hint4
+
+*** =sample_code4
+```{shell}
+```
+
+*** =solution4
+```{shell}
 git add report.txt
+```
+
+*** =sct4
+```{python}
+Ex() >> test_student_typed(r'\s*git\s*add\s*report\.txt\s*',
+                           fixed=False,
+                           msg='Use `git add filename` as usual.')
+```
+
+*** =type5: ConsoleExercise
+*** =key5:
+
+*** =xp5: 10
+
+*** =instructions5
+
+Commit your changes with a log message.
+
+*** =hint5
+
+*** =sample_code5
+```{shell}
+```
+
+*** =solution5
+```{shell}
 git commit -m "Reconciling"
 ```
 
-*** =sct
+*** =sct5
 ```{python}
-test_student_typed(r'\s*git merge.+alter-report-title\s*master\s+git\s*status\s+(.*\s+)?git\s*add\s*report.txt\s+git\s+commit.+\s*',
-                   fixed=False,
-                   msg='Use `git merge branch branch`, `git status`, edit, `git add`, and `git commit`.')
+Ex() >> test_student_typed(r'\s*git\s+commit.+\s*',
+                           fixed=False,
+                           msg='Use `git commit` as usual.')
 ```
+
