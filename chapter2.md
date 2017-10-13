@@ -46,18 +46,18 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-test_student_typed(r'\s*git\s+status\s*',
-                   fixed=False,
-                   msg='Use `git status`.')
-Ex().test_mc(2, ['No, that file has not changed.',
-                 'Correct!',
-                 'No, one file has changed.',
-                 'No, only one file has changed.'])
+Ex() >> test_student_typed(r'\s*git\s+status\s*', \
+                           fixed=False, \
+                           msg='Use `git status`.') \
+     >> test_mc(2, ['No, that file has not changed.', \
+                    'Correct!', \
+                    'No, one file has changed.', \
+                    'No, only one file has changed.'])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:55204eee61
+--- type:BulletConsoleExercise key:
 ## What's the first step in saving changes?
 
 You commit changes to a Git repository in two steps:
@@ -74,14 +74,6 @@ Once you commit those changes,
 though,
 they become part of the repository's permanent log.
 
-*** =instructions
-
-You are in the `dental` repository.
-Use `git add filename` to add the file `report.txt` to the staging area,
-and then another to check the status of the repository.
-
-*** =hint
-
 *** =pre_exercise_code
 ```{python}
 append = '''
@@ -93,31 +85,64 @@ with open('dental/report.txt', 'w') as writer:
 connect('bash').run_command('cd dental')
 ```
 
-*** =sample_code
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `dental` repository.
+Use `git add` to add the file `report.txt` to the staging area.
+
+*** =hint1
+
+*** =sample_code1
 ```{shell}
-# Add report.txt to the staging area.
-
-
-# Check the repository's status.
-
 ```
 
-*** =solution
-```{shell}
+*** =solution1
 git add report.txt
+```{shell}
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+add\s+report.txt\s*',
+                           fixed=False,
+                           msg='Use `git add` and a filename.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2:
+
+*** =xp2: 10
+
+*** =instructions2
+
+Use another Git command to check the repository's status.
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
 git status
 ```
 
-*** =sct
+*** =sct2
 ```{python}
-test_student_typed(r'\s*git\s+add\s+report.txt\s+git\s+status\s*',
-                   fixed=False,
-                   msg='Use `git add` and `git status`.')
+Ex() >> test_student_typed(r'\s*git\s+status\s*',
+                           fixed=False,
+                           msg='Use `git status`.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:f208f45d7d
+--- type:BulletConsoleExercise key:
 ## How can I tell what's going to be committed?
 
 `git status` shows you which files are in the staging area,
@@ -126,16 +151,6 @@ In order to compare the file as it currently is
 to the changes in the staging area,
 you can use `git diff -r HEAD filename`.
 (Remember, `HEAD` is a shortcut meaning "the most recent commit".)
-
-*** =instructions
-
-You are in the `dental` repository.
-Use one Git command to see which files have staged and unstaged changes,
-a second to view the changes in the file that has been staged
-(and *only* that file),
-and a third to add the other file to the staging area.
-
-*** =hint
 
 *** =pre_exercise_code
 ```{python}
@@ -148,35 +163,92 @@ repl.run_command('cd dental')
 repl.run_command('git add data/northern.csv')
 ```
 
-*** =sample_code
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `dental` repository.
+Use one Git command to see which files have staged and unstaged changes.
+
+*** =hint1
+
+*** =sample_code1
 ```{shell}
-# View the status.
-
-
-# View the differences in the file that has been staged.
-
-
-# Add the file that has not been staged.
-
 ```
 
-*** =solution
+*** =solution1
 ```{shell}
 git status
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+status\s*',
+                           fixed=False,
+                           msg='Use `git status`.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2:
+
+*** =xp2: 10
+
+*** =instructions2
+
+Use a single Git command to view the changes in the file that has been staged
+(and *only* that file),
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
 git diff -r HEAD data/northern.csv | cat
+```
+
+*** =sct2
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+diff\s+-r\s+HEAD\s+data/northern\.csv\s*',
+                           fixed=False,
+                           msg='Use `git diff -r HEAD` and a filename.')
+```
+
+*** =type3: ConsoleExercise
+*** =key3:
+
+*** =xp3: 10
+
+*** =instructions3
+
+Use one Git command to add the other changed file to the staging area.
+
+*** =hint3
+
+*** =sample_code3
+```{shell}
+```
+
+*** =solution3
+```{shell}
 git add data/eastern.csv
 ```
 
-*** =sct
+*** =sct3
 ```{python}
-test_student_typed(r'\s*git\s+status\s+git\s+diff\s+-r\s+HEAD\s+data/northern.csv\s+git\s+add\s+data/eastern.csv\s*',
-                   fixed=False,
-                   msg='Use `git status`, `git diff -r HEAD` and a filename, and `git add` in that order.')
+Ex() >> test_student_typed(r'\s*git\s+add\s+data/eastern\.csv\s*',
+                           fixed=False,
+                           msg='Use `git add`.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:dbf5aa722c
+--- type:BulletConsoleExercise key:
 ## How do I commit changes?
 
 To save the changes in the staging area,
@@ -201,14 +273,6 @@ to enter a single-line message like this:
 git commit -m "Program appears to have become self-aware."
 ```
 
-*** =instructions
-
-You are in the `dental` repository.
-Use one Git command to check the status of the repository,
-and another to commit the changes in the staging area with the message "Adding a reference."
-
-*** =hint
-
 *** =pre_exercise_code
 ```{python}
 append = '''
@@ -222,27 +286,64 @@ repl.run_command('cd dental')
 repl.run_command('git add report.txt')
 ```
 
-*** =sample_code
-```{shell}
+*** =type1: ConsoleExercise
+*** =key1:
 
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `dental` repository.
+Use one Git command to check the status of the repository.
+
+*** =hint1
+
+*** =sample_code1
+```{shell}
 ```
 
-*** =solution
+*** =solution1
 ```{shell}
 git status
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+status\s*',
+                           fixed=False,
+                           msg='Remember, you want to check the *status* of the repository.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2:
+
+*** =xp2: 10
+
+*** =instructions2
+
+Commit the changes in the staging area with the message "Adding a reference."
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
 git commit -m "Adding a reference."
 ```
 
-*** =sct
+*** =sct2
 ```{python}
-test_student_typed(r'\s*git\s+add\s+report.txt\s+git\s+commit\s+-m\s+"Adding\s+a\s+reference."\s*',
-                   fixed=False,
-                   msg='Use `cd`, `git add`, and `git status`.')
+Ex() >> test_student_typed(r'\s*git\s+commit\s+-m\s+"Adding\s+a\s+reference."\s*',
+                           fixed=False,
+                           msg='Use `git commit` with `-m "message"`.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:1be0ce9219
+--- type:BulletConsoleExercise key:
 ## How do I write a better log message?
 
 Writing a one-line log message with `git commit -m "message"`is good enough for very small changes,
@@ -270,14 +371,6 @@ Your message should go at the top, and may be as long and as detailed as you wan
 > we have configured Git to use the Nano editor for this course.
 > The final chapter of this course will show you how to set up a different editor.
 
-*** =instructions
-
-You are in the `dental` repository.
-The changes to `report.txt` have already been staged.
-Use `git commit` *without* `-m` to commit the changes.
-
-*** =hint
-
 *** =pre_exercise_code
 ```{python}
 append = '''
@@ -291,26 +384,38 @@ repl.run_command('cd dental')
 repl.run_command('git add report.txt')
 ```
 
-*** =sample_code
-```{shell}
+*** =type1: ConsoleExercise
+*** =key1:
 
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `dental` repository.
+The changes to `report.txt` have already been staged.
+Use `git commit` *without* `-m` to commit the changes.
+
+*** =hint1
+
+*** =sample_code1
+```{shell}
 ```
 
-*** =solution
+*** =solution1
 ```{shell}
 git commit -m "Adding a reference."
 ```
 
-*** =sct
+*** =sct1
 ```{python}
-test_student_typed(r'\s*git\s+commit\s*',
-                   fixed=False,
-                   msg='Use `git add` without `-m`.')
+Ex() >> test_student_typed(r'\s*git\s+commit\s*',
+                           fixed=False,
+                           msg='Use `git add` without `-m`.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:b91e72ac0c
+--- type:BulletConsoleExercise key:
 ## How do I add new files?
 
 Git does not track files by default.
@@ -320,15 +425,6 @@ To remind you to do this,
 `git status` will always tell you about files that are in your repository
 but aren't (yet) being tracked.
 
-*** =instructions
-
-You are in the `dental` repository.
-Use one Git command to find the files that aren't yet being tracked,
-then `git add` and `git commit` to save their current state.
-Use the message "Starting to track data sources." as your commit message.
-
-*** =hint
-
 *** =pre_exercise_code
 ```{python}
 with open('dental/sources.txt', 'w') as writer:
@@ -337,35 +433,91 @@ repl = connect('bash')
 repl.run_command('cd dental')
 ```
 
-*** =sample_code
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `dental` repository.
+Use one Git command to find the files that aren't yet being tracked.
+
+*** =hint1
+
+*** =sample_code1
 ```{shell}
-# Check the repository's status.
-
-
-# Stage the new file.
-
-
-# Commit the changes.
-
 ```
 
-*** =solution
+*** =solution1
 ```{shell}
 git status
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+status\s*',
+                           fixed=False,
+                           msg='Remember, you want to check the *status* of the repository.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2:
+
+*** =xp2: 10
+
+*** =instructions2
+
+Add changed files to the staging area.
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
 git add sources.txt
+```
+
+*** =sct2
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+add\s+.+\s*',
+                           fixed=False,
+                           msg='You can add files one by one or use a wildcard expression.')
+```
+
+*** =type3: ConsoleExercise
+*** =key3:
+
+*** =xp3: 10
+
+*** =instructions3
+
+Use `git commit` to save the staged files
+with the message "Starting to track data sources."
+
+*** =hint3
+
+*** =sample_code3
+```{shell}
+```
+
+*** =solution3
+```{shell}
 git commit -m "Starting to track data sources."
 ```
 
-*** =sct
+*** =sct3
 ```{python}
-test_student_typed(r'\s*git\s+status\+git\s+add\s+sources.txt\s+git\s+commit\s+-m\s+"[^"]+"\s*',
-                   fixed=False,
-                   msg='Use `git status`, `git add`, and `git commit`.')
+Ex() > test_student_typed(r'\s*git\s+commit\s+-m\s+"[^"]+"\s*',
+                           fixed=False,
+                           msg='Remember, you want to *commit* files.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
-
---- type:NormalExercise lang:shell xp:100 skills:1 key:70a86d3080
+--- type:BulletConsoleExercise key:
 ## How do I re-stage files?
 
 People often save their work every few minutes when they're using a desktop text editor.
@@ -374,15 +526,6 @@ it's common to use `git add` periodically
 to save the most recent changes to a file to the staging area.
 This is particularly useful when the changes are experimental
 and you might want to undo them without cluttering up the repository's history.
-
-*** =instructions
-
-You are in the `dental` repository.
-Use one Git command to check the status of the repository,
-and another to stage all files that have been changed
-since the last time files were staged.
-
-*** =hint
 
 *** =pre_exercise_code
 ```{python}
@@ -399,31 +542,65 @@ repl.run_command('cd dental')
 repl.run_command('git add report.txt')
 ```
 
-*** =sample_code
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `dental` repository.
+Use one Git command to check the status of the repository.
+
+*** =hint1
+
+*** =sample_code1
 ```{shell}
-# Check the repository's status.
-
-
-# Add the changes in one file to the staging area.
-
 ```
 
-*** =solution
+*** =solution1
 ```{shell}
 git status
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+status\s*',
+                           fixed=False,
+                           msg='Remember, you want to check the *status* of the repository.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2:
+
+*** =xp2: 10
+
+*** =instructions2
+
+Use a single Git command to stage all files that have been changed
+since the last time files were staged.
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
 git add report.txt data/northern.csv
 ```
 
-*** =sct
+*** =sct2
 ```{python}
-test_student_typed(r'\s*git\s+add\s+report.txt\s+data/northern.csv\s*',
-                   fixed=False,
-                   msg='Use `git add` with two filenames.')
+Ex() >> test_student_typed(r'\s*git\s+add\s+report\.txt\s+data/northern\.csv\s*',
+                           fixed=False,
+                           msg='Use `git add` with two filenames.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:54325e15f1
+--- type:BulletConsoleExercise key:
 ## How can I commit changes selectively?
 
 You don't have to put all of the changes you have made recently into the staging area at once.
@@ -435,16 +612,6 @@ you want to save your work.
 Since the changes to `cleanup.R` aren't directly related to the work you're doing in `analysis.R`,
 you should save your work in two separate commits.
 
-*** =instructions
-
-You are in the `dental` repository.
-Use one Git command to see which files have changed,
-a second to stage the changes made to `data/northern.csv`
-(and *only* those changes),
-and a third to commit those changes with the message "Adding data from northern region."
-
-*** =hint
-
 *** =pre_exercise_code
 ```{python}
 with open('dental/data/northern.csv', 'w') as writer:
@@ -453,36 +620,67 @@ with open('dental/data/eastern.csv', 'w') as writer:
     writer.write('2017-11-02,molar\n')
 repl = connect('bash')
 repl.run_command('cd dental')
+repl.run_command('git status')
 ```
 
-*** =sample_code
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
+
+Stage the changes made to `data/northern.csv`
+(and *only* those changes).
+
+*** =hint1
+
+*** =sample_code1
 ```{shell}
-# See which files have changed.
-
-
-# Stage the changes to data/northern.csv.
-
-
-# Commit the changes to data/northern.csv.
 ```
 
-*** =solution
+*** =solution1
 ```{shell}
-git status
 git add data/northern.csv
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+add\s+data/northern\.csv\s*',
+                           fixed=False,
+                           msg='Use `git add`.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2:
+
+*** =xp2: 10
+
+*** =instructions2
+
+Commit those changes with the message "Adding data from northern region."
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
 git commit -m "Adding data from northern region."
 ```
 
-*** =sct
+*** =sct2
 ```{python}
-test_student_typed(r'\s*git\s+status\s+git\s+add\s+data/northern.csv\s+git\s+commit\s+-m\s+"Adding\s+data\s+from\s+northern\s+region."\s*',
-                   fixed=False,
-                   msg='Use `git status`, `git add`, and `git commit`.')
+Ex() >> test_student_typed(r'\s*git\s+commit\s+-m\s+"Adding\s+data\s+from\s+northern\s+region."\s*',
+                           fixed=False,
+                           msg='Use `git commit` with a message.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:3949f5c938
+--- type:BulletConsoleExercise key:
 ## How can I remove unwanted files?
 
 Data analysis often produces temporary or intermediate files that you don't want to save.
@@ -500,51 +698,99 @@ their history has not been saved.
 If you delete them with `git clean -f`,
 they're gone for good.
 
-*** =instructions
-
-You are in the `dental` repository.
-Use `ls` to see what files are present,
-then a single Git command to remove unwanted files,
-and use `ls` again to see what effects your Git command has had.
-
-*** =hint
-
 *** =pre_exercise_code
-```{shell}
+```{python}
 with open('dental/backup.log', 'w') as writer:
     writer.write('Backing up...\nBackup complete.\n')
 repl = connect('bash')
 repl.run_command('cd dental')
 ```
 
-*** =sample_code
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `dental` repository.
+Use `ls` to see what files are present.
+
+*** =hint1
+
+*** =sample_code1
 ```{shell}
-# Look at what files are present.
-
-
-# Remove untracked files.
-
-
-# Look at what files are now present.
 ```
 
-*** =solution
+*** =solution1
 ```{shell}
-ls
-git clean -f
 ls
 ```
 
-*** =sct
+*** =sct1
 ```{python}
-test_student_typed(r'\s*ls\s+git\s+clean\s+-f\s+ls\s*',
-                   fixed=False,
-                   msg='Use `ls`, `git clean` with the right flag(s), and `ls` again.')
+Ex() >> test_student_typed(r'\s*ls\s*',
+                           fixed=False,
+                           msg='Use `ls` without arguments.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2:
+
+*** =xp2: 10
+
+*** =instructions2
+
+Use a single Git command to remove unwanted files.
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
+git clean -f
+```
+
+*** =sct2
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+clean\s+-f\s*',
+                           fixed=False,
+                           msg='Use `git clean` with the right flag(s).')
+```
+
+*** =type3: ConsoleExercise
+*** =key3:
+
+*** =xp3: 10
+
+*** =instructions3
+
+Use `ls` again to see what effects your Git command has had.
+
+*** =hint3
+
+*** =sample_code3
+```{shell}
+```
+
+*** =solution3
+```{shell}
+ls
+```
+
+*** =sct3
+```{python}
+Ex() >> test_student_typed(r'\s*ls\s*',
+                           fixed=False,
+                           msg='Use `ls` without arguments.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:7ff1cc0a0e
+--- type:BulletConsoleExercise key:
 ## How can I undo changes to unstaged files?
 
 Suppose you have made changes to a file,
@@ -565,15 +811,6 @@ from the names of the file or files you want to recover.)
 once you discard changes in this way,
 they are gone forever.
 
-*** =instructions
-
-You are in the `dental` repository.
-Use one Git command to see which files have changed
-and a second to undo the changes to the file `data/northern.csv`
-(and *only* that file).
-
-*** =hint
-
 *** =pre_exercise_code
 ```{python}
 with open('dental/data/northern.csv', 'w') as writer:
@@ -583,33 +820,41 @@ with open('dental/data/eastern.csv', 'w') as writer:
 repl = connect('bash')
 repl.run_command('cd dental')
 repl.run_command('git add data/*.csv')
+repl.run_command('git status')
 ```
 
-*** =sample_code
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `dental` repository.
+Use one Git to undo the changes to the file `data/northern.csv`
+(and *only* that file).
+
+*** =hint1
+
+*** =sample_code1
 ```{shell}
-# Look at the status of the repository.
-
-
-# Undo changes to data/northern.csv.
-
 ```
 
-*** =solution
+*** =solution1
 ```{shell}
-git status
 git checkout -- data/northern.csv
 ```
 
-*** =sct
+*** =sct1
 ```{python}
-test_student_typed(r'\s*git\s+status\s+git\s+checkout\s+--\s+data/northern.csv\s*',
-                   fixed=False,
-                   msg='Use `git checkout` with `--` as a separator and then a file.')
+Ex() >> test_student_typed(r'\s*git\s+checkout\s+--\s+data/northern\.csv\s*',
+                           fixed=False,
+                           msg='Use `git checkout` with `--` as a separator and then a file.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:fba584b9f1
+--- type:BulletConsoleExercise key:
 ## How can I unstage a file that I have staged?
 
 `git checkout -- filename` will undo changes that have not yet been staged.
@@ -628,15 +873,6 @@ of more powerful Git operations that you have not yet seen.
 The other part of the answer is that Git is a large and complex system
 whose syntax is as irregular as that of English.
 
-*** =instructions
-
-You are in the `dental` repository.
-Use one Git command to see which files have changed
-and a second to unstage the file `data/northern.csv`
-(and *only* that file).
-
-*** =hint
-
 *** =pre_exercise_code
 ```{python}
 with open('dental/data/northern.csv', 'w') as writer:
@@ -646,32 +882,40 @@ with open('dental/data/eastern.csv', 'w') as writer:
 repl = connect('bash')
 repl.run_command('cd dental')
 repl.run_command('git add data/*.csv')
+repl.run_command('git status')
 ```
 
-*** =sample_code
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
+
+Use a single Git command to Unstage the file `data/northern.csv`
+(and *only* that file).
+
+*** =hint1
+
+*** =sample_code1
 ```{shell}
-# Look at the state of the repository.
-
-
-# Unstage data/northern.csv.
 ```
 
-*** =solution
+*** =solution1
 ```{shell}
-git status
 git reset HEAD data/northern.csv
 ```
 
-*** =sct
+*** =sct1
 ```{python}
-test_student_typed(r'\s*git\s+status\s+git\s+reset\s+HEAD\s+data/northern.csv\s*',
-                   fixed=False,
-                   msg='Use `git reset` with two arguments.')
+Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+data/northern\.csv\s*',
+                           fixed=False,
+                           msg='Use `git reset` with two arguments.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:NormalExercise lang:shell xp:100 skills:1 key:d45eca9a34
+--- type:BulletConsoleExercise key:
 ## How can I undo all of the changes I have made?
 
 So far,
@@ -681,19 +925,6 @@ One way to do this is to give `git reset` and `git checkout` a directory as an a
 rather than the names of one or more files.
 For example,
 `git reset HEAD data` will unstage any files from the `data` directory that you have staged.
-
-*** =instructions
-
-You are in the `dental` repository.
-Use one Git command to look at the state of the repository,
-and two more commands to put everything back the way it was,
-i.e.,
-to remove all files from the staging area
-and re-set those files to their previous state.
-Use a directory name to mean "all of the files in or below this directory"
-rather than a wildcard.
-
-*** =hint
 
 *** =pre_exercise_code
 ```{python}
@@ -706,30 +937,61 @@ with open('dental/report.txt', 'w') as writer:
 repl = connect('bash')
 repl.run_command('cd dental')
 repl.run_command('git add dental')
+repl.run_command('git status')
 ```
 
-*** =sample_code
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
+
+Use a single Git command to remove all files from the staging area.
+
+*** =hint1
+
+*** =sample_code1
 ```{shell}
-# Look at the state of the repository.
-
-
-# Unstage all of the changed files.
-
-
-# Undo all changes to all files.
-
 ```
 
-*** =solution
+*** =solution1
 ```{shell}
-git status
 git reset HEAD .
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+(\.|dental)\s*',
+                           fixed=False,
+                           msg='Use `git reset HEAD` and some file or directory names.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2:
+
+*** =xp2: 10
+
+*** =instructions2
+
+Re-set those files to their previous state.
+Use the directory name `.` to mean "all of the files in or below this directory"
+rather than a wildcard.
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
 git checkout -- .
 ```
 
-*** =sct
+*** =sct2
 ```{python}
-test_student_typed(r'\s*git\s+reset\s+HEAD\s+(\.|dental)\s+git\s+checkout\s+--\s+\.\s*',
-                   fixed=False,
-                   msg='Use `git reset HEAD` and `git checkout --` with directory names as arguments.')
+Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+(\.|dental)\s+git\s+checkout\s+--\s+\.\s*',
+                           fixed=False,
+                           msg='Use `git checkout --` with directory a name as an argument.')
 ```

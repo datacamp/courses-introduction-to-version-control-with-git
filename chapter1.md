@@ -125,7 +125,7 @@ e1 = 'No: every repository stores its own history.'
 c2 = 'Yes: all of the information about a repository is stored under its root directory.'
 e3 = 'No: all of the information about a repository is stored under its root directory.'
 e4 = 'No: one of the answers above is correct.'
-Ex().test_mc(2, [e1, c2, e3, e4])
+Ex() >> test_mc(2, [e1, c2, e3, e4])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -187,11 +187,11 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-test_student_typed(r'\s*git\s+log\s*',
-                   fixed=False,
-                   msg='Use `git log`.')
 err = 'Incorrect: please re-run the command and use `git log`.'
-Ex().test_mc(1, ['Correct', err, err, err])
+Ex() >> test_student_typed(r'\s*git\s+log\s*', \
+                           fixed=False, \
+                           msg='Use `git log`.') \
+     >> test_mc(1, ['Correct', err, err, err])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -231,11 +231,11 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-test_student_typed(r'\s*git\s+log\s+data/southern.csv\s*',
-                   fixed=False,
-                   msg='Use `git log` and the name of a file.')
 err = 'Incorrect: please use `git log data/southern.csv` and count the number of log entries.'
-Ex().test_mc(3, [err, err, 'Correct!', err])
+Ex() >> test_student_typed(r'\s*git\s+log\s+data/southern.csv\s*', \
+                           fixed=False, \
+                           msg='Use `git log` and the name of a file.') \
+     >> test_mc(3, [err, err, 'Correct!', err])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -296,13 +296,13 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-test_student_typed(r'\s*git\s+show\s+4d3e[0-9a-f]*\s*',
-                   fixed=False,
-                   msg='Use `git show` and the first few digits of the commit hash.')
 e_more = 'No, there have been more changes than that.'
 correct = 'Correct!'
 e_fewer = 'No, there have been fewer changes than that.'
-Ex().test_mc(3, [e_more, e_more, correct, e_fewer])
+Ex() >> test_student_typed(r'\s*git\s+show\s+4d3e[0-9a-f]*\s*', \
+                           fixed=False, \
+                           msg='Use `git show` and the first few digits of the commit hash.') \
+     >> test_mc(3, [e_more, e_more, correct, e_fewer])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -364,13 +364,13 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-test_student_typed(r'\s*git\s+show\s+ed0ec0[0-9a-f]?\s*',
-                   fixed=False,
-                   msg='Use `git show ed0ec0` and examine the diff.')
 err_some = 'No, the commit changed some of the lines in `bin/teeth`.'
 correct = 'Yes, the commit changed one line.'
 err_fewer = 'No, the commit did not change that many lines in `bin/teeth`.'
-Ex().test_mc(2, [err_some, correct, err_fewer, err_fewer])
+Ex() >> test_student_typed(r'\s*git\s+show\s+ed0ec0[0-9a-f]?\s*', \
+                           fixed=False, \
+                           msg='Use `git show ed0ec0` and examine the diff.') \
+     >> test_mc(2, [err_some, correct, err_fewer, err_fewer])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -411,13 +411,13 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-test_student_typed(r'\s*git\s+show\s+HEAD~1\s*',
-                   fixed=False,
-                   msg='Use `git show` and remember that `HEAD~N` is current minus that many.')
 err_and = 'Yes, but it also changed another file.'
 correct = 'Correct.'
 err_some = 'No, the commit `HEAD~1` did change some files.'
-Ex().test_mc(3, [err_and, err_and, correct, err_some])
+Ex() >> test_student_typed(r'\s*git\s+show\s+HEAD~1\s*', \
+                           fixed=False, \
+                           msg='Use `git show` and remember that `HEAD~N` is current minus that many.') \
+     >> test_mc(3, [err_and, err_and, correct, err_some])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -468,13 +468,13 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-test_student_typed(r'\s*git\s+annotate\s+report.txt\s*',
-                   fixed=False,
-                   msg='Use `git annotate` and the name of a file.')
 e_more = 'No, there have been more changes than that.'
 correct = 'Correct!'
 e_fewer = 'No, there have been fewer changes than that.'
-Ex().test_mc(3, [e_more, e_more, correct, e_fewer])
+Ex() >> test_student_typed(r'\s*git\s+annotate\s+report.txt\s*', \
+                           fixed=False, \
+                           msg='Use `git annotate` and the name of a file.') \
+     >> test_mc(3, [e_more, e_more, correct, e_fewer])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -518,12 +518,12 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-test_student_typed(r'\s*git\s+diff\s-r\s+(HEAD\.\.HEAD~2)|(HEAD\.\.HEAD~2)\s*',
-                   fixed=False,
-                   msg='Use `git diff` and remember that `HEAD~N` is current minus that many.')
 err_more = 'Yes, but another file was changed as well.'
 err_not = 'No, that file did not change.'
 correct = 'Correct!'
 err_half = 'No, one of those files did not change.'
-Ex().test_mc(4, [err_more, err_more, err_not, correct, err_half])
+Ex() >> test_student_typed(r'\s*git\s+diff\s-r\s+(HEAD\.\.HEAD~2)|(HEAD\.\.HEAD~2)\s*', \
+                           fixed=False, \
+                           msg='Use `git diff` and remember that `HEAD~N` is current minus that many.') \
+     >> test_mc(4, [err_more, err_more, err_not, correct, err_half])
 ```
