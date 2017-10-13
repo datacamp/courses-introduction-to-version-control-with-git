@@ -57,7 +57,7 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*', \
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:55204eee61
 ## What's the first step in saving changes?
 
 You commit changes to a Git repository in two steps:
@@ -86,7 +86,7 @@ connect('bash').run_command('cd dental')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: a34bf017f0
 
 *** =xp1: 10
 
@@ -114,7 +114,7 @@ Ex() >> test_student_typed(r'\s*git\s+add\s+report.txt\s*',
 ```
 
 *** =type2: ConsoleExercise
-*** =key2:
+*** =key2: 961661800c
 
 *** =xp2: 10
 
@@ -142,7 +142,7 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:f208f45d7d
 ## How can I tell what's going to be committed?
 
 `git status` shows you which files are in the staging area,
@@ -164,7 +164,7 @@ repl.run_command('git add data/northern.csv')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: 77c975a5c8
 
 *** =xp1: 10
 
@@ -192,7 +192,7 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*',
 ```
 
 *** =type2: ConsoleExercise
-*** =key2:
+*** =key2: 5a866b3ef0
 
 *** =xp2: 10
 
@@ -220,7 +220,7 @@ Ex() >> test_student_typed(r'\s*git\s+diff\s+-r\s+HEAD\s+data/northern\.csv\s*',
 ```
 
 *** =type3: ConsoleExercise
-*** =key3:
+*** =key3: 538a9c35d4
 
 *** =xp3: 10
 
@@ -248,7 +248,7 @@ Ex() >> test_student_typed(r'\s*git\s+add\s+data/eastern\.csv\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:dbf5aa722c
 ## How do I commit changes?
 
 To save the changes in the staging area,
@@ -287,7 +287,7 @@ repl.run_command('git add report.txt')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: 17e219ea22
 
 *** =xp1: 10
 
@@ -315,7 +315,7 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*',
 ```
 
 *** =type2: ConsoleExercise
-*** =key2:
+*** =key2: a5ce3bebb8
 
 *** =xp2: 10
 
@@ -343,7 +343,7 @@ Ex() >> test_student_typed(r'\s*git\s+commit\s+-m\s+"Adding\s+a\s+reference."\s*
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:1be0ce9219
 ## How do I write a better log message?
 
 Writing a one-line log message with `git commit -m "message"`is good enough for very small changes,
@@ -385,7 +385,7 @@ repl.run_command('git add report.txt')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: 2f3aa2a066
 
 *** =xp1: 10
 
@@ -415,7 +415,7 @@ Ex() >> test_student_typed(r'\s*git\s+commit\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:b91e72ac0c
 ## How do I add new files?
 
 Git does not track files by default.
@@ -434,7 +434,7 @@ repl.run_command('cd dental')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: 0cad38fb5f
 
 *** =xp1: 10
 
@@ -462,7 +462,7 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*',
 ```
 
 *** =type2: ConsoleExercise
-*** =key2:
+*** =key2: 7b84819b84
 
 *** =xp2: 10
 
@@ -489,7 +489,7 @@ Ex() >> test_student_typed(r'\s*git\s+add\s+.+\s*',
 ```
 
 *** =type3: ConsoleExercise
-*** =key3:
+*** =key3: 4545c769de
 
 *** =xp3: 10
 
@@ -517,7 +517,7 @@ Ex() > test_student_typed(r'\s*git\s+commit\s+-m\s+"[^"]+"\s*',
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:70a86d3080
 ## How do I re-stage files?
 
 People often save their work every few minutes when they're using a desktop text editor.
@@ -543,7 +543,7 @@ repl.run_command('git add report.txt')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: b5a9b33d2e
 
 *** =xp1: 10
 
@@ -571,7 +571,7 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*',
 ```
 
 *** =type2: ConsoleExercise
-*** =key2:
+*** =key2: 481636c0fc
 
 *** =xp2: 10
 
@@ -600,7 +600,7 @@ Ex() >> test_student_typed(r'\s*git\s+add\s+report\.txt\s+data/northern\.csv\s*'
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:54325e15f1
 ## How can I commit changes selectively?
 
 You don't have to put all of the changes you have made recently into the staging area at once.
@@ -624,7 +624,7 @@ repl.run_command('git status')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: 387ad1a970
 
 *** =xp1: 10
 
@@ -652,7 +652,7 @@ Ex() >> test_student_typed(r'\s*git\s+add\s+data/northern\.csv\s*',
 ```
 
 *** =type2: ConsoleExercise
-*** =key2:
+*** =key2: 381b4ed025
 
 *** =xp2: 10
 
@@ -680,7 +680,7 @@ Ex() >> test_student_typed(r'\s*git\s+commit\s+-m\s+"Adding\s+data\s+from\s+nort
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:3949f5c938
 ## How can I remove unwanted files?
 
 Data analysis often produces temporary or intermediate files that you don't want to save.
@@ -707,7 +707,7 @@ repl.run_command('cd dental')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: e3a590cd63
 
 *** =xp1: 10
 
@@ -735,7 +735,7 @@ Ex() >> test_student_typed(r'\s*ls\s*',
 ```
 
 *** =type2: ConsoleExercise
-*** =key2:
+*** =key2: 4bbdbc8970
 
 *** =xp2: 10
 
@@ -762,7 +762,7 @@ Ex() >> test_student_typed(r'\s*git\s+clean\s+-f\s*',
 ```
 
 *** =type3: ConsoleExercise
-*** =key3:
+*** =key3: 0450972363
 
 *** =xp3: 10
 
@@ -790,7 +790,7 @@ Ex() >> test_student_typed(r'\s*ls\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:7ff1cc0a0e
 ## How can I undo changes to unstaged files?
 
 Suppose you have made changes to a file,
@@ -824,7 +824,7 @@ repl.run_command('git status')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: 9a5bde4d0b
 
 *** =xp1: 10
 
@@ -854,7 +854,7 @@ Ex() >> test_student_typed(r'\s*git\s+checkout\s+--\s+data/northern\.csv\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:fba584b9f1
 ## How can I unstage a file that I have staged?
 
 `git checkout -- filename` will undo changes that have not yet been staged.
@@ -886,7 +886,7 @@ repl.run_command('git status')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: d0aa935274
 
 *** =xp1: 10
 
@@ -915,7 +915,7 @@ Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+data/northern\.csv\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:d45eca9a34
 ## How can I undo all of the changes I have made?
 
 So far,
@@ -941,7 +941,7 @@ repl.run_command('git status')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: 5964997653
 
 *** =xp1: 10
 
@@ -968,7 +968,7 @@ Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+(\.|dental)\s*',
 ```
 
 *** =type2: ConsoleExercise
-*** =key2:
+*** =key2: 3070c1d680
 
 *** =xp2: 10
 
