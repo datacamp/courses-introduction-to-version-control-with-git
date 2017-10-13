@@ -166,7 +166,8 @@ You are in the directory `dental`,
 which is a Git repository.
 Use a single Git command *without* the `-C` option
 to view the repository's history.
-What is the message on the very first entry in the log?
+What is the message on the very first entry in the log
+(which is displayed last)?
 
 *** =instructions
 - "Added summary report file."
@@ -176,7 +177,7 @@ What is the message on the very first entry in the log?
 
 *** =hint
 
-The oldest log entry is displayed last in the list.
+Use spacebar to page down through the log and 'q' to quit.
 
 *** =pre_exercise_code
 ```{shell}
@@ -273,7 +274,7 @@ while sections that it added are prefixed with `+`.
 
 <hr>
 
-How many files were changed by the commit whose hash is `4d3ee8313026829b891d98e4c1f5fd7607e7ab88`?
+How many files were changed by the commit whose hash starts with `aa5991c6`?
 (Remember, you only need to type the first few characters of the hash.)
 
 *** =instructions
@@ -342,7 +343,7 @@ or [WinMerge](http://winmerge.org/).
 <hr>
 
 You are in the `dental` repository.
-Use a single Git command to look at the commit with ID `ed0ec0`.
+Use `git diff` with a hash and a filename to look at the commit with ID `166a86`.
 How many lines did it change in the file `bin/teeth`?
 
 *** =instructions
@@ -353,8 +354,7 @@ How many lines did it change in the file `bin/teeth`?
 
 *** =hint
 
-Use `git show` and the ID,
-and then look at the diff for `bin/teeth`.
+Use `git show`, the ID, and the filename.
 
 *** =pre_exercise_code
 ```{shell}
@@ -417,7 +417,7 @@ test_student_typed(r'\s*git\s+show\s+HEAD~1\s*',
 err_and = 'Yes, but it also changed another file.'
 correct = 'Correct.'
 err_some = 'No, the commit `HEAD~1` did change some files.'
-Ex().test_mc(1, [err_and, err_and, correct, err_some])
+Ex().test_mc(3, [err_and, err_and, correct, err_some])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -447,7 +447,8 @@ and the line itself.
 
 You are in the `dental` repository.
 Use a single command to see the changes to `report.txt`.
-How many different sets of changes have been made to this file?
+How many different sets of changes have been made to this file
+(i.e., how many different hashes show up in the first column of the output)?
 
 *** =instructions
 - 1.
