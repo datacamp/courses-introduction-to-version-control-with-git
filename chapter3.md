@@ -93,7 +93,7 @@ Ex() >> test_mc(3, ['No: some files differ.',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:c418145d13
 ## How can I switch from one branch to another?
 
 When you run `git branch`,
@@ -113,7 +113,7 @@ repl.run_command('git branch')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: eee4722074
 
 *** =xp1: 10
 
@@ -141,7 +141,7 @@ Ex() >> test_student_typed(r'\s*git\s+checkout\s+summary-statistics\s*',
 ```
 
 *** =type2: ConsoleExercise
-*** =key2:
+*** =key2: 6193872406
 
 *** =xp2: 10
 
@@ -168,7 +168,7 @@ Ex() >> test_student_typed(r'\s*git\s+rm\s+report\.txt\s*',
 ```
 
 *** =type3: ConsoleExercise
-*** =key3:
+*** =key3: dcfdc86805
 
 *** =xp3: 10
 
@@ -195,7 +195,7 @@ Ex() >> test_student_typed(r'\s*git\s+commit.+\s*',
 ```
 
 *** =type4: ConsoleExercise
-*** =key4:
+*** =key4: 99b72ed9cb
 
 *** =xp4: 10
 
@@ -222,7 +222,7 @@ Ex() >> test_student_typed(r'\s*ls\s*',
 ```
 
 *** =type5: ConsoleExercise
-*** =key5:
+*** =key5: 4afc727945
 
 *** =xp5: 10
 
@@ -249,7 +249,7 @@ Ex() >> test_student_typed(r'\s*git\s+checkout\s+master\s*',
 ```
 
 *** =type6: ConsoleExercise
-*** =key6:
+*** =key6: b0b5946436
 
 *** =xp6: 10
 
@@ -277,7 +277,7 @@ Ex() >> test_student_typed(r'\s*ls\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:51c4cb1dc0
 ## How can I create a branch?
 
 The easiest way to create a new branch is to run `git checkout -b branch-name`,
@@ -294,7 +294,7 @@ repl.run_command('git branch')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: 71253d1c95
 
 *** =xp1: 10
 
@@ -322,7 +322,7 @@ Ex() >> test_student_typed(r'\s*git\s+checkout\s+-b\s+deleting-report\s*',
 ```
 
 *** =type2: ConsoleExercise
-*** =key2:
+*** =key2: 4dc64f3a09
 
 *** =xp2: 10
 
@@ -349,7 +349,7 @@ Ex() >> test_student_typed(r'\s*git\s+rm\s+report\.txt\s*',
 ```
 
 *** =type3: ConsoleExercise
-*** =key3:
+*** =key3: a7e82dfb0c
 
 *** =xp3: 10
 
@@ -376,7 +376,7 @@ Ex() >> test_student_typed(r'\s*git\s+commit\s+.*\s*',
 ```
 
 *** =type4: ConsoleExercise
-*** =key4:
+*** =key4: ec7d242138
 
 *** =xp4: 10
 
@@ -405,7 +405,7 @@ Ex() >> test_student_typed(r'\s*git\s+diff\s+(master\.\.deleting-report|deleting
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:3812382b52
 ## How can I merge two branches?
 
 Branching lets you create parallel universes;
@@ -432,7 +432,7 @@ repl.run_command('cd dental')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: 7a4bb39d31
 
 *** =xp1: 10
 
@@ -463,7 +463,7 @@ Ex() >> test_student_typed(r'\s*git\s+merge\s+summary-statistics\s+master\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:3a4ba0eda1
 ## How can I merge two branches with conflicts?
 
 Sometimes the changes in two branches will conflict with each other:
@@ -504,7 +504,7 @@ repl.run_command('git branch')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: 1e11825f95
 
 *** =xp1: 10
 
@@ -533,7 +533,7 @@ Ex() >> test_student_typed(r'\s*git merge.+alter-report-title\s*master\s*',
 ```
 
 *** =type2: ConsoleExercise
-*** =key2:
+*** =key2: 9ecd08b08b
 
 *** =xp2: 10
 
@@ -560,7 +560,7 @@ Ex() >> test_student_typed(r'\s*git\s+status(.+)?\s*',
 ```
 
 *** =type3: ConsoleExercise
-*** =key3:
+*** =key3: 4acfdd12bd
 
 *** =xp3: 10
 
@@ -587,7 +587,7 @@ Ex() >> test_student_typed(r'\s*nano\s+report\.txt.*',
 ```
 
 *** =type4: ConsoleExercise
-*** =key4:
+*** =key4: 323f9a133c
 
 *** =xp4: 10
 
@@ -614,7 +614,7 @@ Ex() >> test_student_typed(r'\s*git\s*add\s*report\.txt\s*',
 ```
 
 *** =type5: ConsoleExercise
-*** =key5:
+*** =key5: d9b25e272f
 
 *** =xp5: 10
 
