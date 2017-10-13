@@ -99,7 +99,7 @@ Ex() >> test_mc(3, ['No, some configuration values are set.',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:ConsoleExercise lang:shell xp:100 skills:1 key:
+--- type:ConsoleExercise lang:shell xp:100 skills:1 key:7c0dce348b
 ## How can I change my Git configuration?
 
 Most of Git's settings should be left as they are.
@@ -139,7 +139,7 @@ Ex() >> test_student_typed(r'\s*git\s+config\s+--global\s+user\.email\s+["\']?re
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:ConsoleExercise lang:shell xp:100 skills:1 key:
+--- type:ConsoleExercise lang:shell xp:100 skills:1 key:a87bbd3948
 ## How can I create a brand new repository?
 
 So far,
@@ -173,7 +173,7 @@ Ex() >> test_student_typed(r'\s*git\s+init\s+optical\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:a4330ec681
 ## How can I turn an existing project into a Git repository?
 
 Experienced Git users instinctively start new projects by creating repositories.
@@ -194,7 +194,7 @@ repl.run_command('pwd')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: 101686c0e7
 
 *** =xp1: 10
 
@@ -224,7 +224,7 @@ Ex() >> test_student_typed(r'\s*git\s+init\s*',
 ```
 
 *** =type2: ConsoleExercise
-*** =key2:
+*** =key2: e65f050907
 
 *** =xp2: 10
 
@@ -252,7 +252,7 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:9fb3b2ed49
 ## How can I create a copy of an existing repository?
 
 Sometimes you will join a project that is already running,
@@ -288,7 +288,7 @@ repl.run_command('rm -rf dental')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: 2b06ff535f
 
 *** =xp1: 10
 
@@ -369,7 +369,7 @@ Ex() >> test_mc(2, ['No: there are some remotes.',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:4d5be24350
 ## How can I pull in changes from a remote repository?
 
 Git keeps track of remote repositories so that you can
@@ -401,7 +401,7 @@ repl.run_command('git reset --hard HEAD~2')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: cb79240464
 
 *** =xp1: 10
 
@@ -432,7 +432,7 @@ Ex() >> test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:b3ba4dd987
 ## How can I push my changes to a remote repository?
 
 The complement of `git pull` is `git push`,
@@ -461,7 +461,7 @@ with open('dental/data/northern.csv', 'w') as writer:
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: 75df26b3a7
 
 *** =xp1: 10
 
@@ -491,7 +491,7 @@ Ex() >> test_student_typed(r'\s*git\s+add.+\s*',
 ```
 
 *** =type2: ConsoleExercise
-*** =key2:
+*** =key2: eebd73b616
 
 *** =xp2: 10
 
@@ -518,7 +518,7 @@ Ex() >> test_student_typed(r'\s*git\s+commit\s+-m\s*"[^"]+".+\s*',
 ```
 
 *** =type3: ConsoleExercise
-*** =key3:
+*** =key3: 037b960128
 
 *** =xp3: 10
 
@@ -546,7 +546,7 @@ Ex() >> test_student_typed(r'\s*git\s+push\s+origin\s+master\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:1e327efda1
 ## How can I define remotes?
 
 When you clone a repository,
@@ -575,7 +575,7 @@ repl.run_command('cd dental')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: a0e2cf2d0f
 
 *** =xp1: 10
 
