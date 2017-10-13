@@ -68,6 +68,9 @@ echo "Home directory:"
 ls -lR /home
 echo "Dental repository log:"
 git -C ${HOME_DIR}/dental log | cat
-
+echo 'References to PS1 in /home/repl/.bashrc'
+grep PS1 ${HOME_DIR}/.bashrc
 echo 'Home backup directory:'
-ls -R ${HOME_COPY}
+ls -lR ${HOME_COPY}
+echo 'References to PS1 in /.course_home/.bashrc'
+grep PS1 ${HOME_COPY}/.bashrc
