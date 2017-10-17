@@ -164,7 +164,7 @@ and what comment (called a **log message**) they wrote for the change.
 
 You are in the directory `dental`,
 which is a Git repository.
-Use a single Git command *without* the `-C` option
+Use a single Git command (*without* the `-C` option)
 to view the repository's history.
 What is the message on the very first entry in the log
 (which is displayed last)?
