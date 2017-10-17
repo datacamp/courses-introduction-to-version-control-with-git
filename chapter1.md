@@ -188,10 +188,7 @@ repl.run_command('cd dental')
 *** =sct
 ```{python}
 err = 'Incorrect: please re-run the command and use `git log`.'
-Ex() >> test_student_typed(r'\s*git\s+log\s*', \
-                           fixed=False, \
-                           msg='Use `git log`.') \
-     >> test_mc(1, ['Correct', err, err, err])
+Ex() >> test_mc(1, ['Correct', err, err, err])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
