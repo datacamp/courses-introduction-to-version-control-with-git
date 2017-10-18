@@ -1,5 +1,5 @@
 ---
-title       : Basic operations
+title       : Basic workflow
 description : >-
   This chapter shows you how to use Git to back up your work, and how
   to view the history of what you have done.
@@ -85,47 +85,340 @@ What kind of work should you store in version control?
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:1dac2b0a28
-## Where does Git store information?
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:bc52cf1174
+## How can I check the state of a repository?
 
-Each of your Git projects has two parts:
-the files and directories that you create and edit directly,
-and the extra information that Git records about the project's history.
-The combination of these two things is called a **repository**.
+The previous chapter showed you how to look at a repository's history.
+To create that history,
+you must save the changes you make to the repository's contents.
 
-Git stores all of its extra information in a directory called `.git`
-located in the root directory of the repository.
-Git expects this information to be laid out in a very precise way,
-so you should never edit or delete anything in `.git`.
+The first step is to check the **status** of the repository's files.
+To do this,
+run the command `git status`,
+which displays a list of the files that have been modified
+since the last time changes were committed.
 
 <hr>
 
-Suppose your home directory `/home/repl` contains a repository called `dental`,
-which has a sub-directory called `data`.
-Where is information about the history of the files in `/home/repl/dental/data` stored?
+You are in the `dental` repository.
+Use a single Git command to discover which file(s) have been changed since the last commit.
+Which file(s) are listed?
 
 *** =instructions
-- `/home/repl/.git`
-- [`/home/repl/dental/.git`]
-- `/home/repl/dental/data/.git`
-- None of the above.
+- `data/summer.csv`.
+- `report.txt`.
+- Neither of the above.
+- Both of the above.
 
 *** =hint
 
-Use `ls -a` to see all of the contents of a directory.
-
 *** =pre_exercise_code
-```{shell}
+```{python}
+append = '''
 
+Fehrenbach: "Dental Anatomy Coloring Book" (2e), 2013.
+'''
+with open('dental/report.txt', 'w') as writer:
+    writer.write(append)
+repl = connect('bash')
+repl.run_command('cd dental')
 ```
 
 *** =sct
 ```{python}
-e1 = 'No: every repository stores its own history.'
-c2 = 'Yes: all of the information about a repository is stored under its root directory.'
-e3 = 'No: all of the information about a repository is stored under its root directory.'
-e4 = 'No: one of the answers above is correct.'
-Ex() >> test_mc(2, [e1, c2, e3, e4])
+Ex() >> test_student_typed(r'\s*git\s+status\s*', \
+                           fixed=False, \
+                           msg='Use `git status`.') \
+     >> test_mc(2, ['No, that file has not changed.', \
+                    'Correct!', \
+                    'No, one file has changed.', \
+                    'No, only one file has changed.'])
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:BulletConsoleExercise key:55204eee61
+## What's the first step in saving changes?
+
+You commit changes to a Git repository in two steps:
+you use Git to add one or more files to a **staging area**,
+and then you use it to commit everything in the staging area.
+Putting files in the staging area is like putting things in a box,
+while committing is like putting the box in the mail.
+
+To add a file to the staging area,
+using `git add filename`.
+You can do this several times in a row as you make changes to the file
+without leaving traces in the repository's history.
+Once you commit those changes,
+though,
+they become part of the repository's permanent log.
+
+*** =pre_exercise_code
+```{python}
+append = '''
+
+Fehrenbach: "Dental Anatomy Coloring Book" (2e), 2013.
+'''
+with open('dental/report.txt', 'w') as writer:
+    writer.write(append)
+connect('bash').run_command('cd dental')
+```
+
+*** =type1: ConsoleExercise
+*** =key1: a34bf017f0
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `dental` repository.
+Use `git add` to add the file `report.txt` to the staging area.
+
+*** =hint1
+
+*** =sample_code1
+```{shell}
+```
+
+*** =solution1
+git add report.txt
+```{shell}
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+add\s+report.txt\s*',
+                           fixed=False,
+                           msg='Use `git add` and a filename.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2: 961661800c
+
+*** =xp2: 10
+
+*** =instructions2
+
+Use another Git command to check the repository's status.
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
+git status
+```
+
+*** =sct2
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+status\s*',
+                           fixed=False,
+                           msg='Use `git status`.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:BulletConsoleExercise key:f208f45d7d
+## How can I tell what's going to be committed?
+
+`git status` shows you which files are in the staging area,
+and which files have changes that haven't yet been put there.
+In order to compare the file as it currently is
+to the changes in the staging area,
+you can use `git diff -r HEAD filename`.
+(Remember, `HEAD` is a shortcut meaning "the most recent commit".)
+
+*** =pre_exercise_code
+```{python}
+with open('dental/data/northern.csv', 'w') as writer:
+    writer.write('2017-11-01,bicuspid\n')
+with open('dental/data/eastern.csv', 'w') as writer:
+    writer.write('2017-11-02,molar\n')
+repl = connect('bash')
+repl.run_command('cd dental')
+repl.run_command('git add data/northern.csv')
+```
+
+*** =type1: ConsoleExercise
+*** =key1: 77c975a5c8
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `dental` repository.
+Use one Git command to see which files have staged and unstaged changes.
+
+*** =hint1
+
+*** =sample_code1
+```{shell}
+```
+
+*** =solution1
+```{shell}
+git status
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+status\s*',
+                           fixed=False,
+                           msg='Use `git status`.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2: 5a866b3ef0
+
+*** =xp2: 10
+
+*** =instructions2
+
+Use a single Git command to view the changes in the file that has been staged
+(and *only* that file),
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
+git diff -r HEAD data/northern.csv | cat
+```
+
+*** =sct2
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+diff\s+-r\s+HEAD\s+data/northern\.csv\s*',
+                           fixed=False,
+                           msg='Use `git diff -r HEAD` and a filename.')
+```
+
+*** =type3: ConsoleExercise
+*** =key3: 538a9c35d4
+
+*** =xp3: 10
+
+*** =instructions3
+
+Use one Git command to add the other changed file to the staging area.
+
+*** =hint3
+
+*** =sample_code3
+```{shell}
+```
+
+*** =solution3
+```{shell}
+git add data/eastern.csv
+```
+
+*** =sct3
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+add\s+data/eastern\.csv\s*',
+                           fixed=False,
+                           msg='Use `git add`.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:BulletConsoleExercise key:dbf5aa722c
+## How do I commit changes?
+
+To save the changes in the staging area,
+you use the command `git commit`.
+It always saves everything that is in the staging area as one unit:
+as you will see later,
+when you want to undo changes to a project,
+you undo all of a commit or none of it.
+
+When you commit changes,
+Git requires you to enter a log message.
+As you saw in the previous chapter,
+this serves the same purpose as a comment in a program:
+it tells the next person to examine the repository why you made a change.
+
+By default,
+Git launches a text editor to let you write this message,
+but you can also use the flag `-m "some message in quotes"` on the command line
+to enter a single-line message like this:
+
+```
+git commit -m "Program appears to have become self-aware."
+```
+
+*** =pre_exercise_code
+```{python}
+append = '''
+
+Fehrenbach: "Dental Anatomy Coloring Book" (2e), 2013.
+'''
+with open('dental/report.txt', 'w') as writer:
+    writer.write(append)
+repl = connect('bash')
+repl.run_command('cd dental')
+repl.run_command('git add report.txt')
+```
+
+*** =type1: ConsoleExercise
+*** =key1: 17e219ea22
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `dental` repository.
+Use one Git command to check the status of the repository.
+
+*** =hint1
+
+*** =sample_code1
+```{shell}
+```
+
+*** =solution1
+```{shell}
+git status
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+status\s*',
+                           fixed=False,
+                           msg='Remember, you want to check the *status* of the repository.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2: a5ce3bebb8
+
+*** =xp2: 10
+
+*** =instructions2
+
+Commit the changes in the staging area with the message "Adding a reference."
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
+git commit -m "Adding a reference."
+```
+
+*** =sct2
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+commit\s+-m\s+"Adding\s+a\s+reference."\s*',
+                           fixed=False,
+                           msg='Use `git commit` with `-m "message"`.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -237,290 +530,72 @@ Ex() >> test_student_typed(r'\s*git\s+log\s+data/southern.csv\s*', \
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:d03c5fa3e6
-## How can I view a specific log entry?
+--- type:BulletConsoleExercise key:1be0ce9219
+## How do I write a better log message?
 
-Every commit to a repository has a unique hexadecimal ID called a **hash**
-(since it is generated by running the changes through a pseudo-random number generator
-called a **hash function**).
-To view the details of a specific commit,
-you can use the command `git show` with the first few characters of the commit's hash.
-(5 or 6 characters is usually enough to tell Git which hash you mean.)
-For example, the command `git show 043070` produces this:
+Writing a one-line log message with `git commit -m "message"`is good enough for very small changes,
+but your collaborators (including your future self) will appreciate more information.
+If you run `git commit` *without* `-m "message"`,
+Git launches a text editor with a template like this:
 
-    commit 0430705487381195993bac9c21512ccfb511056d
-    Author: Rep Loop <repl@datacamp.com>
-    Date:   Wed Sep 20 13:42:26 2017 +0000
-    
-        Added year to report title.
-    
-    diff --git a/report.txt b/report.txt
-    index e713b17..4c0742a 100644
-    --- a/report.txt
-    +++ b/report.txt
-    @@ -1,4 +1,4 @@
-    -# Seasonal Dental Surgeries 2017-18
-    +# Seasonal Dental Surgeries (2017) 2017-18
-     
-     TODO: write executive summary.
+```
 
-The first part is the log entry you have seen before.
-The second part shows what changes the commit made:
-sections that the change removed are prefixed with `-`,
-while sections that it added are prefixed with `+`.
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#       modified:   skynet.R
+#
+```
 
-<hr>
+The lines starting with `#` are comments, and won't be saved.
+(They are there to remind you what you are supposed to do and what files you have changed.)
+Your message should go at the top, and may be as long and as detailed as you want.
 
-How many files were changed by the commit whose hash starts with `aa5991c6`?
-(Remember, you only need to type the first few characters of the hash.)
-
-*** =instructions
-- None.
-- 1.
-- 2.
-- 4.
-
-*** =hint
-
-Use `git show` and the first 6 characters of the hash
-and then look at the names of the files that were changed.
+> To keep things simple,
+> we have configured Git to use the Nano editor for this course.
+> The final chapter of this course will show you how to set up a different editor.
 
 *** =pre_exercise_code
-```{shell}
+```{python}
+append = '''
+
+Fehrenbach: "Dental Anatomy Coloring Book" (2e), 2013.
+'''
+with open('dental/report.txt', 'w') as writer:
+    writer.write(append)
 repl = connect('bash')
 repl.run_command('cd dental')
+repl.run_command('git add report.txt')
 ```
 
-*** =sct
-```{python}
-e_more = 'No, there have been more changes than that.'
-correct = 'Correct!'
-e_fewer = 'No, there have been fewer changes than that.'
-Ex() >> test_student_typed(r'\s*git\s+show\s+4d3e[0-9a-f]*\s*', \
-                           fixed=False, \
-                           msg='Use `git show` and the first few digits of the commit hash.') \
-     >> test_mc(3, [e_more, e_more, correct, e_fewer])
-```
+*** =type1: ConsoleExercise
+*** =key1: 2f3aa2a066
 
-<!-- -------------------------------------------------------------------------------- -->
+*** =xp1: 10
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:eef645517f
-## What is in a diff?
-
-A **diff** is a formatted display of the differences between two sets of files.
-By default,
-Git displays diffs like this:
-
-    diff --git a/report.txt b/report.txt
-    index e713b17..4c0742a 100644
-    --- a/report.txt
-    +++ b/report.txt
-    @@ -1,4 +1,4 @@
-    -# Seasonal Dental Surgeries 2017-18
-    +# Seasonal Dental Surgeries (2017) 2017-18
-     
-     TODO: write executive summary.
-
-This shows:
-- The command `diff --git` used to produce the output.
-  In it, `a` and `b` are placeholders meaning "the first version" and "the second version".
-- An index line showing keys into Git's internal database of changes.
-- `--- a/report.txt` and `+++ b/report.txt`,
-  which indicate that lines being *removed* are prefixed with `-`,
-  while lines being added are prefixed with `+`.
-- A line starting with `@@` which tells where the changes are being made.
-  Here, the line shows that lines 1-4 are being removed and replaced with new lines.
-- A line-by-line listing of the changes.
-
-Desktop programming tools like [RStudio](https://www.rstudio.com/) can turn diffs like this
-into a more readable side-by-side display of changes;
-you can also use standalone tools like [DiffMerge](https://sourcegear.com/diffmerge/)
-or [WinMerge](http://winmerge.org/).
-
-<hr>
+*** =instructions1
 
 You are in the `dental` repository.
-Use `git diff` with a hash and a filename to look at the commit with ID `166a86`.
-How many lines did it change in the file `bin/teeth`?
+The changes to `report.txt` have already been staged.
+Use `git commit` *without* `-m` to commit the changes.
 
-*** =instructions
-- None.
-- 1.
-- 2.
-- 20.
+*** =hint1
 
-*** =hint
-
-Use `git show`, the ID, and the filename.
-
-*** =pre_exercise_code
+*** =sample_code1
 ```{shell}
-repl = connect('bash')
-repl.run_command('cd dental')
 ```
 
-*** =sct
-```{python}
-err_some = 'No, the commit changed some of the lines in `bin/teeth`.'
-correct = 'Yes, the commit changed one line.'
-err_fewer = 'No, the commit did not change that many lines in `bin/teeth`.'
-Ex() >> test_student_typed(r'\s*git\s+show\s+ed0ec0[0-9a-f]?\s*', \
-                           fixed=False, \
-                           msg='Use `git show ed0ec0` and examine the diff.') \
-     >> test_mc(2, [err_some, correct, err_fewer, err_fewer])
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:1bc30ab583
-## What is Git's equivalent of a relative path?
-
-A hash is like an absolute path:
-it identifies a specific commit.
-Another way to identify a commit is to use the equivalent of a relative path.
-The special label `HEAD` always refers to the most recent commit;
-the label `HEAD~1` then refers to the commit before it,
-while `HEAD~2` refers to the commit before that,
-and so on.
-(Note that the symbol between `HEAD` and the number is a tilde `~`,
-and *not* a minus sign `-`.)
-
-<hr>
-
-You are in the `dental` repository.
-Using a single Git command,
-look at the commit made just before the most recent one.
-Which of the following files did it change?
-
-*** =instructions
-- `report.txt`.
-- `data/western.csv`.
-- Both of the above.
-- Neither of the above.
-
-*** =hint
-
-*** =pre_exercise_code
+*** =solution1
 ```{shell}
-repl = connect('bash')
-repl.run_command('cd dental')
+git commit -m "Adding a reference."
 ```
 
-*** =sct
+*** =sct1
 ```{python}
-err_and = 'Yes, but it also changed another file.'
-correct = 'Correct.'
-err_some = 'No, the commit `HEAD~1` did change some files.'
-Ex() >> test_student_typed(r'\s*git\s+show\s+HEAD~1\s*', \
-                           fixed=False, \
-                           msg='Use `git show` and remember that `HEAD~N` is current minus that many.') \
-     >> test_mc(3, [err_and, err_and, correct, err_some])
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:f76c7f5965
-## How can I see who changed what in a file?
-
-`git log` displays the overall history of a project or file,
-but Git can give even more information:
-the command `git annotate file` shows who made the last change to each line of a file and when.
-For example,
-the first three lines of output from `git annotate report.txt` look something like this:
-
-```
-04307054        (  Rep Loop     2017-09-20 13:42:26 +0000       1)# Seasonal Dental Surgeries (2017) 2017-18
-5e6f92b6        (  Rep Loop     2017-09-20 13:42:26 +0000       2)
-5e6f92b6        (  Rep Loop     2017-09-20 13:42:26 +0000       3)TODO: write executive summary.
-```
-
-The first column is the hash of the most recent commit to change that line.
-The other columns show who made the change,
-the date and time it was made,
-the line number,
-and the line itself.
-
-<hr>
-
-You are in the `dental` repository.
-Use a single command to see the changes to `report.txt`.
-How many different sets of changes have been made to this file
-(i.e., how many different hashes show up in the first column of the output)?
-
-*** =instructions
-- 1.
-- 2.
-- 3.
-- 4.
-
-*** =hint
-
-Use `git annotate report.txt` and count the number of distinct commit IDs.
-
-*** =pre_exercise_code
-```{shell}
-repl = connect('bash')
-repl.run_command('cd dental')
-```
-
-*** =sct
-```{python}
-e_more = 'No, there have been more changes than that.'
-correct = 'Correct!'
-e_fewer = 'No, there have been fewer changes than that.'
-Ex() >> test_student_typed(r'\s*git\s+annotate\s+report.txt\s*', \
-                           fixed=False, \
-                           msg='Use `git annotate` and the name of a file.') \
-     >> test_mc(3, [e_more, e_more, correct, e_fewer])
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:9862ae22bd
-## How can I see what changed between two commits?
-
-`git show` shows the changes made *in* a particular commit.
-To see the changes *between* two widely-separated commits,
-you can use `git diff R1..R2`,
-where `R1` and `R2` identify the two commits you're interested in,
-and the connector `..` is a pair of dots.
-For example,
-`git diff abc123..def456` shows the differences between the commits `abc123` and `def456`,
-while `git diff HEAD~1..HEAD~3` shows the differences between the state of the repository one commit in the past
-and its state three commits in the past.
-
-<hr>
-
-You are in the `dental` repository.
-Use `git diff` to view the differences between its current state
-and its state in the previous-but-two commit.
-Which of the following files have changed?
-
-*** =instructions
-- `data/western.csv`.
-- `report.txt`.
-- `data/southern.csv`.
-- `report.txt` and `data/western.csv`.
-- `report.txt` and `data/southern.csv`.
-
-*** =hint
-
-Use `git log` with two `HEAD`-based commit identifiers and look for filenames.
-
-*** =pre_exercise_code
-```{shell}
-repl = connect('bash')
-repl.run_command('cd dental')
-```
-
-*** =sct
-```{python}
-err_more = 'Yes, but another file was changed as well.'
-err_not = 'No, that file did not change.'
-correct = 'Correct!'
-err_half = 'No, one of those files did not change.'
-Ex() >> test_student_typed(r'\s*git\s+diff\s-r\s+(HEAD\.\.HEAD~2)|(HEAD\.\.HEAD~2)\s*', \
-                           fixed=False, \
-                           msg='Use `git diff` and remember that `HEAD~N` is current minus that many.') \
-     >> test_mc(4, [err_more, err_more, err_not, correct, err_half])
+Ex() >> test_student_typed(r'\s*git\s+commit\s*',
+                           fixed=False,
+                           msg='Use `git add` without `-m`.')
 ```
