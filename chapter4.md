@@ -405,7 +405,7 @@ Ex() >> test_student_typed(r'\s*git\s+diff\s+(master\.\.deleting-report|deleting
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:ConsoleExercise xp:100 key:
+--- type:ConsoleExercise xp:100 key:354f733f81
 ## What are merges and conflicts?
 
 FIXME
