@@ -40,6 +40,8 @@ Stage the changes made to `data/northern.csv`
 
 *** =hint1
 
+Use `git add` to stage the changes to a file.
+
 *** =sample_code1
 ```{shell}
 ```
@@ -293,6 +295,131 @@ Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+data/northern\.csv\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
+--- type:BulletConsoleExercise key:
+## How do I restore an old version of a file?
+
+Since Git stores old versions of your files,
+you can use it to restore those files when you want to undo changes.
+The command for doing this is `git checkout`,
+which takes two arguments:
+the hash that identifies the version you want to restore,
+and the name of the file.
+For example,
+if `git log` shows this:
+
+```
+commit ab8883e8a6bfa873d44616a0f356125dbaccd9ea
+Author: Author: Rep Loop <repl@datacamp.com>
+Date:   Thu Oct 19 09:37:48 2017 -0400
+
+    Adding graph to show latest quarterly results.
+
+commit 2242bd761bbeafb9fc82e33aa5dad966adfe5409
+Author: Author: Rep Loop <repl@datacamp.com>
+Date:   Thu Oct 16 09:17:37 2017 -0400
+
+    Modifying the bibliography format.
+```
+
+then `git checkout 2242bd report.md` would replace `report.md`
+with whatever was committed on October 16.
+
+Restoring a file doesn't erase any of the repository's history.
+Instead,
+the act of restoring the file is saved as another commit,
+because you might later want to undo your undoing.
+
+*** =pre_exercise_code
+```{python}
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
+
+Use `git log` to list the recent changes to `report.md`.
+
+*** =hint1
+
+*** =sample_code1
+```{shell}
+```
+
+*** =solution1
+```{shell}
+git log report.md
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+log\s+report\.md\s*',
+                           fixed=False,
+                           msg='Use `git log` with a filename.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2:
+
+*** =xp2: 10
+
+*** =instructions2
+
+Use `git checkout` to restore the immediately previous version of `report.md`.
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
+git checkout FIXME report.md
+```
+
+*** =sct2
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+checkout\s+[0-9a-f]+\s+report\.md\s*',
+                           fixed=False,
+                           msg='Use `git checkout hash filename`.')
+```
+
+*** =type3: ConsoleExercise
+*** =key3:
+
+*** =xp3: 10
+
+*** =instructions3
+
+Commit the restored version of `report.md`.
+
+*** =hint3
+
+Use `git commit` as usual.
+
+*** =sample_code3
+```{shell}
+```
+
+*** =solution3
+```{shell}
+git commit -m "Restoring"
+```
+
+*** =sct3
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+commit.+*',
+                           fixed=False,
+                           msg='Use `git commit -m "message"`.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
 --- type:BulletConsoleExercise key:d45eca9a34
 ## How can I undo all of the changes I have made?
 
@@ -372,27 +499,4 @@ git checkout -- .
 Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+(\.|dental)\s+git\s+checkout\s+--\s+\.\s*',
                            fixed=False,
                            msg='Use `git checkout --` with directory a name as an argument.')
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:ConsoleExercise xp:100 key:
-## How do I restore an old version of a file?
-
-FIXME
-
-*** =instructions
-
-FIXME
-
-*** =solution
-```{bash}
-echo FIXME
-```
-
-*** =sct
-```{python}
-Ex() >> test_student_typed(r'\s*FIXME\s*',
-                           fixed=False,
-                           msg='FIXME.')
 ```
