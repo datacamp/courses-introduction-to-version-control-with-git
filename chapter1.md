@@ -183,7 +183,15 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*', \
 
 Git has a **staging area** in which it stores files with changes you want to save
 that haven't been saved yet.
-`git status` shows you which files are in the staging area,
+Putting files in the staging area is like putting things in a box,
+while committing is like putting it in the mail:
+you can add more things to the box or take things out as often as you want,
+but once you put it in the mail,
+you can't make further changes.
+
+![Staging Area](img/staging-area.svg)
+
+`git status` shows you which files are in this staging area,
 and which files have changes that haven't yet been put there.
 In order to compare the file as it currently is to what you last saved,
 you can use `git diff filename`.
@@ -302,12 +310,6 @@ Ex() >> test_mc(2, [err_some, correct, err_fewer, err_fewer])
 You commit changes to a Git repository in two steps:
 you add one or more files to the staging area,
 and then you **commit** everything in the staging area.
-Putting files in the staging area is like putting things in a box,
-while committing is like putting it in the mail:
-you can add more things to the box or take things out as often as you want,
-but once you put it in the mail,
-you can't make further changes.
-
 To add a file to the staging area,
 using `git add filename`.
 You can do this several times in a row as you make changes to the file.
