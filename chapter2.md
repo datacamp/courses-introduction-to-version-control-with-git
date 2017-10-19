@@ -18,7 +18,7 @@ this has three key parts:
 3. A **commit* that records the author, log message, and other properties
    of a particular commit.
 
-FIXME: diagram
+![Commit-Tree-Blob Structure](img/commit-tree-blob.svg)
 
 As the diagram shows,
 each blob is stored only once,
@@ -45,7 +45,7 @@ which files changed in the most recent (bottom-most) commit to this repository?
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:67430280df
+--- type:MultipleChoiceExercise lang:bash xp:50 key:67430280df
 ## What is a hash?
 
 Every commit to a repository has a unique identifier called a **hash**
@@ -69,23 +69,24 @@ rather than comparing entire files.
 
 <hr>
 
-![Commit-Tree-Blob Structure](img/commit-tree-blob.svg)
+What are the first few characters of the most recent commit in the `dental` repository?
 
-What is the hash of the second commit in the diagram?
-
-*** =possible_answers
+*** =instructions
 - abc123f6
-- feed0098
-- [6677ce4a]
+- 2e1b743c
+- 2e952d6e
 
 *** =hint
 
-Remember to look at the hashes of commits, not files.
+Use `git log` and look at the topmost entry.
+Remember that you can use 'q' to quit the pager.
 
-*** =feedbacks
-- No: that is the hash of a file.
-- No: that is the hash of the most recent commit.
-- Correct!
+*** =sct
+```{python}
+Ex() >> test_mc(2, ["No, that hash doesn't appear in the log.",
+                    "Correct!",
+                    "No, that was the first commit, not the most recent."])
+```
 
 <!-- -------------------------------------------------------------------------------- -->
 
