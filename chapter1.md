@@ -1,8 +1,8 @@
 ---
 title       : Basic workflow
 description : >-
-  This chapter shows you how to use Git to back up your work, and how
-  to view the history of what you have done.
+  This chapter explains what version control is and why you should use
+  it, and introduces the most common steps in a common Git workflow.
 
 --- type:PureMultipleChoiceExercise lang:bash xp:50 key:a3732cc273
 ## What is version control?
@@ -85,14 +85,55 @@ What kind of work should you store in version control?
 
 <!-- -------------------------------------------------------------------------------- -->
 
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:1dac2b0a28
+## Where does Git store information?
+
+Each Git project has two parts:
+the files and directories that you create and edit directly,
+and the extra information that Git records about the project's history.
+The combination of these two things is called a **repository**.
+
+Git stores all of its extra information in a directory called `.git`
+located in the root directory of the repository.
+Git expects this information to be laid out in a very precise way,
+so you should never edit or delete anything in `.git`.
+
+<hr>
+
+Your home directory `/home/repl` contains a repository called `dental`,
+which has a sub-directory called `data`.
+Where is information about the history of the files in `/home/repl/dental/data` stored?
+
+*** =instructions
+- `/home/repl/.git`
+- [`/home/repl/dental/.git`]
+- `/home/repl/dental/data/.git`
+- None of the above.
+
+*** =hint
+
+Use `ls -a` to see all of the contents of a directory.
+
+*** =pre_exercise_code
+```{shell}
+
+```
+
+*** =sct
+```{python}
+e1 = 'No: every repository stores its own history.'
+c2 = 'Yes: all of the information about a repository is stored under its root directory.'
+e3 = 'No: all of the information about a repository is stored under its root directory.'
+e4 = 'No: one of the answers above is correct.'
+Ex() >> test_mc(2, [e1, c2, e3, e4])
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:bc52cf1174
 ## How can I check the state of a repository?
 
-The previous chapter showed you how to look at a repository's history.
-To create that history,
-you must save the changes you make to the repository's contents.
-
-The first step is to check the **status** of the repository's files.
+The first step in using Git is to check the **status** of your repository's files.
 To do this,
 run the command `git status`,
 which displays a list of the files that have been modified
@@ -137,22 +178,137 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*', \
 
 <!-- -------------------------------------------------------------------------------- -->
 
+--- type:BulletConsoleExercise key:
+## How can I tell what I have changed?
+
+`git status` shows you which files are in the staging area,
+and which files have changes that haven't yet been put there.
+In order to compare the file as it currently is to what you last saved,
+you can use `git diff filename`.
+`git diff` without any filenames will show you all the changes in your repository,
+while `git diff directory` will show you the changes to the files in some directory.
+
+*** =pre_exercise_code
+```{python}
+with open('dental/data/northern.csv', 'w') as writer:
+    writer.write('2017-11-01,bicuspid\n')
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `dental` repository.
+Use one Git command to see what has been changed.
+
+*** =hint1
+
+*** =sample_code1
+```{shell}
+```
+
+*** =solution1
+```{shell}
+git status
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+diff.*',
+                           fixed=False,
+                           msg='Use `git diff`.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:eef645517f
+## What is in a diff?
+
+A **diff** is a formatted display of the differences between two sets of files.
+By default,
+Git displays diffs like this:
+
+    diff --git a/report.txt b/report.txt
+    index e713b17..4c0742a 100644
+    --- a/report.txt
+    +++ b/report.txt
+    @@ -1,4 +1,4 @@
+    -# Seasonal Dental Surgeries 2017-18
+    +# Seasonal Dental Surgeries (2017) 2017-18
+     
+     TODO: write executive summary.
+
+This shows:
+- The command used to produce the output (in this case, `diff --git`).
+  In it, `a` and `b` are placeholders meaning "the first version" and "the second version".
+- An index line showing keys into Git's internal database of changes.
+  We will explore these in the next chapter.
+- `--- a/report.txt` and `+++ b/report.txt`,
+  which indicate that lines being *removed* are prefixed with `-`,
+  while lines being added are prefixed with `+`.
+- A line starting with `@@` that tells where the changes are being made.
+  Here, the line shows that lines 1-4 are being removed and replaced with new lines.
+- A line-by-line listing of the changes.
+
+Desktop programming tools like [RStudio](https://www.rstudio.com/) can turn diffs like this
+into a more readable side-by-side display of changes;
+you can also use standalone tools like [DiffMerge](https://sourcegear.com/diffmerge/)
+or [WinMerge](http://winmerge.org/).
+
+<hr>
+
+You are in the `dental` repository.
+Use `git diff` look at the changes to `dental/data/northern.csv`.
+How many lines did it change in the file `bin/teeth`?
+
+*** =instructions
+- None.
+- 1.
+- 2.
+- 20.
+
+*** =hint
+
+Use `git diff` and the filename.
+
+*** =pre_exercise_code
+```{shell}
+with open('dental/data/northern.csv', 'w') as writer:
+    writer.write('2017-11-01,bicuspid\n')
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
+*** =sct
+```{python}
+err_some = 'No, the commit changed some of the lines.'
+correct = 'Yes, the commit changed one line.'
+err_fewer = 'No, the commit did not change that many lines.'
+Ex() >> test_mc(2, [err_some, correct, err_fewer, err_fewer])
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
 --- type:BulletConsoleExercise key:55204eee61
 ## What's the first step in saving changes?
 
 You commit changes to a Git repository in two steps:
-you use Git to add one or more files to a **staging area**,
-and then you use it to commit everything in the staging area.
+you add one or more files to a **staging area**,
+and then you **commit** everything in the staging area.
 Putting files in the staging area is like putting things in a box,
-while committing is like putting the box in the mail.
+while committing is like putting it in the mail:
+you can add more things to the box or take things out as often as you want,
+but once you put it in the mail,
+you can't make further changes.
 
 To add a file to the staging area,
 using `git add filename`.
-You can do this several times in a row as you make changes to the file
-without leaving traces in the repository's history.
-Once you commit those changes,
-though,
-they become part of the repository's permanent log.
+You can do this several times in a row as you make changes to the file.
 
 *** =pre_exercise_code
 ```{python}
@@ -225,12 +381,12 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*',
 --- type:BulletConsoleExercise key:f208f45d7d
 ## How can I tell what's going to be committed?
 
-`git status` shows you which files are in the staging area,
-and which files have changes that haven't yet been put there.
 In order to compare the file as it currently is
 to the changes in the staging area,
 you can use `git diff -r HEAD filename`.
-(Remember, `HEAD` is a shortcut meaning "the most recent commit".)
+The `-r` flag means "compare to a particular revision",
+and `HEAD` is a shortcut meaning "the most recent commit".
+We will explore other uses of `-r` and `HEAD` in the next chapter.
 
 *** =pre_exercise_code
 ```{python}
@@ -251,7 +407,8 @@ repl.run_command('git add data/northern.csv')
 *** =instructions1
 
 You are in the `dental` repository.
-Use one Git command to see which files have staged and unstaged changes.
+Use `git diff` with appropriate arguments to see how files differ from
+the last saved revision.
 
 *** =hint1
 
@@ -261,14 +418,14 @@ Use one Git command to see which files have staged and unstaged changes.
 
 *** =solution1
 ```{shell}
-git status
+git diff -r HEAD
 ```
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+status\s*',
+Ex() >> test_student_typed(r'\s*git\s+diff\s+-r\s+HEAD\s*',
                            fixed=False,
-                           msg='Use `git status`.')
+                           msg='Use `git diff -r HEAD (with or without a directory name)`.')
 ```
 
 *** =type2: ConsoleExercise
@@ -339,14 +496,14 @@ when you want to undo changes to a project,
 you undo all of a commit or none of it.
 
 When you commit changes,
-Git requires you to enter a log message.
-As you saw in the previous chapter,
-this serves the same purpose as a comment in a program:
+Git requires you to enter a **log message**.
+This serves the same purpose as a comment in a program:
 it tells the next person to examine the repository why you made a change.
 
 By default,
-Git launches a text editor to let you write this message,
-but you can also use the flag `-m "some message in quotes"` on the command line
+Git launches a text editor to let you write this message.
+To keep things simple,
+you can use `-m "some message in quotes"` on the command line
 to enter a single-line message like this:
 
 ```
@@ -424,19 +581,9 @@ Ex() >> test_student_typed(r'\s*git\s+commit\s+-m\s+"Adding\s+a\s+reference."\s*
 <!-- -------------------------------------------------------------------------------- -->
 
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:97ae2f8613
-## How can I view a repository's entire history?
+## How can I view a repository's history?
 
-Every Git command consists of the word `git` followed by a verb that specifies what you want to do.
-One of the most common commands is `git log`,
-which tells Git to display the **log** of the project's history.
-There are two ways to run it:
-
-1. If you are in a project's root directory or one of its sub-directories,
-   you can just run `git log`.
-2. Otherwise, you can run `git -C /path/to/repository log`.
-   The flag `-C /some/path` works with every Git command,
-   which is why it comes between the word `git` and the specific command.
-
+The command `git log` is used to view the **log** of the project's history.
 Log entries are shown most recent first,
 and look like this:
 
@@ -448,10 +595,15 @@ Date:   Wed Sep 20 13:42:26 2017 +0000
     Added year to report title.
 ```
 
-Ignoring the `commit` line for a moment,
-the other lines show who made the change,
+The `commit` line displays a unique ID for the commit called a **hash**;
+we will explore these further in the next chapter.
+The other lines tell you who made the change,
 when,
-and what comment (called a **log message**) they wrote for the change.
+and what log message they wrote for the change.
+
+When you run `git log`,
+Git automatically uses a pager to show one screen of output at a time.
+Press the space bar to go down a page or the 'q' key to quit.
 
 <hr>
 
@@ -470,7 +622,7 @@ What is the message on the very first entry in the log
 
 *** =hint
 
-Use spacebar to page down through the log and 'q' to quit.
+Use the space bar to page down through the log and 'q' to quit.
 
 *** =pre_exercise_code
 ```{shell}
@@ -554,9 +706,8 @@ The lines starting with `#` are comments, and won't be saved.
 (They are there to remind you what you are supposed to do and what files you have changed.)
 Your message should go at the top, and may be as long and as detailed as you want.
 
-> To keep things simple,
-> we have configured Git to use the Nano editor for this course.
-> The final chapter of this course will show you how to set up a different editor.
+We have configured Git to use the Nano editor for this course.
+The final chapter of this course will show you how to set up a different editor.
 
 *** =pre_exercise_code
 ```{python}
