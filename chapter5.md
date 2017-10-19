@@ -4,8 +4,6 @@ description : >-
   This chapter shows Git's other greatest feature: how you can share
   changes between repositories to collaborate at scale.
 
-<!-- -------------------------------------------------------------------------------- -->
-
 --- type:ConsoleExercise lang:shell xp:100 skills:1 key:a87bbd3948
 ## How can I create a brand new repository?
 
