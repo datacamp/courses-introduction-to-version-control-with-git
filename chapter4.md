@@ -446,12 +446,9 @@ Branching lets you create parallel universes;
 **merging** is how you bring them back together.
 When you merge one branch (call it the source) into another (call it the destination),
 Git incorporates the changes made to the source branch into the destination branch.
-If those changes don't conflict,
+If those changes don't overlap,
 the result is a new commit in the destination branch that includes everything from the source branch.
-If there *are* conflicts---for example,
-if someone has deleted a file in one branch but edited it in another---Git
-warns you that there is a problem.
-The next exercise will show you how to handle this situation.
+(The next exercises describes what happens if there *are* conflicts.)
 
 To merge two branches,
 you run `git merge source destination`
@@ -497,30 +494,57 @@ Ex() >> test_student_typed(r'\s*git\s+merge.*\s+summary-statistics\s+master\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:ConsoleExercise xp:100 key:354f733f81
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:
 ## What are conflicts?
 
 Sometimes the changes in two branches will conflict with each other:
 for example,
 bug fixes might touch the same lines of code,
-or analyses in two different branches may both have appended their own record
+or analyses in two different branches may both append new (and different) records
 to a summary data file.
+In this case,
+Git relies on you to reconcile the conflicting changes.
 
-*** =instructions
+<hr>
 
-FIXME
+The file `todo.txt` initially contains these two lines:
 
-*** =solution
-```{bash}
-echo FIXME
+```
+A) Write report.
+B) Submit report.
 ```
 
-*** =sct
-```{python}
-Ex() >> test_student_typed(r'\s*FIXME\s*',
-                           fixed=False,
-                           msg='FIXME.')
+You create a branch called `update` and modify the file to be:
+
 ```
+A) Write report.
+B) Submit final version.
+C) Submit expenses.
+```
+
+You then switch back to the `master` branch and delete the first line,
+so that the file contains:
+
+```
+B) Submit report.
+```
+
+When you try to merge `update` and `master`,
+what conflicts does Git report?
+
+*** =possible_answers
+- [Just line B, since it is the only one to change in both branches.]
+- Lines A and B, since one was deleted and the other changed.
+- Lines B and C, since one was changed and the other deleted.
+- All three lines, since all were either added, deleted, or changed.
+
+*** =hint
+
+*** =feedbacks
+- Correct: Git can merge the deletion of line A and the addition of line C automatically.
+- No: Git can merge the deletion of line A automatically.
+- No: Git can merge the addition of line C automatically.
+- No: Git can merge teh deletion of line A and the addition of line C automatically.
 
 <!-- -------------------------------------------------------------------------------- -->
 
