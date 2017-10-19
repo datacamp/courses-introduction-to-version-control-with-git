@@ -583,10 +583,22 @@ Ex() >> test_student_typed(r'\s*git\s+push\s+origin\s+master\s*',
 --- type:BulletConsoleExercise key:
 ## What happens if my push conflicts with someone else's work?
 
-FIXME
+Overwriting your own work by accident is bad;
+overwriting someone else's is worse.
+To prevent this happening,
+Git does not allow you to push changes to a remote repository
+unless you have merged the contents of the remote repository into your own work.
 
 *** =pre_exercise_code
 ```{python}
+repl = connect('bash')
+repl.run_command('rm -rf dental')
+repl.run_command('git clone file:///home/thunk/repo dental')
+repl.run_command('cd dental')
+repl.run_command('git reset --hard HEAD~1')
+with open('dental/data/northern.csv', 'w') as writer:
+    writer.write('2017-11-01,bicuspid\n')
+repl.run_command('git commit -m "Adding a record"')
 ```
 
 *** =type1: ConsoleExercise
@@ -596,6 +608,9 @@ FIXME
 
 *** =instructions1
 
+You have made changes to the `dental` repository.
+Use `git push` to push those changes to the remote repository `origin`.
+
 *** =hint1
 
 *** =sample_code1
@@ -604,10 +619,14 @@ FIXME
 
 *** =solution1
 ```{shell}
+git push origin master
 ```
 
 *** =sct1
 ```{python}
+Ex() >> test_student_typed(r'\s*git\s+push\s+origin\s+master\s*',
+                           fixed=False,
+                           msg='Use `git push` with the remote name and the branch name.')
 ```
 
 *** =type2: ConsoleExercise
@@ -617,6 +636,10 @@ FIXME
 
 *** =instructions2
 
+In order to prevent you overwriting remote work,
+Git has refused to execute your push.
+Use `git pull` to bring your repository up to date with `origin`.
+
 *** =hint2
 
 *** =sample_code2
@@ -625,10 +648,14 @@ FIXME
 
 *** =solution2
 ```{shell}
+git pull origin master
 ```
 
 *** =sct2
 ```{python}
+Ex() >> test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
+                           fixed=False,
+                           msg='Use `git pull` with the remote name and the branch name.')
 ```
 
 *** =type3: ConsoleExercise
@@ -638,6 +665,9 @@ FIXME
 
 *** =instructions3
 
+Now that you have merged the remote repository's state into your local repository,
+try the push again.
+
 *** =hint3
 
 *** =sample_code3
@@ -646,29 +676,12 @@ FIXME
 
 *** =solution3
 ```{shell}
+git push origin master
 ```
 
 *** =sct3
 ```{python}
-```
-
-*** =type4: ConsoleExercise
-*** =key4:
-
-*** =xp4: 10
-
-*** =instructions4
-
-*** =hint4
-
-*** =sample_code4
-```{shell}
-```
-
-*** =solution4
-```{shell}
-```
-
-*** =sct4
-```{python}
+Ex() >> test_student_typed(r'\s*git\s+push\s+origin\s+master\s*',
+                           fixed=False,
+                           msg='Use `git push` with the remote name and the branch name.')
 ```
