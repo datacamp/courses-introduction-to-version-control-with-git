@@ -29,7 +29,7 @@ a later part of this lesson will show why the two have to be distinct.
 <hr>
 
 Looking at the diagram,
-which files changed in the most recent (top-most) commit to this repository?
+which files changed in the most recent (bottom-most) commit to this repository?
 
 *** =possible_answers
 - `data/northern.csv`
@@ -69,14 +69,14 @@ rather than comparing entire files.
 
 <hr>
 
-FIXME: diagram
+![Commit-Tree-Blob Structure](img/commit-tree-blob.svg)
 
-What is the hash of the first commit in the diagram?
+What is the hash of the second commit in the diagram?
 
 *** =possible_answers
 - abc123f6
 - feed0098
-- [6677ce4c]
+- [6677ce4a]
 
 *** =hint
 
