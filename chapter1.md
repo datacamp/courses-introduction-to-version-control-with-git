@@ -178,7 +178,7 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*', \
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:0dd628a298
 ## How can I tell what I have changed?
 
 `git status` shows you which files are in the staging area,
@@ -197,7 +197,7 @@ repl.run_command('cd dental')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: e9c198755a
 
 *** =xp1: 10
 
