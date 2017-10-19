@@ -362,10 +362,21 @@ Ex() >> test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
 --- type:BulletConsoleExercise key:
 ## What happens if I try to pull when I have unsaved changes?
 
-FIXME
+Just as Git stops you from switching branches when you have unsaved work,
+it also stops you from pulling in changes from a remote repository
+when doing so might overwrite things you have done locally.
+The fix is simple:
+either commit your local changes or revert them,
+and then try to pull again.
 
 *** =pre_exercise_code
 ```{python}
+repl = connect('bash')
+repl.run_command('rm -rf dental')
+repl.run_command('git clone file:///home/thunk/repo dental')
+repl.run_command('cd dental')
+repl.run_command('git reset --hard HEAD~1')
+repl.run_command('echo "One final thing..." >> report.md')
 ```
 
 *** =type1: ConsoleExercise
@@ -375,6 +386,10 @@ FIXME
 
 *** =instructions1
 
+You are in the dental repository,
+which was cloned from a remote called `origin`.
+Use `git pull` to bring in changes from that repository.
+
 *** =hint1
 
 *** =sample_code1
@@ -383,10 +398,14 @@ FIXME
 
 *** =solution1
 ```{shell}
+git pull origin master
 ```
 
 *** =sct1
 ```{python}
+Ex() >> test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
+                           fixed=False,
+                           msg='Use `git pull origin master` to pull in changes.')
 ```
 
 *** =type2: ConsoleExercise
@@ -396,7 +415,11 @@ FIXME
 
 *** =instructions2
 
+Discard the changes in your repository.
+
 *** =hint2
+
+Read the message printed by `git pull` for a reminder of how to do this.
 
 *** =sample_code2
 ```{shell}
@@ -404,10 +427,14 @@ FIXME
 
 *** =solution2
 ```{shell}
+git checkout -- .
 ```
 
 *** =sct2
 ```{python}
+Ex() >> test_student_typed(r'\s*git\s+checkout\s+--.*',
+                           fixed=False,
+                           msg='Use `git checkout --` and a path.')
 ```
 
 *** =type3: ConsoleExercise
@@ -417,6 +444,8 @@ FIXME
 
 *** =instructions3
 
+Re-try the `git pull`.
+
 *** =hint3
 
 *** =sample_code3
@@ -425,31 +454,14 @@ FIXME
 
 *** =solution3
 ```{shell}
+git pull origin master
 ```
 
 *** =sct3
 ```{python}
-```
-
-*** =type4: ConsoleExercise
-*** =key4:
-
-*** =xp4: 10
-
-*** =instructions4
-
-*** =hint4
-
-*** =sample_code4
-```{shell}
-```
-
-*** =solution4
-```{shell}
-```
-
-*** =sct4
-```{python}
+Ex() >> test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
+                           fixed=False,
+                           msg='Use `git pull origin master` to pull in changes.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
