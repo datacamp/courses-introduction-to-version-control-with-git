@@ -4,91 +4,6 @@ description : >-
   This chapter shows Git's other greatest feature: how you can share
   changes between repositories to collaborate at scale.
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:ee41a600fb
-## How can I see how Git is configured?
-
-Like most complex pieces of software,
-Git allows you to change its default settings.
-To see what the settings are,
-you can use the command `git config --list` with one of three additional options:
-
-- `--system`: settings for every user on this computer.
-- `--global`: settings for every one of your projects.
-- `--local`: settings for one specific project.
-
-Each level overrides the one above it,
-so **local settings** (per-project) take precedence over **global settings** (per-user),
-which in turn take precedence over **system settings** (for all users on the computer).
-
-<hr>
-
-You are in the `dental` repository.
-How many local configuration values are set in for this repository?
-
-*** =instructions
-- None.
-- 1.
-- 4.
-- 12.
-
-*** =hint
-
-Use `git config --list --local` and count.
-
-*** =pre_exercise_code
-```{shell}
-repl = connect('bash')
-repl.run_command('cd dental')
-```
-
-*** =sct
-```{python}
-Ex() >> test_mc(3, ['No, some configuration values are set.',
-                    'No, more configuration values are set than that.',
-                    'Correct!',
-                    'No, fewer configuration values are set than that.'])
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:ConsoleExercise lang:shell xp:100 skills:1 key:7c0dce348b
-## How can I change my Git configuration?
-
-Most of Git's settings should be left as they are.
-However,
-there are two you should set on ever computer you use:
-your name and your email address.
-These are recorded in the log every time you commit a change,
-and are often used to identify the authors of a project's content in order to give credit
-(or assign blame, depending on the circumstances).
-
-To change a configuration value for all of your projects on a particular computer,
-run the command:
-
-```
-git config --global setting.name setting.value
-```
-
-with the setting's name and value in the appropriate places.
-The keys that identify your name and email address are `user.name` and `user.email` respectively.
-
-*** =instructions
-
-Change the email address configured for the current user for *all* projects
-to `rep.loop@datacamp.com`.
-
-*** =solution
-```{shell}
-git config --global user.email rep.loop@datacamp.com
-```
-
-*** =sct
-```{python}
-Ex() >> test_student_typed(r'\s*git\s+config\s+--global\s+user\.email\s+["\']?rep\.loop@datacamp.com["\']?\s*',
-                           fixed=False,
-                           msg='Use `git config --global` with the `user.email` property and the email address.')
-```
-
 <!-- -------------------------------------------------------------------------------- -->
 
 --- type:ConsoleExercise lang:shell xp:100 skills:1 key:a87bbd3948
@@ -321,6 +236,66 @@ Ex() >> test_mc(2, ['No: there are some remotes.',
 
 <!-- -------------------------------------------------------------------------------- -->
 
+--- type:BulletConsoleExercise key:1e327efda1
+## How can I define remotes?
+
+When you clone a repository,
+Git automatically creates a remote called `origin`
+that points to the original repository.
+You can add more remotes using:
+
+```
+git remote add remote-name URL
+```
+
+and remove existing ones using:
+
+```
+git remote rm remote-name
+```
+
+You can connect any two Git repositories this way,
+but in practice,
+you will almost always connect repositories that share some common ancestry.
+
+*** =pre_exercise_code
+```{python}
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
+*** =type1: ConsoleExercise
+*** =key1: a0e2cf2d0f
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `dental` repository.
+Add `file:///home/thunk/repo` as a remote called `thunk` to it.
+
+*** =hint1
+
+Be sure to count the slashes properly in the remote URL.
+
+*** =sample_code1
+```{shell}
+```
+
+*** =solution1
+```{shell}
+git remote add thunk file:///home/thunk/repo
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+remote\s+add\s+thunk\s+file:///home/thunk/repo\s*',
+                           fixed=False,
+                           msg='Use `git remote add` with the name and URL of the remote.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
 --- type:BulletConsoleExercise key:4d5be24350
 ## How can I pull in changes from a remote repository?
 
@@ -380,6 +355,101 @@ git pull origin master
 Ex() >> test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
                            fixed=False,
                            msg='Use `git pull` with the name of the remote and the name of the branch.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:BulletConsoleExercise key:
+## What happens if I try to pull when I have unsaved changes?
+
+FIXME
+
+*** =pre_exercise_code
+```{python}
+```
+
+*** =type1: ConsoleExercise
+*** =key1:
+
+*** =xp1: 10
+
+*** =instructions1
+
+*** =hint1
+
+*** =sample_code1
+```{shell}
+```
+
+*** =solution1
+```{shell}
+```
+
+*** =sct1
+```{python}
+```
+
+*** =type2: ConsoleExercise
+*** =key2:
+
+*** =xp2: 10
+
+*** =instructions2
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
+```
+
+*** =sct2
+```{python}
+```
+
+*** =type3: ConsoleExercise
+*** =key3:
+
+*** =xp3: 10
+
+*** =instructions3
+
+*** =hint3
+
+*** =sample_code3
+```{shell}
+```
+
+*** =solution3
+```{shell}
+```
+
+*** =sct3
+```{python}
+```
+
+*** =type4: ConsoleExercise
+*** =key4:
+
+*** =xp4: 10
+
+*** =instructions4
+
+*** =hint4
+
+*** =sample_code4
+```{shell}
+```
+
+*** =solution4
+```{shell}
+```
+
+*** =sct4
+```{python}
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -498,47 +568,23 @@ Ex() >> test_student_typed(r'\s*git\s+push\s+origin\s+master\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:1e327efda1
-## How can I define remotes?
+--- type:BulletConsoleExercise key:
+## What happens if my push conflicts with someone else's work?
 
-When you clone a repository,
-Git automatically creates a remote called `origin`
-that points to the original repository.
-You can add more remotes using:
-
-```
-git remote add remote-name URL
-```
-
-and remove existing ones using:
-
-```
-git remote rm remote-name
-```
-
-You can connect any two Git repositories this way,
-but in practice,
-you will almost always connect repositories that share some common ancestry.
+FIXME
 
 *** =pre_exercise_code
 ```{python}
-repl = connect('bash')
-repl.run_command('cd dental')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1: a0e2cf2d0f
+*** =key1:
 
 *** =xp1: 10
 
 *** =instructions1
 
-You are in the `dental` repository.
-Add `file:///home/thunk/repo` as a remote called `thunk` to it.
-
 *** =hint1
-
-Be sure to count the slashes properly in the remote URL.
 
 *** =sample_code1
 ```{shell}
@@ -546,12 +592,71 @@ Be sure to count the slashes properly in the remote URL.
 
 *** =solution1
 ```{shell}
-git remote add thunk file:///home/thunk/repo
 ```
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+remote\s+add\s+thunk\s+file:///home/thunk/repo\s*',
-                           fixed=False,
-                           msg='Use `git remote add` with the name and URL of the remote.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2:
+
+*** =xp2: 10
+
+*** =instructions2
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
+```
+
+*** =sct2
+```{python}
+```
+
+*** =type3: ConsoleExercise
+*** =key3:
+
+*** =xp3: 10
+
+*** =instructions3
+
+*** =hint3
+
+*** =sample_code3
+```{shell}
+```
+
+*** =solution3
+```{shell}
+```
+
+*** =sct3
+```{python}
+```
+
+*** =type4: ConsoleExercise
+*** =key4:
+
+*** =xp4: 10
+
+*** =instructions4
+
+*** =hint4
+
+*** =sample_code4
+```{shell}
+```
+
+*** =solution4
+```{shell}
+```
+
+*** =sct4
+```{python}
 ```
