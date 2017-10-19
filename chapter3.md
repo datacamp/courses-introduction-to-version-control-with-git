@@ -379,7 +379,7 @@ Use `git checkout` to restore the immediately previous version of `report.md`.
 
 *** =solution2
 ```{shell}
-git checkout FIXME report.md
+git checkout a0a0a0a0 report.md
 ```
 
 *** =sct2

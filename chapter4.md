@@ -5,7 +5,7 @@ description : >-
   you to work on several things at once without tripping over
   yourself.  This chapter shows you how to create and manage branches.
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:9db055a148
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:
 ## What is a branch?
 
 One of the reasons Git is popular is its support for creating **branches**.
@@ -13,6 +13,31 @@ A branch is like a parallel universe:
 changes you make in one branch do not affect other branches until you **merge** them back together.
 It's like creating sub-directories called `final`, `final-updated`, `final-updated-revised`, and so on,
 but with support for tracking work systematically.
+
+The first chapter described the three-part data structure Git uses to record a repository's history:
+*blobs* for files,
+*trees* for the saved states of the repositories,
+and *commits* to record the changes.
+Branches are the reason Git needs both trees and commits:
+as the diagram below shows,
+a commit will have two parents when branches are being merged.
+
+<hr>
+
+FIXME: question
+
+*** =possible_answers
+- [FIXME]
+
+*** =hint
+
+*** =feedbacks
+- FIXME
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:9db055a148
+## How can I see what branches my repository has?
 
 By default,
 every Git repository has a branch called `master`
@@ -405,29 +430,6 @@ Ex() >> test_student_typed(r'\s*git\s+diff\s+(master\.\.deleting-report|deleting
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:ConsoleExercise xp:100 key:354f733f81
-## What are merges and conflicts?
-
-FIXME
-
-*** =instructions
-
-FIXME
-
-*** =solution
-```{bash}
-echo FIXME
-```
-
-*** =sct
-```{python}
-Ex() >> test_student_typed(r'\s*FIXME\s*',
-                           fixed=False,
-                           msg='FIXME.')
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
 --- type:BulletConsoleExercise key:3812382b52
 ## How can I merge two branches?
 
@@ -486,16 +488,38 @@ Ex() >> test_student_typed(r'\s*git\s+merge.*\s+summary-statistics\s+master\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:3a4ba0eda1
-## How can I merge two branches with conflicts?
+--- type:ConsoleExercise xp:100 key:354f733f81
+## What are conflicts?
 
 Sometimes the changes in two branches will conflict with each other:
 for example,
 bug fixes might touch the same lines of code,
 or analyses in two different branches may both have appended their own record
 to a summary data file.
-When this happens,
-`git merge` tells you that there's a problem,
+
+*** =instructions
+
+FIXME
+
+*** =solution
+```{bash}
+echo FIXME
+```
+
+*** =sct
+```{python}
+Ex() >> test_student_typed(r'\s*FIXME\s*',
+                           fixed=False,
+                           msg='FIXME.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:BulletConsoleExercise key:3a4ba0eda1
+## How can I merge two branches with conflicts?
+
+When there is a conflict during a merge,
+Git tells you that there's a problem,
 and running `git status` after the merge
 reminds you which files have conflicts that you need to resolve
 by printing `both modified:` beside the files' names.
@@ -515,7 +539,7 @@ Git leaves markers that look like this to tell you where the conflicts occurred:
 the destination branch name will be `HEAD`,
 because you will be merging into the current branch.)
 To resolve the conflict,
-you must edit the file to remove the markers
+edit the file to remove the markers
 and make whatever other changes are needed to reconcile the changes,
 then commit those changes.
 
