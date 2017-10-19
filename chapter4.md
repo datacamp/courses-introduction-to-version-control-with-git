@@ -45,7 +45,7 @@ how many merges have taken place?
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:9db055a148
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:e75add0dfa
 ## How can I see what branches my repository has?
 
 By default,
@@ -494,7 +494,7 @@ Ex() >> test_student_typed(r'\s*git\s+merge.*\s+summary-statistics\s+master\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:354f733f81
 ## What are conflicts?
 
 Sometimes the changes in two branches will conflict with each other:
