@@ -295,7 +295,7 @@ Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+data/northern\.csv\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:61872a66b5
 ## How do I restore an old version of a file?
 
 Since Git stores old versions of your files,
@@ -336,7 +336,7 @@ repl.run_command('cd dental')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: 8962ae79b3
 
 *** =xp1: 10
 
@@ -363,7 +363,7 @@ Ex() >> test_student_typed(r'\s*git\s+log\s+report\.md\s*',
 ```
 
 *** =type2: ConsoleExercise
-*** =key2:
+*** =key2: a03a79d2de
 
 *** =xp2: 10
 
@@ -390,7 +390,7 @@ Ex() >> test_student_typed(r'\s*git\s+checkout\s+[0-9a-f]+\s+report\.md\s*',
 ```
 
 *** =type3: ConsoleExercise
-*** =key3:
+*** =key3: 00df157d59
 
 *** =xp3: 10
 
