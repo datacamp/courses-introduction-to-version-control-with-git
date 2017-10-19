@@ -357,7 +357,7 @@ Ex() >> test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:2b1e228738
 ## What happens if I try to pull when I have unsaved changes?
 
 Just as Git stops you from switching branches when you have unsaved work,
@@ -378,7 +378,7 @@ repl.run_command('echo "One final thing..." >> report.md')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: f03c277669
 
 *** =xp1: 10
 
@@ -407,7 +407,7 @@ Ex() >> test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
 ```
 
 *** =type2: ConsoleExercise
-*** =key2:
+*** =key2: 301f2bd8a3
 
 *** =xp2: 10
 
@@ -436,7 +436,7 @@ Ex() >> test_student_typed(r'\s*git\s+checkout\s+--.*',
 ```
 
 *** =type3: ConsoleExercise
-*** =key3:
+*** =key3: 2cad24ea7a
 
 *** =xp3: 10
 
@@ -578,7 +578,7 @@ Ex() >> test_student_typed(r'\s*git\s+push\s+origin\s+master\s*',
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:BulletConsoleExercise key:
+--- type:BulletConsoleExercise key:b34c87b35c
 ## What happens if my push conflicts with someone else's work?
 
 Overwriting your own work by accident is bad;
@@ -600,7 +600,7 @@ repl.run_command('git commit -m "Adding a record"')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1:
+*** =key1: 2b8815a979
 
 *** =xp1: 10
 
@@ -628,7 +628,7 @@ Ex() >> test_student_typed(r'\s*git\s+push\s+origin\s+master\s*',
 ```
 
 *** =type2: ConsoleExercise
-*** =key2:
+*** =key2: 0af344b542
 
 *** =xp2: 10
 
@@ -657,7 +657,7 @@ Ex() >> test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
 ```
 
 *** =type3: ConsoleExercise
-*** =key3:
+*** =key3: 9ddb421159
 
 *** =xp3: 10
 
