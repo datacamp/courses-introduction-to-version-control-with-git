@@ -4,7 +4,7 @@ description : >-
   This chapter digs a little deeper into how Git stores information
   and how you can explore a repository's history.
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:6d7237913f
 ## How does Git store information?
 
 In order to make common operations fast and minimize storage space,
@@ -45,7 +45,7 @@ which files changed in the most recent (top-most) commit to this repository?
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:67430280df
 ## What is a hash?
 
 Every commit to a repository has a unique identifier called a **hash**
