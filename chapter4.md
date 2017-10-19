@@ -45,7 +45,7 @@ how many merges have taken place?
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:e75add0dfa
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:f48d0ea4cf
 ## How can I see what branches my repository has?
 
 By default,
@@ -136,8 +136,8 @@ To switch to another branch,
 you use `git checkout branch-name`.
 
 Note: Git will only let you do this if all of your changes have been committed.
-There are ways to get around this,
-but they are outside the scope of this course.
+You can get around this,
+but it is outside the scope of this course.
 
 *** =pre_exercise_code
 ```{python}
