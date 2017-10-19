@@ -14,25 +14,34 @@ changes you make in one branch do not affect other branches until you **merge** 
 It's like creating sub-directories called `final`, `final-updated`, `final-updated-revised`, and so on,
 but with support for tracking work systematically.
 
-The first chapter described the three-part data structure Git uses to record a repository's history:
+Note:
+the first chapter described the three-part data structure Git uses to record a repository's history:
 *blobs* for files,
 *trees* for the saved states of the repositories,
 and *commits* to record the changes.
 Branches are the reason Git needs both trees and commits:
-as the diagram below shows,
 a commit will have two parents when branches are being merged.
 
 <hr>
 
-FIXME: question
+If each box in this diagram is a commit,
+how many merges have taken place?
+
+![Branching and Merging](img/branching.svg)
 
 *** =possible_answers
-- [FIXME]
+- None
+- 1
+- [2]
+- 3
 
 *** =hint
 
 *** =feedbacks
-- FIXME
+- No: some commits have more than one parent.
+- No: some commits have more than one parent.
+- Correct: two commits have more than one parent.
+- No: only two commits have more than one parent.
 
 <!-- -------------------------------------------------------------------------------- -->
 
