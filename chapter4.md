@@ -5,7 +5,7 @@ description : >-
   you to work on several things at once without tripping over
   yourself.  This chapter shows you how to create and manage branches.
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:9db055a148
 ## What is a branch?
 
 One of the reasons Git is popular is its support for creating **branches**.
