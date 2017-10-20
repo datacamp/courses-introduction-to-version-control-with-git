@@ -186,7 +186,7 @@ you can add more things to the box or take things out as often as you want,
 but once you put it in the mail,
 you can't make further changes.
 
-![Staging Area](img/staging-area.svg)
+![Staging Area](https://s3.amazonaws.com/assets.datacamp.com/production/course_5747/datasets/staging-area.png)
 
 `git status` shows you which files are in this staging area,
 and which files have changes that haven't yet been put there.
