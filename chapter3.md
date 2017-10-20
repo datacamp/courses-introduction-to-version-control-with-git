@@ -413,7 +413,7 @@ git commit -m "Restoring"
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit.+*',
+Ex() >> test_student_typed(r'\s*git\s+commit.*',
                            fixed=False,
                            msg='Use `git commit -m "message"`.')
 ```
