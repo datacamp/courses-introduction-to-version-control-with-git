@@ -341,15 +341,13 @@ Use `git add` to add the file `report.txt` to the staging area.
 ```
 
 *** =solution1
-git add report.txt
 ```{shell}
+git add report.txt
 ```
 
 *** =sct1
 ```{python}
-from shellwhat_ext import test_show_student_code
-Ex() >> test_show_student_code('student submission') \
-     >> test_student_typed(r'\s*git\s+add\s+report\.txt\s*',
+Ex() >> test_student_typed(r'\s*git\s+add\s+report\.txt\s*',
                            fixed=False,
                            msg='Use `git add` and a filename.')
 ```
