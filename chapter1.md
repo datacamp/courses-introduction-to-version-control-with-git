@@ -347,10 +347,8 @@ git add report.txt
 
 *** =sct1
 ```{python}
-from shellwhat_ext import test_file_perms
-import os
-debug = 'Current directory {} contents {}'.format(os.getcwd(), os.listdir('.'))
-Ex() >> test_file_perms('dental/report.txt', 'x', debug) \
+from shellwhat_ext import test_show_student_code
+Ex() >> test_show_student_code('student submission') \
      >> test_student_typed(r'\s*git\s+add\s+report\.txt\s*',
                            fixed=False,
                            msg='Use `git add` and a filename.')
