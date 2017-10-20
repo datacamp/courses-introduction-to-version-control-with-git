@@ -167,10 +167,7 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+status\s*', \
-                           fixed=False, \
-                           msg='Use `git status`.') \
-     >> test_mc(2, ['No, that file has not changed.', \
+Ex() >> test_mc(2, ['No, that file has not changed.', \
                     'Correct!', \
                     'No, one file has changed.', \
                     'No, only one file has changed.'])
@@ -214,7 +211,7 @@ repl.run_command('cd dental')
 *** =instructions1
 
 You are in the `dental` repository.
-Use one Git command to see what has been changed.
+Use `git diff` to see what changes have been made to the files.
 
 *** =hint1
 
@@ -224,7 +221,7 @@ Use one Git command to see what has been changed.
 
 *** =solution1
 ```{shell}
-git status
+git diff
 ```
 
 *** =sct1
@@ -348,7 +345,7 @@ git add report.txt
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+add\s+report.txt\s*',
+Ex() >> test_student_typed(r'\s*git\s+add\s+report\.txt\s*',
                            fixed=False,
                            msg='Use `git add` and a filename.')
 ```
@@ -678,10 +675,7 @@ repl.run_command('cd dental')
 *** =sct
 ```{python}
 err = 'Incorrect: please use `git log data/southern.csv` and count the number of log entries.'
-Ex() >> test_student_typed(r'\s*git\s+log\s+data/southern.csv\s*', \
-                           fixed=False, \
-                           msg='Use `git log` and the name of a file.') \
-     >> test_mc(3, [err, err, 'Correct!', err])
+Ex() >> test_mc(3, [err, err, 'Correct!', err])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
