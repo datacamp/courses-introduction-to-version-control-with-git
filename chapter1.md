@@ -349,7 +349,7 @@ git add report.txt
 ```{python}
 from shellwhat_ext import test_file_perms
 import os
-debug = 'Current directory {} contents {}'.format(os.getcwd(), ls.listdir('.'))
+debug = 'Current directory {} contents {}'.format(os.getcwd(), os.listdir('.'))
 Ex() >> test_file_perms('dental/report.txt', 'x', 'DUMMY', debug=debug) \
      >> test_student_typed(r'\s*git\s+add\s+report\.txt\s*',
                            fixed=False,
