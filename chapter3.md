@@ -1,126 +1,126 @@
 ---
-title       : Working with branches
+title       : Undo
 description : >-
-  Branching is one of Git's most powerful features, since it allows
-  you to work on several things at once without tripping over
-  yourself.  This chapter shows you how to create and manage branches.
+  Since Git saves all the changes you've made to your files, you can
+  use it to undo those changes. This chapter shows you several ways to
+  do that.
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:9db055a148
-## What is a branch?
+--- type:BulletConsoleExercise key:54325e15f1
+## How can I commit changes selectively?
 
-One of the reasons Git is popular is its support for creating **branches**.
-A branch is like a parallel universe:
-changes you make in one branch do not affect other branches until you **merge** them back together.
-It's like creating sub-directories called `final`, `final-updated`, `final-updated-revised`, and so on,
-but with support for tracking work systematically.
-
-By default,
-every Git repository has a branch called `master`
-(which is why you have been seeing that word in Git's output in previous lessons).
-To list all of the branches in a repository,
-you can run the command `git branch`.
-The branch you are currently in will be shown with a `*` beside its name.
-
-<hr>
-
-You are in the `dental` repository.
-How many branches are in this repository (including `master`)?
-
-*** =instructions
-- None.
-- 1.
-- 2.
-- 3.
-
-*** =hint
-
-Use `git branch` to list branches.
-
-*** =pre_exercise_code
-```{shell}
-repl = connect('bash')
-repl.run_command('cd dental')
-```
-
-*** =sct
-```{python}
-Ex() >> test_mc(4, ['No: every repository has at least one branch.',
-                    'No: there are more branches than that.',
-                    'No: there are more branches than that.',
-                    'Correct!'])
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:7333c66616
-## How can I view the differences between branches?
-
-Branches and revisions are closely connected,
-and commands that work on the latter usually work on the former.
+You don't have to put all of the changes you have made recently into the staging area at once.
 For example,
-just as `git diff revision-1..revision-1` shows the difference between two versions of a repository,
-`git diff branch-1..branch-2` shows the difference between two branches.
+suppose you are adding a feature to `analysis.R`
+and spot a bug in `cleanup.R`.
+After you have fixed,
+you want to save your work.
+Since the changes to `cleanup.R` aren't directly related to the work you're doing in `analysis.R`,
+you should save your work in two separate commits.
 
-<hr>
+*** =pre_exercise_code
+```{python}
+with open('dental/data/northern.csv', 'w') as writer:
+    writer.write('2017-11-01,bicuspid\n')
+with open('dental/data/eastern.csv', 'w') as writer:
+    writer.write('2017-11-02,molar\n')
+repl = connect('bash')
+repl.run_command('cd dental')
+repl.run_command('git status')
+```
+
+*** =type1: ConsoleExercise
+*** =key1: 387ad1a970
+
+*** =xp1: 10
+
+*** =instructions1
+
+Stage the changes made to `data/northern.csv`
+(and *only* those changes).
+
+*** =hint1
+
+Use `git add` to stage the changes to a file.
+
+*** =sample_code1
+```{shell}
+```
+
+*** =solution1
+```{shell}
+git add data/northern.csv
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+add\s+data/northern\.csv\s*',
+                           fixed=False,
+                           msg='Use `git add`.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2: 381b4ed025
+
+*** =xp2: 10
+
+*** =instructions2
+
+Commit those changes with the message "Adding data from northern region."
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
+git commit -m "Adding data from northern region."
+```
+
+*** =sct2
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+commit\s+-m\s+"Adding\s+data\s+from\s+northern\s+region."\s*',
+                           fixed=False,
+                           msg='Use `git commit` with a message.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:BulletConsoleExercise key:70a86d3080
+## How do I re-stage files?
+
+People often save their work every few minutes when they're using a desktop text editor.
+Similarly,
+it's common to use `git add` periodically
+to save the most recent changes to a file to the staging area.
+This is particularly useful when the changes are experimental
+and you might want to undo them without cluttering up the repository's history.
+
+*** =pre_exercise_code
+```{python}
+append = '''
+
+Fehrenbach: "Dental Anatomy Coloring Book" (2e), 2013.
+'''
+with open('dental/report.txt', 'w') as writer:
+    writer.write(append)
+with open('dental/data/northern.csv', 'w') as writer:
+    writer.write('2017-11-01,bicuspid\n')
+repl = connect('bash')
+repl.run_command('cd dental')
+repl.run_command('git add report.txt')
+```
+
+*** =type1: ConsoleExercise
+*** =key1: b5a9b33d2e
+
+*** =xp1: 10
+
+*** =instructions1
 
 You are in the `dental` repository.
-How many files in the `summary-statistics` branch
-are different from their equivalents in the `master` branch?
-
-*** =instructions
-- None.
-- 1.
-- 3.
-- 8.
-
-*** =hint
-
-Use `git diff branch..branch` to list the differences.
-
-*** =pre_exercise_code
-```{shell}
-repl = connect('bash')
-repl.run_command('cd dental')
-```
-
-*** =sct
-```{python}
-Ex() >> test_mc(3, ['No: some files differ.',
-                    'No: please count both files that have changed and files that are being added.',
-                    'Correct!',
-                    'No: please count the number of files that differ, not the number of lines that are different.'])
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:BulletConsoleExercise key:c418145d13
-## How can I switch from one branch to another?
-
-When you run `git branch`,
-it puts a `*` beside the name of the branch you are currently in.
-To switch to another branch,
-you use `git checkout branch-name`.
-
-Note: Git will only let you do this if all of your changes have been committed.
-You can get around this,
-but it is outside the scope of this course.
-
-*** =pre_exercise_code
-```{python}
-repl = connect('bash')
-repl.run_command('cd dental')
-repl.run_command('git branch')
-```
-
-*** =type1: ConsoleExercise
-*** =key1: eee4722074
-
-*** =xp1: 10
-
-*** =instructions1
-
-You are in the `master` branch of the `dental` repository.
-Switch to the `summary-statistics` branch.
+Use one Git command to check the status of the repository.
 
 *** =hint1
 
@@ -129,446 +129,278 @@ Switch to the `summary-statistics` branch.
 ```
 
 *** =solution1
-```{shell}
-git checkout summary-statistics
-```
-
-*** =sct1
-```{python}
-Ex() >> test_student_typed(r'\s*git\s+checkout\s+summary-statistics\s*',
-                           fixed=False,
-                           msg='Use `git checkout` to switch between branches.')
-```
-
-*** =type2: ConsoleExercise
-*** =key2: 6193872406
-
-*** =xp2: 10
-
-*** =instructions2
-
-Use `git rm` to delete `report.txt`.
-
-*** =hint2
-
-*** =sample_code2
-```{shell}
-```
-
-*** =solution2
-```{shell}
-git rm report.txt
-```
-
-*** =sct2
-```{python}
-Ex() >> test_student_typed(r'\s*git\s+rm\s+report\.txt\s*',
-                           fixed=False,
-                           msg='Use `git rm filename`.')
-```
-
-*** =type3: ConsoleExercise
-*** =key3: dcfdc86805
-
-*** =xp3: 10
-
-*** =instructions3
-
-Commit your change with `-m "Removing report" as a message.
-
-*** =hint3
-
-*** =sample_code3
-```{shell}
-```
-
-*** =solution3
-```{shell}
-git commit -m "Removing report"
-```
-
-*** =sct3
-```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit.+\s*',
-                           fixed=False,
-                           msg='Use `git commit -m "message"`.')
-```
-
-*** =type4: ConsoleExercise
-*** =key4: 99b72ed9cb
-
-*** =xp4: 10
-
-*** =instructions4
-
-Use `ls` to check that it's gone.
-
-*** =hint4
-
-*** =sample_code4
-```{shell}
-```
-
-*** =solution4
-```{shell}
-ls
-```
-
-*** =sct4
-```{python}
-Ex() >> test_student_typed(r'\s*ls\s*',
-                           fixed=False,
-                           msg='Use `ls` without any parameters.')
-```
-
-*** =type5: ConsoleExercise
-*** =key5: 4afc727945
-
-*** =xp5: 10
-
-*** =instructions5
-
-Switch back to the `master` branch.
-
-*** =hint5
-
-*** =sample_code5
-```{shell}
-```
-
-*** =solution5
-```{shell}
-git checkout master
-```
-
-*** =sct5
-```{python}
-Ex() >> test_student_typed(r'\s*git\s+checkout\s+master\s*',
-                           fixed=False,
-                           msg='Use `git checkout` to switch between branches.')
-```
-
-*** =type6: ConsoleExercise
-*** =key6: b0b5946436
-
-*** =xp6: 10
-
-*** =instructions6
-
-Use `ls` to ensure that `report.txt` is still there.
-
-*** =hint6
-
-*** =sample_code6
-```{shell}
-```
-
-*** =solution6
-```{shell}
-ls
-```
-
-*** =sct6
-```{python}
-Ex() >> test_student_typed(r'\s*ls\s*',
-                           fixed=False,
-                           msg='Use `ls` without any parameters.')
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:BulletConsoleExercise key:51c4cb1dc0
-## How can I create a branch?
-
-The easiest way to create a new branch is to run `git checkout -b branch-name`,
-which creates the branch and switches you to it.
-The contents of the new branch are initially identical to the contents of the original.
-Once you start making changes,
-they only affect the new branch.
-
-*** =pre_exercise_code
-```{python}
-repl = connect('bash')
-repl.run_command('cd dental')
-repl.run_command('git branch')
-```
-
-*** =type1: ConsoleExercise
-*** =key1: 71253d1c95
-
-*** =xp1: 10
-
-*** =instructions1
-
-You are in the `master` branch of the `dental` repository.
-Create a new branch called `deleting-report`.
-
-*** =hint1
-
-*** =sample_code1
-```{shell}
-```
-
-*** =solution1
-```{shell}
-git checkout -b deleting-report
-```
-
-*** =sct1
-```{python}
-Ex() >> test_student_typed(r'\s*git\s+checkout\s+-b\s+deleting-report\s*',
-                           fixed=False,
-                           msg='Use `git checkout -b` to create a branch.')
-```
-
-*** =type2: ConsoleExercise
-*** =key2: 4dc64f3a09
-
-*** =xp2: 10
-
-*** =instructions2
-
-Use `git rm report.txt` to delete the report.
-
-*** =hint2
-
-*** =sample_code2
-```{shell}
-```
-
-*** =solution2
-```{shell}
-git rm report.txt
-```
-
-*** =sct2
-```{python}
-Ex() >> test_student_typed(r'\s*git\s+rm\s+report\.txt\s*',
-                           fixed=False,
-                           msg='Use `git rm filename`.')
-```
-
-*** =type3: ConsoleExercise
-*** =key3: a7e82dfb0c
-
-*** =xp3: 10
-
-*** =instructions3
-
-Commit your changes with a log message.
-
-*** =hint3
-
-*** =sample_code3
-```{shell}
-```
-
-*** =solution3
-```{shell}
-git commit -m "Deleting report"
-```
-
-*** =sct3
-```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit\s+.*\s*',
-                           fixed=False,
-                           msg='Use `git commit -m "message"`.')
-```
-
-*** =type4: ConsoleExercise
-*** =key4: ec7d242138
-
-*** =xp4: 10
-
-*** =instructions4
-
-Use `git diff` with appropriate arguments to compare the `master` branch
-with the new state of the `deleting-report` branch.
-
-*** =hint4
-
-*** =sample_code4
-```{shell}
-```
-
-*** =solution4
-```{shell}
-git diff master..deleting-report
-```
-
-*** =sct4
-```{python}
-Ex() >> test_student_typed(r'\s*git\s+diff\s+(master\.\.deleting-report|deleting-report\.\.master)\s*',
-                           fixed=False,
-                           msg='Use `git diff branch-1..branch-2` to compare branches.')
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:BulletConsoleExercise key:3812382b52
-## How can I merge two branches?
-
-Branching lets you create parallel universes;
-**merging** is how you bring them back together.
-When you merge one branch (call it the source) into another (call it the destination),
-Git incorporates the changes made to the source branch into the destination branch.
-If those changes don't conflict,
-the result is a new commit in the destination branch that includes everything from the source branch.
-If there *are* conflicts---for example,
-if someone has deleted a file in one branch but edited it in another---Git
-warns you that there is a problem.
-The next exercise will show you how to handle this situation.
-
-To merge two branches,
-you run `git merge source destination`
-(without `..` between the two branch names).
-Git automatically opens an editor so that you can write a log message for the merge;
-you can either keep its default message or fill in something more informative.
-
-*** =pre_exercise_code
-```{python}
-repl = connect('bash')
-repl.run_command('cd dental')
-```
-
-*** =type1: ConsoleExercise
-*** =key1: 7a4bb39d31
-
-*** =xp1: 10
-
-*** =instructions1
-
-You are in the `master` branch of the `dental` repository.
-Merge the changes *from* the `summary-statistics` branch (the source)
-into the `master` branch (the destination)
-with the message "Merging summary statistics."
-
-*** =hint1
-
-*** =sample_code1
-```{shell}
-```
-
-*** =solution1
-```{shell}
-git merge --no-edit -m "Merging summary statistics" summary-statistics master
-```
-
-*** =sct1
-```{python}
-Ex() >> test_student_typed(r'\s*git\s+merge.*\s+summary-statistics\s+master\s*',
-                           fixed=False,
-                           msg='Use `git merge branch branch`.')
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:BulletConsoleExercise key:3a4ba0eda1
-## How can I merge two branches with conflicts?
-
-Sometimes the changes in two branches will conflict with each other:
-for example,
-bug fixes might touch the same lines of code,
-or analyses in two different branches may both have appended their own record
-to a summary data file.
-When this happens,
-`git merge` tells you that there's a problem,
-and running `git status` after the merge
-reminds you which files have conflicts that you need to resolve
-by printing `both modified:` beside the files' names.
-
-Inside the file,
-Git leaves markers that look like this to tell you where the conflicts occurred:
-
-```
-<<<<<<< destination-branch-name
-...changes from the destination branch...
-=======
-...changes from the source branch...
->>>>>>> source-branch-name
-```
-
-(In many cases,
-the destination branch name will be `HEAD`,
-because you will be merging into the current branch.)
-To resolve the conflict,
-you must edit the file to remove the markers
-and make whatever other changes are needed to reconcile the changes,
-then commit those changes.
-
-*** =pre_exercise_code
-```{python}
-repl = connect('bash')
-repl.run_command('cd dental')
-repl.run_command('git branch')
-```
-
-*** =type1: ConsoleExercise
-*** =key1: 1e11825f95
-
-*** =xp1: 10
-
-*** =instructions1
-
-You are in the `master` branch of the `dental` repository.
-Merge the changes *from* the `alter-report-title` branch (the source)
-into the `master` branch (the destination).
-
-*** =hint1
-
-*** =sample_code1
-```{shell}
-```
-
-*** =solution1
-```{shell}
-git merge --no-edit -m "Merging altered report title" alter-report-title master
-```
-
-*** =sct1
-```{python}
-Ex() >> test_student_typed(r'\s*git merge.+alter-report-title\s*master\s*',
-                           fixed=False,
-                           msg='Use `git merge branch branch`.')
-```
-
-*** =type2: ConsoleExercise
-*** =key2: 9ecd08b08b
-
-*** =xp2: 10
-
-*** =instructions2
-
-Use `git status` to see which file has conflicts.
-
-*** =hint2
-
-*** =sample_code2
-```{shell}
-```
-
-*** =solution2
 ```{shell}
 git status
 ```
 
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+status\s*',
+                           fixed=False,
+                           msg='Remember, you want to check the *status* of the repository.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2: 481636c0fc
+
+*** =xp2: 10
+
+*** =instructions2
+
+Use a single Git command to stage all files that have been changed
+since the last time files were staged.
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
+git add report.txt data/northern.csv
+```
+
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+status(.+)?\s*',
+Ex() >> test_student_typed(r'\s*git\s+add\s+report\.txt\s+data/northern\.csv\s*',
                            fixed=False,
-                           msg='Use `git status`.')
+                           msg='Use `git add` with two filenames.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:BulletConsoleExercise key:7ff1cc0a0e
+## How can I undo changes to unstaged files?
+
+Suppose you have made changes to a file,
+then decide you want to **undo** them.
+Your text editor may be able to do this,
+but a more reliable way is to let Git do the work.
+The command:
+
+```
+git checkout -- filename
+```
+
+will discard the changes that have not yet been staged.
+(The double dash `--` must be there to separate the `git checkout` command
+from the names of the file or files you want to recover.)
+
+*Use this command carefully:*
+once you discard changes in this way,
+they are gone forever.
+
+*** =pre_exercise_code
+```{python}
+with open('dental/data/northern.csv', 'w') as writer:
+    writer.write('2017-11-01,bicuspid\n')
+with open('dental/data/eastern.csv', 'w') as writer:
+    writer.write('2017-11-02,molar\n')
+repl = connect('bash')
+repl.run_command('cd dental')
+repl.run_command('git add data/*.csv')
+repl.run_command('git status')
+```
+
+*** =type1: ConsoleExercise
+*** =key1: 9a5bde4d0b
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `dental` repository.
+Use one Git to undo the changes to the file `data/northern.csv`
+(and *only* that file).
+
+*** =hint1
+
+*** =sample_code1
+```{shell}
+```
+
+*** =solution1
+```{shell}
+git checkout -- data/northern.csv
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+checkout\s+--\s+data/northern\.csv\s*',
+                           fixed=False,
+                           msg='Use `git checkout` with `--` as a separator and then a file.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:BulletConsoleExercise key:fba584b9f1
+## How can I unstage a file that I have staged?
+
+`git checkout -- filename` will undo changes that have not yet been staged.
+If you want to undo changes that *have* been staged,
+you can use `git reset HEAD filename`.
+This does *not* restore the file to the state it was in before you started making changes.
+Instead,
+it resets the file to the state you last staged.
+If you want to go all the way back to where you were before you started making changes,
+you must `git checkout -- filename` as well.
+
+At this point,
+you may be wondering why there are two commands for re-setting changes.
+Part of the answer is that unstaging a file and undoing changes are both special cases
+of more powerful Git operations that you have not yet seen.
+The other part of the answer is that Git is a large and complex system
+whose syntax is as irregular as that of English.
+
+*** =pre_exercise_code
+```{python}
+with open('dental/data/northern.csv', 'w') as writer:
+    writer.write('2017-11-01,bicuspid\n')
+with open('dental/data/eastern.csv', 'w') as writer:
+    writer.write('2017-11-02,molar\n')
+repl = connect('bash')
+repl.run_command('cd dental')
+repl.run_command('git add data/*.csv')
+repl.run_command('git status')
+```
+
+*** =type1: ConsoleExercise
+*** =key1: d0aa935274
+
+*** =xp1: 10
+
+*** =instructions1
+
+Use a single Git command to Unstage the file `data/northern.csv`
+(and *only* that file).
+
+*** =hint1
+
+*** =sample_code1
+```{shell}
+```
+
+*** =solution1
+```{shell}
+git reset HEAD data/northern.csv
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+data/northern\.csv\s*',
+                           fixed=False,
+                           msg='Use `git reset` with two arguments.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:BulletConsoleExercise key:61872a66b5
+## How do I restore an old version of a file?
+
+Since Git stores old versions of your files,
+you can use it to restore those files when you want to undo changes.
+The command for doing this is `git checkout`,
+which takes two arguments:
+the hash that identifies the version you want to restore,
+and the name of the file.
+For example,
+if `git log` shows this:
+
+```
+commit ab8883e8a6bfa873d44616a0f356125dbaccd9ea
+Author: Author: Rep Loop <repl@datacamp.com>
+Date:   Thu Oct 19 09:37:48 2017 -0400
+
+    Adding graph to show latest quarterly results.
+
+commit 2242bd761bbeafb9fc82e33aa5dad966adfe5409
+Author: Author: Rep Loop <repl@datacamp.com>
+Date:   Thu Oct 16 09:17:37 2017 -0400
+
+    Modifying the bibliography format.
+```
+
+then `git checkout 2242bd report.md` would replace `report.md`
+with whatever was committed on October 16.
+
+Restoring a file doesn't erase any of the repository's history.
+Instead,
+the act of restoring the file is saved as another commit,
+because you might later want to undo your undoing.
+
+*** =pre_exercise_code
+```{python}
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
+*** =type1: ConsoleExercise
+*** =key1: 8962ae79b3
+
+*** =xp1: 10
+
+*** =instructions1
+
+Use `git log` to list the recent changes to `report.md`.
+
+*** =hint1
+
+*** =sample_code1
+```{shell}
+```
+
+*** =solution1
+```{shell}
+git log report.md
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+log\s+report\.md\s*',
+                           fixed=False,
+                           msg='Use `git log` with a filename.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2: a03a79d2de
+
+*** =xp2: 10
+
+*** =instructions2
+
+Use `git checkout` to restore the immediately previous version of `report.md`.
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
+git checkout a0a0a0a0 report.md
+```
+
+*** =sct2
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+checkout\s+[0-9a-f]+\s+report\.md\s*',
+                           fixed=False,
+                           msg='Use `git checkout hash filename`.')
 ```
 
 *** =type3: ConsoleExercise
-*** =key3: 4acfdd12bd
+*** =key3: 00df157d59
 
 *** =xp3: 10
 
 *** =instructions3
 
-Use `nano` to edit the file and remove the conflict markers.
+Commit the restored version of `report.md`.
 
 *** =hint3
+
+Use `git commit` as usual.
 
 *** =sample_code3
 ```{shell}
@@ -576,67 +408,95 @@ Use `nano` to edit the file and remove the conflict markers.
 
 *** =solution3
 ```{shell}
-echo nano report.txt
+git commit -m "Restoring"
 ```
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'.*nano\s+report\.txt.*',
+Ex() >> test_student_typed(r'\s*git\s+commit.+*',
                            fixed=False,
-                           msg='Use `nano filename`.')
+                           msg='Use `git commit -m "message"`.')
 ```
 
-*** =type4: ConsoleExercise
-*** =key4: 323f9a133c
+<!-- -------------------------------------------------------------------------------- -->
 
-*** =xp4: 10
+--- type:BulletConsoleExercise key:d45eca9a34
+## How can I undo all of the changes I have made?
 
-*** =instructions4
+So far,
+you have seen how to undo changes to a single file at a time.
+You will sometimes want to undo changes to many files.
+One way to do this is to give `git reset` and `git checkout` a directory as an argument
+rather than the names of one or more files.
+For example,
+`git reset HEAD data` will unstage any files from the `data` directory that you have staged.
 
-Add the merged file to the staging area.
-
-*** =hint4
-
-*** =sample_code4
-```{shell}
-```
-
-*** =solution4
-```{shell}
-git add report.txt
-```
-
-*** =sct4
+*** =pre_exercise_code
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s*add\s*report\.txt\s*',
-                           fixed=False,
-                           msg='Use `git add filename` as usual.')
+with open('dental/data/northern.csv', 'w') as writer:
+    writer.write('2017-11-01,bicuspid\n')
+with open('dental/data/eastern.csv', 'w') as writer:
+    writer.write('2017-11-02,molar\n')
+with open('dental/report.txt', 'w') as writer:
+    writer.write('\n(Because funding is the most important part of any project.)\n')
+repl = connect('bash')
+repl.run_command('cd dental')
+repl.run_command('git add dental')
+repl.run_command('git status')
 ```
 
-*** =type5: ConsoleExercise
-*** =key5: d9b25e272f
+*** =type1: ConsoleExercise
+*** =key1: 5964997653
 
-*** =xp5: 10
+*** =xp1: 10
 
-*** =instructions5
+*** =instructions1
 
-Commit your changes with a log message.
+Use a single Git command to remove all files from the staging area.
 
-*** =hint5
+*** =hint1
 
-*** =sample_code5
+*** =sample_code1
 ```{shell}
 ```
 
-*** =solution5
+*** =solution1
 ```{shell}
-git commit -m "Reconciling"
+git reset HEAD .
 ```
 
-*** =sct5
+*** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit.+\s*',
+Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+(\.|dental)\s*',
                            fixed=False,
-                           msg='Use `git commit` as usual.')
+                           msg='Use `git reset HEAD` and some file or directory names.')
 ```
 
+*** =type2: ConsoleExercise
+*** =key2: 3070c1d680
+
+*** =xp2: 10
+
+*** =instructions2
+
+Re-set those files to their previous state.
+Use the directory name `.` to mean "all of the files in or below this directory"
+rather than a wildcard.
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
+git checkout -- .
+```
+
+*** =sct2
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+(\.|dental)\s+git\s+checkout\s+--\s+\.\s*',
+                           fixed=False,
+                           msg='Use `git checkout --` with directory a name as an argument.')
+```
