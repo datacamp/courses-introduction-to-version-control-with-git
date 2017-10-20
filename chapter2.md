@@ -192,10 +192,7 @@ repl.run_command('cd dental')
 err_and = 'Yes, but it also changed another file.'
 correct = 'Correct.'
 err_some = 'No, the commit `HEAD~1` did change some files.'
-Ex() >> test_student_typed(r'\s*git\s+show\s+HEAD~1\s*', \
-                           fixed=False, \
-                           msg='Use `git show` and remember that `HEAD~N` is current minus that many.') \
-     >> test_mc(3, [err_and, err_and, correct, err_some])
+Ex() >> test_mc(3, [err_and, err_and, correct, err_some])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
