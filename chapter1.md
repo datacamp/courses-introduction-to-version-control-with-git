@@ -159,7 +159,7 @@ append = '''
 
 Fehrenbach: "Dental Anatomy Coloring Book" (2e), 2013.
 '''
-with open('dental/report.txt', 'w') as writer:
+with open('dental/report.txt', 'a') as writer:
     writer.write(append)
 repl = connect('bash')
 repl.run_command('cd dental')
@@ -197,7 +197,7 @@ while `git diff directory` will show you the changes to the files in some direct
 
 *** =pre_exercise_code
 ```{python}
-with open('dental/data/northern.csv', 'w') as writer:
+with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
 repl = connect('bash')
 repl.run_command('cd dental')
@@ -285,7 +285,7 @@ Use `git diff` and the filename.
 
 *** =pre_exercise_code
 ```{shell}
-with open('dental/data/northern.csv', 'w') as writer:
+with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
 repl = connect('bash')
 repl.run_command('cd dental')
@@ -305,11 +305,12 @@ Ex() >> test_mc(2, [err_some, correct, err_fewer, err_fewer])
 ## What's the first step in saving changes?
 
 You commit changes to a Git repository in two steps:
-you add one or more files to the staging area,
-and then you **commit** everything in the staging area.
+
+1. Add one or more files to the staging area.
+2. Commit everything in the staging area.
+
 To add a file to the staging area,
-using `git add filename`.
-You can do this several times in a row as you make changes to the file.
+use `git add filename`.
 
 *** =pre_exercise_code
 ```{python}
@@ -317,7 +318,7 @@ append = '''
 
 Fehrenbach: "Dental Anatomy Coloring Book" (2e), 2013.
 '''
-with open('dental/report.txt', 'w') as writer:
+with open('dental/report.txt', 'a') as writer:
     writer.write(append)
 repl = connect('bash')
 repl.run_command('cd dental')
@@ -346,7 +347,11 @@ git add report.txt
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+add\s+report\.txt\s*',
+from shellwhat_ext import test_file_perms
+import os
+debug = 'Current directory {} contents {}'.format(os.getcwd(), ls.listdir('.'))
+Ex() >> test_file_perms('dental/report.txt', 'x', 'DUMMY', debug=debug) \
+     >> test_student_typed(r'\s*git\s+add\s+report\.txt\s*',
                            fixed=False,
                            msg='Use `git add` and a filename.')
 ```
@@ -392,9 +397,9 @@ We will explore other uses of `-r` and `HEAD` in the next chapter.
 
 *** =pre_exercise_code
 ```{python}
-with open('dental/data/northern.csv', 'w') as writer:
+with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
-with open('dental/data/eastern.csv', 'w') as writer:
+with open('dental/data/eastern.csv', 'a') as writer:
     writer.write('2017-11-02,molar\n')
 repl = connect('bash')
 repl.run_command('cd dental')
@@ -518,7 +523,7 @@ append = '''
 
 Fehrenbach: "Dental Anatomy Coloring Book" (2e), 2013.
 '''
-with open('dental/report.txt', 'w') as writer:
+with open('dental/report.txt', 'a') as writer:
     writer.write(append)
 repl = connect('bash')
 repl.run_command('cd dental')
@@ -714,7 +719,7 @@ append = '''
 
 Fehrenbach: "Dental Anatomy Coloring Book" (2e), 2013.
 '''
-with open('dental/report.txt', 'w') as writer:
+with open('dental/report.txt', 'a') as writer:
     writer.write(append)
 repl = connect('bash')
 repl.run_command('cd dental')

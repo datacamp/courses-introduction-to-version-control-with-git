@@ -19,9 +19,9 @@ you should save your work in two separate commits.
 
 *** =pre_exercise_code
 ```{python}
-with open('dental/data/northern.csv', 'w') as writer:
+with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
-with open('dental/data/eastern.csv', 'w') as writer:
+with open('dental/data/eastern.csv', 'a') as writer:
     writer.write('2017-11-02,molar\n')
 repl = connect('bash')
 repl.run_command('cd dental')
@@ -103,9 +103,9 @@ append = '''
 
 Fehrenbach: "Dental Anatomy Coloring Book" (2e), 2013.
 '''
-with open('dental/report.txt', 'w') as writer:
+with open('dental/report.txt', 'a') as writer:
     writer.write(append)
-with open('dental/data/northern.csv', 'w') as writer:
+with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
 repl = connect('bash')
 repl.run_command('cd dental')
@@ -193,9 +193,9 @@ they are gone forever.
 
 *** =pre_exercise_code
 ```{python}
-with open('dental/data/northern.csv', 'w') as writer:
+with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
-with open('dental/data/eastern.csv', 'w') as writer:
+with open('dental/data/eastern.csv', 'a') as writer:
     writer.write('2017-11-02,molar\n')
 repl = connect('bash')
 repl.run_command('cd dental')
@@ -255,9 +255,9 @@ whose syntax is as irregular as that of English.
 
 *** =pre_exercise_code
 ```{python}
-with open('dental/data/northern.csv', 'w') as writer:
+with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
-with open('dental/data/eastern.csv', 'w') as writer:
+with open('dental/data/eastern.csv', 'a') as writer:
     writer.write('2017-11-02,molar\n')
 repl = connect('bash')
 repl.run_command('cd dental')
@@ -433,11 +433,11 @@ For example,
 
 *** =pre_exercise_code
 ```{python}
-with open('dental/data/northern.csv', 'w') as writer:
+with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
-with open('dental/data/eastern.csv', 'w') as writer:
+with open('dental/data/eastern.csv', 'a') as writer:
     writer.write('2017-11-02,molar\n')
-with open('dental/report.txt', 'w') as writer:
+with open('dental/report.txt', 'a') as writer:
     writer.write('\n(Because funding is the most important part of any project.)\n')
 repl = connect('bash')
 repl.run_command('cd dental')

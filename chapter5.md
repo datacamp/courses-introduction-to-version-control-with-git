@@ -488,7 +488,7 @@ repl = connect('bash')
 repl.run_command('rm -rf dental')
 repl.run_command('git clone file:///home/thunk/repo dental')
 repl.run_command('cd dental')
-with open('dental/data/northern.csv', 'w') as writer:
+with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
 ```
 
@@ -594,7 +594,7 @@ repl.run_command('rm -rf dental')
 repl.run_command('git clone file:///home/thunk/repo dental')
 repl.run_command('cd dental')
 repl.run_command('git reset --hard HEAD~1')
-with open('dental/data/northern.csv', 'w') as writer:
+with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
 repl.run_command('git commit -m "Adding a record"')
 ```
