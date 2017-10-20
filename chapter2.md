@@ -246,10 +246,7 @@ repl.run_command('cd dental')
 e_more = 'No, there have been more changes than that.'
 correct = 'Correct!'
 e_fewer = 'No, there have been fewer changes than that.'
-Ex() >> test_student_typed(r'\s*git\s+annotate\s+report.txt\s*', \
-                           fixed=False, \
-                           msg='Use `git annotate` and the name of a file.') \
-     >> test_mc(3, [e_more, e_more, correct, e_fewer])
+Ex() >> test_mc(3, [e_more, e_more, correct, e_fewer])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
