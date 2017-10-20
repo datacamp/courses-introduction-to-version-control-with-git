@@ -221,7 +221,7 @@ Use `git diff` to see what changes have been made to the files.
 
 *** =solution1
 ```{shell}
-git diff
+git diff | cat
 ```
 
 *** =sct1
@@ -319,7 +319,8 @@ Fehrenbach: "Dental Anatomy Coloring Book" (2e), 2013.
 '''
 with open('dental/report.txt', 'w') as writer:
     writer.write(append)
-connect('bash').run_command('cd dental')
+repl = connect('bash')
+repl.run_command('cd dental')
 ```
 
 *** =type1: ConsoleExercise
@@ -419,12 +420,12 @@ the last saved revision.
 
 *** =solution1
 ```{shell}
-git diff -r HEAD
+git diff -r HEAD | cat
 ```
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+diff\s+-r\s+HEAD\s*',
+Ex() >> test_student_typed(r'\s*git\s+diff\s+-r\s+HEAD.*',
                            fixed=False,
                            msg='Use `git diff -r HEAD (with or without a directory name)`.')
 ```
