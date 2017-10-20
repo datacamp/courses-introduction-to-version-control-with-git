@@ -496,7 +496,7 @@ git checkout -- .
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+(\.|dental)\s+git\s+checkout\s+--\s+\.\s*',
+Ex() >> test_student_typed(r'\s*git\s+checkout\s+--\s+\.\s*',
                            fixed=False,
-                           msg='Use `git checkout --` with directory a name as an argument.')
+                           msg='Use `git checkout --` with `.` as an argument.')
 ```
