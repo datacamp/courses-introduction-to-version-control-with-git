@@ -294,10 +294,7 @@ err_more = 'Yes, but another file was changed as well.'
 err_not = 'No, that file did not change.'
 correct = 'Correct!'
 err_half = 'No, one of those files did not change.'
-Ex() >> test_student_typed(r'\s*git\s+diff\s-r\s+(HEAD\.\.HEAD~2)|(HEAD\.\.HEAD~2)\s*', \
-                           fixed=False, \
-                           msg='Use `git diff` and remember that `HEAD~N` is current minus that many.') \
-     >> test_mc(4, [err_more, err_more, err_not, correct, err_half])
+Ex() >> test_mc(4, [err_more, err_more, err_not, correct, err_half])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
