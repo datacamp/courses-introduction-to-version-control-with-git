@@ -27,7 +27,7 @@ a commit will have two parents when branches are being merged.
 If each box in this diagram is a commit,
 how many merges have taken place?
 
-![Branching and Merging](https://s3.amazonaws.com/assets.datacamp.com/production/course_5747/datasets/branching.png)
+<img src="https://s3.amazonaws.com/assets.datacamp.com/production/course_5747/datasets/branching.png" alt="Branching and Merging" />
 
 *** =possible_answers
 - None

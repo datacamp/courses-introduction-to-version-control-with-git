@@ -18,7 +18,7 @@ this has three key parts:
 3. A **commit* that records the author, log message, and other properties
    of a particular commit.
 
-![Commit-Tree-Blob Structure](https://s3.amazonaws.com/assets.datacamp.com/production/course_5747/datasets/commit-tree-blob.png)
+<img src="https://s3.amazonaws.com/assets.datacamp.com/production/course_5747/datasets/commit-tree-blob.png" alt="Commit-Tree-Blob Structure" />
 
 As the diagram shows,
 each blob is stored only once,
