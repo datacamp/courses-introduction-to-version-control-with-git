@@ -396,7 +396,7 @@ git commit -m "Starting to track data sources."
 
 *** =sct3
 ```{python}
-Ex() > test_student_typed(r'\s*git\s+commit\s+-m\s+"[^"]+"\s*',
+Ex() >> test_student_typed(r'\s*git\s+commit\s+-m\s+"[^"]+"\s*',
                            fixed=False,
                            msg='Remember, you want to *commit* files.')
 ```
