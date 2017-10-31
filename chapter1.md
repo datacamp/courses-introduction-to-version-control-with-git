@@ -260,7 +260,8 @@ This shows:
   while lines being added are prefixed with `+`.
 - A line starting with `@@` that tells where the changes are being made.
   Here, the line shows that lines 1-4 are being removed and replaced with new lines.
-- A line-by-line listing of the changes.
+- A line-by-line listing of the changes
+  with `-` showing deletions and `+` showing additions.
 
 Desktop programming tools like [RStudio](https://www.rstudio.com/) can turn diffs like this
 into a more readable side-by-side display of changes;
@@ -271,7 +272,7 @@ or [WinMerge](http://winmerge.org/).
 
 You are in the `dental` repository.
 Use `git diff` look at the changes to `dental/data/northern.csv`.
-How many lines did it change in the file `bin/teeth`?
+How many lines changed in the file `bin/teeth`?
 
 *** =instructions
 - None.
@@ -612,8 +613,7 @@ Press the space bar to go down a page or the 'q' key to quit.
 
 You are in the directory `dental`,
 which is a Git repository.
-Use a single Git command (*without* the `-C` option)
-to view the repository's history.
+Use a single Git command to view the repository's history.
 What is the message on the very first entry in the log
 (which is displayed last)?
 
