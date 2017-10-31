@@ -80,7 +80,7 @@ git commit -m "Adding data from northern region."
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit\s+-m\s+"Adding\s+data\s+from\s+northern\s+region."\s*',
+Ex() >> test_student_typed(r'\s*git\s+commit\s+-m.*',
                            fixed=False,
                            msg='Use `git commit` with a message.')
 ```

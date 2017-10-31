@@ -404,7 +404,7 @@ git commit -m "Deleting report"
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit\s+.*\s*',
+Ex() >> test_student_typed(r'\s*git\s+commit.+\s*',
                            fixed=False,
                            msg='Use `git commit -m "message"`.')
 ```
