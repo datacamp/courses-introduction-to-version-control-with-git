@@ -136,14 +136,6 @@ Ex() >> test_mc(2, [e1, c2, e3, e4])
 Every Git command consists of the word `git` followed by a verb that specifies what you want to do.
 One of the most common commands is `git log`,
 which tells Git to display the **log** of the project's history.
-There are two ways to run it:
-
-1. If you are in a project's root directory or one of its sub-directories,
-   you can just run `git log`.
-2. Otherwise, you can run `git -C /path/to/repository log`.
-   The flag `-C /some/path` works with every Git command,
-   which is why it comes between the word `git` and the specific command.
-
 Log entries are shown most recent first,
 and look like this:
 
@@ -160,13 +152,16 @@ the other lines show who made the change,
 when,
 and what comment (called a **log message**) they wrote for the change.
 
+Note that when you run `git log`,
+its output is automatically sent to a paging program:
+press spacebar to page down through the log and 'q' to quit.
+
 <hr>
 
 You are in the directory `dental`,
 which is a Git repository.
-Use a single Git command (*without* the `-C` option)
-to view the repository's history.
-What is the message on the very first entry in the log
+Use a single Git command to view the repository's history.
+What is the message on the chronologically earliest entry in the log
 (which is displayed last)?
 
 *** =instructions
@@ -341,7 +336,8 @@ or [WinMerge](http://winmerge.org/).
 <hr>
 
 You are in the `dental` repository.
-Use `git diff` with a hash and a filename to look at the commit with ID `166a86`.
+Use `git diff` with a hash and a filename in that order
+to look at the commit with ID `166a86`.
 How many lines did it change in the file `bin/teeth`?
 
 *** =instructions
@@ -365,9 +361,9 @@ repl.run_command('cd dental')
 err_some = 'No, the commit changed some of the lines in `bin/teeth`.'
 correct = 'Yes, the commit changed one line.'
 err_fewer = 'No, the commit did not change that many lines in `bin/teeth`.'
-Ex() >> test_student_typed(r'\s*git\s+show\s+ed0ec0[0-9a-f]?\s*', \
+Ex() >> test_student_typed(r'\s*git\s+show\s+[0-9a-f]+\s*', \
                            fixed=False, \
-                           msg='Use `git show ed0ec0` and examine the diff.') \
+                           msg='Use `git show` with the commit ID and examine the diff.') \
      >> test_mc(2, [err_some, correct, err_fewer, err_fewer])
 ```
 
@@ -480,8 +476,8 @@ Ex() >> test_student_typed(r'\s*git\s+annotate\s+report.txt\s*', \
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:9862ae22bd
 ## How can I see what changed between two commits?
 
-`git show` shows the changes made *in* a particular commit.
-To see the changes *between* two widely-separated commits,
+`git show` shows the changes made *in* a commit.
+To see the changes *between* two commits,
 you can use `git diff R1..R2`,
 where `R1` and `R2` identify the two commits you're interested in,
 and the connector `..` is a pair of dots.
@@ -494,7 +490,7 @@ and its state three commits in the past.
 
 You are in the `dental` repository.
 Use `git diff` to view the differences between its current state
-and its state in the previous-but-two commit.
+and its state two commits previously.
 Which of the following files have changed?
 
 *** =instructions
