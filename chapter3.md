@@ -246,12 +246,9 @@ it resets the file to the state you last staged.
 If you want to go all the way back to where you were before you started making changes,
 you must `git checkout -- filename` as well.
 
-At this point,
-you may be wondering why there are two commands for re-setting changes.
-Part of the answer is that unstaging a file and undoing changes are both special cases
-of more powerful Git operations that you have not yet seen.
-The other part of the answer is that Git is a large and complex system
-whose syntax is as irregular as that of English.
+(You may be wondering why there are two commands for re-setting changes.
+The answer is that unstaging a file and undoing changes are both special cases
+of more powerful Git operations that you have not yet seen.)
 
 *** =pre_exercise_code
 ```{python}
