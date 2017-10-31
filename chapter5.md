@@ -66,8 +66,7 @@ repl.run_command('pwd')
 *** =instructions1
 
 You are in the directory `dental`,
-which contains data, analysis scripts, and other files,
-but is not yet a Git repository.
+which is not yet a Git repository.
 Use a single command to convert it to a Git repository.
 
 *** =hint1

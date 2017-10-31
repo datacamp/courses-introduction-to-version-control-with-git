@@ -23,7 +23,7 @@ Its strengths are:
   so it scales as your team does.
 
 Version control isn't just for software:
-books, papers, data sets, and anything that changes over time or needs to be shared
+books, papers, parameter sets, and anything that changes over time or needs to be shared
 can and should be stored and shared using something like Git.
 
 <hr>
@@ -71,7 +71,7 @@ What kind of work should you store in version control?
 
 *** =possible_answers
 - Software.
-- Small datasets.
+- Configuration files.
 - Reports and other written work.
 - [All of the above.]
 
