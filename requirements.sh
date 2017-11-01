@@ -19,7 +19,7 @@ echo 'HOME_COPY: ' ${HOME_COPY}
 echo 'USER_GROUP: ' ${USER_GROUP}
 echo 'COURSE_ID: ' ${COURSE_ID}
 echo 'ARCHIVE: ' ${ARCHIVE}
-echo 'This message is to force a rebuild 9.'
+echo 'This message is to force a rebuild 21.'
 echo
 
 # Make sure we have nano and unzip.

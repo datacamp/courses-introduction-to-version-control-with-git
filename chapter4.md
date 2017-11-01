@@ -1,87 +1,74 @@
 ---
-title       : Managing repositories
+title       : Working with branches
 description : >-
-  This chapter shows you how to set up a Git project from scratch, how
-  to turn an existing project into a Git repository, and how to share
-  changes between repositories.
+  Branching is one of Git's most powerful features, since it allows
+  you to work on several things at once without tripping over
+  yourself.  This chapter shows you how to create and manage branches.
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:d10c46c6d0
-## How can I tell Git to ignore certain files?
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:9db055a148
+## What is a branch?
 
-Data analysis often produces temporary or intermediate files that you don't want to save.
-As you learned earlier,
-you can remove these with `git clean`,
-but a simpler approach is to tell Git to ignore them entirely.
-To do this,
-create a file in the root directory of your repository called `.gitignore`
-and store a list of **wildcard** patterns that specify the files you don't want Git to pay attention to.
-For example,
-if `.gitignore` contains:
+One of the reasons Git is popular is its support for creating **branches**.
+A branch is like a parallel universe:
+changes you make in one branch do not affect other branches until you **merge** them back together.
+It's like creating sub-directories called `final`, `final-updated`, `final-updated-revised`, and so on,
+but with support for tracking work systematically.
 
-```
-build
-*.mpl
-```
-
-then Git will ignore any file or directory called `build` (and, if it's a directory, anything in it),
-as well as any file whose name ends in `.mpl`.
+Note:
+the first chapter described the three-part data structure Git uses to record a repository's history:
+*blobs* for files,
+*trees* for the saved states of the repositories,
+and *commits* to record the changes.
+Branches are the reason Git needs both trees and commits:
+a commit will have two parents when branches are being merged.
 
 <hr>
 
-Which of the following files would *not* be ignored by a `.gitignore` that contained the lines:
+If each box in this diagram is a commit,
+how many merges have taken place?
 
-```
-pdf
-*.pyc
-backup
-```
+<img src="https://s3.amazonaws.com/assets.datacamp.com/production/course_5747/datasets/branching.png" alt="Branching and Merging" />
 
 *** =possible_answers
-- [`report.pdf`]
-- `bin/analyze.pyc`
-- `backup/northern.csv`
-- None of the above.
+- None
+- 1
+- [2]
+- 3
 
 *** =hint
 
 *** =feedbacks
-- Correct: `pdf` does not contain any wildcards, so it only matches files called `pdf`.
-- This file *is* matched because the pattern `*.pyc` matches files in sub-directories.
-- This file *is* matched because `backup` is a directory, so all files in it are ignored.
-- No: at least one of the files above is not ignored.
+- No: some commits have more than one parent.
+- No: some commits have more than one parent.
+- Correct: two commits have more than one parent.
+- No: only two commits have more than one parent.
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:ee41a600fb
-## How can I see how Git is configured?
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:f48d0ea4cf
+## How can I see what branches my repository has?
 
-Like most complex pieces of software,
-Git allows you to change its default settings.
-To see what the settings are,
-you can use the command `git config --list` with one of three additional options:
-
-- `--system`: settings for every user on this computer.
-- `--global`: settings for every one of your projects.
-- `--local`: settings for one specific project.
-
-Each level overrides the one above it,
-so **local settings** (per-project) take precedence over **global settings** (per-user),
-which in turn take precedence over **system settings** (for all users on the computer).
+By default,
+every Git repository has a branch called `master`
+(which is why you have been seeing that word in Git's output in previous lessons).
+To list all of the branches in a repository,
+you can run the command `git branch`.
+The branch you are currently in will be shown with a `*` beside its name.
 
 <hr>
 
 You are in the `dental` repository.
-How many local configuration values are set in for this repository?
+How many branches are in this repository (including `master`)?
 
 *** =instructions
 - None.
 - 1.
-- 4.
-- 12.
+- 2.
+- 3.
 
 *** =hint
 
-Use `git config --list --local` and count.
+Use `git branch` to list branches.
 
 *** =pre_exercise_code
 ```{shell}
@@ -91,119 +78,83 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex() >> test_mc(3, ['No, some configuration values are set.',
-                    'No, more configuration values are set than that.',
+Ex() >> test_mc(4, ['No: every repository has at least one branch.',
+                    'No: there are more branches than that.',
+                    'No: there are more branches than that.',
+                    'Correct!'])
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:7333c66616
+## How can I view the differences between branches?
+
+Branches and revisions are closely connected,
+and commands that work on the latter usually work on the former.
+For example,
+just as `git diff revision-1..revision-1` shows the difference between two versions of a repository,
+`git diff branch-1..branch-2` shows the difference between two branches.
+
+<hr>
+
+You are in the `dental` repository.
+How many files in the `summary-statistics` branch
+are different from their equivalents in the `master` branch?
+
+*** =instructions
+- None.
+- 1.
+- 3.
+- 8.
+
+*** =hint
+
+Use `git diff branch..branch` to list the differences.
+
+*** =pre_exercise_code
+```{shell}
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
+*** =sct
+```{python}
+Ex() >> test_mc(3, ['No: some files differ.',
+                    'No: please count both files that have changed and files that are being added.',
                     'Correct!',
-                    'No, fewer configuration values are set than that.'])
+                    'No: please count the number of files that differ, not the number of lines that are different.'])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:ConsoleExercise lang:shell xp:100 skills:1 key:7c0dce348b
-## How can I change my Git configuration?
+--- type:BulletConsoleExercise key:c418145d13
+## How can I switch from one branch to another?
 
-Most of Git's settings should be left as they are.
-However,
-there are two you should set on ever computer you use:
-your name and your email address.
-These are recorded in the log every time you commit a change,
-and are often used to identify the authors of a project's content in order to give credit
-(or assign blame, depending on the circumstances).
+When you run `git branch`,
+it puts a `*` beside the name of the branch you are currently in.
+To switch to another branch,
+you use `git checkout branch-name`.
 
-To change a configuration value for all of your projects on a particular computer,
-run the command:
-
-```
-git config --global setting.name setting.value
-```
-
-with the setting's name and value in the appropriate places.
-The keys that identify your name and email address are `user.name` and `user.email` respectively.
-
-*** =instructions
-
-Change the email address configured for the current user for *all* projects
-to `rep.loop@datacamp.com`.
-
-*** =solution
-```{shell}
-git config --global user.email rep.loop@datacamp.com
-```
-
-*** =sct
-```{python}
-Ex() >> test_student_typed(r'\s*git\s+config\s+--global\s+user\.email\s+["\']?rep\.loop@datacamp.com["\']?\s*',
-                           fixed=False,
-                           msg='Use `git config --global` with the `user.email` property and the email address.')
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:ConsoleExercise lang:shell xp:100 skills:1 key:a87bbd3948
-## How can I create a brand new repository?
-
-So far,
-you have been working with repositories that we created.
-If you want to create a repository for a new project,
-you can simply say `git init project-name`,
-where "project-name" is the name you want the new repository's root directory to have.
-
-One thing you should *not* do is create one Git repository inside another.
-While Git does allow this,
-updating **nested repositories** becomes very complicated very quickly,
-since you need to tell Git which of the two `.git` directories the update is to be stored in.
-Very large projects occasionally need to do this,
-but most programmers and data analysts try to avoid getting into this situation.
-
-*** =instructions
-
-Use a single command to create a new Git repository called `optical` below your home directory.
-
-*** =solution
-```{shell}
-git init optical
-```
-
-*** =sct
-```{python}
-Ex() >> test_student_typed(r'\s*git\s+init\s+optical\s*',
-                           fixed=False,
-                           msg='Use `git init` and a directory name.')
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:BulletConsoleExercise key:a4330ec681
-## How can I turn an existing project into a Git repository?
-
-Experienced Git users instinctively start new projects by creating repositories.
-If you are new to Git,
-though,
-or working with people who are,
-you will often want to convert existing projects into repositories.
-Doing so is simple:
-just run `git init` in the project's root directory,
-or `git init /path/to/project` from anywhere else on your computer.
+Note: Git will only let you do this if all of your changes have been committed.
+You can get around this,
+but it is outside the scope of this course.
 
 *** =pre_exercise_code
 ```{python}
 repl = connect('bash')
 repl.run_command('cd dental')
-repl.run_command('rm -rf .git')
-repl.run_command('pwd')
+repl.run_command('git branch')
 ```
 
 *** =type1: ConsoleExercise
-*** =key1: 101686c0e7
+*** =key1: eee4722074
 
 *** =xp1: 10
 
 *** =instructions1
 
-You are in the directory `dental`,
-which contains data, analysis scripts, and other files,
-but is not yet a Git repository.
-Use a single command to convert it to a Git repository.
+You are in the `master` branch of the `dental` repository.
+Switch to the `summary-statistics` branch.
 
 *** =hint1
 
@@ -213,24 +164,462 @@ Use a single command to convert it to a Git repository.
 
 *** =solution1
 ```{shell}
-git init
+git checkout summary-statistics
 ```
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+init\s*',
+Ex() >> test_student_typed(r'\s*git\s+checkout\s+summary-statistics\s*',
                            fixed=False,
-                           msg='Use `git init`.')
+                           msg='Use `git checkout` to switch between branches.')
 ```
 
 *** =type2: ConsoleExercise
-*** =key2: e65f050907
+*** =key2: 6193872406
 
 *** =xp2: 10
 
 *** =instructions2
 
-Check the status of your new repository.
+Use `git rm` to delete `report.txt`.
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
+git rm report.txt
+```
+
+*** =sct2
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+rm\s+report\.txt\s*',
+                           fixed=False,
+                           msg='Use `git rm filename`.')
+```
+
+*** =type3: ConsoleExercise
+*** =key3: dcfdc86805
+
+*** =xp3: 10
+
+*** =instructions3
+
+Commit your change with `-m "Removing report" as a message.
+
+*** =hint3
+
+*** =sample_code3
+```{shell}
+```
+
+*** =solution3
+```{shell}
+git commit -m "Removing report"
+```
+
+*** =sct3
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+commit.+\s*',
+                           fixed=False,
+                           msg='Use `git commit -m "message"`.')
+```
+
+*** =type4: ConsoleExercise
+*** =key4: 99b72ed9cb
+
+*** =xp4: 10
+
+*** =instructions4
+
+Use `ls` to check that it's gone.
+
+*** =hint4
+
+*** =sample_code4
+```{shell}
+```
+
+*** =solution4
+```{shell}
+ls
+```
+
+*** =sct4
+```{python}
+Ex() >> test_student_typed(r'\s*ls\s*',
+                           fixed=False,
+                           msg='Use `ls` without any parameters.')
+```
+
+*** =type5: ConsoleExercise
+*** =key5: 4afc727945
+
+*** =xp5: 10
+
+*** =instructions5
+
+Switch back to the `master` branch.
+
+*** =hint5
+
+*** =sample_code5
+```{shell}
+```
+
+*** =solution5
+```{shell}
+git checkout master
+```
+
+*** =sct5
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+checkout\s+master\s*',
+                           fixed=False,
+                           msg='Use `git checkout` to switch between branches.')
+```
+
+*** =type6: ConsoleExercise
+*** =key6: b0b5946436
+
+*** =xp6: 10
+
+*** =instructions6
+
+Use `ls` to ensure that `report.txt` is still there.
+
+*** =hint6
+
+*** =sample_code6
+```{shell}
+```
+
+*** =solution6
+```{shell}
+ls
+```
+
+*** =sct6
+```{python}
+Ex() >> test_student_typed(r'\s*ls\s*',
+                           fixed=False,
+                           msg='Use `ls` without any parameters.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:BulletConsoleExercise key:51c4cb1dc0
+## How can I create a branch?
+
+The easiest way to create a new branch is to run `git checkout -b branch-name`,
+which creates the branch and switches you to it.
+The contents of the new branch are initially identical to the contents of the original.
+Once you start making changes,
+they only affect the new branch.
+
+*** =pre_exercise_code
+```{python}
+repl = connect('bash')
+repl.run_command('cd dental')
+repl.run_command('git branch')
+```
+
+*** =type1: ConsoleExercise
+*** =key1: 71253d1c95
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `master` branch of the `dental` repository.
+Create a new branch called `deleting-report`.
+
+*** =hint1
+
+*** =sample_code1
+```{shell}
+```
+
+*** =solution1
+```{shell}
+git checkout -b deleting-report
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+checkout\s+-b\s+deleting-report\s*',
+                           fixed=False,
+                           msg='Use `git checkout -b` to create a branch.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2: 4dc64f3a09
+
+*** =xp2: 10
+
+*** =instructions2
+
+Use `git rm report.txt` to delete the report.
+
+*** =hint2
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
+git rm report.txt
+```
+
+*** =sct2
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+rm\s+report\.txt\s*',
+                           fixed=False,
+                           msg='Use `git rm filename`.')
+```
+
+*** =type3: ConsoleExercise
+*** =key3: a7e82dfb0c
+
+*** =xp3: 10
+
+*** =instructions3
+
+Commit your changes with a log message.
+
+*** =hint3
+
+*** =sample_code3
+```{shell}
+```
+
+*** =solution3
+```{shell}
+git commit -m "Deleting report"
+```
+
+*** =sct3
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+commit.+\s*',
+                           fixed=False,
+                           msg='Use `git commit -m "message"`.')
+```
+
+*** =type4: ConsoleExercise
+*** =key4: ec7d242138
+
+*** =xp4: 10
+
+*** =instructions4
+
+Use `git diff` with appropriate arguments to compare the `master` branch
+with the new state of the `deleting-report` branch.
+
+*** =hint4
+
+*** =sample_code4
+```{shell}
+```
+
+*** =solution4
+```{shell}
+git diff master..deleting-report
+```
+
+*** =sct4
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+diff\s+(master\.\.deleting-report|deleting-report\.\.master)\s*',
+                           fixed=False,
+                           msg='Use `git diff branch-1..branch-2` to compare branches.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:BulletConsoleExercise key:3812382b52
+## How can I merge two branches?
+
+Branching lets you create parallel universes;
+**merging** is how you bring them back together.
+When you merge one branch (call it the source) into another (call it the destination),
+Git incorporates the changes made to the source branch into the destination branch.
+If those changes don't overlap,
+the result is a new commit in the destination branch that includes everything from the source branch.
+(The next exercises describes what happens if there *are* conflicts.)
+
+To merge two branches,
+you run `git merge source destination`
+(without `..` between the two branch names).
+Git automatically opens an editor so that you can write a log message for the merge;
+you can either keep its default message or fill in something more informative.
+
+*** =pre_exercise_code
+```{python}
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
+*** =type1: ConsoleExercise
+*** =key1: 7a4bb39d31
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `master` branch of the `dental` repository.
+Merge the changes *from* the `summary-statistics` branch (the source)
+into the `master` branch (the destination)
+with the message "Merging summary statistics."
+
+*** =hint1
+
+*** =sample_code1
+```{shell}
+```
+
+*** =solution1
+```{shell}
+git merge --no-edit -m "Merging summary statistics" summary-statistics master
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+merge.*\s+summary-statistics\s+master\s*',
+                           fixed=False,
+                           msg='Use `git merge branch branch`.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:PureMultipleChoiceExercise lang:bash xp:50 key:354f733f81
+## What are conflicts?
+
+Sometimes the changes in two branches will conflict with each other:
+for example,
+bug fixes might touch the same lines of code,
+or analyses in two different branches may both append new (and different) records
+to a summary data file.
+In this case,
+Git relies on you to reconcile the conflicting changes.
+
+<hr>
+
+The file `todo.txt` initially contains these two lines:
+
+```
+A) Write report.
+B) Submit report.
+```
+
+You create a branch called `update` and modify the file to be:
+
+```
+A) Write report.
+B) Submit final version.
+C) Submit expenses.
+```
+
+You then switch back to the `master` branch and delete the first line,
+so that the file contains:
+
+```
+B) Submit report.
+```
+
+When you try to merge `update` and `master`,
+what conflicts does Git report?
+
+*** =possible_answers
+- [Just line B, since it is the only one to change in both branches.]
+- Lines A and B, since one was deleted and the other changed.
+- Lines B and C, since one was changed and the other deleted.
+- All three lines, since all were either added, deleted, or changed.
+
+*** =hint
+
+*** =feedbacks
+- Correct: Git can merge the deletion of line A and the addition of line C automatically.
+- No: Git can merge the deletion of line A automatically.
+- No: Git can merge the addition of line C automatically.
+- No: Git can merge teh deletion of line A and the addition of line C automatically.
+
+<!-- -------------------------------------------------------------------------------- -->
+
+--- type:BulletConsoleExercise key:3a4ba0eda1
+## How can I merge two branches with conflicts?
+
+When there is a conflict during a merge,
+Git tells you that there's a problem,
+and running `git status` after the merge
+reminds you which files have conflicts that you need to resolve
+by printing `both modified:` beside the files' names.
+
+Inside the file,
+Git leaves markers that look like this to tell you where the conflicts occurred:
+
+```
+<<<<<<< destination-branch-name
+...changes from the destination branch...
+=======
+...changes from the source branch...
+>>>>>>> source-branch-name
+```
+
+(In many cases,
+the destination branch name will be `HEAD`,
+because you will be merging into the current branch.)
+To resolve the conflict,
+edit the file to remove the markers
+and make whatever other changes are needed to reconcile the changes,
+then commit those changes.
+
+*** =pre_exercise_code
+```{python}
+repl = connect('bash')
+repl.run_command('cd dental')
+repl.run_command('git branch')
+```
+
+*** =type1: ConsoleExercise
+*** =key1: 1e11825f95
+
+*** =xp1: 10
+
+*** =instructions1
+
+You are in the `master` branch of the `dental` repository.
+Merge the changes *from* the `alter-report-title` branch (the source)
+into the `master` branch (the destination).
+
+*** =hint1
+
+*** =sample_code1
+```{shell}
+```
+
+*** =solution1
+```{shell}
+git merge --no-edit -m "Merging altered report title" alter-report-title master
+```
+
+*** =sct1
+```{python}
+Ex() >> test_student_typed(r'\s*git merge.+alter-report-title\s*master\s*',
+                           fixed=False,
+                           msg='Use `git merge branch branch`.')
+```
+
+*** =type2: ConsoleExercise
+*** =key2: 9ecd08b08b
+
+*** =xp2: 10
+
+*** =instructions2
+
+Use `git status` to see which file has conflicts.
 
 *** =hint2
 
@@ -245,286 +634,19 @@ git status
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+status\s*',
+Ex() >> test_student_typed(r'\s*git\s+status(.+)?\s*',
                            fixed=False,
-                           msg='Check the status as you normally would.')
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:BulletConsoleExercise key:9fb3b2ed49
-## How can I create a copy of an existing repository?
-
-Sometimes you will join a project that is already running,
-inherit a project from someone else,
-or continue working on one of your own projects on a new machine.
-In each case,
-you will **clone** an existing repository instead of creating a new one.
-Cloning a repository does exactly what the name suggests:
-it creates a copy of an existing repository (including all of its history) in a new directory.
-
-To clone a repository,
-use the command `git clone URL`,
-where `URL` identifies the repository you want to clone.
-This will normally be something like `https://github.com/datacamp/project.git`,
-but for this lesson,
-we will use **filesystem URLs** of the form `file:///existing/project`.
-The number of slashes at the start is important:
-the first part of the URL is `file://`,
-and then there is a third slash to start the absolute path `/existing/project`.
-
-When you clone a repository,
-Git uses the name of the existing repository as the name of the clone's root directory.
-Continuing with the example,
-`git clone file:///existing/project` will create a new directory called `project`
-below the directory you are in.
-If you want to call the clone something else,
-add the directory name you want to the command.
-
-*** =pre_exercise_code
-```{python}
-repl = connect('bash')
-repl.run_command('rm -rf dental')
-```
-
-*** =type1: ConsoleExercise
-*** =key1: 2b06ff535f
-
-*** =xp1: 10
-
-*** =instructions1
-
-You have just inherited the dental data analysis project from a colleague,
-who tells you that all of their work is in a repository in `/home/thunk/repo`.
-Use a single command to clone this repository
-to create a new repository called `dental` inside your home directory
-(so that the new repository is in `/home/repl/dental`).
-
-*** =hint1
-
-Remember to count the slashes after `file:` carefully.
-
-*** =sample_code1
-```{shell}
-```
-
-*** =solution1
-```{shell}
-git clone file:///home/thunk/repo dental
-```
-
-*** =sct1
-```{python}
-Ex() >> test_student_typed(r'\s*git\s+clone\s+file:///home/thunk/repo\s+(/home/repl/|~/|\./|)dental\s*',
-                           fixed=False,
-                           msg='Use `git clone` and the absolute or relative path of the directory to clone to.')
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:61567f27d4
-## How can I find out where a cloned repository originated?
-
-When you a clone a repository,
-Git remembers where the original repository was.
-It does this by storing a **remote** in the new repository's configuration.
-A remote is like a browser bookmark with a name and a URL.
-If you are in a repository,
-you can list the names of its remotes using `git remote`.
-
-If you want more information, you can use `git remote -v` (for "verbose"),
-which shows the remote's URLs.
-Note that "URLs" is plural:
-it's possible for a remote to have several URLs associated with it for different purposes,
-though in practice each remote is almost always paired with just one URL.
-
-<hr>
-
-You are in the `dental` repository.
-How many remotes does it have?
-
-*** =instructions
-- None.
-- 1.
-- 2.
-
-*** =hint
-
-Run `git remote` in the `dental` repository.
-
-*** =pre_exercise_code
-```{shell}
-repl = connect('bash')
-repl.run_command('rm -rf dental')
-repl.run_command('git clone file:///home/thunk/repo dental')
-repl.run_command('cd dental')
-```
-
-*** =sct
-```{python}
-Ex() >> test_mc(2, ['No: there are some remotes.',
-                    'Correct!',
-                    'No: there is just one remote.'])
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:BulletConsoleExercise key:4d5be24350
-## How can I pull in changes from a remote repository?
-
-Git keeps track of remote repositories so that you can
-**pull** changes from those repositories
-and **push** changes to them.
-Pulling changes is straightforward:
-the command `git pull remote branch`
-gets everything in `branch` in the remote repository identified by `remote`
-and merges it into the current branch of your local repository.
-For example,
-if you are in the `quarterly-report` branch of your local repository,
-the command:
-
-```
-git pull thunk latest-analysis
-```
-
-would get changes from `latest-analysis` branch
-in the repository associated with the remote called `thunk`
-and merge them into your `quarterly-report` branch.
-
-*** =pre_exercise_code
-```{python}
-repl = connect('bash')
-repl.run_command('rm -rf dental')
-repl.run_command('git clone file:///home/thunk/repo dental')
-repl.run_command('cd dental')
-repl.run_command('git reset --hard HEAD~2')
-```
-
-*** =type1: ConsoleExercise
-*** =key1: cb79240464
-
-*** =xp1: 10
-
-*** =instructions1
-
-You are in the `master` branch of the repository `dental`,
-which has a remote called `origin`.
-Pull all of the changes in the `master` branch of that remote repository
-into the `master` branch of your repository.
-
-*** =hint1
-
-*** =sample_code1
-```{shell}
-```
-
-*** =solution1
-```{shell}
-git pull origin master
-```
-
-*** =sct1
-```{python}
-Ex() >> test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
-                           fixed=False,
-                           msg='Use `git pull` with the name of the remote and the name of the branch.')
-```
-
-<!-- -------------------------------------------------------------------------------- -->
-
---- type:BulletConsoleExercise key:b3ba4dd987
-## How can I push my changes to a remote repository?
-
-The complement of `git pull` is `git push`,
-which pushes the changes you have made locally into a remote repository.
-The most common way to use it is:
-
-```
-git push remote-name branch-name
-```
-
-which pushes the contents of your branch `branch-name`
-into a branch with the same name
-in the remote repository associated with `remote-name`.
-It's possible to use different branch names at your end and the remote's end,
-but doing this quickly becomes confusing:
-it's almost always better to use the same names for branches across repositories.
-
-*** =pre_exercise_code
-```{python}
-repl = connect('bash')
-repl.run_command('rm -rf dental')
-repl.run_command('git clone file:///home/thunk/repo dental')
-repl.run_command('cd dental')
-with open('dental/data/northern.csv', 'w') as writer:
-    writer.write('2017-11-01,bicuspid\n')
-```
-
-*** =type1: ConsoleExercise
-*** =key1: 75df26b3a7
-
-*** =xp1: 10
-
-*** =instructions1
-
-You are in the `master` branch of the `dental` repository,
-which has a remote called `origin`.
-You have changed `data/northern.csv`;
-add it to the staging area.
-
-*** =hint1
-
-*** =sample_code1
-```{shell}
-```
-
-*** =solution1
-```{shell}
-git add data/northern.csv
-```
-
-*** =sct1
-```{python}
-Ex() >> test_student_typed(r'\s*git\s+add.+\s*',
-                           fixed=False,
-                           msg='Use `git add` as normal.')
-```
-
-*** =type2: ConsoleExercise
-*** =key2: eebd73b616
-
-*** =xp2: 10
-
-*** =instructions2
-
-Commit your changes with the message "Added more northern data."
-
-*** =hint2
-
-*** =sample_code2
-```{shell}
-```
-
-*** =solution2
-```{shell}
-git commit -m "Added more northern data."
-```
-
-*** =sct2
-```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit.+',
-                           fixed=False,
-                           msg='Use `git commit -m "message"` as normal.')
+                           msg='Use `git status`.')
 ```
 
 *** =type3: ConsoleExercise
-*** =key3: 037b960128
+*** =key3: 4acfdd12bd
 
 *** =xp3: 10
 
 *** =instructions3
 
-Push your changes to the remote repository's `master` branch.
+Use `nano` to edit the file and remove the conflict markers.
 
 *** =hint3
 
@@ -534,72 +656,66 @@ Push your changes to the remote repository's `master` branch.
 
 *** =solution3
 ```{shell}
-git push origin master
+echo nano report.txt
 ```
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+push\s+origin\s+master\s*',
+Ex() >> test_student_typed(r'.*nano\s+report\.txt.*',
                            fixed=False,
-                           msg='Use `git push` with a remote name and a branch name.')
+                           msg='Use `nano filename`.')
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
+*** =type4: ConsoleExercise
+*** =key4: 323f9a133c
 
---- type:BulletConsoleExercise key:1e327efda1
-## How can I define remotes?
+*** =xp4: 10
 
-When you clone a repository,
-Git automatically creates a remote called `origin`
-that points to the original repository.
-You can add more remotes using:
+*** =instructions4
 
-```
-git remote add remote-name URL
-```
+Add the merged file to the staging area.
 
-and remove existing ones using:
+*** =hint4
 
-```
-git remote rm remote-name
-```
-
-You can connect any two Git repositories this way,
-but in practice,
-you will almost always connect repositories that share some common ancestry.
-
-*** =pre_exercise_code
-```{python}
-repl = connect('bash')
-repl.run_command('cd dental')
-```
-
-*** =type1: ConsoleExercise
-*** =key1: a0e2cf2d0f
-
-*** =xp1: 10
-
-*** =instructions1
-
-You are in the `dental` repository.
-Add `file:///home/thunk/repo` as a remote called `thunk` to it.
-
-*** =hint1
-
-Be sure to count the slashes properly in the remote URL.
-
-*** =sample_code1
+*** =sample_code4
 ```{shell}
 ```
 
-*** =solution1
+*** =solution4
 ```{shell}
-git remote add thunk file:///home/thunk/repo
+git add report.txt
 ```
 
-*** =sct1
+*** =sct4
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+remote\s+add\s+thunk\s+file:///home/thunk/repo\s*',
+Ex() >> test_student_typed(r'\s*git\s*add\s*report\.txt\s*',
                            fixed=False,
-                           msg='Use `git remote add` with the name and URL of the remote.')
+                           msg='Use `git add filename` as usual.')
+```
+
+*** =type5: ConsoleExercise
+*** =key5: d9b25e272f
+
+*** =xp5: 10
+
+*** =instructions5
+
+Commit your changes with a log message.
+
+*** =hint5
+
+*** =sample_code5
+```{shell}
+```
+
+*** =solution5
+```{shell}
+git commit -m "Reconciling"
+```
+
+*** =sct5
+```{python}
+Ex() >> test_student_typed(r'\s*git\s+commit.+\s*',
+                           fixed=False,
+                           msg='Use `git commit` as usual.')
 ```
