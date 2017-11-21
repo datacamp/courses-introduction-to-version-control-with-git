@@ -37,6 +37,8 @@ how many merges have taken place?
 
 *** =hint
 
+Look for boxes with two arrows coming into them.
+
 *** =feedbacks
 - No: some commits have more than one parent.
 - No: some commits have more than one parent.
@@ -158,6 +160,8 @@ Switch to the `summary-statistics` branch.
 
 *** =hint1
 
+Use `git checkout` with the name of the branch as an argument.
+
 *** =sample_code1
 ```{shell}
 ```
@@ -184,6 +188,8 @@ Ex() >> test_student_typed(r'\s*git\s+checkout\s+summary-statistics\s*',
 Use `git rm` to delete `report.txt`.
 
 *** =hint2
+
+Use `git rm` with the name of the file as an argument.
 
 *** =sample_code2
 ```{shell}
@@ -212,6 +218,8 @@ Commit your change with `-m "Removing report" as a message.
 
 *** =hint3
 
+Use `git commit` with `-m` and the message (in quotes to preserve the spaces).
+
 *** =sample_code3
 ```{shell}
 ```
@@ -238,6 +246,8 @@ Ex() >> test_student_typed(r'\s*git\s+commit.+\s*',
 Use `ls` to check that it's gone.
 
 *** =hint4
+
+Run the command as shown.
 
 *** =sample_code4
 ```{shell}
@@ -266,6 +276,8 @@ Switch back to the `master` branch.
 
 *** =hint5
 
+Use `git checkout` and the name of the branch you want to switch to.
+
 *** =sample_code5
 ```{shell}
 ```
@@ -292,6 +304,8 @@ Ex() >> test_student_typed(r'\s*git\s+checkout\s+master\s*',
 Use `ls` to ensure that `report.txt` is still there.
 
 *** =hint6
+
+Run the command as shown.
 
 *** =sample_code6
 ```{shell}
@@ -339,6 +353,8 @@ Create a new branch called `deleting-report`.
 
 *** =hint1
 
+Use `git checkout` with `-b` and the name of the branch you want to create.
+
 *** =sample_code1
 ```{shell}
 ```
@@ -365,6 +381,8 @@ Ex() >> test_student_typed(r'\s*git\s+checkout\s+-b\s+deleting-report\s*',
 Use `git rm report.txt` to delete the report.
 
 *** =hint2
+
+Run the command as shown.
 
 *** =sample_code2
 ```{shell}
@@ -393,6 +411,8 @@ Commit your changes with a log message.
 
 *** =hint3
 
+Use `git commit` with `-m` and a message in quotes.
+
 *** =sample_code3
 ```{shell}
 ```
@@ -420,6 +440,8 @@ Use `git diff` with appropriate arguments to compare the `master` branch
 with the new state of the `deleting-report` branch.
 
 *** =hint4
+
+The two branches `master` and `deleting-report` should be separated by `..` with no spaces.
 
 *** =sample_code4
 ```{shell}
@@ -476,12 +498,16 @@ with the message "Merging summary statistics."
 
 *** =hint1
 
+Use `git merge` with `summary-statistics` as the first argument (the "from" branch)
+and `master` as the second (the "to" branch).
+
 *** =sample_code1
 ```{shell}
 ```
 
 *** =solution1
 ```{shell}
+# Run this command *without* the '-no-edit' flag:
 git merge --no-edit -m "Merging summary statistics" summary-statistics master
 ```
 
@@ -540,6 +566,8 @@ what conflicts does Git report?
 
 *** =hint
 
+Look for lines with `+` or `-` in front of them.
+
 *** =feedbacks
 - Correct: Git can merge the deletion of line A and the addition of line C automatically.
 - No: Git can merge the deletion of line A automatically.
@@ -596,12 +624,15 @@ into the `master` branch (the destination).
 
 *** =hint1
 
+Use `git merge` with the "from" and "to" branch names in that order.
+
 *** =sample_code1
 ```{shell}
 ```
 
 *** =solution1
 ```{shell}
+# Run this command *without* the '-no-edit' flag:
 git merge --no-edit -m "Merging altered report title" alter-report-title master
 ```
 
@@ -622,6 +653,8 @@ Ex() >> test_student_typed(r'\s*git merge.+alter-report-title\s*master\s*',
 Use `git status` to see which file has conflicts.
 
 *** =hint2
+
+Run the command as shown.
 
 *** =sample_code2
 ```{shell}
@@ -649,6 +682,8 @@ Ex() >> test_student_typed(r'\s*git\s+status(.+)?\s*',
 Use `nano` to edit the file and remove the conflict markers.
 
 *** =hint3
+
+Use `nano` and the filename.
 
 *** =sample_code3
 ```{shell}
@@ -678,6 +713,8 @@ Add the merged file to the staging area.
 
 *** =hint4
 
+Use `git add` with `report.txt` as an argument.
+
 *** =sample_code4
 ```{shell}
 ```
@@ -704,6 +741,8 @@ Ex() >> test_student_typed(r'\s*git\s*add\s*report\.txt\s*',
 Commit your changes with a log message.
 
 *** =hint5
+
+Use `git commit` with `-m` and a message in quotes.
 
 *** =sample_code5
 ```{shell}
