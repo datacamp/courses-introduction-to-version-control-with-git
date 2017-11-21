@@ -167,7 +167,8 @@ Ex() >> test_mc(2, [e1, c2, e3, e4])
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:bc52cf1174
 ## How can I check the state of a repository?
 
-The first step in using Git is to check the **status** of your repository's files.
+When you are using Git,
+you will frequently want to check the **status** of your repository.
 To do this,
 run the command `git status`,
 which displays a list of the files that have been modified
