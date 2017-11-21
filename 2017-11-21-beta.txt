@@ -1,20 +1,3 @@
-How can I check the state of a repository?
-other
-I think this sentence needs to be concise, [with the name of the
-command], to avoid confusion. "Use a single Git command to discover
-which file(s) have been changed since the last save." i.e. Use 'git
-status' to discover...
-
-How can I check the state of a repository?
-other
-In the console there is the `cd dental` command. Students may question
-what this command actually does.
-
-How can I commit changes selectively?
-other
-I've done this exercise before... was the point to commit two,
-separate files?
-
 How can I create a copy of an existing repository?
 other
 Not clear that the target directory should be specified in the clone

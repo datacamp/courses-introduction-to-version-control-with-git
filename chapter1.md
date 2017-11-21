@@ -177,8 +177,8 @@ since the last time changes were saved.
 
 <hr>
 
-You are in the `dental` repository.
-Use a single Git command to discover which file(s) have been changed since the last save.
+We have put you in the `dental` repository.
+Use `git status` to discover which file(s) have been changed since the last save.
 Which file(s) are listed?
 
 *** =instructions
