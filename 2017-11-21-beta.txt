@@ -1,0 +1,1142 @@
+How can I change my Git configuration?
+typo-ex
+every in line one
+
+How can I change my Git configuration?
+typo-ex
+first statement:  However, there are two you should set on 'ever'
+computer you use... It should be 'every'
+
+How can I check the state of a repository?
+other
+I think this sentence needs to be concise, [with the name of the
+command], to avoid confusion. "Use a single Git command to discover
+which file(s) have been changed since the last save." i.e. Use 'git
+status' to discover...
+
+How can I check the state of a repository?
+other
+In the console there is the `cd dental` command. Students may question
+what this command actually does.
+
+How can I commit changes selectively?
+other
+I've done this exercise before... was the point to commit two,
+separate files?
+
+How can I create a copy of an existing repository?
+other
+Not clear that the target directory should be specified in the clone
+command
+
+How can I create a copy of an existing repository?
+typo-ex
+Path is stated as '/home/repl/dental' instead of '/home/rep0/dental'
+
+How can I merge two branches with conflicts?
+other
+I don't know what this means, and I would have never figured out this
+solution:  'echo nano report.txt'.
+
+How can I merge two branches with conflicts?
+other
+I wanted to do a check of the given solution, but by doing this, the
+next assignment went into error. Add the possibility to test the code
+
+How can I merge two branches with conflicts?
+other
+Need to give students an idea of how to save and exit with
+nano. ctrl+X etc
+
+How can I merge two branches with conflicts?
+other
+echo nano report.txt is a suddenly asked for answer, doesn't really
+fit in the exercise
+
+How can I merge two branches with conflicts?
+other
+the echo nano  code is not properly explained, I had no clue what I
+needed to do+ what is done now
+
+How can I merge two branches with conflicts?
+other
+while entering 'git nano', terminal flagged a fatal error but the
+exercise was completed
+
+How can I merge two branches?
+other
+Here is also unclear what to do after the editors opens.
+
+How can I remove unwanted files?
+other
+git ls is working properly, but the output is giving an error 
+
+How can I see what changed between two commits?
+other
+I get differences referring to data/southern and data/western. None of
+the suggested answers includes both files.
+
+How can I see what changed between two commits?
+solution-not-correct
+why ist southern.csv not changed?
+
+How can I see who changed what in a file?
+solution-not-correct
+It should be 7, as indicated by git
+
+How can I tell what I have changed?
+other
+I am wondering what I see there? Does someone added a word to a file?
+What are the changes specifically?
+
+How can I tell what I have changed?
+other
+I don't like that in every exercise we first use cd dental without any
+explanation what it does... I would prefer one explanation sentence in
+the introduction somewhere
+
+How can I tell what I have changed?
+other
+Please explain what can be seen in the output, even after the command
+has been executed.
+
+How can I tell what I have changed?
+other
+The answer "git diff filename" is unjustly approved. The console gives
+an error while the exercise is being approved.
+
+How can I tell what I have changed?
+other
+You tell me that i'm in the dental repository, but maybe show me how
+to find that out for myself.  Also, this slide should be shown
+earlier.  Particularly the diagram.  Also, the terminal is doing this
+weird reload thing where it blinks and interrupts my typing.
+
+How can I tell what's going to be committed?
+feedback-not-helpful
+In the text and incorrect submission message mention: git diff -r HEAD
+filename It is not clear to me  that you need to add a the folder of
+the file and ad d | cat at the end. Ok the folder I can kind of
+imagine, but '| cat'  at the end is totally new to me.    
+
+How can I tell what's going to be committed?
+not-accepted-right-answer
+First, there are two changed files, not one. Second, why on Earth
+would you need to pipe the output of git diff into cat???
+
+How can I tell what's going to be committed?
+not-accepted-right-answer
+Got the answer because I tried every filename I have seen after step
+1. Unfortunately, nowhere is the hint that I have to use the directory
+path incl. the filename but only the filename! Guess that should be
+fixed?! Maybe it's me but I thought filename is only "northern.csv"
+and data/northern.csv is a whole directory path incl the filename...
+
+How can I tell what's going to be committed?
+not-accepted-right-answer
+Using git diff -r HEAD shows two files, I guess: northern.csv and
+eastern.csv. Whatever, both files are not accepted during step 2. Next
+I have to click on solution and feel curious about what will be the
+answer...
+
+How can I tell what's going to be committed?
+other
+$ git diff -r HEAD northern.csv fatal: ambiguous argument
+'northern.csv': unknown revision or path not in the working tree. Use
+'--' to separate paths from revisions, like this: 'git <command>
+[<revision>...] -- [<file>...]'
+
+How can I tell what's going to be committed?
+other
+I broke the interface by typing: git diff -r HEAD and then hit Enter
+
+How can I tell what's going to be committed?
+other
+In part a of the exercise, when I entered git diff northern.csv, the
+terminal displayed a fatal error. However, the task was marked as
+completed.
+
+How can I tell what's going to be committed?
+other
+Is is not very clear that you are aiming at the northern file in
+assignment 2
+
+How can I tell what's going to be committed?
+other
+On question 1 and 2 the answer "git diff -r HEAD data/northern.csv" is
+accepted. I was curious why and showed the answers to both
+questions. The answers given by DataCamp are different from the
+answers I gave, but DataCamp still approved my answers. Also, in the
+answers provided by DataCamp the term "| cat" isn't introduced in this
+exercise or the previous excercises.
+
+How can I tell what's going to be committed?
+other
+Rephrase the first sentence to something like:  "In order to compare
+the current file to the staged changes..."
+
+How can I tell what's going to be committed?
+other
+The instructions are unclear about what the file name should be.  It
+should actually be the file path 'data/eastern.csv' not 'eastern.csv'.
+And as I am writing this the terminals resets and forces the cursor
+out of this form and back into the terminal.  That's very annoying.
+
+How can I tell what's going to be committed?
+other
+There are no slides available for reference.
+
+How can I tell what's going to be committed?
+other
+This exercise is a bit vague on what filenames it's asking to execute
+commands on
+
+How can I tell what's going to be committed?
+other
+git diff -r HEAD reports that there are two changed files, not
+one. Part 2 of the exercise is thus meaningless.
+
+How can I tell what's going to be committed?
+other
+in this point, you don't mention folders yet. it may be confuse to
+students
+
+How can I tell what's going to be committed?
+other
+in this point, you don't mention folders yet. it may be confuse to
+students
+
+How can I tell what's going to be committed?
+other
+in this point, you don't mention folders yet. it may be confuse to
+students
+
+How can I tell what's going to be committed?
+other
+in this point, you don't mention folders yet. it may be confuse to
+students
+
+How can I tell what's going to be committed?
+other
+in this point, you don't mention folders yet. it may be confuse to
+students
+
+How can I tell what's going to be committed?
+other
+in this point, you don't mention folders yet. it may be confuse to
+students
+
+How can I tell what's going to be committed?
+solution-not-correct
+Using git status shouldn't be penalised AND git add .  is not
+accepted.  If the file has to be explicitly specified, the feedback on
+the submission should contain a clearer instruction: instead of saying
+'Incorrect Submission Use git add .'  it should say 'Incorrect
+Submission Use git add filename'.
+
+How can I tell what's going to be committed?
+typo-ex
+Not really a typo, but the first task requires you to check which
+files differ from the last saved session, while we only need to check
+one file
+
+How can I undo all of the changes I have made?
+not-accepted-right-answer
+git reset HEAD does not trigger correct answer
+
+How can I undo all of the changes I have made?
+other
+Always tried it with "git reset HEAD" how should i know that I need to
+make a "." at the end? Needed the solution. Error didn't helped
+either. Output is the same as without the "."
+
+How can I undo all of the changes I have made?
+other
+I don't know how to answer the question, therefore I can't complete
+the course and give the general feedback.
+
+How can I undo all of the changes I have made?
+other
+I don't understand what to do here. both git reset HEAD and git reset
+HEAD data produce the same result. And both are not accepted as
+answers
+
+How can I undo all of the changes I have made?
+other
+git reset HEAD does not work, with or without filenames.
+
+How can I unstage a file that I have staged?
+other
+This seems like really important functionality. More examples of this
+please!
+
+How can I view a repository's history?
+not-accepted-right-answer
+Answer = "Fixed bug and regenerated results"
+
+How can I view a repository's history?
+other
+Git log modification dates are a bit confusing because there are only
+two unique date/time stamps  out of more than 10.
+
+How can I view a repository's history?
+other
+None of the solutions are correct
+
+How can I view a repository's history?
+other
+Where is "Added summary report file?" on this log?
+
+How can I view a specific commit?
+not-accepted-right-answer
+"git show aa5991" or "git show aa5991c6" throws an error... I don't
+know if I undertood something wrong but as I understodd it I should
+get the solution with that code
+
+How can I view a specific commit?
+not-accepted-right-answer
+The answer to the  previous exercise appears wrong to me. The commit
+hash in my console was commit c626d1c6f88045e7fe39c5e161a5894789f7cf09
+which did not match any of the answers.
+
+How can I view a specific commit?
+not-accepted-right-answer
+git show "hash" doesn't work
+
+How can I view a specific commit?
+not-accepted-right-answer
+git show aa5991c6 gives a fatal error again..
+
+How can I view a specific commit?
+other
+"git show aa5991c6" says 'fatal: ambiguous...
+
+How can I view a specific commit?
+other
+Additionally, using 'git log' shows that note of the hashes match the
+aa5991c6
+
+How can I view a specific commit?
+other
+Again, I cannot find the commit that starts with "aa5991c6". Maybe I
+am looking at a different directory. But it doesn't say anything about
+switching directories?
+
+How can I view a specific commit?
+other
+Running the git show aa5991c6 gives:  fatal: ambiguous argument
+'aa5991c6': unknown revision or path not in the working tree. Use '--'
+to separate paths from revisions, like this: 'git <command>
+[<revision>...] -- [<file>...]'
+
+How can I view a specific commit?
+other
+The command "git show aa5991c6" results in an error
+
+How can I view a specific commit?
+other
+The git show command is not working in the terminal. It is generating
+a fatal error.
+
+How can I view a specific commit?
+other
+The hash provided doesn't exist
+
+How can I view a specific commit?
+other
+The terminal is pretty buggy and doesn't seem be able to access a
+commit with the hash provided
+
+How can I view a specific commit?
+other
+There is no aa5991c6
+
+How can I view a specific commit?
+other
+There is no aa5991c6 hash in the log.
+
+How can I view a specific commit?
+other
+git show aa5991c6 returns an error message not actual logs
+
+How can I view a specific commit?
+other
+git show just will not work.  git status works.  git log works.  The
+hint only reiterates what's already in the description revealing no
+more useful information.
+
+How can I view a specific commit?
+other
+my current working directory is  /home/repl/dental , note when i type
+"git show aa5991c6" at the prompt in the currrent working director it
+gives me error. Fatal : Ambigious. argument
+
+How can I view a specific commit?
+other
+typing what has been provided ended in error
+
+How can I view a specific commit?
+solution-not-correct
+According to the instructions, should not the solution be "git show
+aa5991"?
+
+How can I view a specific commit?
+solution-not-correct
+git show xxxxx shows fatal err
+
+How can I view a specific commit?
+solution-not-correct
+instruction and hint  require to get the info from the hash that
+starts with aa5991c6, by typing git show and the first 6
+characters. So I typed git show aa5991, but got the following error
+message : "fatal: ambiguous argument 'aa5991' : unknown revision or
+path ........."
+
+How can I view a specific commit?
+typo-ex
+The hash provided aa5991c6 does not match the repository. It might
+also be helpful for people not familiar with the console to let them
+know somewhere that the sort cut for pasting into the console is
+shift-insert.
+
+How can I view a specific commit?
+typo-ex
+git show aa5991c6 gave nothing but an error.
+
+How can I view the differences between branches?
+typo-ex
+The exercise says: git diff revision-1..revision-1     It should be
+git diff revision-1..revision-2
+
+How can I view the differences between branches?
+typo-ex
+The instructions say to list files in branch that are different than
+their equivalents in master, when you want how many files are
+different between branch and master.
+
+How can I view the differences between branches?
+typo-ex
+The second line should be 'git diff revision-1..revision-2'
+
+How can I view the differences between branches?
+typo-ex
+git diff revision-1..revision-1  ??
+
+How do I add new files?
+other
+I had no clue on which file to add
+
+How do I add new files?
+other
+This exercise was going superbly until the commit.  I forgot to put
+'-m', and the text editor opened.  And I still have no idea how to
+close it after typing the message.  I love the bullet tasks except for
+the fact that the ability to move on to one depends on getting the
+other correct.  It might be more useful to give one free hint if the
+task is completed incorrectly.  Maybe it does that already.
+
+How do I add new files?
+other
+it still accepts it as im typing 'git add reports.t' not sure if it a
+bug?
+
+How do I commit changes?
+feedback-not-helpful
+I dropped the period on my commit message and it was not accepted,
+which is fine but I had to go google how to uncommit without unstaging
+which might be hard for new users of git. Might need better error
+message.
+
+How do I commit changes?
+not-accepted-right-answer
+Answering git commit "Adding a reference." is not accepted although it
+seems to be the right solution
+
+How do I commit changes?
+not-accepted-right-answer
+As the title says
+
+How do I commit changes?
+not-accepted-right-answer
+Committing doesn't work with message givien
+
+How do I commit changes?
+not-accepted-right-answer
+I used "git commit -m "Adding a reference" but got "Incorrect
+submission"
+
+How do I commit changes?
+not-accepted-right-answer
+My Answer is correct. I tried my answer the the solution answer. still
+the parser throws an error.
+
+How do I commit changes?
+other
+I typed 'git commit' on here and hit enter, then got completely  lost
+on the next screen and was not able to add a message - perhaps you
+should block this function at this stage?
+
+How do I commit changes?
+other
+I typed 'git commit' on here and hit enter, then got completely  lost
+on the next screen and was not able to add a message - perhaps you
+should block this function at this stage?
+
+How do I re-stage files?
+not-accepted-right-answer
+The command works in one way only
+
+How do I re-stage files?
+not-accepted-right-answer
+The exercise accepts 'git add report.txt data/northern.csv' but not
+'git add data/northern.csv report.txt' which should also be correct
+
+How do I re-stage files?
+other
+I am being asked to stage two files.  ls shows 'bin', 'data',
+'report.txt', and 'results'.  git status shows that report.txt had
+already been staged, and data/northern.csv has not been staged, even
+though we staged it in the previous exercise. 'git add
+data/northern.csv report.txt' returns an incorrect submission message
+with a reminder to add two filenames.
+
+How do I re-stage files?
+other
+Only "git add report.txt data/northern.csv" worked, not "git add
+data/northern.csv report.txt"
+
+How do I re-stage files?
+other
+in the exercise, since report.txt is already committed, why does the
+exercise expect us to add that again?
+
+How do I re-stage files?
+other
+solution should accept different sequence of files as well, or explain
+that order matters
+
+How do I restore an old version of a file?
+other
+Again, I'm not in the dental directory, so even though DC accepts my
+solution, the shell doesn't show what it is supposed to...
+
+How do I restore an old version of a file?
+other
+I should be report.txt , and not report.md
+
+How do I restore an old version of a file?
+other
+I used "git  checkout report.md"  rather than "git checkout --
+report.md" and it check marked it green.  Not sure if that is correct.
+
+How do I restore an old version of a file?
+other
+I was able to unlock the first exercise with the Code "git log
+report.md" but it threw an error
+
+How do I restore an old version of a file?
+other
+No output for the command git log report.md
+
+How do I restore an old version of a file?
+other
+The first bullet task return a correct submission but the terminal
+returned an error with 'got log'  no filename.
+
+How do I restore an old version of a file?
+other
+While specifying report.md, teh command prompt gave error but the
+entire exercise was completed.
+
+How do I restore an old version of a file?
+other
+git log report.md command returns an error. Hash not retrievable
+
+How do I restore an old version of a file?
+other
+git log report.md' does not give any information. let alone any hash
+numbers. we get an error. I believe that this can be fixed by changing
+report.md to report.txt. report.md does not exist in the directory but
+report.txt does exist. 
+
+How do I restore an old version of a file?
+other
+in the first activity, entering git log report.md completed the
+activity but produced a fatal error
+
+How do I restore an old version of a file?
+solution-not-correct
+The file provided is report.md instead of report.txt  To the last task
+-commit the restored version-, the message for restoring it's not
+provided  
+
+How do I restore an old version of a file?
+solution-not-correct
+git checkout aoaoaoao report.md is provided solution, which it kind of
+weird.. 
+
+How do I restore an old version of a file?
+typo-ex
+Correct filename is report.txt, not report.md
+
+How do I restore an old version of a file?
+typo-ex
+exercise says report.md but report.txt is in the directory.
+
+How do I restore an old version of a file?
+typo-ex
+report.md should be report.txt
+
+How do I restore an old version of a file?
+typo-ex
+report.md should be report.txt, submission of answers needs to be able
+to accept report.txt as well.
+
+How do I write a better log message?
+feedback-not-helpful
+The instructions explicitly say: "Use git commit *without* -m to
+commit the changes." How is git commit -m "Adding a reference." a good
+solution?
+
+How do I write a better log message?
+not-accepted-right-answer
+Solution offered is git commit -m "Adding a reference." - This is not
+what was asked
+
+How do I write a better log message?
+not-accepted-right-answer
+the question ask for commit without -m, but the answer is wrinting
+with -m
+
+How do I write a better log message?
+other
+How do i use this text editor?  Once I enter the message then what do
+I do?  I can't get out of the text editor.
+
+How do I write a better log message?
+other
+I followed as stated in the TASK 1/1, However it is not clear what
+needs to be done. In terms of what comment should go at the Top,
+whether we need to save it and then exit. There is no instruction as
+to what needs to be done to exit the Nano editor and i cannot move
+forward either.
+
+How do I write a better log message?
+other
+I have no idea how to save this message. And what do those commands
+below [Read 7 lines] mean and how can I use them?
+
+How do I write a better log message?
+other
+It's not clear what to do after the Nano editor appears
+
+How do I write a better log message?
+other
+Need some help with using the editor.
+
+How do I write a better log message?
+other
+Not clear what I'm supposed to do, apart from adding git commit 
+
+How do I write a better log message?
+other
+Not clear where to write the message.  The exercise says to avoid
+using the git commit -m "Adding a reference." way. The Solution states
+the opposite. Still not sure what I was supposed to learn from this
+exercise.
+
+How do I write a better log message?
+other
+Once the change is committed without stating any comment, there is no
+further instruction regarding what is to be done.
+
+How do I write a better log message?
+other
+While changing the size of the terminal window, the text is not
+properly displayed.
+
+How do I write a better log message?
+other
+While reporting issues, the cursor automatically shifts to the
+terminal window half way through while reporting the issue.
+
+How do I write a better log message?
+solution-not-correct
+Again, git commit without -m dos not work
+
+How do I write a better log message?
+solution-not-correct
+When I've entered my message, how do I continue? The solution provided
+is not correct.
+
+How do I write a better log message?
+typo-ex
+The help message reads 'Use git add without -m.' - this should say
+'Use git commit with -m"
+
+How does Git compare to alternatives?
+other
+Instruction section discusses alternatives but question asks about
+types of work. Minor
+
+How does Git compare to alternatives?
+other
+Language is a bit ambiguous on this question. The title could be more
+like: 'How is Git compared to other work sharing alternatives? Git and
+other version control systems are the best way to track and share
+work. However, some other popular alternatives are.....'
+
+How does Git compare to alternatives?
+other
+Should the following: 'Git and other version control systems are the
+only way to track and share work. Some popular alternatives are:'
+actually read 'Git and other version control systems are NOT the only
+way to track and share work. Some popular alternatives are:' ?? Also,
+is it a bug that I can't press enter in the 'report an issue' box?
+
+How does Git compare to alternatives?
+other
+simple grammar error in the last sentence:  "...as the number of
+contributors and comments grows." ['grow' instead of 'grows']. 
+
+How does Git compare to alternatives?
+typo-ex
+Do you mean "aren't the only ..." because you say they are the only
+Thing and then you Show alternatives?
+
+How does Git compare to alternatives?
+typo-ex
+Git and other version control systems are the only way to track and
+share work. -> change to 'are not the only way'
+
+How does Git compare to alternatives?
+typo-ex
+Git and other version control systems are {not} the only way to track
+and share work. Some popular alternatives are
+
+How does Git compare to alternatives?
+typo-ex
+Missing word:  Git and other version control systems are NOT the only
+way to track and share work. Some popular alternatives are:
+
+How does Git store information?
+feedback-not-helpful
+I don't understand the instructions and answer given.
+
+How does Git store information?
+not-accepted-right-answer
+I'm not familiar with git so I could be wrong here. But if the bottom
+commit is the most recent it appears that the report file doesn't
+change and that the actual data does as it's a new blob, so
+data/northern.csv should be the correct answer?
+
+How does Git store information?
+other
+I'm not sure that the answer is correct
+
+How does Git store information?
+other
+In the previous exercise you should really tell People how to get back
+from the editor
+
+How does Git store information?
+other
+The bottom most commit shows two files but it's not clear which one
+was changed.  How am I supposes to know what represents a change?
+
+How does Git store information?
+solution-not-correct
+report and data/northern.csv
+
+How does Git store information?
+typo-ex
+A *commit ' should be 'A *commit*' to make it bold.
+
+What are conflicts?
+other
+It's unclear that the answer is just line B. Does altering the
+position of line B count as change? This only occurred in the master
+file because line A was deleted. it might be helpful to clarify that a
+line is considered to be altered if it's position alters (because of
+the deletion of another line) or only if it's contents are altered.
+
+What are conflicts?
+typo-ex
+No: Git can merge THE deletion of line A and the addition of line C
+automatically instead of teh
+
+What are conflicts?
+typo-ex
+When you select a wrong answer, 'the' is written as 'teh'
+
+What happens if I try to pull when I have unsaved changes?
+other
+The terminal doesn't flag an issue with the initial 'git pull origin
+master' command
+
+What is Git's equivalent of a relative path?
+feedback-not-helpful
+The most recent one changed the 'report.txt' [git show HEAD]. What is
+required is: Before that recent, it changed the 'western.csv' [git
+show HEAD~1]. For git show HEAD~2, it changed both 'western.csv' and
+'southern.csv'. Hence the feedback saying 'it also changed another
+file' is wrong.
+
+What is Git's equivalent of a relative path?
+not-accepted-right-answer
+HEAD~1, HEAD~2 arent working
+
+What is Git's equivalent of a relative path?
+not-accepted-right-answer
+I can only see western.csv Maybe I'm not looking properly?
+
+What is Git's equivalent of a relative path?
+not-accepted-right-answer
+The instructions say to use HEAD to view the most recent commit and
+HEAD~1 to view the one before that, but nothing happens when I type in
+"git diff HEAD" and "git diff HEAD~2" seems to give me the correct
+answer instead of HEAD~1.
+
+What is Git's equivalent of a relative path?
+not-accepted-right-answer
+git show HEAD~1 gave a commit message of changed data for the western
+region, and as far as I can tell only changed 1 file data/western.csv
+
+What is Git's equivalent of a relative path?
+other
+Again there is no explanation as  why report.txt is changed.
+
+What is Git's equivalent of a relative path?
+other
+EUREKA!!!  The commands worked!!  The output of 'git show HEAD~1
+returns a diff of a particular commit.  I don't know if this is
+actually the intended output.  But I can tell there are particular
+sections, each with specific information.  It would be nice to have an
+annotated diagram naming theses sections (if they in fact have names)
+and detailing what the information refers to.  I do remember one
+exercise with an explanation saying something about pluses (+) and
+minuses (-) correlating to additions and deletions.  But there's so
+much more information.
+
+What is Git's equivalent of a relative path?
+other
+The directions are ambiguous as to what the student needs to do. It is
+unclear what they expect the student to accomplish with this exercise.
+
+What is Git's equivalent of a relative path?
+other
+The directions are ambiguous as to what the student needs to do. It is
+unclear what they expect the student to accomplish with this exercise.
+
+What is Git's equivalent of a relative path?
+other
+Unable to use the git HEAD~1 command.
+
+What is Git's equivalent of a relative path?
+other
+git show HEAD~1 showed that only the western.csv was changed
+
+What is Git's equivalent of a relative path?
+solution-not-correct
+"git commit HEAD~1" should work, or maybe not?
+
+What is Git's equivalent of a relative path?
+solution-not-correct
+The commit only shows changes to data/western.csv but this answer is
+not accepted
+
+What is Git's equivalent of a relative path?
+solution-not-correct
+Using git show HEAD~1 to look at the commit just before the last, it
+gives only info on western.csv, but the answer, 2, shows as incorrect.
+
+What is a branch?
+other
+The question should be 'If each branch is a commit' and not 'if each
+box is a commit'
+
+What is a hash?
+feedback-not-helpful
+I couldn't get the history using git log dental, git log repl/dental
+or any other path with or without / as a first path character. So I
+changed my location with cd dental and ran git log once there. But I
+couldn't read any similar character in the history I obtained,
+compared with ones in the instructions. The hint wasn't helpful
+either.
+
+What is a hash?
+feedback-not-helpful
+In the first chapter, a hash was identified from the results of 'git
+log' command. But here, it says hash can't be seen using the 'log'
+command. In fact, none of the hash numbers match any of the possible
+answers. [very confusing]
+
+What is a hash?
+not-accepted-right-answer
+None of the possible answers are printed by commands: 1. cd dental;
+2. git log
+
+What is a hash?
+not-accepted-right-answer
+commit c626d1
+
+What is a hash?
+not-accepted-right-answer
+git log gives fatal error: not a git repository (or any of the parent
+directories): .git
+
+What is a hash?
+not-accepted-right-answer
+the answer should be "c626d1c6f88045e7fe39c5e161a5894789f7cf09"
+
+What is a hash?
+other
+Could not find hashs in dental repository. Also git log path doesn't
+work for git log dental/ but does work inside dental folder. Lastly
+sometimes command line is unresponsive after git log command.
+
+What is a hash?
+other
+Have we gone over how to find out what directory we are in currently
+in?  I typed 'git log' and nothing returned.  I typed git status, and
+nothing returned.  I typed 'cd dental', and then typed 'git log' and a
+list of commits were returned....but none matching the numbers given
+in the answer choices.  It would be nice to have a verbal explanation
+of the steps necessary to answer the question...especially if some of
+the commands have not been introduced.
+
+What is a hash?
+other
+I cannot find the commit that begins with "2e1b743c" in the commit
+log.
+
+What is a hash?
+other
+I don't believe a 'pseudo-random number generator [is] called a hash
+function'
+
+What is a hash?
+other
+I typed: git log, but instead of showing the log, I get fatal: Not a
+git repository (or any of the parent directories): .git
+
+What is a hash?
+other
+None of the answers are present
+
+What is a hash?
+other
+None of these answers provided are correct.  Need to run 'cd /dental'
+then 'git log'. After spacing down to the bottom. NONE of the hash's
+match the answers provided.
+
+What is a hash?
+other
+The console isn't in the 'dental' git directory, is this intentional?
+How do I get to it?
+
+What is a hash?
+other
+The directory doesn't seem to be present when commands are entered
+into the terminal
+
+What is a hash?
+other
+The terminal wasn't in the dental directory. Is the student supposed
+to know the dir/cd terminal commands?
+
+What is a hash?
+other
+Upon writing any git command (e.g. git status, git diff), shell claims
+that I am not in a git directory
+
+What is a hash?
+other
+Using git log on cd dental, none of the suggested answers (first few
+characters) matches any hash of the returned logs.
+
+What is a hash?
+other
+commit 04975ea3d13221f0790cdb1add044fa7cbf1f3ea    This is the most
+recent commit when we use the git log command in the console, so how
+the correct answer 2e1b743c related to this. this is unclear
+
+What is a hash?
+other
+in the exercise, none of the commands work in the terminal. We are
+asked the first 6 characters of the latest commit but the log command
+does not work.
+
+What is a hash?
+other
+tried git log but no hash matched the answer
+
+What is a hash?
+solution-not-correct
+You need to use cd dental before entering any git quires, which is
+likely to confuse people as it wasn't required in previous
+chapter. Additionally the possible answers don't appear to match the
+hashes from the commits.
+
+What is a hash?
+solution-not-correct
+git log isnt working, unfortunatly.
+
+What is a hash?
+typo-ex
+...I guess since after git log I got something starting with
+c626d1c6... not 2e1b743c which was supposed to be correct answer.
+
+What is in a diff?
+feedback-not-helpful
+It could be helpfull to explain more about the correct
+answer. Although I've chosen the correct answer, I would like to be
+confirmed that my thoughts were on the right track (or not).
+
+What is in a diff?
+not-accepted-right-answer
+It seems like two lines have been changed: 22 and 4, but this is not
+the correct answer..
+
+What is in a diff?
+other
+I do not understand the exercise here... what is the file? is it
+northern.csv of bin/teeth? Should be more clear in the exercise.
+
+What is in a diff?
+other
+I don't get any output when I type "git diff bin/teeth" or "git diff
+teeth" (while in the bin directory)
+
+What is in a diff?
+other
+I don't understand the differences between the a/data/northern.csv and
+b/data/northern.csv. What is the meaning of these numbers @@ -22,3
++22,4 @@? The examples showed @@ -1,4 +1,4 @@ and the explanation was
+that four lines (1-4) had been removed and replaced with new lines,
+but there are only two lines below in the line by line listing. Also,
+what do the following lines indicate: 2017-08-13,incisor,
+2017-08-13,wisdom, and 2017-09-07,molar if only the last one
+(+2017-11-01,bicuspid) indicates a change to the repository?
+
+What is in a diff?
+other
+I don't understand what I should have typed in...
+
+What is in a diff?
+other
+In this excercise you need to state how many lines were altered. While
+I saw the one line being added, and correctly picked 1, I did not
+understand the @@ 22,3 22,4 @@, as this is different from the
+example. In the example I thought 1,4 meant lines 1-4. I guess sure
+22,3 does not mean 22-3, so I'm confused even though I got the
+exercise correct.
+
+What is in a diff?
+other
+It is not clear, which file I should check for changes:   Use git diff
+to look at the changes to dental/data/northern.csv. How many lines
+have been changed in the file bin/teeth?
+
+What is in a diff?
+other
+It's a little unclear how @@ -1,4 +1,4 @@ is interpreted. Perhaps it
+would be useful to include the explanation that it's @@ -<start
+line>,<number of lines> +<start line>,<number of lines> @@. As it
+stands it possible to confuse @@ -1,4 as referencing -<start
+line>,<end line> because the end line & number of lines are the same
+
+What is in a diff?
+other
+Regarding "    A line-by-line listing of the changes with - showing
+deletions and + showing additions." What about the lines that has no
+sign in the front? I have got some in my exercises.
+
+What is in a diff?
+other
+Restore session doesn't work
+
+What is in a diff?
+other
+The explanation about lines added or deleted is not clear. It seems
+there are other errors
+
+What is in a diff?
+other
+The following is a little unclear: "A line starting with @@ that tells
+where the changes are being made. Here, the line shows that lines 1-4
+are being removed and replaced with new lines." In my exercises, I get
+-22, 3 and +22, 4, and I am not sure whether it means lines 22-23 has
+been removed, and lines 22, 23, 24 has been added, or to think that
+there are 3 lines being removed and 4 lines being added.
+
+What is in a diff?
+other
+This exercise isn't clear for me. The intro of the question is about
+the file "northern.csv" and the actual question is about the file
+bin/teeth. If you use the command "git diff bin/teeth" nothing
+happens. If you use "git diff" on the file northern.csv you can see
+that one line is added. The answer "1" is correct for the file
+"northern.csv" and not for the file "teeth"
+
+What is in a diff?
+other
+This would be more effective with arrows and explanations on an
+annotated copy of the diff.  Also,  i find i'm always writing 'get'
+instead of 'git' and I wonder what 'git' stands for.  Is it an
+abbreviation for something?  I think I would remember to type 'git' if
+I had something to associate with it.
+
+What is in a diff?
+other
+there is a lack of clarity here: "--- a/report.txt and +++
+b/report.txt, which indicate that lines being removed are prefixed
+with -, while lines being added are prefixed with +." Since a and b
+are place holders, that is to say, both might contain removed and
+added lines, so it is better to use " --- a/report.txt and +++
+a/report.txt, which indicate that lines being removed are prefixed
+with -, while lines being added are prefixed with +."
+
+What's the first step in saving changes?
+other
+Earlier it was stated that the first step was to 'git status'.  Now
+this exercise says the first step is something else, particularly for
+saving changes.  So what was 'git status' the first step of?
+
+What's the first step in saving changes?
+other
+The exercise expects us to use the 'status' command which has not been
+introduced in any prior exercises.
+
+Where does Git store information?
+other
+Clicking the restore session does not restore the session here
+
+Where does Git store information?
+other
+I have had a lot of practice learning about data science but I know
+almost nothing about file structures except for where my file folders
+should be and that the documents I create go into documents, and the
+files I download go in downloads, and bot are easily accessible
+through icons in my file shortcut.  I'm not so sure I understand what
+a root is, and why the .git goes there.  Maybe show some more explicit
+examples because I'm pretty sure the .git can go anywhere you want to
+put it....i think.
+
+Where does Git store information?
+other
+The answer is a bit confusing.  Need to elaborate on what is implied
+by a 'root directory' with respect to where files are stored or which
+folder contains the files.
+
+Where does Git store information?
+other
+This question assumes that the students understand directories. This
+may not be the case for many of the students. It would be beneficial
+for them to have a bit of an introduction to directories and the
+console.
+
+Where does Git store information?
+other
+i guess this question is difficult here. The user may never heard
+about terminal commands
