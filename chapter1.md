@@ -273,7 +273,6 @@ Ex() >> test_student_typed(r'\s*git\s+diff\s*',
 ## What is in a diff?
 
 A **diff** is a formatted display of the differences between two sets of files.
-By default,
 Git displays diffs like this:
 
     diff --git a/report.txt b/report.txt
@@ -299,6 +298,10 @@ This shows:
 - A line-by-line listing of the changes
   with `-` showing deletions and `+` showing additions.
   (We have also configured Git to show deletions in red and additions in green.)
+  Lines that *haven't* changed are sometimes shown before and after the ones that have
+  in order to give context;
+  when they appear,
+  they *don't* have either `+` or `-` in front of them.
 
 Desktop programming tools like [RStudio](https://www.rstudio.com/) can turn diffs like this
 into a more readable side-by-side display of changes;
@@ -308,8 +311,8 @@ or [WinMerge](http://winmerge.org/).
 <hr>
 
 You have been put in the `dental` repository.
-Use `git diff` to look at the changes to `dental/data/northern.csv`.
-How many lines have been changed in the file `bin/teeth`?
+Use `git diff data/northern.csv` to look at the changes to that file.
+How many lines have been changed?
 
 *** =instructions
 - None.
@@ -319,7 +322,7 @@ How many lines have been changed in the file `bin/teeth`?
 
 *** =hint
 
-Use `git diff` and the filename.
+Count the number of lines with `+` or `-` in front of them in the diff.
 
 *** =pre_exercise_code
 ```{shell}
