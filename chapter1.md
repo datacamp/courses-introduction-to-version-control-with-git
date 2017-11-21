@@ -830,12 +830,16 @@ Use `git commit` *without* `-m` to commit the changes.
 
 *** =hint1
 
+Run `git commit` without any arguments.
+(Our solution uses `-m` and a message so that we can automate solution testing.)
+
 *** =sample_code1
 ```{shell}
 ```
 
 *** =solution1
 ```{shell}
+# You should run 'git commit' *without* -m:
 git commit -m "Adding a reference."
 ```
 
