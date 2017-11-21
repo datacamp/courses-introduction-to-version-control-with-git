@@ -604,6 +604,7 @@ with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
 repl.run_command('clear')
 repl.run_command('cd dental')
+repl.run_command('git add data/northern.csv')
 repl.run_command('git commit -m "Adding a record"')
 ```
 
