@@ -72,6 +72,8 @@ Use a single command to convert it to a Git repository.
 
 *** =hint1
 
+Use `git init` with no arguments.
+
 *** =sample_code1
 ```{shell}
 ```
@@ -98,6 +100,8 @@ Ex() >> test_student_typed(r'\s*git\s+init\s*',
 Check the status of your new repository.
 
 *** =hint2
+
+As always, use `git status`.
 
 *** =sample_code2
 ```{shell}
@@ -342,6 +346,8 @@ into the `master` branch of your repository.
 
 *** =hint1
 
+Use `git pull` with the name of the remote (`origin`) and the name of the branch (`master`).
+
 *** =sample_code1
 ```{shell}
 ```
@@ -452,6 +458,8 @@ Re-try the `git pull`.
 
 *** =hint3
 
+Use the same arguments to `git pull` as before.
+
 *** =sample_code3
 ```{shell}
 ```
@@ -513,6 +521,8 @@ add it to the staging area.
 
 *** =hint1
 
+Use `git add` with the name of the changed file.
+
 *** =sample_code1
 ```{shell}
 ```
@@ -540,6 +550,8 @@ Commit your changes with the message "Added more northern data."
 
 *** =hint2
 
+Use `git commit` with `-m` and a message in quotes.
+
 *** =sample_code2
 ```{shell}
 ```
@@ -566,6 +578,8 @@ Ex() >> test_student_typed(r'\s*git\s+commit.+',
 Push your changes to the remote repository's `master` branch.
 
 *** =hint3
+
+Use `git push` with the name of the remote (`origin`) and the name of the branch (`master`).
 
 *** =sample_code3
 ```{shell}
@@ -620,6 +634,8 @@ Use `git push` to push those changes to the remote repository `origin`.
 
 *** =hint1
 
+Use `git push` with the name of the remote (`origin`) and the name of the branch (`master`).
+
 *** =sample_code1
 ```{shell}
 ```
@@ -649,6 +665,8 @@ Use `git pull` to bring your repository up to date with `origin`.
 
 *** =hint2
 
+Use `git pull` with the name of the remote (`origin`) and the name of the branch (`master`).
+
 *** =sample_code2
 ```{shell}
 ```
@@ -676,6 +694,8 @@ Now that you have merged the remote repository's state into your local repositor
 try the push again.
 
 *** =hint3
+
+Use `git push` with the name of the remote (`origin`) and the name of the branch (`master`).
 
 *** =sample_code3
 ```{shell}
