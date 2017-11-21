@@ -150,6 +150,7 @@ add the directory name you want to the command.
 repl = connect('bash')
 repl.run_command('rm -rf dental')
 repl.run_command('clear')
+repl.run_command('pwd')
 ```
 
 *** =type1: ConsoleExercise
@@ -375,7 +376,7 @@ repl = connect('bash')
 repl.run_command('rm -rf dental')
 repl.run_command('git clone file:///home/thunk/repo dental')
 repl.run_command('git -C dental reset --hard HEAD~1')
-repl.run_command('echo "One final thing..." >> dental/report.md')
+repl.run_command('echo "One final thing..." >> dental/report.txt')
 repl.run_command('clear')
 repl.run_command('cd dental')
 ```
