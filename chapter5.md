@@ -373,6 +373,7 @@ repl.run_command('git clone file:///home/thunk/repo dental')
 repl.run_command('cd dental')
 repl.run_command('git reset --hard HEAD~1')
 repl.run_command('echo "One final thing..." >> report.md')
+repl.run_command('clear')
 ```
 
 *** =type1: ConsoleExercise
