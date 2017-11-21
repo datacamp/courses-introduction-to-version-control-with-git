@@ -4,7 +4,7 @@
 HOME_DIR=/home/repl
 HOME_COPY=/.course_home
 USER_GROUP=repl:repl
-COURSE_ID=course_5955
+COURSE_ID=course_5355
 ARCHIVE=setup.zip
 PYTHON=python3
 PIP=pip3
