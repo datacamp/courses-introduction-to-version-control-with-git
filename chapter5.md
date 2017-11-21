@@ -673,7 +673,8 @@ Use `git pull` with the name of the remote (`origin`) and the name of the branch
 
 *** =solution2
 ```{shell}
-git pull origin master
+# Run this command *without* '--no-edit':
+git pull --no-edit origin master
 ```
 
 *** =sct2
