@@ -121,6 +121,8 @@ while lines that it added are prefixed with `+`.
 
 <hr>
 
+You have been put in the `dental` directory.
+(We will now stop reminding you of this...)
 How many files were changed by the commit whose hash starts with `aa5991c6`?
 (Remember, you only need to type the first few characters of the hash.)
 

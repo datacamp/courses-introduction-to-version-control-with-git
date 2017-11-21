@@ -177,7 +177,7 @@ since the last time changes were saved.
 
 <hr>
 
-We have put you in the `dental` repository.
+You have been put in the `dental` repository.
 Use `git status` to discover which file(s) have been changed since the last save.
 Which file(s) are listed?
 
@@ -446,7 +446,8 @@ repl.run_command('git add data/northern.csv')
 
 *** =instructions1
 
-You have been put in the `dental` repository.
+You have been put in the `dental` repository,
+and `data/northern.csv` has been added to the staging area.
 Use `git diff` with appropriate arguments to see how files differ from
 the last saved revision.
 
@@ -570,7 +571,8 @@ repl.run_command('git add report.txt')
 
 *** =instructions1
 
-You have been put in the `dental` repository.
+You have been put in the `dental` repository,
+and `report.txt` has been added to the staging area.
 Use one Git command to check the status of the repository.
 
 *** =hint1
@@ -814,7 +816,8 @@ repl.run_command('git add report.txt')
 
 *** =instructions1
 
-You have been put in the `dental` repository.
+You have been put in the `dental` repository,
+and `report.txt` has been added to the staging area.
 The changes to `report.txt` have already been staged.
 Use `git commit` *without* `-m` to commit the changes.
 
