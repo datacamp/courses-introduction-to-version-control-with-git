@@ -246,7 +246,7 @@ repl.run_command('cd dental')
 
 *** =instructions1
 
-You are in the `dental` repository.
+You have been put in the `dental` repository.
 Use `git diff` to see what changes have been made to the files.
 
 *** =hint1
@@ -306,7 +306,7 @@ or [WinMerge](http://winmerge.org/).
 
 <hr>
 
-You are in the `dental` repository.
+You have been put in the `dental` repository.
 Use `git diff` to look at the changes to `dental/data/northern.csv`.
 How many lines have been changed in the file `bin/teeth`?
 
@@ -368,7 +368,7 @@ repl.run_command('cd dental')
 
 *** =instructions1
 
-You are in the `dental` repository.
+You have been put in the `dental` repository.
 Use `git add` to add the file `report.txt` to the staging area.
 
 *** =hint1
@@ -446,7 +446,7 @@ repl.run_command('git add data/northern.csv')
 
 *** =instructions1
 
-You are in the `dental` repository.
+You have been put in the `dental` repository.
 Use `git diff` with appropriate arguments to see how files differ from
 the last saved revision.
 
@@ -570,7 +570,7 @@ repl.run_command('git add report.txt')
 
 *** =instructions1
 
-You are in the `dental` repository.
+You have been put in the `dental` repository.
 Use one Git command to check the status of the repository.
 
 *** =hint1
@@ -690,7 +690,7 @@ rather than when the contents of the directory's files were changed.
 
 <hr>
 
-You are in the `dental` repository.
+You have been put in the `dental` repository.
 Use `git log` to display only the changes made to `data/southern.csv`.
 How many have there been?
 
@@ -814,7 +814,7 @@ repl.run_command('git add report.txt')
 
 *** =instructions1
 
-You are in the `dental` repository.
+You have been put in the `dental` repository.
 The changes to `report.txt` have already been staged.
 Use `git commit` *without* `-m` to commit the changes.
 
