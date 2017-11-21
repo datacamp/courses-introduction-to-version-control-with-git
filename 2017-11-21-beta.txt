@@ -1,38 +1,4 @@
 How can I tell what's going to be committed?
-feedback-not-helpful
-In the text and incorrect submission message mention: git diff -r HEAD
-filename It is not clear to me  that you need to add a the folder of
-the file and ad d | cat at the end. Ok the folder I can kind of
-imagine, but '| cat'  at the end is totally new to me.    
-
-How can I tell what's going to be committed?
-not-accepted-right-answer
-First, there are two changed files, not one. Second, why on Earth
-would you need to pipe the output of git diff into cat???
-
-How can I tell what's going to be committed?
-not-accepted-right-answer
-Got the answer because I tried every filename I have seen after step
-1. Unfortunately, nowhere is the hint that I have to use the directory
-path incl. the filename but only the filename! Guess that should be
-fixed?! Maybe it's me but I thought filename is only "northern.csv"
-and data/northern.csv is a whole directory path incl the filename...
-
-How can I tell what's going to be committed?
-not-accepted-right-answer
-Using git diff -r HEAD shows two files, I guess: northern.csv and
-eastern.csv. Whatever, both files are not accepted during step 2. Next
-I have to click on solution and feel curious about what will be the
-answer...
-
-How can I tell what's going to be committed?
-other
-$ git diff -r HEAD northern.csv fatal: ambiguous argument
-'northern.csv': unknown revision or path not in the working tree. Use
-'--' to separate paths from revisions, like this: 'git <command>
-[<revision>...] -- [<file>...]'
-
-How can I tell what's going to be committed?
 other
 I broke the interface by typing: git diff -r HEAD and then hit Enter
 

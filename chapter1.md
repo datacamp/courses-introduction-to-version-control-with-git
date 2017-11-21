@@ -257,7 +257,7 @@ Use `git diff` to see what changes have been made to the files.
 
 *** =solution1
 ```{shell}
-git diff | cat
+git diff
 ```
 
 *** =sct1
@@ -422,11 +422,12 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*',
 --- type:BulletConsoleExercise key:f208f45d7d
 ## How can I tell what's going to be committed?
 
-In order to compare the file as it currently is
-to the changes in the staging area,
-you can use `git diff -r HEAD filename`.
+To compare a file's current state to the changes in the staging area,
+you can use `git diff -r HEAD path/to/file`.
 The `-r` flag means "compare to a particular revision",
-and `HEAD` is a shortcut meaning "the most recent commit".
+`HEAD` is a shortcut meaning "the most recent commit",
+and the path to the file is the relative to where you are
+(for example, the path from the root directory of the repository).
 We will explore other uses of `-r` and `HEAD` in the next chapter.
 
 *** =pre_exercise_code
@@ -449,7 +450,7 @@ repl.run_command('git add data/northern.csv')
 
 You have been put in the `dental` repository,
 and `data/northern.csv` has been added to the staging area.
-Use `git diff` with appropriate arguments to see how files differ from
+Use `git diff` with with `-r` and an argument to see how files differ from
 the last saved revision.
 
 *** =hint1
@@ -460,7 +461,7 @@ the last saved revision.
 
 *** =solution1
 ```{shell}
-git diff -r HEAD | cat
+git diff -r HEAD
 ```
 
 *** =sct1
@@ -478,9 +479,11 @@ Ex() >> test_student_typed(r'\s*git\s+diff\s+-r\s+HEAD.*',
 *** =instructions2
 
 Use a single Git command to view the changes in the file that has been staged
-(and *only* that file),
+(and *only* that file).
 
 *** =hint2
+
+Use the relative path to the file `data/northern.csv`.
 
 *** =sample_code2
 ```{shell}
@@ -488,7 +491,7 @@ Use a single Git command to view the changes in the file that has been staged
 
 *** =solution2
 ```{shell}
-git diff -r HEAD data/northern.csv | cat
+git diff -r HEAD data/northern.csv
 ```
 
 *** =sct2
