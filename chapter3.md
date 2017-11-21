@@ -317,7 +317,7 @@ Date:   Thu Oct 16 09:17:37 2017 -0400
     Modifying the bibliography format.
 ```
 
-then `git checkout 2242bd report.md` would replace `report.md`
+then `git checkout 2242bd report.txt` would replace `report.txt`
 with whatever was committed on October 16.
 
 Restoring a file doesn't erase any of the repository's history.
@@ -338,7 +338,7 @@ repl.run_command('cd dental')
 
 *** =instructions1
 
-Use `git log` to list the recent changes to `report.md`.
+Use `git log` to list the recent changes to `report.txt`.
 
 *** =hint1
 
@@ -348,12 +348,12 @@ Use `git log` to list the recent changes to `report.md`.
 
 *** =solution1
 ```{shell}
-git log report.md
+git log report.txt
 ```
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+log\s+report\.md\s*',
+Ex() >> test_student_typed(r'\s*git\s+log\s+report\.txt\s*',
                            fixed=False,
                            msg='Use `git log` with a filename.')
 ```
@@ -365,7 +365,8 @@ Ex() >> test_student_typed(r'\s*git\s+log\s+report\.md\s*',
 
 *** =instructions2
 
-Use `git checkout` to restore the immediately previous version of `report.md`.
+Use `git checkout` with the first few characters of a hash
+to restore the immediately-previous version of `report.txt`.
 
 *** =hint2
 
@@ -375,12 +376,12 @@ Use `git checkout` to restore the immediately previous version of `report.md`.
 
 *** =solution2
 ```{shell}
-git checkout a0a0a0a0 report.md
+git checkout a0a0a0a0 report.txt
 ```
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+checkout\s+[0-9a-f]+\s+report\.md\s*',
+Ex() >> test_student_typed(r'\s*git\s+checkout\s+[0-9a-f]+\s+report\.txt\s*',
                            fixed=False,
                            msg='Use `git checkout hash filename`.')
 ```
@@ -392,7 +393,7 @@ Ex() >> test_student_typed(r'\s*git\s+checkout\s+[0-9a-f]+\s+report\.md\s*',
 
 *** =instructions3
 
-Commit the restored version of `report.md`.
+Commit the restored version of `report.txt`.
 
 *** =hint3
 
