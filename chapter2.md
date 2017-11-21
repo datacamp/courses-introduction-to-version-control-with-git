@@ -197,9 +197,6 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-err_and = 
-correct = 'Correct.'
-err_some = 'No, the commit `HEAD~1` did change some files.'
 Ex() >> test_mc(2, ['No, the commid `HEAD~1` did not change that file.',
                     'Correct.',
                     'No, the commit `HEAD~1` only changed one file.',
