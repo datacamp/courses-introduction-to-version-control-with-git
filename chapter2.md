@@ -123,8 +123,10 @@ while lines that it added are prefixed with `+`.
 
 You have been put in the `dental` directory.
 (We will now stop reminding you of this...)
-How many files were changed by the commit whose hash starts with `aa5991c6`?
-(Remember, you only need to type the first few characters of the hash.)
+Use `git log` to see the hashes of recent commits,
+and then `git show` with the first few digits of a hash
+to look at the most recent commit.
+How many files did it change?
 
 *** =instructions
 - None.
@@ -148,7 +150,7 @@ repl.run_command('cd dental')
 e_more = 'No, there have been more changes than that.'
 correct = 'Correct!'
 e_fewer = 'No, there have been fewer changes than that.'
-Ex() >> test_mc(3, [e_more, e_more, correct, e_fewer])
+Ex() >> test_mc(3, [e_more, correct, e_fewer, e_fewer])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
