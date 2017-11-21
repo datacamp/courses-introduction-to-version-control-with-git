@@ -21,8 +21,8 @@ git config --global core.editor "nano"
 # Clone the repository.
 git clone file://${R_REPO} ${T_REPO}
 
-# Allow pushes.
-git -C ${T_REPO} config --local receive.denyCurrentBranch ignore
+# Allow pushes from remotes.
+${T_GIT} config --local receive.denyCurrentBranch ignore
 
 # Add some references to the report.
 cat >> ${T_REPO}/report.txt <<EOF

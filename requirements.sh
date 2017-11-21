@@ -77,3 +77,5 @@ echo 'Home backup directory:'
 ls -lR ${HOME_COPY}
 echo 'References to PS1 in /.course_home/.bashrc'
 grep PS1 ${HOME_COPY}/.bashrc
+echo 'Configuration of thunk repository'
+git -C /home/thunk/repo config -l
