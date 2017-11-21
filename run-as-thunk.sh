@@ -28,7 +28,3 @@ TODO: add references.
 EOF
 ${T_GIT} add report.txt
 ${T_GIT} commit -m "Reminder to add references to report."
-
-# Change permissions so that the user 'repl' can push changes in the final exercises.
-find ${T_REPO} -type d -exec chmod 777 {} \;
-find ${T_REPO} -type f -exec chmod 777 {} \;

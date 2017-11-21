@@ -63,9 +63,12 @@ rm -f ${HOME_DIR}/run-as-repl.sh ${HOME_DIR}/run-as-thunk.sh
 rsync -a ${HOME_DIR}/ ${HOME_COPY}/
 chown -R ${USER_GROUP} ${HOME_COPY}
 
+# Change the ownership of the user thunk's files so that the user repl can push changes.
+chown -R ${USER_GROUP} /home/thunk
+
 # Report.
 echo "Home directory:"
-ls -lR /home
+ls -alR /home
 echo "Dental repository log:"
 git -C ${HOME_DIR}/dental log | cat
 echo 'References to PS1 in /home/repl/.bashrc'
@@ -74,5 +77,3 @@ echo 'Home backup directory:'
 ls -lR ${HOME_COPY}
 echo 'References to PS1 in /.course_home/.bashrc'
 grep PS1 ${HOME_COPY}/.bashrc
-echo 'Long listing of /home/thunk/repo'
-ls -lR /home/thunk/repo
