@@ -30,6 +30,7 @@ Once you've submitted the feedback, you'll get a message. What's the first sente
 - Thanks for providing feedback.
 
 *** =hint
+
 Click the *Report Issue* button in the upper right hand corner of your screen now and submit some feedback!
 
 *** =feedbacks
@@ -74,6 +75,8 @@ Which of the following does Git do?
 
 *** =hint
 
+Git is a very versatile tool.
+
 *** =feedbacks
 - Yes, but that's not all.
 - Yes, but that's not all.
@@ -111,6 +114,8 @@ Why *don't* people use version control systems?
 - [Both of the above.]
 
 *** =hint
+
+Problems often have multiple causes.
 
 *** =feedbacks
 - Yes, but that's not all.
@@ -188,6 +193,8 @@ Which file(s) are listed?
 
 *** =hint
 
+Look for filenames in the output of `git status`.
+
 *** =pre_exercise_code
 ```{python}
 append = '''
@@ -249,6 +256,8 @@ You have been put in the `dental` repository.
 Use `git diff` to see what changes have been made to the files.
 
 *** =hint1
+
+Run the command without any extra arguments.
 
 *** =sample_code1
 ```{shell}
@@ -376,6 +385,8 @@ Use `git add` to add the file `report.txt` to the staging area.
 
 *** =hint1
 
+Remember: `git add` is the command, and `report.txt` is its argument.
+
 *** =sample_code1
 ```{shell}
 ```
@@ -402,6 +413,8 @@ Ex() >> test_student_typed(r'\s*git\s+add\s+report\.txt\s*',
 Use another Git command to check the repository's status.
 
 *** =hint2
+
+Use Git to check the *status* of the repository.
 
 *** =sample_code2
 ```{shell}
@@ -452,10 +465,12 @@ repl.run_command('git add data/northern.csv')
 
 You have been put in the `dental` repository,
 and `data/northern.csv` has been added to the staging area.
-Use `git diff` with with `-r` and an argument to see how files differ from
+Use `git diff` with `-r` and an argument to see how files differ from
 the last saved revision.
 
 *** =hint1
+
+Remember that `HEAD` refers to the most recent saved version.
 
 *** =sample_code1
 ```{shell}
@@ -513,6 +528,8 @@ Ex() >> test_student_typed(r'\s*git\s+diff\s+-r\s+HEAD\s+data/northern\.csv\s*',
 Use one Git command to add the other changed file to the staging area.
 
 *** =hint3
+
+Use `git add` with the name of the file to be added.
 
 *** =sample_code3
 ```{shell}
@@ -635,6 +652,8 @@ Use one Git command to check the status of the repository.
 
 *** =hint1
 
+Again, you want to use Git to check the *status* of the repository.
+
 *** =sample_code1
 ```{shell}
 ```
@@ -661,6 +680,8 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*',
 Commit the changes in the staging area with the message "Adding a reference."
 
 *** =hint2
+
+Use `-m "some message"` with the appropriate Git command.
 
 *** =sample_code2
 ```{shell}
