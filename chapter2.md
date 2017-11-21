@@ -190,6 +190,8 @@ Which of the following files did it change?
 
 *** =hint
 
+The commit before the most recent will be `HEAD~1`.
+
 *** =pre_exercise_code
 ```{shell}
 repl = connect('bash')
@@ -340,6 +342,8 @@ Use `git status` to find the files that aren't yet being tracked.
 
 *** =hint1
 
+Run the command as indicated.
+
 *** =sample_code1
 ```{shell}
 ```
@@ -366,6 +370,8 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*',
 Use `git add` to add the new file to the staging area.
 
 *** =hint2
+
+Remember: `git add` shouldb e followed by either a filename or a directory name (such as '.' for the current working directory).
 
 *** =sample_code2
 ```{shell}
@@ -394,6 +400,8 @@ Use `git commit` to save the staged files
 with the message "Starting to track data sources."
 
 *** =hint3
+
+Use `-m "message"` to provide a message to `git commit`.
 
 *** =sample_code3
 ```{shell}
@@ -449,6 +457,8 @@ backup
 
 *** =hint
 
+To match a set of files, a `.gitignore` entry must contain a wildcard character such as `*`.
+
 *** =feedbacks
 - Correct: `pdf` does not contain any wildcards, so it only matches files called `pdf`.
 - This file *is* matched because the pattern `*.pyc` matches files in sub-directories.
@@ -492,6 +502,8 @@ Use `ls` to see what files are present.
 
 *** =hint1
 
+Run the command as shown.
+
 *** =sample_code1
 ```{shell}
 ```
@@ -519,6 +531,8 @@ Use a single Git command to remove unwanted files.
 
 *** =hint2
 
+The `-f` flag to `git clean` forces file removal.
+
 *** =sample_code2
 ```{shell}
 ```
@@ -545,6 +559,8 @@ Ex() >> test_student_typed(r'\s*git\s+clean\s+-f\s*',
 Use `ls` again to see what effects your Git command has had.
 
 *** =hint3
+
+Run the command as shown.
 
 *** =sample_code3
 ```{shell}
