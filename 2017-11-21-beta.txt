@@ -1,20 +1,3 @@
-What are conflicts?
-other
-It's unclear that the answer is just line B. Does altering the
-position of line B count as change? This only occurred in the master
-file because line A was deleted. it might be helpful to clarify that a
-line is considered to be altered if it's position alters (because of
-the deletion of another line) or only if it's contents are altered.
-
-What are conflicts?
-typo-ex
-No: Git can merge THE deletion of line A and the addition of line C
-automatically instead of teh
-
-What are conflicts?
-typo-ex
-When you select a wrong answer, 'the' is written as 'teh'
-
 What happens if I try to pull when I have unsaved changes?
 other
 The terminal doesn't flag an issue with the initial 'git pull origin

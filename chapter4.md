@@ -544,7 +544,7 @@ what conflicts does Git report?
 - Correct: Git can merge the deletion of line A and the addition of line C automatically.
 - No: Git can merge the deletion of line A automatically.
 - No: Git can merge the addition of line C automatically.
-- No: Git can merge teh deletion of line A and the addition of line C automatically.
+- No: Git can merge the deletion of line A and the addition of line C automatically.
 
 <!-- -------------------------------------------------------------------------------- -->
 
