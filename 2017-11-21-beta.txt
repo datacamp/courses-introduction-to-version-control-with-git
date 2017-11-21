@@ -1,22 +1,3 @@
-How can I view the differences between branches?
-typo-ex
-The exercise says: git diff revision-1..revision-1     It should be
-git diff revision-1..revision-2
-
-How can I view the differences between branches?
-typo-ex
-The instructions say to list files in branch that are different than
-their equivalents in master, when you want how many files are
-different between branch and master.
-
-How can I view the differences between branches?
-typo-ex
-The second line should be 'git diff revision-1..revision-2'
-
-How can I view the differences between branches?
-typo-ex
-git diff revision-1..revision-1  ??
-
 How do I add new files?
 other
 I had no clue on which file to add

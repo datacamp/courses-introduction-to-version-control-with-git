@@ -92,7 +92,7 @@ Ex() >> test_mc(4, ['No: every repository has at least one branch.',
 Branches and revisions are closely connected,
 and commands that work on the latter usually work on the former.
 For example,
-just as `git diff revision-1..revision-1` shows the difference between two versions of a repository,
+just as `git diff revision-1..revision-2` shows the difference between two versions of a repository,
 `git diff branch-1..branch-2` shows the difference between two branches.
 
 <hr>
@@ -109,7 +109,7 @@ are different from their equivalents in the `master` branch?
 
 *** =hint
 
-Use `git diff branch..branch` to list the differences.
+Use `git diff branch..branch` to find the differences.
 
 *** =pre_exercise_code
 ```{shell}
