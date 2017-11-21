@@ -348,7 +348,8 @@ Use `git log` to list the recent changes to `report.txt`.
 
 *** =solution1
 ```{shell}
-git log report.txt
+# Run this command *without* 'cat' at the end.
+git log report.txt | cat
 ```
 
 *** =sct1
