@@ -15,7 +15,7 @@ this has three key parts:
 1. Every unique version of every file.
    (Git calls these **blobs** because they can contain data of any kind.)
 2. **tree** that tracks the names and locations of a set of files.
-3. A **commit* that records the author, log message, and other properties
+3. A **commit** that records the author, log message, and other properties
    of a particular commit.
 
 <img src="https://s3.amazonaws.com/assets.datacamp.com/production/course_5747/datasets/commit-tree-blob.png" alt="Commit-Tree-Blob Structure" />
@@ -29,18 +29,20 @@ a later part of this lesson will show why the two have to be distinct.
 <hr>
 
 Looking at the diagram,
-which files changed in the most recent (bottom-most) commit to this repository?
+which files changed in the last (bottom-most) commit to this repository?
 
 *** =possible_answers
-- `data/northern.csv`
-- [`report.md`]
+- [`data/northern.csv`]
+- `report.md`
 - `draft.md`
 
 *** =hint
 
+Look in the right-most column to see which file is new.
+
 *** =feedbacks
-- No: that is part of the most recent commit, but wasn't changed in it.
 - Correct!
+- No: that is part of the most recent commit, but wasn't changed in it.
 - No: that file is no longer present in the tree.
 
 <!-- -------------------------------------------------------------------------------- -->

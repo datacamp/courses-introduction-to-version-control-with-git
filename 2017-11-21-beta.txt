@@ -1,36 +1,3 @@
-How does Git store information?
-feedback-not-helpful
-I don't understand the instructions and answer given.
-
-How does Git store information?
-not-accepted-right-answer
-I'm not familiar with git so I could be wrong here. But if the bottom
-commit is the most recent it appears that the report file doesn't
-change and that the actual data does as it's a new blob, so
-data/northern.csv should be the correct answer?
-
-How does Git store information?
-other
-I'm not sure that the answer is correct
-
-How does Git store information?
-other
-In the previous exercise you should really tell People how to get back
-from the editor
-
-How does Git store information?
-other
-The bottom most commit shows two files but it's not clear which one
-was changed.  How am I supposes to know what represents a change?
-
-How does Git store information?
-solution-not-correct
-report and data/northern.csv
-
-How does Git store information?
-typo-ex
-A *commit ' should be 'A *commit*' to make it bold.
-
 What are conflicts?
 other
 It's unclear that the answer is just line B. Does altering the
