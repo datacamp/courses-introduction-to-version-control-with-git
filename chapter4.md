@@ -656,6 +656,7 @@ Use `nano` to edit the file and remove the conflict markers.
 
 *** =solution3
 ```{shell}
+# Run this command *without* 'echo' at the front.
 echo nano report.txt
 ```
 

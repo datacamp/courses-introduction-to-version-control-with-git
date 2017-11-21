@@ -138,10 +138,9 @@ the first part of the URL is `file://`,
 and then there is a third slash to start the absolute path `/existing/project`.
 
 When you clone a repository,
-Git uses the name of the existing repository as the name of the clone's root directory.
-Continuing with the example,
-`git clone file:///existing/project` will create a new directory called `project`
-below the directory you are in.
+Git uses the name of the existing repository as the name of the clone's root directory:
+for example,
+`git clone file:///existing/project` will create a new directory called `project`.
 If you want to call the clone something else,
 add the directory name you want to the command.
 

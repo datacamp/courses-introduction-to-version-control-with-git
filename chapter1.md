@@ -718,6 +718,58 @@ Ex() >> test_mc(3, [err, err, 'Correct!', err])
 
 <!-- -------------------------------------------------------------------------------- -->
 
+--- type:ConsoleExercise lang:shell xp:100 skills:1 key:
+## How can I edit a file?
+
+Unix has a bewildering variety of text editors.
+In this course,
+we will use a very simple one called Nano.
+If you type `nano filename`,
+it will open `filename` for editing
+(or create it if it doesn't already exist).
+You can then move around with the arrow keys,
+delete characters with the backspace key,
+and so on.
+You can also do a few other operations with control-key combinations:
+
+- Ctrl-K: delete a line.
+- Ctrl-U: un-delete a line.
+- Ctrl-O: save the file ('O' stands for 'output').
+- Ctrl-X: exit the editor.
+
+*** =instructions
+
+Run `nano names.txt` to edit a new file in your home directory
+and enter the following four lines:
+
+```
+Lovelace
+Hopper
+Johnson
+Wilson
+```
+
+To save what you have written,
+type Ctrl-O to write the file out,
+then Enter to confirm the filename,
+then Ctrl-X and Enter to exit the editor.
+
+*** =solution
+```{shell}
+# Run this command *without* 'echo' at the front.
+echo nano names.txt
+```
+
+*** =sct
+```{python}
+from shellwhat_ext import test_compare_file_to_file
+Ex() >> test_student_typed(r'.*nano\s+names.txt.*',
+                           fixed=False,
+                           msg='Use `nano names.txt`.')
+```
+
+<!-- -------------------------------------------------------------------------------- -->
+
 --- type:BulletConsoleExercise key:1be0ce9219
 ## How do I write a better log message?
 
@@ -741,9 +793,6 @@ Git launches a text editor with a template like this:
 The lines starting with `#` are comments, and won't be saved.
 (They are there to remind you what you are supposed to do and what files you have changed.)
 Your message should go at the top, and may be as long and as detailed as you want.
-
-We have configured Git to use the Nano editor for this course.
-The final chapter of this course will show you how to set up a different editor.
 
 *** =pre_exercise_code
 ```{python}
