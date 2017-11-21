@@ -55,6 +55,7 @@ or `git init /path/to/project` from anywhere else on your computer.
 repl = connect('bash')
 repl.run_command('cd dental')
 repl.run_command('rm -rf .git')
+repl.run_command('clear')
 repl.run_command('pwd')
 ```
 
@@ -148,6 +149,7 @@ add the directory name you want to the command.
 ```{python}
 repl = connect('bash')
 repl.run_command('rm -rf dental')
+repl.run_command('clear')
 ```
 
 *** =type1: ConsoleExercise
@@ -220,6 +222,7 @@ Run `git remote` in the `dental` repository.
 repl = connect('bash')
 repl.run_command('rm -rf dental')
 repl.run_command('git clone file:///home/thunk/repo dental')
+repl.run_command('clear')
 repl.run_command('cd dental')
 ```
 
@@ -319,8 +322,9 @@ and merge them into your `quarterly-report` branch.
 repl = connect('bash')
 repl.run_command('rm -rf dental')
 repl.run_command('git clone file:///home/thunk/repo dental')
+repl.run_command('git -C dental reset --hard HEAD~2')
+repl.run_command('clear')
 repl.run_command('cd dental')
-repl.run_command('git reset --hard HEAD~2')
 ```
 
 *** =type1: ConsoleExercise
@@ -370,10 +374,10 @@ and then try to pull again.
 repl = connect('bash')
 repl.run_command('rm -rf dental')
 repl.run_command('git clone file:///home/thunk/repo dental')
-repl.run_command('cd dental')
-repl.run_command('git reset --hard HEAD~1')
-repl.run_command('echo "One final thing..." >> report.md')
+repl.run_command('git -C dental reset --hard HEAD~1')
+repl.run_command('echo "One final thing..." >> dental/report.md')
 repl.run_command('clear')
+repl.run_command('cd dental')
 ```
 
 *** =type1: ConsoleExercise
@@ -486,9 +490,10 @@ it's almost always better to use the same names for branches across repositories
 repl = connect('bash')
 repl.run_command('rm -rf dental')
 repl.run_command('git clone file:///home/thunk/repo dental')
-repl.run_command('cd dental')
 with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
+repl.run_command('clear')
+repl.run_command('cd dental')
 ```
 
 *** =type1: ConsoleExercise
@@ -591,10 +596,11 @@ unless you have merged the contents of the remote repository into your own work.
 repl = connect('bash')
 repl.run_command('rm -rf dental')
 repl.run_command('git clone file:///home/thunk/repo dental')
-repl.run_command('cd dental')
-repl.run_command('git reset --hard HEAD~1')
+repl.run_command('git -C dental reset --hard HEAD~1')
 with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
+repl.run_command('clear')
+repl.run_command('cd dental')
 repl.run_command('git commit -m "Adding a record"')
 ```
 
