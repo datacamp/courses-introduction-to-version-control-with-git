@@ -1,36 +1,3 @@
-How do I re-stage files?
-not-accepted-right-answer
-The command works in one way only
-
-How do I re-stage files?
-not-accepted-right-answer
-The exercise accepts 'git add report.txt data/northern.csv' but not
-'git add data/northern.csv report.txt' which should also be correct
-
-How do I re-stage files?
-other
-I am being asked to stage two files.  ls shows 'bin', 'data',
-'report.txt', and 'results'.  git status shows that report.txt had
-already been staged, and data/northern.csv has not been staged, even
-though we staged it in the previous exercise. 'git add
-data/northern.csv report.txt' returns an incorrect submission message
-with a reminder to add two filenames.
-
-How do I re-stage files?
-other
-Only "git add report.txt data/northern.csv" worked, not "git add
-data/northern.csv report.txt"
-
-How do I re-stage files?
-other
-in the exercise, since report.txt is already committed, why does the
-exercise expect us to add that again?
-
-How do I re-stage files?
-other
-solution should accept different sequence of files as well, or explain
-that order matters
-
 How do I restore an old version of a file?
 other
 Again, I'm not in the dental directory, so even though DC accepts my

@@ -103,13 +103,13 @@ append = '''
 
 Fehrenbach: "Dental Anatomy Coloring Book" (2e), 2013.
 '''
-with open('dental/report.txt', 'a') as writer:
-    writer.write(append)
 with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
 repl = connect('bash')
 repl.run_command('cd dental')
-repl.run_command('git add report.txt')
+repl.run_command('git add data/northern.csv')
+with open('dental/data/northern.csv', 'a') as writer:
+    writer.write('2017-11-02,bicuspid\n')
 ```
 
 *** =type1: ConsoleExercise
@@ -120,7 +120,7 @@ repl.run_command('git add report.txt')
 *** =instructions1
 
 You are in the `dental` repository.
-Use one Git command to check the status of the repository.
+Use `git status` to check the status of the repository.
 
 *** =hint1
 
@@ -147,8 +147,7 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*',
 
 *** =instructions2
 
-Use a single Git command to stage all files that have been changed
-since the last time files were staged.
+Use `git add` to stage any files that have changes.
 
 *** =hint2
 
@@ -158,14 +157,14 @@ since the last time files were staged.
 
 *** =solution2
 ```{shell}
-git add report.txt data/northern.csv
+git add data/northern.csv
 ```
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+add\s+report\.txt\s+data/northern\.csv\s*',
+Ex() >> test_student_typed(r'\s*git\s+add\s+data/northern\.csv\s*',
                            fixed=False,
-                           msg='Use `git add` with two filenames.')
+                           msg='Use `git add` with one filename.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
