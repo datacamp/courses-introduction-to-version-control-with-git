@@ -679,7 +679,7 @@ git pull --no-edit origin master
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
+Ex() >> test_student_typed(r'\s*git\s+pull.*\s+origin\s+master\s*',
                            fixed=False,
                            msg='Use `git pull` with the remote name and the branch name.')
 ```
