@@ -22,7 +22,7 @@ git config --global core.editor "nano"
 git clone file://${R_REPO} ${T_REPO}
 
 # Allow pushes.
-git -C ${T_REPO} config receive.denyCurrentBranch ignore
+git -C ${T_REPO} config --local receive.denyCurrentBranch ignore
 
 # Add some references to the report.
 cat >> ${T_REPO}/report.txt <<EOF

@@ -394,6 +394,8 @@ Use `git pull` to bring in changes from that repository.
 
 *** =hint1
 
+Remember to use `origin` *and* `master` (the first is the remote name, the second is the branch name).
+
 *** =sample_code1
 ```{shell}
 ```
