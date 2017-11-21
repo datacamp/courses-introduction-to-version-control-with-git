@@ -718,7 +718,7 @@ Ex() >> test_mc(3, [err, err, 'Correct!', err])
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:ConsoleExercise lang:shell xp:100 skills:1 key:
+--- type:ConsoleExercise lang:shell xp:100 skills:1 key:4f71d1f1a0
 ## How can I edit a file?
 
 Unix has a bewildering variety of text editors.
