@@ -74,3 +74,5 @@ echo 'Home backup directory:'
 ls -lR ${HOME_COPY}
 echo 'References to PS1 in /.course_home/.bashrc'
 grep PS1 ${HOME_COPY}/.bashrc
+echo 'Long listing of /home/thunk/repo'
+ls -lR /home/thunk/repo
