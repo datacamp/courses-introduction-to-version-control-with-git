@@ -169,8 +169,10 @@ always refers to the most recent commit.
 The label `HEAD~1` then refers to the commit before it,
 while `HEAD~2` refers to the commit before that,
 and so on.
-(Note that the symbol between `HEAD` and the number is a tilde `~`,
-and *not* a minus sign `-`.)
+
+Note that the symbol between `HEAD` and the number is a tilde `~`,
+*not* a minus sign `-`,
+and that there cannot be spaces before or after the tilde.
 
 <hr>
 
@@ -195,10 +197,13 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-err_and = 'Yes, but it also changed another file.'
+err_and = 
 correct = 'Correct.'
 err_some = 'No, the commit `HEAD~1` did change some files.'
-Ex() >> test_mc(3, [err_and, err_and, correct, err_some])
+Ex() >> test_mc(2, ['No, the commid `HEAD~1` did not change that file.',
+                    'Correct.',
+                    'No, the commit `HEAD~1` only changed one file.',
+                    'No, the commit `HEAD~1` did change a file.'])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
