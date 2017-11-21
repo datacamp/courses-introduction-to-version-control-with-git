@@ -150,7 +150,7 @@ repl.run_command('cd dental')
 e_more = 'No, there have been more changes than that.'
 correct = 'Correct!'
 e_fewer = 'No, there have been fewer changes than that.'
-Ex() >> test_mc(3, [e_more, correct, e_fewer, e_fewer])
+Ex() >> test_mc(2, [e_more, correct, e_fewer, e_fewer])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
