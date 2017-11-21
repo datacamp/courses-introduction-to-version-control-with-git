@@ -765,7 +765,7 @@ then Ctrl-X and Enter to exit the editor.
 
 *** =solution
 ```{shell}
-# Run this command *without* 'echo' at the front.
+# Run this command *without* 'echo' at the front:
 echo nano names.txt
 ```
 
