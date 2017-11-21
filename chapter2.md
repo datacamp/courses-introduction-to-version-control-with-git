@@ -71,12 +71,14 @@ rather than comparing entire files.
 
 <hr>
 
-What are the first few characters of the most recent commit in the `dental` repository?
+Use `cd` to go into the `dental` directory and then run `git log`.
+What are the first four characters of the hash of the most recent commit?
 
 *** =instructions
-- abc123f6
-- 2e1b743c
-- 2e952d6e
+- bedc
+- 2e1b
+- 2e95
+- None of the above.
 
 *** =hint
 
@@ -85,9 +87,8 @@ Remember that you can use 'q' to quit the pager.
 
 *** =sct
 ```{python}
-Ex() >> test_mc(2, ["No, that hash doesn't appear in the log.",
-                    "Correct!",
-                    "No, that was the first commit, not the most recent."])
+err = "No, that is not the most recent hash."
+Ex() >> test_mc(4, [err, err, err, "Correct!"])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
