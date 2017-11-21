@@ -606,7 +606,7 @@ Ex() >> test_mc(3, ['No, some configuration values are set.',
 
 Most of Git's settings should be left as they are.
 However,
-there are two you should set on ever computer you use:
+there are two you should set on every computer you use:
 your name and your email address.
 These are recorded in the log every time you commit a change,
 and are often used to identify the authors of a project's content in order to give credit
