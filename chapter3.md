@@ -426,7 +426,8 @@ You will sometimes want to undo changes to many files.
 One way to do this is to give `git reset` and `git checkout` a directory as an argument
 rather than the names of one or more files.
 For example,
-`git reset HEAD data` will unstage any files from the `data` directory that you have staged.
+`git reset HEAD data` will unstage any files from the `data` directory that you have staged,
+and `git checkout -- data` will then restore those files to their previous state.
 
 *** =pre_exercise_code
 ```{python}
@@ -449,7 +450,10 @@ repl.run_command('git status')
 
 *** =instructions1
 
-Use a single Git command to remove all files from the staging area.
+Use `git reset` to remove all files from the staging area.
+Remember to give `git reset` two arguments:
+the revision to re-set to,
+and a directory name.
 
 *** =hint1
 
@@ -476,9 +480,9 @@ Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+(\.|dental)\s*',
 
 *** =instructions2
 
-Re-set those files to their previous state.
-Use the directory name `.` to mean "all of the files in or below this directory"
-rather than a wildcard.
+Use `git checkout` to put those files back in their previous state.
+Use the directory name `.` to mean "all of the files in or below this directory",
+and separate it from the command with `--`.
 
 *** =hint2
 
