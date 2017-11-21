@@ -83,9 +83,9 @@ Which of the following does Git do?
 <!-- -------------------------------------------------------------------------------- -->
 
 --- type:PureMultipleChoiceExercise lang:bash xp:50 key:74e878cc1b
-## How does Git compare to alternatives?
+## How does Git compare to other ways to share work?
 
-Git and other version control systems are the only way to track and share work.
+Git and other version control systems are not the only way to track and share work.
 Some popular alternatives are:
 
 1. *Email.*
@@ -103,18 +103,16 @@ Some popular alternatives are:
 
 <hr>
 
-What kind of work should you store in version control?
+Why *don't* people use version control systems?
 
 *** =possible_answers
-- Software.
-- Configuration files.
-- Reports and other written work.
-- [All of the above.]
+- Not aware of them.
+- Steep learning curve.
+- [Both of the above.]
 
 *** =hint
 
 *** =feedbacks
-- Yes, but that's not all.
 - Yes, but that's not all.
 - Yes, but that's not all.
 - Correct!
