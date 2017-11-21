@@ -331,7 +331,7 @@ repl.run_command('cd dental')
 *** =instructions1
 
 You are in the `dental` repository.
-Use one Git command to find the files that aren't yet being tracked.
+Use `git status` to find the files that aren't yet being tracked.
 
 *** =hint1
 
@@ -358,7 +358,7 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*',
 
 *** =instructions2
 
-Add changed files to the staging area.
+Use `git add` to add the new file to the staging area.
 
 *** =hint2
 
@@ -373,9 +373,9 @@ git add sources.txt
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+add\s+.+\s*',
+Ex() >> test_student_typed(r'\s*git\s+add\s+(\.|sources\.txt)\s*',
                            fixed=False,
-                           msg='You can add files one by one or use a wildcard expression.')
+                           msg='You can add files one by one or use a directory to add them all.')
 ```
 
 *** =type3: ConsoleExercise
