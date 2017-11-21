@@ -262,7 +262,7 @@ git diff | cat
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+diff.*',
+Ex() >> test_student_typed(r'\s*git\s+diff\s*',
                            fixed=False,
                            msg='Use `git diff`.')
 ```
@@ -298,6 +298,7 @@ This shows:
   Here, the line shows that lines 1-4 are being removed and replaced with new lines.
 - A line-by-line listing of the changes
   with `-` showing deletions and `+` showing additions.
+  (We have also configured Git to show deletions in red and additions in green.)
 
 Desktop programming tools like [RStudio](https://www.rstudio.com/) can turn diffs like this
 into a more readable side-by-side display of changes;

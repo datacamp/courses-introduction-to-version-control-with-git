@@ -235,7 +235,8 @@ How many different sets of changes have been made to this file
 
 *** =hint
 
-Use `git annotate report.txt` and count the number of distinct commit IDs.
+Use `git annotate report.txt` and count the number of distinct commit IDs
+in the first column.
 
 *** =pre_exercise_code
 ```{shell}

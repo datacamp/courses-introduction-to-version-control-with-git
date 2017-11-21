@@ -1,48 +1,3 @@
-How can I remove unwanted files?
-other
-git ls is working properly, but the output is giving an error 
-
-How can I see what changed between two commits?
-other
-I get differences referring to data/southern and data/western. None of
-the suggested answers includes both files.
-
-How can I see what changed between two commits?
-solution-not-correct
-why ist southern.csv not changed?
-
-How can I see who changed what in a file?
-solution-not-correct
-It should be 7, as indicated by git
-
-How can I tell what I have changed?
-other
-I am wondering what I see there? Does someone added a word to a file?
-What are the changes specifically?
-
-How can I tell what I have changed?
-other
-I don't like that in every exercise we first use cd dental without any
-explanation what it does... I would prefer one explanation sentence in
-the introduction somewhere
-
-How can I tell what I have changed?
-other
-Please explain what can be seen in the output, even after the command
-has been executed.
-
-How can I tell what I have changed?
-other
-The answer "git diff filename" is unjustly approved. The console gives
-an error while the exercise is being approved.
-
-How can I tell what I have changed?
-other
-You tell me that i'm in the dental repository, but maybe show me how
-to find that out for myself.  Also, this slide should be shown
-earlier.  Particularly the diagram.  Also, the terminal is doing this
-weird reload thing where it blinks and interrupts my typing.
-
 How can I tell what's going to be committed?
 feedback-not-helpful
 In the text and incorrect submission message mention: git diff -r HEAD
@@ -1071,3 +1026,7 @@ Where does Git store information?
 other
 i guess this question is difficult here. The user may never heard
 about terminal commands
+
+ADD HINTS!
+
+LOOK FOR ALL USES OF ECHO AND CAT!
