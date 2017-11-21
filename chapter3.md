@@ -69,6 +69,8 @@ Commit those changes with the message "Adding data from northern region."
 
 *** =hint2
 
+Use `git commit` with `-m "message"`.
+
 *** =sample_code2
 ```{shell}
 ```
@@ -124,6 +126,8 @@ Use `git status` to check the status of the repository.
 
 *** =hint1
 
+Run the command as shown.
+
 *** =sample_code1
 ```{shell}
 ```
@@ -151,6 +155,8 @@ Use `git add` to stage any files that have changes.
 
 *** =hint2
 
+Remember, you can use either the name of the file or the name of a directory as an argument to `git add`.
+
 *** =sample_code2
 ```{shell}
 ```
@@ -162,7 +168,7 @@ git add data/northern.csv
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+add\s+data/northern\.csv\s*',
+Ex() >> test_student_typed(r'\s*git\s+add\s+(data/northern\.csv|data/?|\.)\s*',
                            fixed=False,
                            msg='Use `git add` with one filename.')
 ```
@@ -214,6 +220,9 @@ Use one Git to undo the changes to the file `data/northern.csv`
 (and *only* that file).
 
 *** =hint1
+
+Use `git checkout` with `--` to separate the command from the name(s) of file(s),
+and then the name(s) of file(s).
 
 *** =sample_code1
 ```{shell}
@@ -268,10 +277,13 @@ repl.run_command('git status')
 
 *** =instructions1
 
-Use a single Git command to Unstage the file `data/northern.csv`
+Use a single Git command to unstage the file `data/northern.csv`
 (and *only* that file).
 
 *** =hint1
+
+Use `git reset` with the symbolic name of the most recent revision (which is always `HEAD`)
+and the name of the file to be restored.
 
 *** =sample_code1
 ```{shell}
@@ -342,6 +354,8 @@ Use `git log` to list the recent changes to `report.txt`.
 
 *** =hint1
 
+Use `git log` with the name of the file as an argument.
+
 *** =sample_code1
 ```{shell}
 ```
@@ -370,6 +384,8 @@ Use `git checkout` with the first few characters of a hash
 to restore the immediately-previous version of `report.txt`.
 
 *** =hint2
+
+Use `git checkout` with the hash and the name of the file as arguments (in that order).
 
 *** =sample_code2
 ```{shell}
@@ -458,6 +474,9 @@ and a directory name.
 
 *** =hint1
 
+The two arguments to `git reset` should be the name of the revision (which is `HEAD`)
+and the name of the current working directory (which is '.').
+
 *** =sample_code1
 ```{shell}
 ```
@@ -486,6 +505,10 @@ Use the directory name `.` to mean "all of the files in or below this directory"
 and separate it from the command with `--`.
 
 *** =hint2
+
+As before,
+use `git checkout` with `--` to separate the command from the names of files or directories,
+and '.' as the name of the current working directory.
 
 *** =sample_code2
 ```{shell}
