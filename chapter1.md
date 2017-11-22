@@ -85,45 +85,6 @@ Git is a very versatile tool.
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:74e878cc1b
-## How does Git compare to other ways to share work?
-
-Git and other version control systems are not the only way to track and share work.
-Some popular alternatives are:
-
-1. *Email.*
-   Lots of people mail files back and forth,
-   but it's hard to keep track of which version is the most recent,
-   and even harder to be sure that everyone's edits have been merged together.
-
-2. *Putting files in a shared network drive or on Dropbox.*
-   This is more convenient than email,
-   but still makes people do the work of tracking changes.
-
-3. *Online editing.*
-   Tools like Google Docs work well for small groups,
-   but it's hard to keep track of changes as the number of contributors and comments grows.
-
-<hr>
-
-Why *don't* people use version control systems?
-
-*** =possible_answers
-- Not aware of them.
-- Steep learning curve.
-- [Both of the above.]
-
-*** =hint
-
-Problems often have multiple causes.
-
-*** =feedbacks
-- Yes, but that's not all.
-- Yes, but that's not all.
-- Correct!
-
-<!-- -------------------------------------------------------------------------------- -->
-
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:1dac2b0a28
 ## Where does Git store information?
 
