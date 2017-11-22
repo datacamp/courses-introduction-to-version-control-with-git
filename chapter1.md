@@ -5,42 +5,6 @@ description : >-
   it, and introduces the most common steps in a common Git workflow.
 
 
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:58c514d277
-## Thanks for beta testing!
-
-In exchange for early access to the course, we ask that you help us make some final improvements before we release it to over a million of your fellow DataCamp students. In particular, we'll ask for two types of feedback:
-
-1. Specific feedback at the exercise level (e.g. typos, unclear instructions, unhelpful feedback messages, etc.)
-2. High-level feedback at the chapter and course level (e.g. were topics presented in a logical order, was it too easy or too hard, etc.)
-
-You'll report high-level feedback (2) in a separate feedback form after you've completed the entire course.
-
-Specific feedback (1) should be reported directly in the course using the *Report Issue* button, which looks like an **exclamation point (!) in the upper right hand corner of your screen**. This means you can report issues as soon as you encounter them in the exercises.
-
-<hr>
-
-To get the hang of it, go ahead and report some feedback on this exercise now! Since this is just an example, feel free to write anything you want.
-
-Once you've submitted the feedback, you'll get a message. What's the first sentence of that message?
-
-*** =possible_answers
-- You've reported an issue.
-- We appreciate your feedback.
-- [Thanks for reporting the issue.]
-- Thanks for providing feedback.
-
-*** =hint
-
-Click the *Report Issue* button in the upper right hand corner of your screen now and submit some feedback!
-
-*** =feedbacks
-- Nope. Go ahead and report feedback on this exercise by clicking the *Report Issue* button now.
-- Nope. Go ahead and report feedback on this exercise by clicking the *Report Issue* button now.
-- Yes! Now let's get started with the course.
-- Nope. Go ahead and report feedback on this exercise by clicking the *Report Issue* button now.
-
-
-
 --- type:PureMultipleChoiceExercise lang:bash xp:50 key:a3732cc273
 ## What is version control?
 
