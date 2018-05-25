@@ -8,7 +8,7 @@ COURSE_ID=course_5355
 ARCHIVE=setup.zip
 PYTHON=python3
 PIP=pip3
-SHELLWHAT_EXT=git+https://github.com/gvwilson/shellwhat_ext.git@v0.2.0
+SHELLWHAT_EXT=git+https://github.com/datacamp/shellwhat_ext.git@v0.2.0
 
 # Report start.
 echo ''
