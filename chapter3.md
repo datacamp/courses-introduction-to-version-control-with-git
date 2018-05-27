@@ -179,7 +179,7 @@ Ex() >> test_student_typed(r'\s*git\s+add\s+(data/northern\.csv|data/?|\.)\s*',
 ## How can I undo changes to unstaged files?
 
 Suppose you have made changes to a file,
-then decide you want to **undo** them.
+then decide you want to **[undo](http://datacamp.github.io/glossary/#undo)** them.
 Your text editor may be able to do this,
 but a more reliable way is to let Git do the work.
 The command:

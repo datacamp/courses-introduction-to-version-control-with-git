@@ -15,7 +15,7 @@ where "project-name" is the name you want the new repository's root directory to
 
 One thing you should *not* do is create one Git repository inside another.
 While Git does allow this,
-updating **nested repositories** becomes very complicated very quickly,
+updating **[nested repositories](http://datacamp.github.io/glossary/#nested-repository)** becomes very complicated very quickly,
 since you need to tell Git which of the two `.git` directories the update is to be stored in.
 Very large projects occasionally need to do this,
 but most programmers and data analysts try to avoid getting into this situation.
@@ -128,7 +128,7 @@ Sometimes you will join a project that is already running,
 inherit a project from someone else,
 or continue working on one of your own projects on a new machine.
 In each case,
-you will **clone** an existing repository instead of creating a new one.
+you will **[clone](http://datacamp.github.io/glossary/#clone)** an existing repository instead of creating a new one.
 Cloning a repository does exactly what the name suggests:
 it creates a copy of an existing repository (including all of its history) in a new directory.
 
@@ -137,7 +137,7 @@ use the command `git clone URL`,
 where `URL` identifies the repository you want to clone.
 This will normally be something like `https://github.com/datacamp/project.git`,
 but for this lesson,
-we will use **filesystem URLs** of the form `file:///existing/project`.
+we will use **[filesystem URLs](http://datacamp.github.io/glossary/#filesystem-url)** of the form `file:///existing/project`.
 The number of slashes at the start is important:
 the first part of the URL is `file://`,
 and then there is a third slash to start the absolute path `/existing/project`.
@@ -197,7 +197,7 @@ Ex() >> test_student_typed(r'\s*git\s+clone\s+file:///home/thunk/repo\s+(/home/r
 
 When you a clone a repository,
 Git remembers where the original repository was.
-It does this by storing a **remote** in the new repository's configuration.
+It does this by storing a **[remote](http://datacamp.github.io/glossary/#remote)** in the new repository's configuration.
 A remote is like a browser bookmark with a name and a URL.
 If you are in a repository,
 you can list the names of its remotes using `git remote`.
@@ -304,8 +304,8 @@ Ex() >> test_student_typed(r'\s*git\s+remote\s+add\s+thunk\s+file:///home/thunk/
 ## How can I pull in changes from a remote repository?
 
 Git keeps track of remote repositories so that you can
-**pull** changes from those repositories
-and **push** changes to them.
+**[pull](http://datacamp.github.io/glossary/#pull)** changes from those repositories
+and **[push](http://datacamp.github.io/glossary/#push)** changes to them.
 Pulling changes is straightforward:
 the command `git pull remote branch`
 gets everything in `branch` in the remote repository identified by `remote`

@@ -8,7 +8,8 @@ description : >-
 --- type:PureMultipleChoiceExercise lang:bash xp:50 key:a3732cc273
 ## What is version control?
 
-A **version control system** is a tool that manages changes made to the files and directories in a project.
+A **[version control system](http://datacamp.github.io/glossary/#version-control-system)**
+is a tool that manages changes made to the files and directories in a project.
 Many version control systems exist;
 this lesson focuses on one called Git,
 which is used by many of the data science tools covered in our other lessons.
@@ -55,7 +56,7 @@ Git is a very versatile tool.
 Each of your Git projects has two parts:
 the files and directories that you create and edit directly,
 and the extra information that Git records about the project's history.
-The combination of these two things is called a **repository**.
+The combination of these two things is called a **[repository](http://datacamp.github.io/glossary/#repository)**.
 
 Git stores all of its extra information in a directory called `.git`
 located in the root directory of the repository.
@@ -98,7 +99,7 @@ Ex() >> test_mc(2, [e1, c2, e3, e4])
 ## How can I check the state of a repository?
 
 When you are using Git,
-you will frequently want to check the **status** of your repository.
+you will frequently want to check the **[status](http://datacamp.github.io/glossary/#repository-status)** of your repository.
 To do this,
 run the command `git status`,
 which displays a list of the files that have been modified
@@ -145,10 +146,10 @@ Ex() >> test_mc(2, ['No, that file has not changed.', \
 --- type:BulletConsoleExercise key:0dd628a298
 ## How can I tell what I have changed?
 
-Git has a **staging area** in which it stores files with changes you want to save
+Git has a **[staging area](http://datacamp.github.io/glossary/#staging-area)** in which it stores files with changes you want to save
 that haven't been saved yet.
 Putting files in the staging area is like putting things in a box,
-while **committing** those changes is like putting that box in the mail:
+while **[committing](http://datacamp.github.io/glossary/#commit)** those changes is like putting that box in the mail:
 you can add more things to the box or take things out as often as you want,
 but once you put it in the mail,
 you can't make further changes.
@@ -205,7 +206,7 @@ Ex() >> test_student_typed(r'\s*git\s+diff\s*',
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:eef645517f
 ## What is in a diff?
 
-A **diff** is a formatted display of the differences between two sets of files.
+A **[diff](http://datacamp.github.io/glossary/#diff)** is a formatted display of the differences between two sets of files.
 Git displays diffs like this:
 
     diff --git a/report.txt b/report.txt
@@ -537,7 +538,7 @@ when you want to undo changes to a project,
 you undo all of a commit or none of it.
 
 When you commit changes,
-Git requires you to enter a **log message**.
+Git requires you to enter a **[log message](http://datacamp.github.io/glossary/#log-message)**.
 This serves the same purpose as a comment in a program:
 it tells the next person to examine the repository why you made a change.
 
@@ -629,7 +630,7 @@ Ex() >> test_student_typed(r'\s*git\s+commit\s+-m\s+("[^"]+"|\'[^\']+\')\s*',
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:97ae2f8613
 ## How can I view a repository's history?
 
-The command `git log` is used to view the **log** of the project's history.
+The command `git log` is used to view the **[log](http://datacamp.github.io/glossary/#log)** of the project's history.
 Log entries are shown most recent first,
 and look like this:
 
@@ -641,7 +642,7 @@ Date:   Wed Sep 20 13:42:26 2017 +0000
     Added year to report title.
 ```
 
-The `commit` line displays a unique ID for the commit called a **hash**;
+The `commit` line displays a unique ID for the commit called a **[hash](http://datacamp.github.io/glossary/#hash)**;
 we will explore these further in the next chapter.
 The other lines tell you who made the change,
 when,

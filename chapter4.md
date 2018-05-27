@@ -8,9 +8,9 @@ description : >-
 --- type:PureMultipleChoiceExercise lang:bash xp:50 key:9db055a148
 ## What is a branch?
 
-One of the reasons Git is popular is its support for creating **branches**.
+One of the reasons Git is popular is its support for creating **[branches](http://datacamp.github.io/glossary/#branch)**.
 A branch is like a parallel universe:
-changes you make in one branch do not affect other branches until you **merge** them back together.
+changes you make in one branch do not affect other branches until you **[merge](http://datacamp.github.io/glossary/#merge)** them back together.
 It's like creating sub-directories called `final`, `final-updated`, `final-updated-revised`, and so on,
 but with support for tracking work systematically.
 
@@ -465,7 +465,7 @@ Ex() >> test_student_typed(r'\s*git\s+diff\s+(master\.\.deleting-report|deleting
 ## How can I merge two branches?
 
 Branching lets you create parallel universes;
-**merging** is how you bring them back together.
+**[merging](http://datacamp.github.io/glossary/#merge)** is how you bring them back together.
 When you merge one branch (call it the source) into another (call it the destination),
 Git incorporates the changes made to the source branch into the destination branch.
 If those changes don't overlap,
@@ -523,7 +523,7 @@ Ex() >> test_student_typed(r'\s*git\s+merge.*\s+summary-statistics\s+master\s*',
 --- type:PureMultipleChoiceExercise lang:bash xp:50 key:354f733f81
 ## What are conflicts?
 
-Sometimes the changes in two branches will conflict with each other:
+Sometimes the changes in two branches will **[conflict](http://datacamp.github.io/glossary/#conflict)** with each other:
 for example,
 bug fixes might touch the same lines of code,
 or analyses in two different branches may both append new (and different) records
