@@ -6,4 +6,4 @@ description: Version control is one of the power tools of programming.  It allow
   and software developers alike, and show you how it can help you get more done in
   less time and with less pain.
 programming_language: shell
-from: 'shell-base-prod:22'
+from: 'shell-base-prod:v1.0.0'
