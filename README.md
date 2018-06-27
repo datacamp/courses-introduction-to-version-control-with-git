@@ -1,6 +1,8 @@
 # Introduction to Git for Data Science
 
-Teach: https://www.datacamp.com/teach/repositories/1545/branches/master
+- Teach: https://www.datacamp.com/teach/repositories/1545
+- Campus: https://www.datacamp.com/courses/introduction-to-git-for-data-science
+- Docs: https://authoring.datacamp.com
 
 Version control is the beating heart of every productive programmer's workflow.
 It allow people to keep track of what they've done,
