@@ -467,9 +467,9 @@ git add data/eastern.csv
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+add\s+data/eastern\.csv\s*',
+Ex() >> test_student_typed(r'\s*git\s+add\s+(data/eastern\.csv|\.)\s*',
                            fixed=False,
-                           msg='Use `git add`.')
+                           msg='Use `git add *filename*`.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
