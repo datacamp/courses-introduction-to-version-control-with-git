@@ -226,8 +226,8 @@ This shows:
 - `--- a/report.txt` and `+++ b/report.txt`,
   which indicate that lines being *removed* are prefixed with `-`,
   while lines being added are prefixed with `+`.
-- A line starting with `@@` that tells where the changes are being made.
-  Here, the line shows that lines 1-4 are being removed and replaced with new lines.
+- A line starting with `@@` that tells where the changes are being made. The pairs of numbers are `start line,number of lines changed`.
+  Here, the diff output shows that 4 lines from line 1 are being removed and replaced with new lines.
 - A line-by-line listing of the changes
   with `-` showing deletions and `+` showing additions.
   (We have also configured Git to show deletions in red and additions in green.)
