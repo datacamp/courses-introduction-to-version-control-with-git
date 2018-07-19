@@ -200,7 +200,7 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex() >> test_mc(2, ['No, the commid `HEAD~1` did not change that file.',
+Ex() >> test_mc(2, ['No, the commit `HEAD~1` did not change that file.',
                     'Correct.',
                     'No, the commit `HEAD~1` only changed one file.',
                     'No, the commit `HEAD~1` did change a file.'])
