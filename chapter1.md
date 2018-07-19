@@ -661,9 +661,9 @@ What is the message on the very first entry in the log
 
 *** =instructions
 - "Added summary report file."
-- "Adding seasonal CSV data files."
-- "Fixed bug and generated results."
-- "Adding reminder to cite funding sources."
+- "Added seasonal CSV data files."
+- "Fixed bug and regenerated results."
+- "Added reminder to cite funding sources."
 
 *** =hint
 
