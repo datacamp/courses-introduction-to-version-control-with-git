@@ -131,6 +131,8 @@ and then `git show` with the first few digits of a hash
 to look at the most recent commit.
 How many files did it change?
 
+As before, press `q` to return from the log output to the command prompt.
+
 *** =instructions
 - None.
 - 1.
@@ -200,7 +202,7 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex() >> test_mc(2, ['No, the commid `HEAD~1` did not change that file.',
+Ex() >> test_mc(2, ['No, the commit `HEAD~1` did not change that file.',
                     'Correct.',
                     'No, the commit `HEAD~1` only changed one file.',
                     'No, the commit `HEAD~1` did change a file.'])

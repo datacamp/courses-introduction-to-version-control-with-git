@@ -147,7 +147,7 @@ Git uses the name of the existing repository as the name of the clone's root dir
 for example,
 `git clone file:///existing/project` will create a new directory called `project`.
 If you want to call the clone something else,
-add the directory name you want to the command.
+add the directory name you want to the command: `git clone file:///existing/project newprojectname`
 
 *** =pre_exercise_code
 ```{python}
@@ -181,11 +181,12 @@ Remember to count the slashes after `file:` carefully.
 *** =solution1
 ```{shell}
 git clone file:///home/thunk/repo dental
+pwd
 ```
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+clone\s+file:///home/thunk/repo\s+(/home/repl/|~/|\./|)dental\s*',
+Ex() >> test_student_typed(r'\s*git\s+clone\s+file:///home/thunk/repo\s+(/home/repl/|~/|\./|)?dental\s*',
                            fixed=False,
                            msg='Use `git clone` and the absolute or relative path of the directory to clone to.')
 ```

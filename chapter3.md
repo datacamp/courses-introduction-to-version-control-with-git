@@ -446,6 +446,8 @@ For example,
 `git reset HEAD data` will unstage any files from the `data` directory that you have staged,
 and `git checkout -- data` will then restore those files to their previous state.
 
+Recall from [Introduction to Shell for Data Science](https://www.datacamp.com/courses/introduction-to-shell-for-data-science) that you can refer to the current directory as `.`.
+
 *** =pre_exercise_code
 ```{python}
 with open('dental/data/northern.csv', 'a') as writer:

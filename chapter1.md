@@ -226,8 +226,8 @@ This shows:
 - `--- a/report.txt` and `+++ b/report.txt`,
   which indicate that lines being *removed* are prefixed with `-`,
   while lines being added are prefixed with `+`.
-- A line starting with `@@` that tells where the changes are being made.
-  Here, the line shows that lines 1-4 are being removed and replaced with new lines.
+- A line starting with `@@` that tells where the changes are being made. The pairs of numbers are `start line,number of lines changed`.
+  Here, the diff output shows that 4 lines from line 1 are being removed and replaced with new lines.
 - A line-by-line listing of the changes
   with `-` showing deletions and `+` showing additions.
   (We have also configured Git to show deletions in red and additions in green.)
@@ -467,9 +467,9 @@ git add data/eastern.csv
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+add\s+data/eastern\.csv\s*',
+Ex() >> test_student_typed(r'\s*git\s+add\s+(data/eastern\.csv|\.)\s*',
                            fixed=False,
-                           msg='Use `git add`.')
+                           msg='Use `git add *filename*`.')
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -661,9 +661,9 @@ What is the message on the very first entry in the log
 
 *** =instructions
 - "Added summary report file."
-- "Adding seasonal CSV data files."
-- "Fixed bug and generated results."
-- "Adding reminder to cite funding sources."
+- "Added seasonal CSV data files"
+- "Fixed bug and regenerated results."
+- "Added reminder to cite funding sources."
 
 *** =hint
 
