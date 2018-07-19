@@ -131,6 +131,8 @@ and then `git show` with the first few digits of a hash
 to look at the most recent commit.
 How many files did it change?
 
+As before, press `q` to return from the log output to the command prompt.
+
 *** =instructions
 - None.
 - 1.
