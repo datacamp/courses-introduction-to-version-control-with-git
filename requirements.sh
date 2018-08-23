@@ -6,9 +6,6 @@ HOME_COPY=/.course_home
 USER_GROUP=repl:repl
 COURSE_ID=course_5355
 ARCHIVE=setup.zip
-PYTHON=python3
-PIP=pip3
-SHELLWHAT_EXT=git+https://github.com/datacamp/shellwhat_ext.git@v0.2.0
 
 # Report start.
 echo ''
@@ -27,12 +24,10 @@ apt-get update
 apt-get -y install nano
 apt-get -y install unzip
 
-# Python package installation.
-${PIP} install gitpython
-${PIP} install ${SHELLWHAT_EXT} --no-deps
-${PYTHON} -c "import sys; print('sys.version:', sys.version)"
-${PYTHON} -c "import git; print('gitpython version:', git.__version__)"
-${PYTHON} -c "import shellwhat_ext; print('shellwhat_ext version:', shellwhat_ext.__version__)"
+## Install dev version of protowhat and shellwhat
+pip3 install jinja2==2.10
+pip3 install git+https://github.com/datacamp/protowhat.git@fs/refactor2
+pip3 install git+https://github.com/datacamp/shellwhat.git@fs/refactor --no-dependencies
 
 # Echo shell commands as they are executed.
 set -x

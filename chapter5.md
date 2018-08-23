@@ -31,9 +31,13 @@ git init optical
 
 *** =sct
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+init\s+optical\s*',
-                           fixed=False,
-                           msg='Use `git init` and a directory name.')
+msgpatt = "There is no folder %s in %s. Have you used `git init optical` appropriately to create a new Git repository?"
+Ex().multi(
+    has_cwd('/home/repl'),
+    has_dir('/home/repl/optical', incorrect_msg=msgpatt % ('`optical`', '`/home/repl`')),
+    has_dir('/home/repl/optical/.git', incorrect_msg=msgpatt % ('`.git`', 'the `optical` folder'))
+)
+Ex().success_msg("Well done! This was starting from scratch, but you'll often want to turn an existing folder into a Git repo as well. Find out how in the next exercise.")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -47,8 +51,19 @@ though,
 or working with people who are,
 you will often want to convert existing projects into repositories.
 Doing so is simple:
-just run `git init` in the project's root directory,
-or `git init /path/to/project` from anywhere else on your computer.
+just run
+
+```
+git init
+```
+
+in the project's root directory, or 
+
+```
+git init /path/to/project
+```
+
+from anywhere else on your computer.
 
 *** =pre_exercise_code
 ```{python}
@@ -85,9 +100,11 @@ git init
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+init\s*',
-                           fixed=False,
-                           msg='Use `git init`.')
+msg = "There is no `.git` folder in `dental`. Are you sure you used `git init` correctly?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_dir('/home/repl/dental/.git', incorrect_msg=msg)
+)
 ```
 
 *** =type2: ConsoleExercise
@@ -114,12 +131,14 @@ git status
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+status\s*',
-                           fixed=False,
-                           msg='Check the status as you normally would.')
+msg="Have you used `git status` to look at the status of your freshly initialized repository?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(incorrect_msg=msg)
+)
+Ex().success_msg("Interesting: after initializing the folder into a repository, Git immediately notices that there are a bunch of changes that can be staged (and afterwards, committed).")
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
 
 --- type:BulletConsoleExercise key:9fb3b2ed49
 ## How can I create a copy of an existing repository?
@@ -135,9 +154,19 @@ it creates a copy of an existing repository (including all of its history) in a 
 To clone a repository,
 use the command `git clone URL`,
 where `URL` identifies the repository you want to clone.
-This will normally be something like `https://github.com/datacamp/project.git`,
+This will normally be something like 
+
+```
+https://github.com/datacamp/project.git
+```
+
 but for this lesson,
-we will use **filesystem URLs** of the form `file:///existing/project`.
+we will use **filesystem URLs** of the form 
+
+```
+file:///existing/project
+```
+
 The number of slashes at the start is important:
 the first part of the URL is `file://`,
 and then there is a third slash to start the absolute path `/existing/project`.
@@ -145,9 +174,18 @@ and then there is a third slash to start the absolute path `/existing/project`.
 When you clone a repository,
 Git uses the name of the existing repository as the name of the clone's root directory:
 for example,
-`git clone file:///existing/project` will create a new directory called `project`.
+
+```
+git clone file:///existing/project
+```
+
+will create a new directory called `project`.
 If you want to call the clone something else,
-add the directory name you want to the command: `git clone file:///existing/project newprojectname`
+add the directory name you want to the command:
+
+```
+git clone file:///existing/project newprojectname
+```
 
 *** =pre_exercise_code
 ```{python}
@@ -155,6 +193,7 @@ repl = connect('bash')
 repl.run_command('rm -rf dental')
 repl.run_command('clear')
 repl.run_command('pwd')
+repl.run_command('ls')
 ```
 
 *** =type1: ConsoleExercise
@@ -181,14 +220,17 @@ Remember to count the slashes after `file:` carefully.
 *** =solution1
 ```{shell}
 git clone file:///home/thunk/repo dental
-pwd
 ```
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+clone\s+file:///home/thunk/repo\s+(/home/repl/|~/|\./|)?dental\s*',
-                           fixed=False,
-                           msg='Use `git clone` and the absolute or relative path of the directory to clone to.')
+msgpatt = "There is no folder %s in %s. Have you used `git clone file:///home/thunk/repo dental` to copy the repository from /home/thunk/repo?"
+Ex().multi(
+    has_cwd('/home/repl'),
+    has_dir('/home/repl/dental', incorrect_msg=msgpatt % ('`dental`', '`/home/repl`')),
+    has_dir('/home/repl/dental/.git', incorrect_msg=msgpatt % ('`.git`', 'the `dental` folder'))
+)
+Ex().success_msg("Well done! Let's continue!")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -234,7 +276,7 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex() >> test_mc(2, ['No: there are some remotes.',
+Ex().has_chosen(2, ['No: there are some remotes.',
                     'Correct!',
                     'No: there is just one remote.'])
 ```
@@ -294,9 +336,15 @@ git remote add thunk file:///home/thunk/repo
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+remote\s+add\s+thunk\s+file:///home/thunk/repo\s*',
-                           fixed=False,
-                           msg='Use `git remote add` with the name and URL of the remote.')
+msg1="The system couldn't find a remote with the name `thunk`. Have you used `git remote add thunk <path_to_remote>`?"
+msg2="Are you sure the path of the thunk remote is correct? Have you used `git remote add thunk file:///home/thunk/repo`?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output('git remote', output='thunk', strict=True, incorrect_msg=msg1),
+    has_expr_output('git remote get-url thunk',
+                    output='file:///home/thunk/repo', strict=True, incorrect_msg=msg2)
+)
+Ex().success_msg("Neat! Now you added a remote to your local git repository.")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -360,12 +408,18 @@ git pull origin master
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
-                           fixed=False,
-                           msg='Use `git pull` with the name of the remote and the name of the branch.')
+msg1 = "Make sure you are on the `master` branch (use `git checkout master` to switch to it)."
+msg2 = "If you correctly called `git pull origin master`, the last commit on the `master` should be one from the remote, but it turns out that's not the case. Try again."
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+                    output='master', strict=True, incorrect_msg=msg1),
+    has_expr_output("git log -1 --pretty=%B | grep Reminder", output="Reminder to add references to report.",
+                    incorrect_msg=msg2)
+)
+Ex().success_msg("Well done! This `git pull` went smoothly, but unfortunately that's not always the case. Let's see what can happen if you have unsaved changes when trying to pull in changes.")
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
 
 --- type:BulletConsoleExercise key:2b1e228738
 ## What happens if I try to pull when I have unsaved changes?
@@ -414,9 +468,15 @@ git pull origin master
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
-                           fixed=False,
-                           msg='Use `git pull origin master` to pull in changes.')
+msg1 = "Make sure you are on the `master` branch (use `git checkout master` to switch to it)."
+msg2 = "If you correctly called `git pull origin master`, the last commit on the `master` should be one from the remote, but it turns out that's not the case. Try again."
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+                    output='master', strict=True, incorrect_msg=msg1),
+    has_code(r'\s*git\s+pull\s+origin\s+master\s*',
+              fixed=False, incorrect_msg='Use `git pull origin master` to pull in changes.')
+)
 ```
 
 *** =type2: ConsoleExercise
@@ -430,7 +490,7 @@ Discard the changes in your repository.
 
 *** =hint2
 
-Read the message printed by `git pull` for a reminder of how to do this.
+Remember: `git checkout` resets all changes to unstaged files.
 
 *** =sample_code2
 ```{shell}
@@ -443,9 +503,14 @@ git checkout -- .
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+checkout\s+--.*',
-                           fixed=False,
-                           msg='Use `git checkout --` and a path.')
+msg1 = "Make sure you are on the `master` branch (use `git checkout master` to switch to it)."
+msg2 = "After running your command, there should be no changes to stage anymore. Have you used `git checkout -- .`?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+                    output='master', strict=True, incorrect_msg=msg1),
+    has_expr_output(expr='git diff --name-only | wc -w', output='0', incorrect_msg=msg2)
+)
 ```
 
 *** =type3: ConsoleExercise
@@ -472,9 +537,16 @@ git pull origin master
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+pull\s+origin\s+master\s*',
-                           fixed=False,
-                           msg='Use `git pull origin master` to pull in changes.')
+msg1 = "Make sure you are on the `master` branch (use `git checkout master` to switch to it)."
+msg2 = "If you correctly called `git pull origin master`, the last commit on the `master` should be one from the remote, but it turns out that's not the case. Try again."
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+                    output='master', strict=True, incorrect_msg=msg1),
+    has_expr_output("git log -1 --pretty=%B | grep Reminder", output="Reminder to add references to report.",
+                    incorrect_msg=msg2)
+)
+Ex().success_msg("Well done! Remember: you should have committed all your local changes if you want your `git pull` to run smoothly.")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -535,9 +607,15 @@ git add data/northern.csv
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+add.+\s*',
-                           fixed=False,
-                           msg='Use `git add` as normal.')
+msg1 = "Make sure you are on the `master` branch (use `git checkout master` to switch to it)."
+msg2 = "It seems that `data/northern.csv` wasn't added to the staging area. Have you used `git add data/northern.csv`?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+                    output='master', strict=True, incorrect_msg=msg1),
+    has_expr_output(expr='git diff --name-only --staged | grep data/northern.csv',
+                    output = 'data/northern.csv', strict = True, incorrect_msg = msg2)
+)
 ```
 
 *** =type2: ConsoleExercise
@@ -564,9 +642,15 @@ git commit -m "Added more northern data."
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit.+',
-                           fixed=False,
-                           msg='Use `git commit -m "message"` as normal.')
+msg1 = "Make sure you are on the `master` branch (use `git checkout master` to switch to it)."
+msg2 = "It seems that `data/northern.csv` wasn't changed in the latest commit. Have you used `git commit -m \"Added more northern data\"`?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+                    output='master', strict=True, incorrect_msg=msg1),
+    has_expr_output(expr='git diff HEAD~ --name-only | grep data/northern.csv',
+                    output = 'data/northern.csv', incorrect_msg=msg2)
+)
 ```
 
 *** =type3: ConsoleExercise
@@ -593,9 +677,16 @@ git push origin master
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+push\s+origin\s+master\s*',
-                           fixed=False,
-                           msg='Use `git push` with a remote name and a branch name.')
+msg1 = "Make sure you are on the `master` branch (use `git checkout master` to switch to it)."
+msg2 = "It seems that you still have commits that need to be pushed to the remote. Have you used `git push origin master`?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+                    output='master', strict=True, incorrect_msg=msg1),
+    has_expr_output(expr = 'git log --oneline origin/master..master | wc -l',
+                    output='0', strict=True, incorrect_msg=msg2)
+)
+Ex().success_msg("Success! Head over to the very last exercise of this course!")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -605,6 +696,7 @@ Ex() >> test_student_typed(r'\s*git\s+push\s+origin\s+master\s*',
 
 Overwriting your own work by accident is bad;
 overwriting someone else's is worse.
+
 To prevent this happening,
 Git does not allow you to push changes to a remote repository
 unless you have merged the contents of the remote repository into your own work.
@@ -630,7 +722,7 @@ repl.run_command('git commit -m "Adding a record"')
 
 *** =instructions1
 
-You have made changes to the `dental` repository.
+You have made and committed changes to the `dental` repository locally.
 Use `git push` to push those changes to the remote repository `origin`.
 
 *** =hint1
@@ -648,9 +740,17 @@ git push origin master
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+push\s+origin\s+master\s*',
-                           fixed=False,
-                           msg='Use `git push` with the remote name and the branch name.')
+msg1 = "Make sure you are on the `master` branch (use `git checkout master` to switch to it)."
+msg2 = "Have you used `git push origin master` to attempt to push your local changes to the repo?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+                    output='master', strict=True, incorrect_msg=msg1),
+    # Not sure how to test this robustly, as the command should fail...
+    has_code(r'\s*git\s+push\s+origin\s+master\s*',
+             fixed=False, incorrect_msg=msg2)
+)
+Ex().success_msg("Success! Head over to the very last exercise of this course!")
 ```
 
 *** =type2: ConsoleExercise
@@ -662,7 +762,7 @@ Ex() >> test_student_typed(r'\s*git\s+push\s+origin\s+master\s*',
 
 In order to prevent you overwriting remote work,
 Git has refused to execute your push.
-Use `git pull` to bring your repository up to date with `origin`.
+Use `git pull` to bring your repository up to date with `origin`. It will open up an editor that you can exit with Ctrl+X.
 
 *** =hint2
 
@@ -674,15 +774,20 @@ Use `git pull` with the name of the remote (`origin`) and the name of the branch
 
 *** =solution2
 ```{shell}
-# Run this command *without* '--no-edit':
 git pull --no-edit origin master
 ```
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+pull.*\s+origin\s+master\s*',
-                           fixed=False,
-                           msg='Use `git pull` with the remote name and the branch name.')
+msg1 = "Make sure you are on the `master` branch (use `git checkout master` to switch to it)."
+msg2 = "If the `git pull` went well, you should have 16 commits in your repo, but you don't. Make sure you use `git pull origin master`. If you want to avoid the editor from opening, you can use the `--no-edit` flag."
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+                    output='master', strict=True, incorrect_msg=msg1),
+    has_expr_output(expr='git rev-list --all --count',
+                    output= '16', strict=True, incorrect_msg=msg2)
+)
 ```
 
 *** =type3: ConsoleExercise
@@ -710,7 +815,14 @@ git push origin master
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+push\s+origin\s+master\s*',
-                           fixed=False,
-                           msg='Use `git push` with the remote name and the branch name.')
+msg1 = "Make sure you are on the `master` branch (use `git checkout master` to switch to it)."
+msg2 = "It seems that you still have commits that need to be pushed to the remote. Have you used `git push origin master`?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+                    output='master', strict=True, incorrect_msg=msg1),
+    has_expr_output(expr = 'git log --oneline origin/master..master | wc -l',
+                    output='0', strict=True, incorrect_msg=msg2)
+)
+Ex().success_msg("Success! Head over to the very last exercise of this course!")
 ```

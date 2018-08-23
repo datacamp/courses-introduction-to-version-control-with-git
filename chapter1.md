@@ -41,13 +41,12 @@ Which of the following does Git do?
 
 Git is a very versatile tool.
 
-*** =feedbacks
+*** =feedback
 - Yes, but that's not all.
 - Yes, but that's not all.
 - Yes, but that's not all.
 - Correct.
 
-<!-- -------------------------------------------------------------------------------- -->
 
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:1dac2b0a28
 ## Where does Git store information?
@@ -89,10 +88,8 @@ e1 = 'No: every repository stores its own history.'
 c2 = 'Yes: all of the information about a repository is stored under its root directory.'
 e3 = 'No: all of the information about a repository is stored under its root directory.'
 e4 = 'No: one of the answers above is correct.'
-Ex() >> test_mc(2, [e1, c2, e3, e4])
+Ex().has_chosen(2, [e1, c2, e3, e4])
 ```
-
-<!-- -------------------------------------------------------------------------------- -->
 
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:bc52cf1174
 ## How can I check the state of a repository?
@@ -134,13 +131,11 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex() >> test_mc(2, ['No, that file has not changed.', \
+Ex().has_chosen(2, ['No, that file has not changed.', \
                     'Correct!', \
                     'No, one file has changed.', \
                     'No, only one file has changed.'])
 ```
-
-<!-- -------------------------------------------------------------------------------- -->
 
 --- type:BulletConsoleExercise key:0dd628a298
 ## How can I tell what I have changed?
@@ -195,12 +190,15 @@ git diff
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+diff\s*',
-                           fixed=False,
-                           msg='Use `git diff`.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_or(
+        has_expr_output(),
+        has_code(r'\s*git\s+diff\s*', incorrect_msg='Use `git diff` without extra arguments.')
+    )
+)
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
 
 --- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:eef645517f
 ## What is in a diff?
@@ -270,7 +268,7 @@ repl.run_command('cd dental')
 err_some = 'No, the commit changed some of the lines.'
 correct = 'Yes, the commit changed one line.'
 err_fewer = 'No, the commit did not change that many lines.'
-Ex() >> test_mc(2, [err_some, correct, err_fewer, err_fewer])
+Ex().has_chosen(2, [err_some, correct, err_fewer, err_fewer])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -323,9 +321,12 @@ git add report.txt
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+add\s+report\.txt\s*',
-                           fixed=False,
-                           msg='Use `git add` and a filename.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git diff --name-only --staged | grep report.txt',
+                    output = 'report.txt',
+                    incorrect_msg = "It seems that `report.txt` was not added to the staging area. Have you used `git add report.txt`?")
+)
 ```
 
 *** =type2: ConsoleExercise
@@ -339,7 +340,7 @@ Use another Git command to check the repository's status.
 
 *** =hint2
 
-Use Git to check the *status* of the repository.
+Use `git status` to check the *status* of the repository.
 
 *** =sample_code2
 ```{shell}
@@ -352,9 +353,13 @@ git status
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+status\s*',
-                           fixed=False,
-                           msg='Use `git status`.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_or(
+        has_expr_output(incorrect_msg = "Have a look at the status of your repository with `git status`."),
+        has_code(r'\s*git\s+status\s*')
+    )
+)
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -388,10 +393,7 @@ repl.run_command('git add data/northern.csv')
 
 *** =instructions1
 
-You have been put in the `dental` repository,
-and `data/northern.csv` has been added to the staging area.
-Use `git diff` with `-r` and an argument to see how files differ from
-the last saved revision.
+You have been put in the `dental` repository, where `data/northern.csv` has been added to the staging area. Use `git diff` with `-r` and an argument to see how files differ from the last saved revision.
 
 *** =hint1
 
@@ -408,9 +410,13 @@ git diff -r HEAD
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+diff\s+-r\s+HEAD.*',
-                           fixed=False,
-                           msg='Use `git diff -r HEAD (with or without a directory name)`.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_or(
+        has_expr_output(incorrect_msg = 'Use `git diff -r HEAD` (with or without a directory name)'),
+        has_code(r'\s*git\s+diff\s+-r\s+HEAD.*')
+    )
+)
 ```
 
 *** =type2: ConsoleExercise
@@ -438,9 +444,13 @@ git diff -r HEAD data/northern.csv
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+diff\s+-r\s+HEAD\s+data/northern\.csv\s*',
-                           fixed=False,
-                           msg='Use `git diff -r HEAD` and a filename.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_or(
+        has_expr_output(strict = True, incorrect_msg = 'Use `git diff -r HEAD data/northern.csv` to view the changes of the staged file only.'),
+        has_code(r'\s*git\s+diff\s+-r\s+HEAD\s+data/northern\.csv\s*')
+    )
+)
 ```
 
 *** =type3: ConsoleExercise
@@ -450,7 +460,7 @@ Ex() >> test_student_typed(r'\s*git\s+diff\s+-r\s+HEAD\s+data/northern\.csv\s*',
 
 *** =instructions3
 
-Use one Git command to add the other changed file to the staging area.
+`data/eastern.csv` hasn't been added to the staging area yet. Use a Git command to do this now.
 
 *** =hint3
 
@@ -467,9 +477,14 @@ git add data/eastern.csv
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+add\s+(data/eastern\.csv|\.)\s*',
-                           fixed=False,
-                           msg='Use `git add *filename*`.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git diff --name-only --staged | grep data/eastern.csv',
+                    output = 'data/eastern.csv',
+                    strict = True,
+                    incorrect_msg = "It seems that `data/eastern.csv` wasn't added to the staging area. Have you used `git add data/eastern.csv`?")
+)
+Ex().success_msg("Great! Before we dive into actually committing the changes you have added to the staging area, let's quickly recap how to work with text editors in the terminal.")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -512,16 +527,24 @@ then Ctrl-X and Enter to exit the editor.
 
 *** =solution
 ```{shell}
-# Run this command *without* 'echo' at the front:
-echo nano names.txt
+# This solution uses another command
+# because our automated tests can't edit files interactively.
+echo -e "Lovelace\nHopper\nJohnson\nWilson" > names.txt
 ```
 
 *** =sct
 ```{python}
-from shellwhat_ext import test_compare_file_to_file
-Ex() >> test_student_typed(r'.*nano\s+names.txt.*',
-                           fixed=False,
-                           msg='Use `nano names.txt`.')
+patt = "Have you included the line `%s` in the `names.txt` file? Use `nano names.txt` again to update your file. Use Ctrl-O to save and Ctrl-X to exit."
+Ex().multi(
+    has_cwd('/home/repl'),
+    check_file('/home/repl/names.txt').multi(
+        has_code('Lovelace', incorrect_msg=patt%'Lovelace'),
+        has_code('Hopper', incorrect_msg=patt%'Hopper'),
+        has_code('Johnson', incorrect_msg=patt%'Johnson'),
+        has_code('Wilson', incorrect_msg=patt%'Wilson')
+    )
+)
+Ex().success_msg("Well done! Off to the next one!")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -573,7 +596,7 @@ repl.run_command('git add report.txt')
 
 You have been put in the `dental` repository,
 and `report.txt` has been added to the staging area.
-Use one Git command to check the status of the repository.
+Use a Git command to check the status of the repository.
 
 *** =hint1
 
@@ -590,9 +613,13 @@ git status
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+status\s*',
-                           fixed=False,
-                           msg='Remember, you want to check the *status* of the repository.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_or(
+        has_expr_output(incorrect_msg = "Have a look at the status of your repository with `git status`."),
+        has_code(r'\s*git\s+status\s*')
+    )
+)
 ```
 
 *** =type2: ConsoleExercise
@@ -619,9 +646,14 @@ git commit -m "Adding a reference."
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit\s+-m\s+("[^"]+"|\'[^\']+\')\s*',
-                           fixed=False,
-                           msg='Use `git commit` with `-m "message"`.')
+msg = "It seems that the staged changes to `report.txt` weren't committed. Have you used `git commit` with `-m \"Adding a reference\"`?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git diff HEAD~ --name-only | grep report.txt',
+                    output = 'report.txt',
+                    incorrect_msg=msg)
+)
+Ex().success_msg("You committed the file!")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -678,7 +710,7 @@ repl.run_command('cd dental')
 *** =sct
 ```{python}
 err = 'Incorrect: please re-run the command and use `git log`.'
-Ex() >> test_mc(1, ['Correct', err, err, err])
+Ex().has_chosen(1, ['Correct', err, err, err])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -719,7 +751,7 @@ repl.run_command('cd dental')
 *** =sct
 ```{python}
 err = 'Incorrect: please use `git log data/southern.csv` and count the number of log entries.'
-Ex() >> test_mc(3, [err, err, 'Correct!', err])
+Ex().has_chosen(3, [err, err, 'Correct!', err])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -772,6 +804,8 @@ You have been put in the `dental` repository,
 and `report.txt` has been added to the staging area.
 The changes to `report.txt` have already been staged.
 Use `git commit` *without* `-m` to commit the changes.
+The Nano editor will open up. Write a meaningful message
+and use Ctrl+O and Ctrl+X to save and leave the editor.
 
 *** =hint1
 
@@ -784,13 +818,18 @@ Run `git commit` without any arguments.
 
 *** =solution1
 ```{shell}
-# You should run 'git commit' *without* -m:
+# This solution uses another command
+# because our automated tests can't edit files interactively.
 git commit -m "Adding a reference."
 ```
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit\s*',
-                           fixed=False,
-                           msg='Use `git add` without `-m`.')
+msg="It seems that the staged changes to `report.txt` weren't committed. Use `git commit` to interactively write a commit message. If you're struggling, you can always use the `-m \"any message\"` flag to avoid the interaction."
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git diff HEAD~ --name-only | grep report.txt',
+                    output = 'report.txt', incorrect_msg=msg)
+)
+Ex().success_msg("Neat! This concludes chapter 1, where you learned about `git diff`, `git status`, `git add` and `git commit`. Quite something! Rush over to chapter 2 to continue your Git adventure!")
 ```

@@ -35,12 +35,12 @@ repl.run_command('git status')
 
 *** =instructions1
 
-Stage the changes made to `data/northern.csv`
-(and *only* those changes).
+From the output of `git status` on the right, you'll see that two files were changed; `data/northern.csv` and `data/eastern.csv`.
+Stage only the changes made to `data/northern.csv`.
 
 *** =hint1
 
-Use `git add` to stage the changes to a file.
+Use `git add` with a file path to stage the changes of this file.
 
 *** =sample_code1
 ```{shell}
@@ -53,9 +53,12 @@ git add data/northern.csv
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+add\s+data/northern\.csv\s*',
-                           fixed=False,
-                           msg='Use `git add`.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git diff --name-only --staged | grep data/northern.csv',
+                    output = 'data/northern.csv',
+                    incorrect_msg = "It seems that `data/northern.csv` was not added to the staging area. Have you used `git add data/northern.csv`?")
+)
 ```
 
 *** =type2: ConsoleExercise
@@ -82,9 +85,14 @@ git commit -m "Adding data from northern region."
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit\s+-m.*',
-                           fixed=False,
-                           msg='Use `git commit` with a message.')
+msg = "It seems that the changes to `data/northern.csv` you staged in the previous instruction weren't committed. Have you used `git commit` with `-m \"message\"`?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git diff HEAD~ --name-only | grep data/northern.csv',
+                    output = 'data/northern.csv',
+                    incorrect_msg=msg)
+)
+Ex().success_msg("Well done! Let's have a look at re-staging files.")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -139,9 +147,13 @@ git status
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+status\s*',
-                           fixed=False,
-                           msg='Remember, you want to check the *status* of the repository.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_or(
+        has_expr_output(incorrect_msg = "Have a look at the status of your repository with `git status`."),
+        has_code(r'\s*git\s+status\s*')
+    )
+)
 ```
 
 *** =type2: ConsoleExercise
@@ -151,7 +163,8 @@ Ex() >> test_student_typed(r'\s*git\s+status\s*',
 
 *** =instructions2
 
-Use `git add` to stage any files that have changes.
+It appers that some changes to `data/northern.csv` have already been staged, but there are new changes that haven't been staged yet.
+Use `git add` to stage these latest changes to `data/northern.csv` again.
 
 *** =hint2
 
@@ -168,9 +181,15 @@ git add data/northern.csv
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+add\s+(data/northern\.csv|data/?|\.)\s*',
-                           fixed=False,
-                           msg='Use `git add` with one filename.')
+msg1 = "Have you used `git status data/northern.csv` to stage the latest changes to `data/northern.csv` as well?"
+msg2 = "It appears there are still changes to be staged. " + msg1
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git diff --name-only --staged | grep data/northern.csv',
+                    output='data/northern.csv', strict=True, incorrect_msg=msg1),
+    has_expr_output(expr='git diff --name-only | wc -w', output='0', incorrect_msg=msg2)
+)
+Ex().success_msg("Alright! Let's expore how you can undo some of your work.")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -205,7 +224,8 @@ with open('dental/data/eastern.csv', 'a') as writer:
 repl = connect('bash')
 repl.run_command('cd dental')
 repl.run_command('git add data/*.csv')
-repl.run_command('git status')
+with open('dental/data/northern.csv', 'a') as writer:
+    writer.write('2017-11-02,bicuspid\n')
 ```
 
 *** =type1: ConsoleExercise
@@ -215,9 +235,9 @@ repl.run_command('git status')
 
 *** =instructions1
 
-You are in the `dental` repository.
-Use one Git to undo the changes to the file `data/northern.csv`
-(and *only* that file).
+You are in the `dental` repository, where all changes to `.csv` files in `data` were staged. If you run `git status`, you will see that `data/northern.csv` was changed again.
+
+Use a Git command to undo the changes to the file `data/northern.csv`.
 
 *** =hint1
 
@@ -235,9 +255,14 @@ git checkout -- data/northern.csv
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+checkout\s+--\s+data/northern\.csv\s*',
-                           fixed=False,
-                           msg='Use `git checkout` with `--` as a separator and then a file.')
+Ex().check_not(has_code('git\s+status'), incorrect_msg="Alright, now that you've seen the status of the repo, use `git checkout` correctly to undo the changes to `data/northern.csv`.")
+
+msg = "After running your command, there should be no changes that can be staged. Have you used `git checkout` on `data/northern.csv` correctly? Make sure to use a `--` to separate the command from the name of the file."
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git diff --name-only | wc -w', output='0', incorrect_msg=msg)
+)
+Ex().success_msg("Good job! This was about undoing changes that weren't staged yet. What about undoing changes that you staged already with `git add`? Find out in the next exercise.")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -277,7 +302,7 @@ repl.run_command('git status')
 
 *** =instructions1
 
-Use a single Git command to unstage the file `data/northern.csv`
+Use `git reset` to unstage the file `data/northern.csv`
 (and *only* that file).
 
 *** =hint1
@@ -296,9 +321,16 @@ git reset HEAD data/northern.csv
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+data/northern\.csv\s*',
-                           fixed=False,
-                           msg='Use `git reset` with two arguments.')
+msg1 = "The checker expected the file `data/eastern.csv` to still be staged. Make sure to re-add it with `git add data/eastern.csv`."
+msg2 = "The checker expected `data/northern.csv` to no longer be staged. Have you used `git reset ___ data/northern.csv` (fill in the blank) correctly?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git diff --name-only --staged | grep data/eastern.csv',
+                    output='data/eastern.csv', strict=True, incorrect_msg=msg1),
+    has_expr_output(expr='git diff --name-only | grep data/northern.csv',
+                    output='data/northern.csv', strict=True, incorrect_msg=msg2)
+)
+Ex().success_msg("That's how it's done!")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -362,15 +394,16 @@ Use `git log` with the name of the file as an argument.
 
 *** =solution1
 ```{shell}
-# Run this command *without* 'cat' at the end.
+# Run this command without '| cat' at the end.
 git log report.txt | cat
 ```
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+log\s+report\.txt\s*',
-                           fixed=False,
-                           msg='Use `git log` with a filename.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(incorrect_msg = "Have you used `git log ___` (fill in the blank)?")
+)
 ```
 
 *** =type2: ConsoleExercise
@@ -393,14 +426,22 @@ Use `git checkout` with the hash and the name of the file as arguments (in that 
 
 *** =solution2
 ```{shell}
-git checkout a0a0a0a0 report.txt
+# Replace the commit hash with the penultimate hash from git log
+git checkout a0a0a0 report.txt
 ```
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+checkout\s+[0-9a-f]+\s+report\.txt\s*',
-                           fixed=False,
-                           msg='Use `git checkout hash filename`.')
+msg = "The checker expected changes to `report.txt` to be staged. Have you used `git checkout ___ report.txt` (fill in the blank) to checkout the previous version correctly?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_or(
+        has_expr_output(expr='git diff --name-only --staged | grep report.txt',
+                        output='report.txt', strict=True, incorrect_msg=msg),
+        # to satisfy validator (as strict as possible)
+        has_code(r'\s*git\s+checkout\s+a0a0a0+\s+report\.txt\s*')
+    )
+)
 ```
 
 *** =type3: ConsoleExercise
@@ -427,9 +468,19 @@ git commit -m "Restoring"
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit.*',
-                           fixed=False,
-                           msg='Use `git commit -m "message"`.')
+msg = "It seems that the changes to `report.txt` that were staged with the `git checkout` command weren't committed. Have you used `git commit` with `-m \"any message\"`?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_or(
+        multi(
+            has_expr_output(expr='git diff HEAD~ --name-only | grep report.txt', output='report.txt', incorrect_msg=msg),
+            has_expr_output(expr='git diff --name-only --staged | wc -w', output='0', incorrect_msg=msg)
+        ),
+        # to satisfy validator (as strict as possible)
+        has_code(r'\s*git\s+commit\s+-m\s+"Restoring"')
+    )
+)
+Ex().success_msg("Solid, but there's more undoing to be done!")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -458,7 +509,7 @@ with open('dental/report.txt', 'a') as writer:
     writer.write('\n(Because funding is the most important part of any project.)\n')
 repl = connect('bash')
 repl.run_command('cd dental')
-repl.run_command('git add dental')
+repl.run_command('git add .')
 repl.run_command('git status')
 ```
 
@@ -490,9 +541,14 @@ git reset HEAD .
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+(\.|dental)\s*',
-                           fixed=False,
-                           msg='Use `git reset HEAD` and some file or directory names.')
+instr=" Have you used `git reset HEAD .`?"
+msg1 = "It appears that there are still some staged files, while there shouldn't be any."+instr
+msg2 = "The checker expected to find three changed files that are not staged yet."+instr
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr = 'git diff --name-only --staged | wc -w', output='0', incorrect_msg=msg1),
+    has_expr_output(expr = 'git diff --name-only | wc -w', output='3', incorrect_msg=msg2)
+)
 ```
 
 *** =type2: ConsoleExercise
@@ -523,7 +579,15 @@ git checkout -- .
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+checkout\s+--\s+\.\s*',
-                           fixed=False,
-                           msg='Use `git checkout --` with `.` as an argument.')
+instr=" Have you used `git checkout -- .`?"
+msg1 = "It appears that there are some staged files, while there shouldn't be any."+instr
+msg2 = "The checker expected to find no files that still had changes to stage."+instr
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr = 'git diff --name-only --staged | wc -w', output='0',
+                    incorrect_msg=msg1),
+    has_expr_output(expr = 'git diff --name-only | wc -w', output='0',
+                    incorrect_msg=msg2)
+)
+Ex().success_msg("Well done! This concludes chapter 3 on undoing your work. Where Git gets really interesting, though, is in its branching abilities. Find out all about it in the next chapter!")
 ```

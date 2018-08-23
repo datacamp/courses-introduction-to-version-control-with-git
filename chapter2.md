@@ -40,7 +40,7 @@ which files changed in the last (bottom-most) commit to this repository?
 
 Look in the right-most column to see which file is new.
 
-*** =feedbacks
+*** =feedback
 - Correct!
 - No: that is part of the most recent commit, but wasn't changed in it.
 - No: that file is no longer present in the tree.
@@ -88,7 +88,7 @@ Remember that you can use 'q' to quit the pager.
 *** =sct
 ```{python}
 err = "No, that is not the most recent hash."
-Ex() >> test_mc(4, [err, err, err, "Correct!"])
+Ex().has_chosen(4, [err, err, err, "Correct!"])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -125,13 +125,14 @@ while lines that it added are prefixed with `+`.
 <hr>
 
 You have been put in the `dental` directory.
-(We will now stop reminding you of this...)
 Use `git log` to see the hashes of recent commits,
 and then `git show` with the first few digits of a hash
 to look at the most recent commit.
 How many files did it change?
 
-As before, press `q` to return from the log output to the command prompt.
+Reminder:
+press the space bar to page down through `git log`'s output
+and `q` to quit the paged display.
 
 *** =instructions
 - None.
@@ -155,7 +156,7 @@ repl.run_command('cd dental')
 e_more = 'No, there have been more changes than that.'
 correct = 'Correct!'
 e_fewer = 'No, there have been fewer changes than that.'
-Ex() >> test_mc(2, [e_more, correct, e_fewer, e_fewer])
+Ex().has_chosen(2, [e_more, correct, e_fewer, e_fewer])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -202,7 +203,7 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex() >> test_mc(2, ['No, the commit `HEAD~1` did not change that file.',
+Ex().has_chosen(2, ['No, the commit `HEAD~1` did not change that file.',
                     'Correct.',
                     'No, the commit `HEAD~1` only changed one file.',
                     'No, the commit `HEAD~1` did change a file.'])
@@ -260,7 +261,7 @@ repl.run_command('cd dental')
 e_more = 'No, there have been more changes than that.'
 correct = 'Correct!'
 e_fewer = 'No, there have been fewer changes than that.'
-Ex() >> test_mc(3, [e_more, e_more, correct, e_fewer])
+Ex().has_chosen(3, [e_more, e_more, correct, e_fewer])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -308,7 +309,7 @@ err_more = 'Yes, but another file was changed as well.'
 err_not = 'No, that file did not change.'
 correct = 'Correct!'
 err_half = 'No, one of those files did not change.'
-Ex() >> test_mc(4, [err_more, err_more, err_not, correct, err_half])
+Ex().has_chosen(4, [err_more, err_more, err_not, correct, err_half])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -357,9 +358,13 @@ git status
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+status\s*',
-                           fixed=False,
-                           msg='Remember, you want to check the *status* of the repository.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_or(
+        has_expr_output(incorrect_msg = "Have a look at the status of your repository with `git status`."),
+        has_code(r'\s*git\s+status\s*')
+    )
+)
 ```
 
 *** =type2: ConsoleExercise
@@ -386,9 +391,12 @@ git add sources.txt
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+add\s+(\.|sources\.txt)\s*',
-                           fixed=False,
-                           msg='You can add files one by one or use a directory to add them all.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git diff --name-only --staged | grep sources.txt',
+                    output = 'sources.txt',
+                    incorrect_msg = "It seems that `sources.txt` was not added to the staging area. Have you used `git add sources.txt`?")
+)
 ```
 
 *** =type3: ConsoleExercise
@@ -416,9 +424,14 @@ git commit -m "Starting to track data sources."
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit\s+-m\s+"[^"]+"\s*',
-                           fixed=False,
-                           msg='Remember, you want to *commit* files.')
+msg = "It seems that the changes to `sources.txt` you staged in the previous instruction weren't committed. Have you used `git commit` with `-m \"message\"`?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git diff HEAD~ --name-only | grep sources.txt',
+                    output = 'sources.txt',
+                    incorrect_msg=msg)
+)
+Ex().success_msg("That's how it's done!")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -461,7 +474,7 @@ backup
 
 To match a set of files, a `.gitignore` entry must contain a wildcard character such as `*`.
 
-*** =feedbacks
+*** =feedback
 - Correct: `pdf` does not contain any wildcards, so it only matches files called `pdf`.
 - This file *is* matched because the pattern `*.pyc` matches files in sub-directories.
 - This file *is* matched because `backup` is a directory, so all files in it are ignored.
@@ -500,7 +513,7 @@ repl.run_command('cd dental')
 *** =instructions1
 
 You are in the `dental` repository.
-Use `ls` to see what files are present.
+Use `git status` to see the status of your repo.
 
 *** =hint1
 
@@ -512,14 +525,18 @@ Run the command as shown.
 
 *** =solution1
 ```{shell}
-ls
+git status
 ```
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*ls\s*',
-                           fixed=False,
-                           msg='Use `ls` without arguments.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_or(
+        has_expr_output(incorrect_msg = "Have a look at the status of your repository with `git status`."),
+        has_code(r'\s*git\s+status\s*')
+    )
+)
 ```
 
 *** =type2: ConsoleExercise
@@ -529,7 +546,8 @@ Ex() >> test_student_typed(r'\s*ls\s*',
 
 *** =instructions2
 
-Use a single Git command to remove unwanted files.
+`backup.log` appears to be an untracked file and it's one we don't need. Let's get rid of it.
+Use `git clean` with the appropriate flag to remove unwanted files.
 
 *** =hint2
 
@@ -546,9 +564,11 @@ git clean -f
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+clean\s+-f\s*',
-                           fixed=False,
-                           msg='Use `git clean` with the right flag(s).')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='ls | wc -l', output='4',
+                    incorrect_msg="Have you used `git clean -f` to get rid of the unwanted file that wasn't being tracked? After running it, `ls | wc -l` should give 4, but it didn't.")
+)
 ```
 
 *** =type3: ConsoleExercise
@@ -558,7 +578,7 @@ Ex() >> test_student_typed(r'\s*git\s+clean\s+-f\s*',
 
 *** =instructions3
 
-Use `ls` again to see what effects your Git command has had.
+List the files in your directory. `backup.log` should no longer be there!
 
 *** =hint3
 
@@ -575,9 +595,14 @@ ls
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*ls\s*',
-                           fixed=False,
-                           msg='Use `ls` without arguments.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_or(
+        has_expr_output(incorrect_msg = "Use `ls` to list the files in `dental`, your current working directory."),
+        has_code(r'\s*ls\s*')
+    )
+)
+Ex().success_msg("A job well done! Keeping your repository clean is crucial to keep oversight.")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -621,7 +646,7 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex() >> test_mc(3, ['No, some configuration values are set.',
+Ex().has_chosen(3, ['No, some configuration values are set.',
                     'No, more configuration values are set than that.',
                     'Correct!',
                     'No, fewer configuration values are set than that.'])
@@ -652,7 +677,7 @@ The keys that identify your name and email address are `user.name` and `user.ema
 
 *** =instructions
 
-Change the email address configured for the current user for *all* projects
+Change the email address (`user.email`) configured for the current user for *all* projects
 to `rep.loop@datacamp.com`.
 
 *** =solution
@@ -662,7 +687,17 @@ git config --global user.email rep.loop@datacamp.com
 
 *** =sct
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+config\s+--global\s+user\.email\s+["\']?rep\.loop@datacamp.com["\']?\s*',
-                           fixed=False,
-                           msg='Use `git config --global` with the `user.email` property and the email address.')
+patt='You should use `%s` in your command.'
+Ex().check_correct(
+    has_expr_output(expr='git config --global user.email',
+                    output='rep.loop@datacamp.com',
+                    incorrect_msg="Have you used `git config --global user.email rep.loop@datacamp.com` to properly configure the email address globally?"),
+    multi(
+        has_code(r'git\s+config', incorrect_msg="Your command should start with `git config`."),
+        has_code(r'--global', incorrect_msg="You should use the flag `--global`."),
+        has_code(r'user\.email', incorrect_msg="Use `user.email` to tell `git config` you're about to set the email address."),
+        has_code('rep.loop@datacamp.com', fixed=True, incorrect_msg="Make sure to set `user.email` to `rep.loop@datacamp.com`. Beware of typos!")
+    )
+)
+Ex().success_msg("Well configured! Head over to chapter 3 to continue learning about Git!")
 ```
