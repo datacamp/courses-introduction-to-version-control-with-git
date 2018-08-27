@@ -26,8 +26,8 @@ apt-get -y install unzip
 
 ## Install dev version of protowhat and shellwhat
 pip3 install jinja2==2.10
-pip3 install git+https://github.com/datacamp/protowhat.git@fs/refactor2
-pip3 install git+https://github.com/datacamp/shellwhat.git@fs/refactor --no-dependencies
+pip3 install protowhat==1.1.1
+pip3 install shellwhat==1.0.0 --no-dependencies
 
 # Echo shell commands as they are executed.
 set -x

@@ -538,10 +538,10 @@ patt = "Have you included the line `%s` in the `names.txt` file? Use `nano names
 Ex().multi(
     has_cwd('/home/repl'),
     check_file('/home/repl/names.txt').multi(
-        has_code('Lovelace', incorrect_msg=patt%'Lovelace'),
-        has_code('Hopper', incorrect_msg=patt%'Hopper'),
-        has_code('Johnson', incorrect_msg=patt%'Johnson'),
-        has_code('Wilson', incorrect_msg=patt%'Wilson')
+        has_code(r'Lovelace', incorrect_msg=patt%'Lovelace'),
+        has_code(r'Hopper', incorrect_msg=patt%'Hopper'),
+        has_code(r'Johnson', incorrect_msg=patt%'Johnson'),
+        has_code(r'Wilson', incorrect_msg=patt%'Wilson')
     )
 )
 Ex().success_msg("Well done! Off to the next one!")

@@ -255,7 +255,7 @@ git checkout -- data/northern.csv
 
 *** =sct1
 ```{python}
-Ex().check_not(has_code('git\s+status'), incorrect_msg="Alright, now that you've seen the status of the repo, use `git checkout` correctly to undo the changes to `data/northern.csv`.")
+Ex().check_not(has_code(r'git\s+status'), incorrect_msg="Alright, now that you've seen the status of the repo, use `git checkout` correctly to undo the changes to `data/northern.csv`.")
 
 msg = "After running your command, there should be no changes that can be staged. Have you used `git checkout` on `data/northern.csv` correctly? Make sure to use a `--` to separate the command from the name of the file."
 Ex().multi(

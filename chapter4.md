@@ -173,7 +173,7 @@ git checkout summary-statistics
 
 *** =sct1
 ```{python}
-msg="You don't appear tho be on the right branch. Have you used `git checkout summary-statistics`?"
+msg="You don't appear to be on the right branch. Have you used `git checkout summary-statistics`?"
 Ex().multi(
     has_cwd('/home/repl/dental'),
     # Check we're on the right branch -- https://stackoverflow.com/a/12142066/1144523
@@ -309,7 +309,7 @@ git checkout master
 
 *** =sct5
 ```{python}
-msg="You don't appear tho be on the right branch. Have you used `git checkout master`?"
+msg="You don't appear to be on the right branch. Have you used `git checkout master`?"
 Ex().multi(
     has_cwd('/home/repl/dental'),
     has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
@@ -395,9 +395,9 @@ Ex().multi(
         has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep deleting-report',
                         output='deleting-report', strict=True, incorrect_msg=msg),
         multi(
-            has_code('git\s+checkout', incorrect_msg="Have you used `git checkout`?"),
-            has_code('-b', incorrect_msg="Make sure to use the flag `-b`."),
-            has_code('deleting-report', incorrect_msg="Your new branch should be called `deleting-report`. Beware of typos!")
+            has_code(r'git\s+checkout', incorrect_msg="Have you used `git checkout`?"),
+            has_code(r'-b', incorrect_msg="Make sure to use the flag `-b`."),
+            has_code(r'deleting-report', incorrect_msg="Your new branch should be called `deleting-report`. Beware of typos!")
         )
     )
 )
@@ -788,9 +788,9 @@ Ex().multi(
                     output='master', strict=True, incorrect_msg=msg1),
     check_file('/home/repl/dental/report.txt').multi(
         has_code('# Dental Work by Season 2017-18', fixed=True, incorrect_msg=msg2),
-        check_not(has_code('<<<<<'), incorrect_msg=msg3patt%'<<<<<<<'),
-        check_not(has_code('>>>>>'), incorrect_msg=msg3patt%'>>>>>>>'),
-        check_not(has_code('====='), incorrect_msg=msg3patt%'=======')
+        check_not(has_code(r'<<<<<'), incorrect_msg=msg3patt%'<<<<<<<'),
+        check_not(has_code(r'>>>>>'), incorrect_msg=msg3patt%'>>>>>>>'),
+        check_not(has_code(r'====='), incorrect_msg=msg3patt%'=======')
     )
 )
 ```
