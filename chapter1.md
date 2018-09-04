@@ -194,7 +194,7 @@ Ex().multi(
     has_cwd('/home/repl/dental'),
     check_or(
         has_expr_output(),
-        has_code(r'\s*git\s+diff\s*', incorrect_msg='Use `git diff` without extra arguments.')
+        has_code(r'\s*git\s+diff\s*', incorrect_msg='Use `git` followed by `diff` without extra arguments.')
     )
 )
 ```
@@ -266,7 +266,7 @@ repl.run_command('cd dental')
 *** =sct
 ```{python}
 err_some = 'No, the commit changed some of the lines.'
-correct = 'Yes, the commit changed one line.'
+correct = 'Yes, the commit added one line.'
 err_fewer = 'No, the commit did not change that many lines.'
 Ex().has_chosen(2, [err_some, correct, err_fewer, err_fewer])
 ```
