@@ -322,10 +322,13 @@ git add report.txt
 *** =sct1
 ```{python}
 Ex().multi(
-    has_cwd('/home/repl/dental'),
-    has_expr_output(expr='git diff --name-only --staged | grep report.txt',
-                    output = 'report.txt',
-                    incorrect_msg = "It seems that `report.txt` was not added to the staging area. Have you used `git add report.txt`?")
+has_cwd('/home/repl/dental'),
+  has_expr_output(
+    strict=True, 
+    expr='git diff --name-only --staged | grep report.txt',
+    output = 'report.txt',
+    incorrect_msg = "It seems that `report.txt` was not added to the staging area. Have you used `git add report.txt`?"
+  )
 )
 ```
 
@@ -355,9 +358,9 @@ git status
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    check_or(
-        has_expr_output(incorrect_msg = "Have a look at the status of your repository with `git status`."),
-        has_code(r'\s*git\s+status\s*')
+    check_correct(
+        has_expr_output(),
+        has_code(r'\s*git\s+status\s*', incorrect_msg = "Have a look at the status of your repository with `git status`.")
     )
 )
 ```
@@ -367,12 +370,10 @@ Ex().multi(
 --- type:BulletConsoleExercise key:f208f45d7d
 ## How can I tell what's going to be committed?
 
-To compare a file's current state to the changes in the staging area,
-you can use `git diff -r HEAD path/to/file`.
-The `-r` flag means "compare to a particular revision",
-`HEAD` is a shortcut meaning "the most recent commit",
-and the path to the file is the relative to where you are
-(for example, the path from the root directory of the repository).
+To compare the state of your files with those in the staging area, you can use `git diff -r HEAD`. The `-r` flag means "compare to a particular revision", and `HEAD` is a shortcut meaning "the most recent commit".
+
+You can restrict the results to a single file or directory using `git diff -r HEAD path/to/file`, where the path to the file is relative to where you are (for example, the path from the root directory of the repository).
+
 We will explore other uses of `-r` and `HEAD` in the next chapter.
 
 *** =pre_exercise_code
@@ -412,9 +413,9 @@ git diff -r HEAD
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    check_or(
-        has_expr_output(incorrect_msg = 'Use `git diff -r HEAD` (with or without a directory name)'),
-        has_code(r'\s*git\s+diff\s+-r\s+HEAD.*')
+    check_correct(
+        has_expr_output(),
+        has_code(r'\s*git\s+diff\s+-r\s+HEAD.*', incorrect_msg = 'Use `git diff` with the `-r` flag and `HEAD` (with or without a directory name).')
     )
 )
 ```
@@ -446,9 +447,9 @@ git diff -r HEAD data/northern.csv
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    check_or(
-        has_expr_output(strict = True, incorrect_msg = 'Use `git diff -r HEAD data/northern.csv` to view the changes of the staged file only.'),
-        has_code(r'\s*git\s+diff\s+-r\s+HEAD\s+data/northern\.csv\s*')
+    check_correct(
+        has_expr_output(),
+        has_code(r'\s*git\s+diff\s+-r\s+HEAD.*', incorrect_msg = 'Use `git diff` with the `-r` flag, `HEAD`, and `data/northern.csv` to view the changes of the staged file only.')
     )
 )
 ```
