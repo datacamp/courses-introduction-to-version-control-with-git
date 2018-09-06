@@ -640,9 +640,9 @@ How many local configuration values are set in for this repository?
 
 *** =instructions
 - None.
-- 1.
+- 3.
 - 4.
-- 12.
+- 7.
 
 *** =hint
 
@@ -657,9 +657,9 @@ repl.run_command('cd dental')
 *** =sct
 ```{python}
 Ex().has_chosen(3, ['No, some configuration values are set.',
-                    'No, more configuration values are set than that.',
-                    'Correct!',
-                    'No, fewer configuration values are set than that.'])
+                    'No, there are 3 global settings, but how many local settings are there?',
+                    'Correct! Config settings are useful for storing your name and email address (to identify you in commit logs), choosing your favorite text editor and diff view tools, and customizing things just how you like them.',
+                    'No, there are 7 settings in total, but how many local settings are there?'])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
