@@ -401,14 +401,11 @@ Ex().success_msg("That's how it's done!")
 --- type:BulletConsoleExercise key:61872a66b5
 ## How do I restore an old version of a file?
 
-Since Git stores old versions of your files,
-you can use it to restore those files when you want to undo changes.
-The command for doing this is `git checkout`,
-which takes two arguments:
-the hash that identifies the version you want to restore,
-and the name of the file.
-For example,
-if `git log` shows this:
+You previously saw how to use `git checkout` to undo the change that you made since the last commit. This command can also be used to go back even further into a file's history and restore versions of that file from a commit. In this way, you can think of committing as saving your work, and **checking out** as loading that saved version.
+
+The syntax for restoring an old version takes two arguments: the hash that identifies the version you want to restore, and the name of the file.
+
+For example, if `git log` shows this:
 
 ```
 commit ab8883e8a6bfa873d44616a0f356125dbaccd9ea
@@ -424,15 +421,12 @@ Date:   Thu Oct 16 09:17:37 2017 -0400
     Modifying the bibliography format.
 ```
 
-then `git checkout 2242bd report.txt` would replace `report.txt`
-with whatever was committed on October 16.
+then `git checkout 2242bd report.txt` would replace the current version of `report.txt` with the version that was committed on October 16. Notice that this is the same syntax that you used to undo the unstaged changes, except `--` has been replaced by a hash.
 
 Restoring a file doesn't erase any of the repository's history.
-Instead,
-the act of restoring the file is saved as another commit,
-because you might later want to undo your undoing.
+Instead, the act of restoring the file is saved as another commit, because you might later want to undo your undoing.
 
-There's another feature of `git log` that will come in handy here. Passing `-` then a number restricts the output to that many commits. For example `git log -3 report.txt` shows you the last three commits involving `report.txt`.
+One more thing: there's another feature of `git log` that will come in handy here. Passing `-` then a number restricts the output to that many commits. For example, `git log -3 report.txt` shows you the last three commits involving `report.txt`.
 
 *** =pre_exercise_code
 ```{python}
