@@ -184,9 +184,9 @@ git status
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    check_or(
-        has_expr_output(incorrect_msg = "Have a look at the status of your repository with `git status`."),
-        has_code(r'\s*git\s+status\s*')
+    check_correct(
+        has_expr_output(),
+        has_code(r'\s*git\s+status\s*', incorrect_msg = "Have a look at the status of your repository with `git status`.")
     )
 )
 ```

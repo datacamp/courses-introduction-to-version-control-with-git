@@ -134,7 +134,10 @@ git status
 msg="Have you used `git status` to look at the status of your freshly initialized repository?"
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    has_expr_output(incorrect_msg=msg)
+    check_correct(
+        has_expr_output(),
+        has_code(r'\s*git\s+status\s*', incorrect_msg = msg)
+    )
 )
 Ex().success_msg("Interesting: after initializing the folder into a repository, Git immediately notices that there are a bunch of changes that can be staged (and afterwards, committed).")
 ```
