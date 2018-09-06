@@ -432,6 +432,8 @@ Instead,
 the act of restoring the file is saved as another commit,
 because you might later want to undo your undoing.
 
+There's another feature of `git log` that will come in handy here. Passing `-` then a number restricts the output to that many commits. For example `git log -3 report.txt` shows you the last three commits involving `report.txt`.
+
 *** =pre_exercise_code
 ```{python}
 repl = connect('bash')
@@ -445,11 +447,11 @@ repl.run_command('cd dental')
 
 *** =instructions1
 
-Use `git log` to list the recent changes to `report.txt`.
+Use `git log -1` to list the most recent changes to `report.txt`.
 
 *** =hint1
 
-Use `git log` with the name of the file as an argument.
+Use `git log -1` with the name of the file as an argument.
 
 *** =sample_code1
 ```{shell}
@@ -458,14 +460,14 @@ Use `git log` with the name of the file as an argument.
 *** =solution1
 ```{shell}
 # Run this command without '| cat' at the end.
-git log report.txt | cat
+git log -1 report.txt | cat
 ```
 
 *** =sct1
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    has_expr_output(incorrect_msg = "Have you used `git log ___` (fill in the blank)?")
+    has_expr_output(incorrect_msg = "Have you used `git log -1 ___` (fill in the blank)?")
 )
 ```
 
@@ -495,6 +497,8 @@ git checkout a0a0a0 report.txt
 
 *** =sct2
 ```{python}
+# Find the first 6 digits of the hash using
+# git log -1 report.txt | grep -P --only-matching "(?<=commit )[0-9a-f]{6}"
 msg = "The checker expected changes to `report.txt` to be staged. Have you used `git checkout ___ report.txt` (fill in the blank) to checkout the previous version correctly?"
 Ex().multi(
     has_cwd('/home/repl/dental'),
@@ -502,7 +506,7 @@ Ex().multi(
         has_expr_output(expr='git diff --name-only --staged | grep report.txt',
                         output='report.txt', strict=True, incorrect_msg=msg),
         # to satisfy validator (as strict as possible)
-        has_code(r'\s*git\s+checkout\s+a0a0a0+\s+report\.txt\s*')
+        has_code(r'\s*git\s+checkout\s+0da2f7+\s+report\.txt\s*')
     )
 )
 ```
