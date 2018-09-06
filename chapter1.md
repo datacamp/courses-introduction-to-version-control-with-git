@@ -616,9 +616,9 @@ git status
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    check_or(
-        has_expr_output(incorrect_msg = "Have a look at the status of your repository with `git status`."),
-        has_code(r'\s*git\s+status\s*')
+    check_correct(
+        has_expr_output(),
+        has_code(r'\s*git\s+status\s*', incorrect_msg = "Have a look at the status of your repository with `git status`.")
     )
 )
 ```
@@ -647,12 +647,21 @@ git commit -m "Adding a reference."
 
 *** =sct2
 ```{python}
-msg = "It seems that the staged changes to `report.txt` weren't committed. Have you used `git commit` with `-m \"Adding a reference\"`?"
+not_committed_msg = "It seems that the staged changes to `report.txt` weren't committed. Have you used `git commit` with `-m \"Adding a reference\"`?"
+bad_message_msg = 'It seems the commit message was incorrect. You can amend it with `git commit --amend - m "new message"`.'
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    has_expr_output(expr='git diff HEAD~ --name-only | grep report.txt',
+    check_or(
+        has_expr_output(expr='git diff HEAD~ --name-only | grep report.txt',
                     output = 'report.txt',
-                    incorrect_msg=msg)
+                    strict=True,
+                    incorrect_msg=not_committed_msg),
+        has_code(r'\s*git\s+commit', incorrect_msg = not_committed_msg)            
+    ),
+    has_expr_output(expr='git log -1 | grep  --only-matching "Adding a reference"',
+                    output = 'Adding a reference',
+                    strict=True,
+                    incorrect_msg=bad_message_msg)
 )
 Ex().success_msg("You committed the file!")
 ```
