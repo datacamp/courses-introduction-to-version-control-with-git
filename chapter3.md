@@ -12,10 +12,14 @@ You don't have to put all of the changes you have made recently into the staging
 For example,
 suppose you are adding a feature to `analysis.R`
 and spot a bug in `cleanup.R`.
-After you have fixed,
+After you have fixed it,
 you want to save your work.
 Since the changes to `cleanup.R` aren't directly related to the work you're doing in `analysis.R`,
 you should save your work in two separate commits.
+
+The syntax for staging a single file is `git add path/to/file`.
+
+If you make a mistake and accidentally commit a file you should have, you can unstage the additions with `git reset` and try again.
 
 *** =pre_exercise_code
 ```{python}
@@ -55,9 +59,20 @@ git add data/northern.csv
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    has_expr_output(expr='git diff --name-only --staged | grep data/northern.csv',
-                    output = 'data/northern.csv',
-                    incorrect_msg = "It seems that `data/northern.csv` was not added to the staging area. Have you used `git add data/northern.csv`?")
+    has_expr_output(
+        expr = 'git diff --name-only --staged | grep data/northern.csv',
+        output = 'data/northern.csv',
+        strict = True,
+        incorrect_msg = "It seems that `data/northern.csv` was not added to the staging area. Have you used `git add data/northern.csv`?"
+    ),
+    check_not(
+        has_expr_output(
+            expr = 'git diff --name-only --staged | grep data/eastern.csv',
+            output = 'data/eastern.csv',
+            strict = True
+        ),
+        incorrect_msg = "It seems that `data/eastern.csv` was added to the staging area. Unstage it with `git reset` then try again."
+    )
 )
 ```
 
@@ -91,6 +106,26 @@ Ex().multi(
     has_expr_output(expr='git diff HEAD~ --name-only | grep data/northern.csv',
                     output = 'data/northern.csv',
                     incorrect_msg=msg)
+)
+not_committed_msg = "It seems that the staged changes to `data/northern.csv` weren't committed. Have you used `git commit` with `-m \"Adding data from northern region.\"`?"
+bad_message_msg = 'It seems the commit message was incorrect. You can amend it with `git commit --amend -m "new message"`.'
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_or(
+        has_expr_output(
+            expr='git diff HEAD~ --name-only | grep data/northern.csv',
+            output = 'data/northern.csv',
+            strict=True,
+            incorrect_msg=not_committed_msg
+        ),
+        has_code(r'\s*git\s+commit', incorrect_msg = not_committed_msg)            
+    ),
+    has_expr_output(
+        expr='git log -1 | grep --only-matching "Adding data from northern region"',
+        output = 'Adding data from northern region',
+        strict=True,
+        incorrect_msg=bad_message_msg
+    )
 )
 Ex().success_msg("Well done! Let's have a look at re-staging files.")
 ```
