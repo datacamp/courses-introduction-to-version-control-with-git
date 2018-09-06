@@ -704,8 +704,8 @@ Ex().check_correct(
                     incorrect_msg="Have you used `git config --global user.email rep.loop@datacamp.com` to properly configure the email address globally?"),
     multi(
         has_code(r'git\s+config', incorrect_msg="Your command should start with `git config`."),
-        has_code(r'--global', incorrect_msg="You should use the flag `--global`."),
-        has_code(r'user\.email', incorrect_msg="Use `user.email` to tell `git config` you're about to set the email address."),
+        has_code('--global', incorrect_msg="You should use the flag `--global`."),
+        has_code('user.email', incorrect_msg="Use `user.email` to tell `git config` you're about to set the email address."),
         has_code('rep.loop@datacamp.com', fixed=True, incorrect_msg="Make sure to set `user.email` to `rep.loop@datacamp.com`. Beware of typos!")
     )
 )
