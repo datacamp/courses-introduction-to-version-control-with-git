@@ -98,23 +98,25 @@ Ex().has_chosen(4, [err, err, err, "Correct!"])
 
 To view the details of a specific commit,
 you use the command `git show` with the first few characters of the commit's hash.
-For example, the command `git show 043070` produces this:
+For example, the command `git show 0da2f7` produces this:
 
-    commit 0430705487381195993bac9c21512ccfb511056d
-    Author: Rep Loop <repl@datacamp.com>
-    Date:   Wed Sep 20 13:42:26 2017 +0000
-    
-        Added year to report title.
-    
-    diff --git a/report.txt b/report.txt
-    index e713b17..4c0742a 100644
-    --- a/report.txt
-    +++ b/report.txt
-    @@ -1,4 +1,4 @@
-    -# Seasonal Dental Surgeries 2017-18
-    +# Seasonal Dental Surgeries (2017) 2017-18
-     
-     TODO: write executive summary.
+```{bash}
+commit 0da2f7ad11664ca9ed933c1ccd1f3cd24d481e42
+Author: Rep Loop <repl@datacamp.com>
+Date:   Wed Sep 5 15:39:18 2018 +0000
+
+    Added year to report title.
+
+diff --git a/report.txt b/report.txt
+index e713b17..4c0742a 100644
+--- a/report.txt
++++ b/report.txt
+@@ -1,4 +1,4 @@
+-# Seasonal Dental Surgeries 2017-18
++# Seasonal Dental Surgeries (2017) 2017-18
+
+ TODO: write executive summary.
+```
 
 The first part is the same as the log entry shown by `git log`.
 The second part shows the changes;
@@ -182,7 +184,7 @@ and that there cannot be spaces before or after the tilde.
 
 You are in the `dental` repository.
 Using a single Git command,
-look at the commit made just before the most recent one.
+show the commit made just before the most recent one.
 Which of the following files did it change?
 
 *** =instructions
