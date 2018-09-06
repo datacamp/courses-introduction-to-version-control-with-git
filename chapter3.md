@@ -330,7 +330,7 @@ repl.run_command('git status')
 *** =type1: ConsoleExercise
 *** =key1: d0aa935274
 
-*** =xp1: 5
+*** =xp1: 50
 
 *** =instructions1
 
@@ -367,7 +367,7 @@ Ex().multi(
 *** =type2: ConsoleExercise
 *** =key2: dc8ce69579
 
-*** =xp2: 5
+*** =xp2: 50
 
 *** =instructions2
 
