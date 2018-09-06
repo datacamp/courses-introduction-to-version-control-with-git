@@ -9,8 +9,8 @@ description : >-
 
 You may wonder what information is stored by each commit that you make. Git uses a three-level structure for this.
 
-1. A **commit** contains metadata such as the author, the commit message, and the time the commit happened. In the diagram below, commits are in the first column. The most recent commit is at the bottom (`feed0098`), and vertical arrows point up towards the previous ("parent") commits.
-2. Each commit also has a **tree**, which tracks the names and locations in the repository when that commit happened. These are shown in the second column. In the oldest (top) commit, there were two files tracked by the repository.
+1. A **commit** contains metadata such as the author, the commit message, and the time the commit happened. In the diagram below, the most recent commit is at the bottom (`feed0098`), and vertical arrows point up towards the previous ("parent") commits.
+2. Each commit also has a **tree**, which tracks the names and locations in the repository when that commit happened. In the oldest (top) commit, there were two files tracked by the repository.
 3. For each of the files listed in the tree, there is a **blob**. This contains a compressed snapshot of the contents of the file when the commit happened. (Blob is short for *binary large object*, which is a SQL database term for "may contain data of any kind".) In the middle commit, `report.md` and `draft.md` were changed, so the blobs are shown next to that commit. `data/northern.csv` didn't change in that commit, so the tree links to the blob from the previous commit. Reusing blobs between commits help make common operations fast and minimizes storage space.
 
 <img src="https://s3.amazonaws.com/assets.datacamp.com/production/course_5355/datasets/commit-tree-blob.png" alt="Commit-Tree-Blob Structure" />
