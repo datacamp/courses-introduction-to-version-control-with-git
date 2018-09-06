@@ -549,16 +549,13 @@ Ex().success_msg("Solid, but there's more undoing to be done!")
 --- type:BulletConsoleExercise key:d45eca9a34
 ## How can I undo all of the changes I have made?
 
-So far,
-you have seen how to undo changes to a single file at a time.
+So far, you have seen how to undo changes to a single file at a time using `git reset HEAD path/to/file`.
 You will sometimes want to undo changes to many files.
-One way to do this is to give `git reset` and `git checkout` a directory as an argument
-rather than the names of one or more files.
-For example,
-`git reset HEAD data` will unstage any files from the `data` directory that you have staged,
-and `git checkout -- data` will then restore those files to their previous state.
 
-Recall from [Introduction to Shell for Data Science](https://www.datacamp.com/courses/introduction-to-shell-for-data-science) that you can refer to the current directory as `.`.
+
+One way to do this is to give `git reset` a directory. For example, `git reset HEAD data` will unstage any files from the `data` directory. Even better, if you don't provide any files or directories, it will unstage everything. Even even better, `HEAD` is the default commit to unstage, so you can simply write `git reset` to unstage everything.
+
+Similarly `git checkout -- data` will then restore the files in the `data` directory to their previous state. You can't leave the file argument completely blank, but recall from [Introduction to Shell for Data Science](https://www.datacamp.com/courses/introduction-to-shell-for-data-science) that you can refer to the current directory as `.`. So `git checkout -- .` will revert all files in the current directory.
 
 *** =pre_exercise_code
 ```{python}
@@ -582,14 +579,10 @@ repl.run_command('git status')
 *** =instructions1
 
 Use `git reset` to remove all files from the staging area.
-Remember to give `git reset` two arguments:
-the revision to re-set to,
-and a directory name.
 
 *** =hint1
 
-The two arguments to `git reset` should be the name of the revision (which is `HEAD`)
-and the name of the current working directory (which is '.').
+Just call `git reset`.
 
 *** =sample_code1
 ```{shell}
@@ -597,12 +590,12 @@ and the name of the current working directory (which is '.').
 
 *** =solution1
 ```{shell}
-git reset HEAD .
+git reset
 ```
 
 *** =sct1
 ```{python}
-instr=" Have you used `git reset HEAD .`?"
+instr=" Have you used `git reset`?"
 msg1 = "It appears that there are still some staged files, while there shouldn't be any."+instr
 msg2 = "The checker expected to find three changed files that are not staged yet."+instr
 Ex().multi(
