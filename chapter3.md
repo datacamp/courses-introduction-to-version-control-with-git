@@ -261,6 +261,7 @@ repl.run_command('cd dental')
 repl.run_command('git add data/*.csv')
 with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-02,bicuspid\n')
+repl.run_command('git status')
 ```
 
 *** =type1: ConsoleExercise
@@ -270,7 +271,7 @@ with open('dental/data/northern.csv', 'a') as writer:
 
 *** =instructions1
 
-You are in the `dental` repository, where all changes to `.csv` files in `data` were staged. If you run `git status`, you will see that `data/northern.csv` was changed again.
+You are in the `dental` repository, where all changes to `.csv` files in `data` were staged.  `git status` shows that `data/northern.csv` was changed again after it was staged.
 
 Use a Git command to undo the changes to the file `data/northern.csv`.
 
