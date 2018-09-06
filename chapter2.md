@@ -542,9 +542,9 @@ git status
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    check_or(
-        has_expr_output(incorrect_msg = "Have a look at the status of your repository with `git status`."),
-        has_code(r'\s*git\s+status\s*')
+    check_correct(
+        has_expr_output(),
+        has_code(r'\s*git\s+status\s*', incorrect_msg = "Have a look at the status of your repository with `git status`.")
     )
 )
 ```
@@ -576,8 +576,8 @@ git clean -f
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    has_expr_output(expr='ls | wc -l', output='4',
-                    incorrect_msg="Have you used `git clean -f` to get rid of the unwanted file that wasn't being tracked? After running it, `ls | wc -l` should give 4, but it didn't.")
+    has_expr_output(expr='ls', output=r'bin +data +report.txt +results',
+                    incorrect_msg="The directory doesn't contain only the tracked files. Have you used `git clean` with the `-f` flag?")
 )
 ```
 
@@ -607,9 +607,9 @@ ls
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    check_or(
-        has_expr_output(incorrect_msg = "Use `ls` to list the files in `dental`, your current working directory."),
-        has_code(r'\s*ls\s*')
+    check_correct(
+        has_expr_output(),
+        has_code(r'\s*ls\s*', incorrect_msg = "Use `ls` to list the files in `dental`, your current working directory.")
     )
 )
 Ex().success_msg("A job well done! Keeping your repository clean is crucial to keep oversight.")
