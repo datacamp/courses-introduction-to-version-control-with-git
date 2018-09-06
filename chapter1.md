@@ -720,7 +720,7 @@ repl.run_command('cd dental')
 *** =sct
 ```{python}
 err = 'Incorrect: please re-run the command and use `git log`.'
-Ex().has_chosen(1, ['Correct', err, err, err])
+Ex().has_chosen(1, ["Correct! `git log` is a convenient way to remind yourself what you've been working on.", err, err, err])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
