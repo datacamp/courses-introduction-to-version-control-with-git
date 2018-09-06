@@ -332,7 +332,7 @@ repl.run_command('cd dental')
 *** =type1: ConsoleExercise
 *** =key1: 0cad38fb5f
 
-*** =xp1: 10
+*** =xp1: 30
 
 *** =instructions1
 
@@ -366,7 +366,7 @@ Ex().multi(
 *** =type2: ConsoleExercise
 *** =key2: 7b84819b84
 
-*** =xp2: 10
+*** =xp2: 30
 
 *** =instructions2
 
@@ -399,7 +399,7 @@ Ex().multi(
 *** =type3: ConsoleExercise
 *** =key3: 4545c769de
 
-*** =xp3: 10
+*** =xp3: 40
 
 *** =instructions3
 
@@ -518,7 +518,7 @@ repl.run_command('cd dental')
 *** =type1: ConsoleExercise
 *** =key1: e3a590cd63
 
-*** =xp1: 10
+*** =xp1: 30
 
 *** =instructions1
 
@@ -552,7 +552,7 @@ Ex().multi(
 *** =type2: ConsoleExercise
 *** =key2: 4bbdbc8970
 
-*** =xp2: 10
+*** =xp2: 30
 
 *** =instructions2
 
@@ -584,7 +584,7 @@ Ex().multi(
 *** =type3: ConsoleExercise
 *** =key3: 0450972363
 
-*** =xp3: 10
+*** =xp3: 40
 
 *** =instructions3
 

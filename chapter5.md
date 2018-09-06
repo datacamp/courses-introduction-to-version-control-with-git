@@ -77,7 +77,7 @@ repl.run_command('pwd')
 *** =type1: ConsoleExercise
 *** =key1: 101686c0e7
 
-*** =xp1: 10
+*** =xp1: 50
 
 *** =instructions1
 
@@ -110,7 +110,7 @@ Ex().multi(
 *** =type2: ConsoleExercise
 *** =key2: e65f050907
 
-*** =xp2: 10
+*** =xp2: 50
 
 *** =instructions2
 
@@ -202,7 +202,7 @@ repl.run_command('ls')
 *** =type1: ConsoleExercise
 *** =key1: 2b06ff535f
 
-*** =xp1: 10
+*** =xp1: 100
 
 *** =instructions1
 
@@ -317,7 +317,7 @@ repl.run_command('cd dental')
 *** =type1: ConsoleExercise
 *** =key1: a0e2cf2d0f
 
-*** =xp1: 10
+*** =xp1: 100
 
 *** =instructions1
 
@@ -387,7 +387,7 @@ repl.run_command('cd dental')
 *** =type1: ConsoleExercise
 *** =key1: cb79240464
 
-*** =xp1: 10
+*** =xp1: 100
 
 *** =instructions1
 
@@ -448,7 +448,7 @@ repl.run_command('cd dental')
 *** =type1: ConsoleExercise
 *** =key1: f03c277669
 
-*** =xp1: 10
+*** =xp1: 30
 
 *** =instructions1
 
@@ -485,7 +485,7 @@ Ex().multi(
 *** =type2: ConsoleExercise
 *** =key2: 301f2bd8a3
 
-*** =xp2: 10
+*** =xp2: 30
 
 *** =instructions2
 
@@ -519,7 +519,7 @@ Ex().multi(
 *** =type3: ConsoleExercise
 *** =key3: 2cad24ea7a
 
-*** =xp3: 10
+*** =xp3: 40
 
 *** =instructions3
 
@@ -586,7 +586,7 @@ repl.run_command('cd dental')
 *** =type1: ConsoleExercise
 *** =key1: 75df26b3a7
 
-*** =xp1: 10
+*** =xp1: 30
 
 *** =instructions1
 
@@ -624,7 +624,7 @@ Ex().multi(
 *** =type2: ConsoleExercise
 *** =key2: eebd73b616
 
-*** =xp2: 10
+*** =xp2: 30
 
 *** =instructions2
 
@@ -659,7 +659,7 @@ Ex().multi(
 *** =type3: ConsoleExercise
 *** =key3: 037b960128
 
-*** =xp3: 10
+*** =xp3: 40
 
 *** =instructions3
 
@@ -721,7 +721,7 @@ repl.run_command('git commit -m "Adding a record"')
 *** =type1: ConsoleExercise
 *** =key1: 2b8815a979
 
-*** =xp1: 10
+*** =xp1: 30
 
 *** =instructions1
 
@@ -759,7 +759,7 @@ Ex().success_msg("Success! Head over to the very last exercise of this course!")
 *** =type2: ConsoleExercise
 *** =key2: 0af344b542
 
-*** =xp2: 10
+*** =xp2: 30
 
 *** =instructions2
 
@@ -796,7 +796,7 @@ Ex().multi(
 *** =type3: ConsoleExercise
 *** =key3: 9ddb421159
 
-*** =xp3: 10
+*** =xp3: 40
 
 *** =instructions3
 

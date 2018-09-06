@@ -35,7 +35,7 @@ repl.run_command('git status')
 *** =type1: ConsoleExercise
 *** =key1: 387ad1a970
 
-*** =xp1: 10
+*** =xp1: 50
 
 *** =instructions1
 
@@ -79,7 +79,7 @@ Ex().multi(
 *** =type2: ConsoleExercise
 *** =key2: 381b4ed025
 
-*** =xp2: 10
+*** =xp2: 50
 
 *** =instructions2
 
@@ -160,7 +160,7 @@ with open('dental/data/northern.csv', 'a') as writer:
 *** =type1: ConsoleExercise
 *** =key1: b5a9b33d2e
 
-*** =xp1: 10
+*** =xp1: 50
 
 *** =instructions1
 
@@ -194,7 +194,7 @@ Ex().multi(
 *** =type2: ConsoleExercise
 *** =key2: 481636c0fc
 
-*** =xp2: 10
+*** =xp2: 50
 
 *** =instructions2
 
@@ -267,7 +267,7 @@ repl.run_command('git status')
 *** =type1: ConsoleExercise
 *** =key1: 9a5bde4d0b
 
-*** =xp1: 10
+*** =xp1: 100
 
 *** =instructions1
 
@@ -441,7 +441,7 @@ repl.run_command('cd dental')
 *** =type1: ConsoleExercise
 *** =key1: 8962ae79b3
 
-*** =xp1: 10
+*** =xp1: 35
 
 *** =instructions1
 
@@ -472,7 +472,7 @@ Ex().multi(
 *** =type2: ConsoleExercise
 *** =key2: a03a79d2de
 
-*** =xp2: 10
+*** =xp2: 35
 
 *** =instructions2
 
@@ -510,7 +510,7 @@ Ex().multi(
 *** =type3: ConsoleExercise
 *** =key3: 00df157d59
 
-*** =xp3: 10
+*** =xp3: 30
 
 *** =instructions3
 
@@ -579,7 +579,7 @@ repl.run_command('git status')
 *** =type1: ConsoleExercise
 *** =key1: 5964997653
 
-*** =xp1: 10
+*** =xp1: 50
 
 *** =instructions1
 
@@ -617,7 +617,7 @@ Ex().multi(
 *** =type2: ConsoleExercise
 *** =key2: 3070c1d680
 
-*** =xp2: 10
+*** =xp2: 50
 
 *** =instructions2
 

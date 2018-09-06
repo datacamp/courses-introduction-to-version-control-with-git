@@ -168,7 +168,7 @@ repl.run_command('cd dental')
 *** =type1: ConsoleExercise
 *** =key1: e9c198755a
 
-*** =xp1: 10
+*** =xp1: 100
 
 *** =instructions1
 
@@ -299,7 +299,7 @@ repl.run_command('cd dental')
 *** =type1: ConsoleExercise
 *** =key1: a34bf017f0
 
-*** =xp1: 10
+*** =xp1: 50
 
 *** =instructions1
 
@@ -335,7 +335,7 @@ has_cwd('/home/repl/dental'),
 *** =type2: ConsoleExercise
 *** =key2: 961661800c
 
-*** =xp2: 10
+*** =xp2: 50
 
 *** =instructions2
 
@@ -390,7 +390,7 @@ repl.run_command('git add data/northern.csv')
 *** =type1: ConsoleExercise
 *** =key1: 77c975a5c8
 
-*** =xp1: 10
+*** =xp1: 30
 
 *** =instructions1
 
@@ -423,7 +423,7 @@ Ex().multi(
 *** =type2: ConsoleExercise
 *** =key2: 5a866b3ef0
 
-*** =xp2: 10
+*** =xp2: 30
 
 *** =instructions2
 
@@ -457,7 +457,7 @@ Ex().multi(
 *** =type3: ConsoleExercise
 *** =key3: 538a9c35d4
 
-*** =xp3: 10
+*** =xp3: 40
 
 *** =instructions3
 
@@ -597,7 +597,7 @@ repl.run_command('git add report.txt')
 *** =type1: ConsoleExercise
 *** =key1: 17e219ea22
 
-*** =xp1: 10
+*** =xp1: 50
 
 *** =instructions1
 
@@ -632,7 +632,7 @@ Ex().multi(
 *** =type2: ConsoleExercise
 *** =key2: a5ce3bebb8
 
-*** =xp2: 10
+*** =xp2: 50
 
 *** =instructions2
 
@@ -816,7 +816,7 @@ repl.run_command('git add report.txt')
 *** =type1: ConsoleExercise
 *** =key1: 2f3aa2a066
 
-*** =xp1: 10
+*** =xp1: 100
 
 *** =instructions1
 

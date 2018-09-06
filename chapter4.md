@@ -151,7 +151,7 @@ repl.run_command('git branch')
 *** =type1: ConsoleExercise
 *** =key1: eee4722074
 
-*** =xp1: 10
+*** =xp1: 16
 
 *** =instructions1
 
@@ -185,7 +185,7 @@ Ex().multi(
 *** =type2: ConsoleExercise
 *** =key2: 6193872406
 
-*** =xp2: 10
+*** =xp2: 16
 
 *** =instructions2
 
@@ -220,7 +220,7 @@ Ex().multi(
 *** =type3: ConsoleExercise
 *** =key3: dcfdc86805
 
-*** =xp3: 10
+*** =xp3: 16
 
 *** =instructions3
 
@@ -255,7 +255,7 @@ Ex().multi(
 *** =type4: ConsoleExercise
 *** =key4: 99b72ed9cb
 
-*** =xp4: 10
+*** =xp4: 16
 
 *** =instructions4
 
@@ -288,7 +288,7 @@ Ex().multi(
 *** =type5: ConsoleExercise
 *** =key5: 4afc727945
 
-*** =xp5: 10
+*** =xp5: 16
 
 *** =instructions5
 
@@ -320,7 +320,7 @@ Ex().multi(
 *** =type6: ConsoleExercise
 *** =key6: b0b5946436
 
-*** =xp6: 10
+*** =xp6: 20
 
 *** =instructions6
 
@@ -366,7 +366,7 @@ repl.run_command('git branch')
 *** =type1: ConsoleExercise
 *** =key1: 71253d1c95
 
-*** =xp1: 10
+*** =xp1: 25
 
 *** =instructions1
 
@@ -406,7 +406,7 @@ Ex().multi(
 *** =type2: ConsoleExercise
 *** =key2: 4dc64f3a09
 
-*** =xp2: 10
+*** =xp2: 25
 
 *** =instructions2
 
@@ -441,7 +441,7 @@ Ex().multi(
 *** =type3: ConsoleExercise
 *** =key3: a7e82dfb0c
 
-*** =xp3: 10
+*** =xp3: 25
 
 *** =instructions3
 
@@ -476,7 +476,7 @@ Ex().multi(
 *** =type4: ConsoleExercise
 *** =key4: ec7d242138
 
-*** =xp4: 10
+*** =xp4: 25
 
 *** =instructions4
 
@@ -533,7 +533,7 @@ repl.run_command('cd dental')
 *** =type1: ConsoleExercise
 *** =key1: 7a4bb39d31
 
-*** =xp1: 10
+*** =xp1: 100
 
 *** =instructions1
 
@@ -669,7 +669,7 @@ repl.run_command('git branch')
 *** =type1: ConsoleExercise
 *** =key1: 1e11825f95
 
-*** =xp1: 10
+*** =xp1: 20
 
 *** =instructions1
 
@@ -707,7 +707,7 @@ Ex().multi(
 *** =type2: ConsoleExercise
 *** =key2: 9ecd08b08b
 
-*** =xp2: 10
+*** =xp2: 20
 
 *** =instructions2
 
@@ -740,7 +740,7 @@ Ex().multi(
 *** =type3: ConsoleExercise
 *** =key3: 4acfdd12bd
 
-*** =xp3: 10
+*** =xp3: 20
 
 *** =instructions3
 
@@ -798,7 +798,7 @@ Ex().multi(
 *** =type4: ConsoleExercise
 *** =key4: 323f9a133c
 
-*** =xp4: 10
+*** =xp4: 20
 
 *** =instructions4
 
@@ -833,7 +833,7 @@ Ex().multi(
 *** =type5: ConsoleExercise
 *** =key5: d9b25e272f
 
-*** =xp5: 10
+*** =xp5: 20
 
 *** =instructions5
 
