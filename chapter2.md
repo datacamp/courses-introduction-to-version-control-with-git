@@ -7,29 +7,17 @@ description : >-
 --- type:PureMultipleChoiceExercise lang:bash xp:50 key:6d7237913f
 ## How does Git store information?
 
-In order to make common operations fast and minimize storage space,
-Git uses a multi-level structure to store data.
-In simplified form,
-this has three key parts:
+You may wonder what information is stored by each commit that you make. Git uses a three-level structure for this.
 
-1. Every unique version of every file.
-   (Git calls these **blobs** because they can contain data of any kind.)
-2. **tree** that tracks the names and locations of a set of files.
-3. A **commit** that records the author, log message, and other properties
-   of a particular commit.
+1. A **commit** contains metadata such as the author, the commit message, and the time the commit happened. In the diagram below, commits are in the first column. The most recent commit is at the bottom (`feed0098`), and vertical arrows point up towards the previous ("parent") commits.
+2. Each commit also has a **tree**, which tracks the names and locations in the repository when that commit happened. These are shown in the second column. In the oldest (top) commit, there were two files tracked by the repository.
+3. For each of the files listed in the tree, there is a **blob**. This contains a compressed snapshot of the contents of the file when the commit happened. (Blob is short for *binary large object*, which is a SQL database term for "may contain data of any kind".) In the middle commit, `report.md` and `draft.md` were changed, so the blobs are shown next to that commit. `data/northern.csv` didn't change in that commit, so the tree links to the blob from the previous commit. Reusing blobs between commits help make common operations fast and minimizes storage space.
 
 <img src="https://s3.amazonaws.com/assets.datacamp.com/production/course_5355/datasets/commit-tree-blob.png" alt="Commit-Tree-Blob Structure" />
 
-As the diagram shows,
-each blob is stored only once,
-and blobs are (frequently) shared between trees.
-While it may seem redundant to have both trees and commits,
-a later part of this lesson will show why the two have to be distinct.
-
 <hr>
 
-Looking at the diagram,
-which files changed in the last (bottom-most) commit to this repository?
+Looking at the diagram, which files changed in the most recent commit to this repository?
 
 *** =possible_answers
 - [`data/northern.csv`]
@@ -38,7 +26,7 @@ which files changed in the last (bottom-most) commit to this repository?
 
 *** =hint
 
-Look in the right-most column to see which file is new.
+Look in the bottom row, right-most column to see which file was changed.
 
 *** =feedback
 - Correct!
