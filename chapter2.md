@@ -216,11 +216,14 @@ the first three lines of output from `git annotate report.txt` look something li
 5e6f92b6        (  Rep Loop     2017-09-20 13:42:26 +0000       3)TODO: write executive summary.
 ```
 
-The first column is the hash of the most recent commit to change that line.
-The other columns show who made the change,
-the date and time it was made,
-the line number,
-and the line itself.
+
+Each line contains five things, with two to four in parentheses.
+
+1. The first eight digits of the hash, `04307054`.
+2. The author, `Rep Loop`.
+3. The time of the commit, `2017-09-20 13:42:26 +0000`.
+4. The line number, `1`.
+5. The contents of the line, `# Seasonal Dental Surgeries (2017) 2017-18`.
 
 <hr>
 
@@ -231,9 +234,9 @@ How many different sets of changes have been made to this file
 
 *** =instructions
 - 1.
-- 2.
 - 3.
 - 4.
+- 7.
 
 *** =hint
 
@@ -248,10 +251,11 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-e_more = 'No, there have been more changes than that.'
-correct = 'Correct!'
-e_fewer = 'No, there have been fewer changes than that.'
-Ex().has_chosen(3, [e_more, e_more, correct, e_fewer])
+err1 = 'No, there have been more changes than that.'
+correct = "Correct! `git annotate` let's you see who modified a file and when."
+err3 = 'No, count the number of commit hashes, not the number of non-empty lines.'
+err4 = 'No, count the number of commit hashes, not the total number of lines.'
+Ex().has_chosen(2, [err1, correct, err3, err4])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
