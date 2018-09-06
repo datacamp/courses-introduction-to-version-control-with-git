@@ -324,9 +324,9 @@ git add report.txt
 Ex().multi(
 has_cwd('/home/repl/dental'),
   has_expr_output(
-    strict=True, 
     expr='git diff --name-only --staged | grep report.txt',
     output = 'report.txt',
+    strict=True, 
     incorrect_msg = "It seems that `report.txt` was not added to the staging area. Have you used `git add report.txt`?"
   )
 )
@@ -575,6 +575,12 @@ to enter a single-line message like this:
 git commit -m "Program appears to have become self-aware."
 ```
 
+If you accidentally mistype a commit message, you can change it using the `--amend` flag.
+
+```
+git commit --amend - m "new message"
+```
+
 *** =pre_exercise_code
 ```{python}
 append = '''
@@ -648,20 +654,24 @@ git commit -m "Adding a reference."
 *** =sct2
 ```{python}
 not_committed_msg = "It seems that the staged changes to `report.txt` weren't committed. Have you used `git commit` with `-m \"Adding a reference\"`?"
-bad_message_msg = 'It seems the commit message was incorrect. You can amend it with `git commit --amend - m "new message"`.'
+bad_message_msg = 'It seems the commit message was incorrect. You can amend it with `git commit --amend -m "new message"`.'
 Ex().multi(
     has_cwd('/home/repl/dental'),
     check_or(
-        has_expr_output(expr='git diff HEAD~ --name-only | grep report.txt',
-                    output = 'report.txt',
-                    strict=True,
-                    incorrect_msg=not_committed_msg),
+        has_expr_output(
+            expr='git diff HEAD~ --name-only | grep report.txt',
+            output = 'report.txt',
+            strict=True,
+            incorrect_msg=not_committed_msg
+        ),
         has_code(r'\s*git\s+commit', incorrect_msg = not_committed_msg)            
     ),
-    has_expr_output(expr='git log -1 | grep  --only-matching "Adding a reference"',
-                    output = 'Adding a reference',
-                    strict=True,
-                    incorrect_msg=bad_message_msg)
+    has_expr_output(
+        expr='git log -1 | grep --only-matching "Adding a reference"',
+        output = 'Adding a reference',
+        strict=True,
+        incorrect_msg=bad_message_msg
+    )
 )
 Ex().success_msg("You committed the file!")
 ```

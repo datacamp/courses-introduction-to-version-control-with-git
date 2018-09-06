@@ -315,9 +315,11 @@ Git does not track files by default.
 Instead,
 it waits until you have used `git add` at least once
 before it starts paying attention to a file.
-To remind you to do this,
-`git status` will always tell you about files that are in your repository
-but aren't (yet) being tracked.
+
+In the diagram you saw at the start of the chapter, the untracked files won't have a blob, and won't be listed in a tree.
+
+
+The untracked files won't benefit from version control, so to make sure you don't miss anything, `git status` will always tell you about files that are in your repository but aren't (yet) being tracked.
 
 *** =pre_exercise_code
 ```{python}
@@ -354,9 +356,9 @@ git status
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    check_or(
-        has_expr_output(incorrect_msg = "Have a look at the status of your repository with `git status`."),
-        has_code(r'\s*git\s+status\s*')
+    check_correct(
+        has_expr_output(),
+        has_code(r'\s*git\s+status\s*', incorrect_msg = "Have a look at the status of your repository with `git status`.")
     )
 )
 ```
@@ -372,7 +374,7 @@ Use `git add` to add the new file to the staging area.
 
 *** =hint2
 
-Remember: `git add` shouldb e followed by either a filename or a directory name (such as '.' for the current working directory).
+Remember: `git add` should be followed by either a filename or a directory name (such as '.' for the current working directory).
 
 *** =sample_code2
 ```{shell}
@@ -389,6 +391,7 @@ Ex().multi(
     has_cwd('/home/repl/dental'),
     has_expr_output(expr='git diff --name-only --staged | grep sources.txt',
                     output = 'sources.txt',
+                    strict=True, 
                     incorrect_msg = "It seems that `sources.txt` was not added to the staging area. Have you used `git add sources.txt`?")
 )
 ```
@@ -418,12 +421,25 @@ git commit -m "Starting to track data sources."
 
 *** =sct3
 ```{python}
-msg = "It seems that the changes to `sources.txt` you staged in the previous instruction weren't committed. Have you used `git commit` with `-m \"message\"`?"
+not_committed_msg = "It seems that the staged changes to `sources.txt` weren't committed. Have you used `git commit` with `-m \"Starting to track data sources.\"`?"
+bad_message_msg = 'It seems the commit message was incorrect. You can amend it with `git commit --amend -m "new message"`.'
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    has_expr_output(expr='git diff HEAD~ --name-only | grep sources.txt',
-                    output = 'sources.txt',
-                    incorrect_msg=msg)
+    check_or(
+        has_expr_output(
+            expr='git diff HEAD~ --name-only | grep sources.txt',
+            output = 'sources.txt',
+            strict=True,
+            incorrect_msg=not_committed_msg
+        ),
+        has_code(r'\s*git\s+commit', incorrect_msg = not_committed_msg)            
+    ),
+    has_expr_output(
+        expr='git log -1 | grep --only-matching "Starting to track data sources"',
+        output = 'Starting to track data sources',
+        strict=True,
+        incorrect_msg=bad_message_msg
+    )
 )
 Ex().success_msg("That's how it's done!")
 ```
