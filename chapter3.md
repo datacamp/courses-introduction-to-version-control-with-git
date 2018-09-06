@@ -19,7 +19,7 @@ you should save your work in two separate commits.
 
 The syntax for staging a single file is `git add path/to/file`.
 
-If you make a mistake and accidentally commit a file you should have, you can unstage the additions with `git reset` and try again.
+If you make a mistake and accidentally commit a file you should have, you can unstage the additions with `git reset HEAD` and try again.
 
 *** =pre_exercise_code
 ```{python}
@@ -71,7 +71,7 @@ Ex().multi(
             output = 'data/eastern.csv',
             strict = True
         ),
-        incorrect_msg = "It seems that `data/eastern.csv` was added to the staging area. Unstage it with `git reset` then try again."
+        incorrect_msg = "It seems that `data/eastern.csv` was added to the staging area. Unstage it with `git reset HEAD` then try again."
     )
 )
 ```
@@ -291,8 +291,6 @@ git checkout -- data/northern.csv
 
 *** =sct1
 ```{python}
-Ex().check_not(has_code(r'git\s+status'), incorrect_msg="Alright, now that you've seen the status of the repo, use `git checkout` correctly to undo the changes to `data/northern.csv`.")
-
 msg = "After running your command, there should be no changes that can be staged. Have you used `git checkout` on `data/northern.csv` correctly? Make sure to use a `--` to separate the command from the name of the file."
 Ex().multi(
     has_cwd('/home/repl/dental'),
@@ -304,16 +302,14 @@ Ex().success_msg("Good job! This was about undoing changes that weren't staged y
 <!-- -------------------------------------------------------------------------------- -->
 
 --- type:BulletConsoleExercise key:fba584b9f1
-## How can I unstage a file that I have staged?
+## How can I undo changes to staged files?
 
-`git checkout -- filename` will undo changes that have not yet been staged.
-If you want to undo changes that *have* been staged,
-you can use `git reset HEAD filename`.
-This does *not* restore the file to the state it was in before you started making changes.
-Instead,
-it resets the file to the state you last staged.
-If you want to go all the way back to where you were before you started making changes,
-you must `git checkout -- filename` as well.
+At the start of this chapter you saw that `git reset` will unstage files that you previously staged using `git add`. By combining `git reset` with `git checkout`, you can undo changes to a file that you staged changes to. The syntax is as follows.
+
+```
+git reset HEAD path/to/file
+git checkout -- path/to/file
+```
 
 (You may be wondering why there are two commands for re-setting changes.
 The answer is that unstaging a file and undoing changes are both special cases
@@ -334,7 +330,7 @@ repl.run_command('git status')
 *** =type1: ConsoleExercise
 *** =key1: d0aa935274
 
-*** =xp1: 10
+*** =xp1: 5
 
 *** =instructions1
 
@@ -352,7 +348,7 @@ and the name of the file to be restored.
 
 *** =solution1
 ```{shell}
-git reset HEAD data/northern.csv
+git reset data/northern.csv
 ```
 
 *** =sct1
@@ -365,6 +361,37 @@ Ex().multi(
                     output='data/eastern.csv', strict=True, incorrect_msg=msg1),
     has_expr_output(expr='git diff --name-only | grep data/northern.csv',
                     output='data/northern.csv', strict=True, incorrect_msg=msg2)
+)
+```
+
+*** =type2: ConsoleExercise
+*** =key2: dc8ce69579
+
+*** =xp2: 5
+
+*** =instructions2
+
+Use `git checkout --` to undo the changes sicne the last commit for `data/northern.csv`.
+
+*** =hint2
+
+Use `git checkout` with two dashes and the name of the file to be restored.
+
+*** =sample_code2
+```{shell}
+```
+
+*** =solution2
+```{shell}
+git checkout -- data/northern.csv
+```
+
+*** =sct2
+```{python}
+msg = "After running your command, there should be no changes that can be staged. Have you used `git checkout` on `data/northern.csv` correctly? Make sure to use a `--` to separate the command from the name of the file."
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git diff --name-only | wc -w', output='0', incorrect_msg=msg)
 )
 Ex().success_msg("That's how it's done!")
 ```
