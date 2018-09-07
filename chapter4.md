@@ -132,14 +132,14 @@ Ex().has_chosen(3, ['No: some files differ.',
 --- type:BulletConsoleExercise key:c418145d13
 ## How can I switch from one branch to another?
 
-When you run `git branch`,
-it puts a `*` beside the name of the branch you are currently in.
-To switch to another branch,
-you use `git checkout branch-name`.
+You previously used `git checkout` with a commit hash to switch the repository state to that hash. You can also use `git checkout` with the name of a branch to switch to that branch.
 
-Note: Git will only let you do this if all of your changes have been committed.
-You can get around this,
-but it is outside the scope of this course.
+Two notes: 
+
+1. When you run `git branch`, it puts a `*` beside the name of the branch you are currently in. 
+2. Git will only let you do this if all of your changes have been committed. You can get around this, but it is outside the scope of this course.
+
+In this exercise, you'll also make use of `git rm`. This removes the file (just like the shell command `rm`) then stages the removal of that file with `git add`, all in one step.
 
 *** =pre_exercise_code
 ```{python}
@@ -173,7 +173,7 @@ git checkout summary-statistics
 
 *** =sct1
 ```{python}
-msg="You don't appear to be on the right branch. Have you used `git checkout summary-statistics`?"
+msg="You don't appear to be on the right branch. Have you used `git checkout` to go to the `summary-statistics` branch?"
 Ex().multi(
     has_cwd('/home/repl/dental'),
     # Check we're on the right branch -- https://stackoverflow.com/a/12142066/1144523
@@ -241,14 +241,30 @@ git commit -m "Removing report"
 
 *** =sct3
 ```{python}
-msg1="Make sure you stay on the `summary-statistics` branch. Use `git checkout summary-statistics` to navigate back."
-msg2="It seems that the staged deletion of `report.txt` wasn't committed. Use `git commit` with `-m \"any message\"`."
+branch_msg =" Make sure you stay on the `summary-statistics` branch. Use `git checkout summary-statistics` to navigate back."
+not_committed_msg = "It seems that the staged changes to `report.txt` weren't committed. Have you used `git commit` with `-m \"Removing report\"`?"
+bad_message_msg = 'It seems the commit message was incorrect. You can amend it with `git commit --amend -m "new message"`.'
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep summary-statistics',
-                    output='summary-statistics', strict=True, incorrect_msg=msg1),
-    has_expr_output(expr='git diff HEAD~ --name-only | grep report.txt',
-                    output = 'report.txt', incorrect_msg=msg2)
+    has_expr_output(
+        expr='git rev-parse --abbrev-ref HEAD | grep summary-statistics',
+        output='summary-statistics', strict=True, incorrect_msg=branch_msg
+    ),
+    check_or(
+        has_expr_output(
+            expr='git diff HEAD~ --name-only | grep report.txt',
+            output = 'report.txt',
+            strict=True,
+            incorrect_msg=not_committed_msg
+        ),
+        has_code(r'\s*git\s+commit', incorrect_msg = not_committed_msg)            
+    ),
+    has_expr_output(
+        expr='git log -1 | grep --only-matching "Removing report"',
+        output = 'Removing report',
+        strict=True,
+        incorrect_msg=bad_message_msg
+    )
 )
 ```
 
