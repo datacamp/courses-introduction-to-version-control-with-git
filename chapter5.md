@@ -275,9 +275,9 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex().has_chosen(2, ['No: there are some remotes.',
+Ex().has_chosen(2, ['No: Look at the output from `git remote`.',
                     'Correct!',
-                    'No: there is just one remote.'])
+                    'No: there is just one remote, but it has several URLs.'])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -413,7 +413,7 @@ Ex().multi(
     has_cwd('/home/repl/dental'),
     has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
                     output='master', strict=True, incorrect_msg=msg1),
-    has_expr_output("git log -1 --pretty=%B | grep Reminder", output="Reminder to add references to report.",
+    has_expr_output(expr = "git log -1 --pretty=%B | grep Reminder", output="Reminder to add references to report.", strict=True,
                     incorrect_msg=msg2)
 )
 Ex().success_msg("Well done! This `git pull` went smoothly, but unfortunately that's not always the case. Let's see what can happen if you have unsaved changes when trying to pull in changes.")
