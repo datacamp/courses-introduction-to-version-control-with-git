@@ -645,13 +645,33 @@ git commit -m "Added more northern data."
 *** =sct2
 ```{python}
 msg1 = "Make sure you are on the `master` branch (use `git checkout master` to switch to it)."
-msg2 = "It seems that `data/northern.csv` wasn't changed in the latest commit. Have you used `git commit -m \"Added more northern data\"`?"
+msg2 = "It seems that `data/northern.csv` wasn't changed in the latest commit. Have you used `git commit -m \"Added more northern data.\"`?"
 Ex().multi(
     has_cwd('/home/repl/dental'),
     has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
                     output='master', strict=True, incorrect_msg=msg1),
     has_expr_output(expr='git diff HEAD~ --name-only | grep data/northern.csv',
                     output = 'data/northern.csv', incorrect_msg=msg2)
+)
+not_committed_msg = "It seems that the staged changes to `data/northern.csv` weren't committed. Have you used `git commit` with `-m \"Added more northern data.\"`?"
+bad_message_msg = 'It seems the commit message was incorrect. You can amend it with `git commit --amend -m "new message"`.'
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_or(
+        has_expr_output(
+            expr='git diff HEAD~ --name-only | grep data/northern.csv',
+            output = 'data/northern.csv',
+            strict=True,
+            incorrect_msg=not_committed_msg
+        ),
+        has_code(r'\s*git\s+commit', incorrect_msg = not_committed_msg)            
+    ),
+    has_expr_output(
+        expr='git log -1 | grep --only-matching "Added more northern data"',
+        output = 'Added more northern data',
+        strict=True,
+        incorrect_msg=bad_message_msg
+    )
 )
 ```
 

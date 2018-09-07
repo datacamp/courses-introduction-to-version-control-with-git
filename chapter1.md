@@ -653,7 +653,7 @@ git commit -m "Adding a reference."
 
 *** =sct2
 ```{python}
-not_committed_msg = "It seems that the staged changes to `report.txt` weren't committed. Have you used `git commit` with `-m \"Adding a reference\"`?"
+not_committed_msg = "It seems that the staged changes to `report.txt` weren't committed. Have you used `git commit` with `-m \"Adding a reference.\"`?"
 bad_message_msg = 'It seems the commit message was incorrect. You can amend it with `git commit --amend -m "new message"`.'
 Ex().multi(
     has_cwd('/home/repl/dental'),
