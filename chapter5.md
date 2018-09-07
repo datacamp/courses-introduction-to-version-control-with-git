@@ -241,6 +241,9 @@ When you a clone a repository,
 Git remembers where the original repository was.
 It does this by storing a **remote** in the new repository's configuration.
 A remote is like a browser bookmark with a name and a URL.
+
+If you use an online git repository hosting service like GitHub or Bitbucket, a common task would be that you clone a repository from that site to work locally on your computer. Then the copy on the website is the remote.
+
 If you are in a repository,
 you can list the names of its remotes using `git remote`.
 
@@ -354,6 +357,9 @@ Ex().success_msg("Neat! Now you added a remote to your local git repository.")
 Git keeps track of remote repositories so that you can
 **pull** changes from those repositories
 and **push** changes to them.
+
+Recall that the remote repository is often a repository in an online hosting service like GitHub. A typical workflow is that you pull in your collaborators' work from the remote repository so you have the latest version of everything, do some work yourself, then push your work back to the remote so that your collaborators have access to it.
+
 Pulling changes is straightforward:
 the command `git pull remote branch`
 gets everything in `branch` in the remote repository identified by `remote`
@@ -387,10 +393,7 @@ repl.run_command('cd dental')
 
 *** =instructions1
 
-You are in the `master` branch of the repository `dental`,
-which has a remote called `origin`.
-Pull all of the changes in the `master` branch of that remote repository
-into the `master` branch of your repository.
+You are in the `master` branch of the repository `dental`. Pull the changes from the `master` branch of the remote repository called `origin`.
 
 *** =hint1
 
