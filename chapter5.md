@@ -476,7 +476,7 @@ Ex().multi(
     has_cwd('/home/repl/dental'),
     has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
                     output='master', strict=True, incorrect_msg=msg1),
-    has_code(r'\s*git\s+pull\s+origin\s+master\s*',
+    has_code(r'\s*git\s+pull\s*',
               fixed=False, incorrect_msg='Use `git pull origin master` to pull in changes.')
 )
 ```
