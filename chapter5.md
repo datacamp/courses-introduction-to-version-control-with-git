@@ -223,7 +223,7 @@ git clone /home/thunk/repo dental
 
 *** =sct1
 ```{python}
-msgpatt = "There is no folder %s in %s. Have you used `git clone /home/thunk/repo dental` to copy the repository from /home/thunk/repo?"
+msgpatt = "There is no folder %s in %s. Have you used `git clone` with the original repository location and the new name?"
 Ex().multi(
     has_cwd('/home/repl'),
     has_dir('/home/repl/dental', incorrect_msg=msgpatt % ('`dental`', '`/home/repl`')),
