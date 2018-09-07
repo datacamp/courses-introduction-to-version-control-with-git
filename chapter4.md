@@ -514,9 +514,10 @@ git diff master..deleting-report
 
 *** =sct4
 ```{python}
+msg = 'Use `git diff branch-1..branch-2` to compare branches. Replace `branch-1` and `branch-2` with the appropriate names for this context.'
 Ex().check_or(
-    has_expr_output(incorrect_msg='Use `git diff branch-1..branch-2` to compare branches. Replace `branch-1` and `branch-2` with the appropriate names for this context.'),
-    has_expr_output(code='git diff deleting-report..master')
+    has_expr_output(incorrect_msg = msg),
+    has_expr_output(code = 'git diff deleting-report..master', incorrect_msg = msg)
 )
 Ex().success_msg("Well done. Let's have a look at merging branches now.")
 ```
