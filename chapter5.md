@@ -168,22 +168,14 @@ https://github.com/datacamp/project.git
 ```
 
 but for this lesson,
-we will use **filesystem URLs** of the form 
-
-```
-file:///existing/project
-```
-
-The number of slashes at the start is important:
-the first part of the URL is `file://`,
-and then there is a third slash to start the absolute path `/existing/project`.
+we will use a repository on the local file system, so you can just use a path to that directory.
 
 When you clone a repository,
 Git uses the name of the existing repository as the name of the clone's root directory:
 for example,
 
 ```
-git clone file:///existing/project
+git clone /existing/project
 ```
 
 will create a new directory called `project`.
@@ -191,7 +183,7 @@ If you want to call the clone something else,
 add the directory name you want to the command:
 
 ```
-git clone file:///existing/project newprojectname
+git clone /existing/project newprojectname
 ```
 
 *** =pre_exercise_code
@@ -218,7 +210,7 @@ to create a new repository called `dental` inside your home directory
 
 *** =hint1
 
-Remember to count the slashes after `file:` carefully.
+Call `git clone`, passing the absolute path the the existing repository, and the name for the new repository.
 
 *** =sample_code1
 ```{shell}
@@ -226,12 +218,12 @@ Remember to count the slashes after `file:` carefully.
 
 *** =solution1
 ```{shell}
-git clone file:///home/thunk/repo dental
+git clone /home/thunk/repo dental
 ```
 
 *** =sct1
 ```{python}
-msgpatt = "There is no folder %s in %s. Have you used `git clone file:///home/thunk/repo dental` to copy the repository from /home/thunk/repo?"
+msgpatt = "There is no folder %s in %s. Have you used `git clone /home/thunk/repo dental` to copy the repository from /home/thunk/repo?"
 Ex().multi(
     has_cwd('/home/repl'),
     has_dir('/home/repl/dental', incorrect_msg=msgpatt % ('`dental`', '`/home/repl`')),
