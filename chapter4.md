@@ -8,14 +8,14 @@ description : >-
 --- type:PureMultipleChoiceExercise lang:bash xp:50 key:9db055a148
 ## What is a branch?
 
-One of the reasons Git is popular is its support for creating **branches**.
-A branch is like a parallel universe:
-changes you make in one branch do not affect other branches until you **merge** them back together.
-It's like creating sub-directories called `final`, `final-updated`, `final-updated-revised`, and so on,
-but with support for tracking work systematically.
+If you don't use version control, a common workflow is to create different subdirectories to hold different versions of your project in different states, for example `development` and `final`. Of course, then you always end up with `final-updated` and `final-updated-revised` as well. The problem with this is that it becomes difficult to work out if you have the right version of each file in the right subdirectory, and you risk losing work.
+
+One of the reasons Git is popular is its support for creating **branches**, which allows you to have multiple versions of your work, and lets you track each version systematically.
+
+Each branch is like a parallel universe: changes you make in one branch do not affect other branches (until you **merge** them back together).
 
 Note:
-the first chapter described the three-part data structure Git uses to record a repository's history:
+Chapter 2 described the three-part data structure Git uses to record a repository's history:
 *blobs* for files,
 *trees* for the saved states of the repositories,
 and *commits* to record the changes.
@@ -24,8 +24,8 @@ a commit will have two parents when branches are being merged.
 
 <hr>
 
-If each box in this diagram is a commit,
-how many merges have taken place?
+In the diagram below, each box is a commit and the arrows point to the next ("child") commit.
+How many merges have taken place?
 
 <img src="https://s3.amazonaws.com/assets.datacamp.com/production/course_5355/datasets/branching.png" alt="Branching and Merging" />
 
