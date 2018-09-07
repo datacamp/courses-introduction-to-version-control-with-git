@@ -366,8 +366,10 @@ Ex().success_msg("Quite a journey! In the next few exercises, you'll practice so
 --- type:BulletConsoleExercise key:51c4cb1dc0
 ## How can I create a branch?
 
-The easiest way to create a new branch is to run `git checkout -b branch-name`,
-which creates the branch and switches you to it.
+You might expect that you would use `git branch` to create a branch, and indeed this is possible. However, the most common thing you want to do is to create a branch then switch to that branch.
+
+In the previous exercise, you used `git checkout branch-name` to switch to a branch. To create a branch then switch to it in one step, you add a `-b` flag, calling `git checkout -b branch-name`,
+
 The contents of the new branch are initially identical to the contents of the original.
 Once you start making changes,
 they only affect the new branch.
@@ -515,10 +517,14 @@ git diff master..deleting-report
 *** =sct4
 ```{python}
 msg = 'Use `git diff branch-1..branch-2` to compare branches. Replace `branch-1` and `branch-2` with the appropriate names for this context.'
-Ex().check_or(
-    has_expr_output(incorrect_msg = msg),
-    has_expr_output(code = 'git diff deleting-report..master', incorrect_msg = msg)
-)
+# The sensible solution below causes the exercise to hang if the student types git diff with no arguments.
+# So just do regex matching instead.
+# Ex().check_or(
+#     has_expr_output(strict = True, incorrect_msg = msg),
+#     has_expr_output(code = 'git diff deleting-report..master', incorrect_msg = msg, strict = True),
+#     has_code(r'\s*git\s+diff\s*(deleting-report\.\.master|master\.\.deleting-report)', incorrect_msg = msg)
+# )
+Ex().has_code(r'\s*git\s+diff\s*(deleting-report\.\.master|master\.\.deleting-report)', incorrect_msg = msg)
 Ex().success_msg("Well done. Let's have a look at merging branches now.")
 ```
 
