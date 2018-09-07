@@ -24,6 +24,10 @@ but most programmers and data analysts try to avoid getting into this situation.
 
 Use a single command to create a new Git repository called `optical` below your home directory.
 
+*** =hint
+
+Call `git init`, passing the name of the repository to be created.
+
 *** =solution
 ```{shell}
 git init optical
