@@ -846,5 +846,5 @@ Ex().multi(
     has_expr_output(expr = 'git log --oneline origin/master..master | wc -l',
                     output='0', strict=True, incorrect_msg=msg2)
 )
-Ex().success_msg("Success! Head over to the very last exercise of this course!")
+Ex().success_msg("Gee-whiz! You've finished the course!")
 ```
