@@ -432,20 +432,21 @@ One more thing: there's another feature of `git log` that will come in handy her
 ```{python}
 repl = connect('bash')
 repl.run_command('cd dental')
+repl.run_command('cat data/western.csv')
 ```
 
 *** =type1: ConsoleExercise
 *** =key1: 8962ae79b3
 
-*** =xp1: 35
+*** =xp1: 25
 
 *** =instructions1
 
-Use `git log -1` to list the most recent changes to `report.txt`.
+The current contents of `data/western.csv` are shown in teh terminal. Use `git log -2` to list the last two changes to that file.
 
 *** =hint1
 
-Use `git log -1` with the name of the file as an argument.
+Use `git log -2` with the name of the file as an argument.
 
 *** =sample_code1
 ```{shell}
@@ -453,31 +454,31 @@ Use `git log -1` with the name of the file as an argument.
 
 *** =solution1
 ```{shell}
-# Run this command without '| cat' at the end.
-git log -1 report.txt | cat
+git log -2 data/western.csv
 ```
 
 *** =sct1
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    has_expr_output(incorrect_msg = "Have you used `git log -1 ___` (fill in the blank)?")
+    has_expr_output(incorrect_msg = "Have you used `git log -2 ___` (fill in the blank)?")
 )
 ```
 
 *** =type2: ConsoleExercise
 *** =key2: a03a79d2de
 
-*** =xp2: 35
+*** =xp2: 25
 
 *** =instructions2
 
 Use `git checkout` with the first few characters of a hash
-to restore the immediately-previous version of `report.txt`.
+to restore the version of `data/western.csv` with message `"Adding fresh data for western region."`.
 
 *** =hint2
 
-Use `git checkout` with the hash and the name of the file as arguments (in that order).
+- Use `git checkout` with the hash and the name of the file as arguments (in that order).
+- The hash starts with `8`.
 
 *** =sample_code2
 ```{shell}
@@ -486,21 +487,23 @@ Use `git checkout` with the hash and the name of the file as arguments (in that 
 *** =solution2
 ```{shell}
 # Replace the commit hash with the penultimate hash from git log
-git checkout a0a0a0 report.txt
+git checkout 8188eb data/western.csv
 ```
 
 *** =sct2
 ```{python}
-# Find the first 6 digits of the hash using
-# git log -1 report.txt | grep -P --only-matching "(?<=commit )[0-9a-f]{6}"
-msg = "The checker expected changes to `report.txt` to be staged. Have you used `git checkout ___ report.txt` (fill in the blank) to checkout the previous version correctly?"
+msg = "The checker expected changes to `data/western.csv` to be staged. Have you used `git checkout ___ data/western.csv` (fill in the blank) to checkout the previous version correctly?"
 Ex().multi(
     has_cwd('/home/repl/dental'),
     check_or(
-        has_expr_output(expr='git diff --name-only --staged | grep report.txt',
-                        output='report.txt', strict=True, incorrect_msg=msg),
+        has_expr_output(
+            expr='git diff --name-only --staged | grep data/western.csv',
+            output = 'data/western.csv',
+            strict=True, 
+            incorrect_msg = msg
+          ),
         # to satisfy validator (as strict as possible)
-        has_code(r'\s*git\s+checkout\s+0da2f7+\s+report\.txt\s*')
+        has_code(r'\s*git\s+checkout\s+8188eb+\s+data/western\.csv\s*')
     )
 )
 ```
@@ -508,15 +511,15 @@ Ex().multi(
 *** =type3: ConsoleExercise
 *** =key3: 00df157d59
 
-*** =xp3: 30
+*** =xp3: 25
 
 *** =instructions3
 
-Commit the restored version of `report.txt`.
+Use `cat` to display the updated contents of `data/western.csv`.
 
 *** =hint3
 
-Use `git commit` as usual.
+Call `cat`, passing the filename.
 
 *** =sample_code3
 ```{shell}
@@ -524,21 +527,52 @@ Use `git commit` as usual.
 
 *** =solution3
 ```{shell}
-git commit -m "Restoring"
+cat data/western.csv
 ```
 
 *** =sct3
 ```{python}
-msg = "It seems that the changes to `report.txt` that were staged with the `git checkout` command weren't committed. Have you used `git commit` with `-m \"any message\"`?"
+msg = "It seems that the changes to `data/western.csv` that were staged with the `git checkout` command weren't committed. Have you used `git commit` with `-m \"any message\"`?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(incorrect_msg = 'Did you print the contents of `data/western.csv` using `cat`?')
+)
+```
+
+*** =type4: ConsoleExercise
+*** =key4: 9dcac5fce4
+
+*** =xp4: 25
+
+*** =instructions4
+
+Commit the restored version of `data/western.csv`.
+
+*** =hint4
+
+Use `git commit` as usual.
+
+*** =sample_code4
+```{shell}
+```
+
+*** =solution4
+```{shell}
+git commit -m "Restoring"
+```
+
+*** =sct4
+```{python}
+msg = "It seems that the changes to `data/western.csv` that were staged with the `git checkout` command weren't committed. Have you used `git commit` with `-m \"any message\"`?"
 Ex().multi(
     has_cwd('/home/repl/dental'),
     check_or(
         multi(
-            has_expr_output(expr='git diff HEAD~ --name-only | grep report.txt', output='report.txt', incorrect_msg=msg),
+            has_expr_output(expr='git diff HEAD~ --name-only | grep data/western.csv', output='data/western.csv', incorrect_msg=msg),
             has_expr_output(expr='git diff --name-only --staged | wc -w', output='0', incorrect_msg=msg)
         ),
         # to satisfy validator (as strict as possible)
-        has_code(r'\s*git\s+commit\s+-m\s+"Restoring"')
+        has_code(r'\s*git\s+commit\s+-m\s+')
     )
 )
 Ex().success_msg("Solid, but there's more undoing to be done!")
