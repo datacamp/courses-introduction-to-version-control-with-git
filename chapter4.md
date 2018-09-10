@@ -8,14 +8,14 @@ description : >-
 --- type:PureMultipleChoiceExercise lang:bash xp:50 key:9db055a148
 ## What is a branch?
 
-One of the reasons Git is popular is its support for creating **branches**.
-A branch is like a parallel universe:
-changes you make in one branch do not affect other branches until you **merge** them back together.
-It's like creating sub-directories called `final`, `final-updated`, `final-updated-revised`, and so on,
-but with support for tracking work systematically.
+If you don't use version control, a common workflow is to create different subdirectories to hold different versions of your project in different states, for example `development` and `final`. Of course, then you always end up with `final-updated` and `final-updated-revised` as well. The problem with this is that it becomes difficult to work out if you have the right version of each file in the right subdirectory, and you risk losing work.
+
+One of the reasons Git is popular is its support for creating **branches**, which allows you to have multiple versions of your work, and lets you track each version systematically.
+
+Each branch is like a parallel universe: changes you make in one branch do not affect other branches (until you **merge** them back together).
 
 Note:
-the first chapter described the three-part data structure Git uses to record a repository's history:
+Chapter 2 described the three-part data structure Git uses to record a repository's history:
 *blobs* for files,
 *trees* for the saved states of the repositories,
 and *commits* to record the changes.
@@ -24,8 +24,8 @@ a commit will have two parents when branches are being merged.
 
 <hr>
 
-If each box in this diagram is a commit,
-how many merges have taken place?
+In the diagram below, each box is a commit and the arrows point to the next ("child") commit.
+How many merges have taken place?
 
 <img src="https://s3.amazonaws.com/assets.datacamp.com/production/course_5355/datasets/branching.png" alt="Branching and Merging" />
 
@@ -39,7 +39,7 @@ how many merges have taken place?
 
 Look for boxes with two arrows coming into them.
 
-*** =feedbacks
+*** =feedback
 - No: some commits have more than one parent.
 - No: some commits have more than one parent.
 - Correct: two commits have more than one parent.
@@ -80,7 +80,7 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex() >> test_mc(4, ['No: every repository has at least one branch.',
+Ex().has_chosen(4, ['No: every repository has at least one branch.',
                     'No: there are more branches than that.',
                     'No: there are more branches than that.',
                     'Correct!'])
@@ -121,7 +121,7 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex() >> test_mc(3, ['No: some files differ.',
+Ex().has_chosen(3, ['No: some files differ.',
                     'No: please count both files that have changed and files that are being added.',
                     'Correct!',
                     'No: please count the number of files that differ, not the number of lines that are different.'])
@@ -132,14 +132,14 @@ Ex() >> test_mc(3, ['No: some files differ.',
 --- type:BulletConsoleExercise key:c418145d13
 ## How can I switch from one branch to another?
 
-When you run `git branch`,
-it puts a `*` beside the name of the branch you are currently in.
-To switch to another branch,
-you use `git checkout branch-name`.
+You previously used `git checkout` with a commit hash to switch the repository state to that hash. You can also use `git checkout` with the name of a branch to switch to that branch.
 
-Note: Git will only let you do this if all of your changes have been committed.
-You can get around this,
-but it is outside the scope of this course.
+Two notes: 
+
+1. When you run `git branch`, it puts a `*` beside the name of the branch you are currently in. 
+2. Git will only let you do this if all of your changes have been committed. You can get around this, but it is outside the scope of this course.
+
+In this exercise, you'll also make use of `git rm`. This removes the file (just like the shell command `rm`) then stages the removal of that file with `git add`, all in one step.
 
 *** =pre_exercise_code
 ```{python}
@@ -151,7 +151,7 @@ repl.run_command('git branch')
 *** =type1: ConsoleExercise
 *** =key1: eee4722074
 
-*** =xp1: 10
+*** =xp1: 16
 
 *** =instructions1
 
@@ -173,15 +173,19 @@ git checkout summary-statistics
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+checkout\s+summary-statistics\s*',
-                           fixed=False,
-                           msg='Use `git checkout` to switch between branches.')
+msg="You don't appear to be on the right branch. Have you used `git checkout` to go to the `summary-statistics` branch?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    # Check we're on the right branch -- https://stackoverflow.com/a/12142066/1144523
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep summary-statistics',
+                    output='summary-statistics', strict=True, incorrect_msg=msg)
+)
 ```
 
 *** =type2: ConsoleExercise
 *** =key2: 6193872406
 
-*** =xp2: 10
+*** =xp2: 16
 
 *** =instructions2
 
@@ -202,15 +206,21 @@ git rm report.txt
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+rm\s+report\.txt\s*',
-                           fixed=False,
-                           msg='Use `git rm filename`.')
+msg1="Make sure you stay on the `summary-statistics` branch. Use `git checkout summary-statistics` to navigate back."
+msg2="It seems that the deletion of `report.txt` was not staged. Have you used `git rm report.txt`?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep summary-statistics',
+                    output='summary-statistics', strict=True, incorrect_msg=msg1),
+    has_expr_output('git diff --name-only --staged | grep report.txt',
+                    output='report.txt', strict=True, incorrect_msg=msg2)
+)
 ```
 
 *** =type3: ConsoleExercise
 *** =key3: dcfdc86805
 
-*** =xp3: 10
+*** =xp3: 16
 
 *** =instructions3
 
@@ -231,15 +241,37 @@ git commit -m "Removing report"
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit.+\s*',
-                           fixed=False,
-                           msg='Use `git commit -m "message"`.')
+branch_msg =" Make sure you stay on the `summary-statistics` branch. Use `git checkout summary-statistics` to navigate back."
+not_committed_msg = "It seems that the staged changes to `report.txt` weren't committed. Have you used `git commit` with `-m \"Removing report\"`?"
+bad_message_msg = 'It seems the commit message was incorrect. You can amend it with `git commit --amend -m "new message"`.'
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(
+        expr='git rev-parse --abbrev-ref HEAD | grep summary-statistics',
+        output='summary-statistics', strict=True, incorrect_msg=branch_msg
+    ),
+    check_or(
+        has_expr_output(
+            expr='git diff HEAD~ --name-only | grep report.txt',
+            output = 'report.txt',
+            strict=True,
+            incorrect_msg=not_committed_msg
+        ),
+        has_code(r'\s*git\s+commit', incorrect_msg = not_committed_msg)            
+    ),
+    has_expr_output(
+        expr='git log -1 | grep --only-matching "Removing report"',
+        output = 'Removing report',
+        strict=True,
+        incorrect_msg=bad_message_msg
+    )
+)
 ```
 
 *** =type4: ConsoleExercise
 *** =key4: 99b72ed9cb
 
-*** =xp4: 10
+*** =xp4: 16
 
 *** =instructions4
 
@@ -260,15 +292,19 @@ ls
 
 *** =sct4
 ```{python}
-Ex() >> test_student_typed(r'\s*ls\s*',
-                           fixed=False,
-                           msg='Use `ls` without any parameters.')
+msg="Make sure you stay on the `summary-statistics` branch. Use `git checkout summary-statistics` to navigate back."
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep summary-statistics',
+                    output='summary-statistics', strict=True, incorrect_msg=msg),
+    has_expr_output(incorrect_msg="Have you used `ls` correctly? `report.txt` should have disappeared.")
+)
 ```
 
 *** =type5: ConsoleExercise
 *** =key5: 4afc727945
 
-*** =xp5: 10
+*** =xp5: 16
 
 *** =instructions5
 
@@ -289,15 +325,18 @@ git checkout master
 
 *** =sct5
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+checkout\s+master\s*',
-                           fixed=False,
-                           msg='Use `git checkout` to switch between branches.')
+msg="You don't appear to be on the right branch. Have you used `git checkout master`?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+                    output='master', strict=True, incorrect_msg=msg)
+)
 ```
 
 *** =type6: ConsoleExercise
 *** =key6: b0b5946436
 
-*** =xp6: 10
+*** =xp6: 20
 
 *** =instructions6
 
@@ -318,9 +357,8 @@ ls
 
 *** =sct6
 ```{python}
-Ex() >> test_student_typed(r'\s*ls\s*',
-                           fixed=False,
-                           msg='Use `ls` without any parameters.')
+Ex().has_expr_output(incorrect_msg="Have you used `ls` correctly? `report.txt` should have disappeared.")
+Ex().success_msg("Quite a journey! In the next few exercises, you'll practice some more with navigating branches and staging and committing changes.")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -328,8 +366,10 @@ Ex() >> test_student_typed(r'\s*ls\s*',
 --- type:BulletConsoleExercise key:51c4cb1dc0
 ## How can I create a branch?
 
-The easiest way to create a new branch is to run `git checkout -b branch-name`,
-which creates the branch and switches you to it.
+You might expect that you would use `git branch` to create a branch, and indeed this is possible. However, the most common thing you want to do is to create a branch then switch to that branch.
+
+In the previous exercise, you used `git checkout branch-name` to switch to a branch. To create a branch then switch to it in one step, you add a `-b` flag, calling `git checkout -b branch-name`,
+
 The contents of the new branch are initially identical to the contents of the original.
 Once you start making changes,
 they only affect the new branch.
@@ -344,7 +384,7 @@ repl.run_command('git branch')
 *** =type1: ConsoleExercise
 *** =key1: 71253d1c95
 
-*** =xp1: 10
+*** =xp1: 25
 
 *** =instructions1
 
@@ -366,15 +406,25 @@ git checkout -b deleting-report
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+checkout\s+-b\s+deleting-report\s*',
-                           fixed=False,
-                           msg='Use `git checkout -b` to create a branch.')
+msg="Have you used `git checkout -b deleting-report?` to create a new branch and switch to it?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_correct(
+        has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep deleting-report',
+                        output='deleting-report', strict=True, incorrect_msg=msg),
+        multi(
+            has_code(r'git\s+checkout', incorrect_msg="Have you used `git checkout`?"),
+            has_code(r'-b', incorrect_msg="Make sure to use the flag `-b`."),
+            has_code(r'deleting-report', incorrect_msg="Your new branch should be called `deleting-report`. Beware of typos!")
+        )
+    )
+)
 ```
 
 *** =type2: ConsoleExercise
 *** =key2: 4dc64f3a09
 
-*** =xp2: 10
+*** =xp2: 25
 
 *** =instructions2
 
@@ -395,15 +445,21 @@ git rm report.txt
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+rm\s+report\.txt\s*',
-                           fixed=False,
-                           msg='Use `git rm filename`.')
+msg1="Make sure you stay on the `deleting-report` branch. Use `git checkout deleting-report` to navigate back."
+msg2="It seems that the deletion of `report.txt` was not staged. Have you used `git rm report.txt`?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep deleting-report',
+                    output='deleting-report', strict=True, incorrect_msg=msg1),
+    has_expr_output('git diff --name-only --staged | grep report.txt',
+                    output='report.txt', strict=True, incorrect_msg=msg2)
+)
 ```
 
 *** =type3: ConsoleExercise
 *** =key3: a7e82dfb0c
 
-*** =xp3: 10
+*** =xp3: 25
 
 *** =instructions3
 
@@ -424,15 +480,21 @@ git commit -m "Deleting report"
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit.+\s*',
-                           fixed=False,
-                           msg='Use `git commit -m "message"`.')
+msg1="Make sure you stay on the `deleting-report` branch. Use `git checkout deleting-report` to navigate back."
+msg2="It seems that the staged deletion of `report.txt` wasn't committed. Use `git commit` with `-m \"any message\"`."
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep deleting-report',
+                    output='deleting-report', strict=True, incorrect_msg=msg1),
+    has_expr_output(expr='git diff HEAD~ --name-only | grep report.txt',
+                    output = 'report.txt', incorrect_msg=msg2)
+)
 ```
 
 *** =type4: ConsoleExercise
 *** =key4: ec7d242138
 
-*** =xp4: 10
+*** =xp4: 25
 
 *** =instructions4
 
@@ -454,9 +516,16 @@ git diff master..deleting-report
 
 *** =sct4
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+diff\s+(master\.\.deleting-report|deleting-report\.\.master)\s*',
-                           fixed=False,
-                           msg='Use `git diff branch-1..branch-2` to compare branches.')
+msg = 'Use `git diff branch-1..branch-2` to compare branches. Replace `branch-1` and `branch-2` with the appropriate names for this context.'
+# The sensible solution below causes the exercise to hang if the student types git diff with no arguments.
+# So just do regex matching instead.
+# Ex().check_or(
+#     has_expr_output(strict = True, incorrect_msg = msg),
+#     has_expr_output(code = 'git diff deleting-report..master', incorrect_msg = msg, strict = True),
+#     has_code(r'\s*git\s+diff\s*(deleting-report\.\.master|master\.\.deleting-report)', incorrect_msg = msg)
+# )
+Ex().has_code(r'\s*git\s+diff\s*(deleting-report\.\.master|master\.\.deleting-report)', incorrect_msg = msg)
+Ex().success_msg("Well done. Let's have a look at merging branches now.")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -487,7 +556,7 @@ repl.run_command('cd dental')
 *** =type1: ConsoleExercise
 *** =key1: 7a4bb39d31
 
-*** =xp1: 10
+*** =xp1: 100
 
 *** =instructions1
 
@@ -508,14 +577,23 @@ and `master` as the second (the "to" branch).
 *** =solution1
 ```{shell}
 # Run this command *without* the '-no-edit' flag:
-git merge --no-edit -m "Merging summary statistics" summary-statistics master
+git merge --no-edit summary-statistics master
 ```
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+merge.*\s+summary-statistics\s+master\s*',
-                           fixed=False,
-                           msg='Use `git merge branch branch`.')
+msg1 = "Make sure you are on the `master` branch when you do the `git merge` command. Use `git checkout master` first."
+msg2 = "Have you used `git merge summary-statistics master` to merge `summary-statistics` into `master`? An editor will show up. You can use Ctrl+O and then Ctrl+X to exit this. If you want to avoid this, use the `--no-edit` flag in the `git merge` command."
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+                    output='master', strict=True, incorrect_msg=msg1),
+    has_expr_output(expr='git diff HEAD~ --name-only | grep bin/summary',
+                    output = 'bin/summary', incorrect_msg=msg2),
+    has_expr_output(expr='git diff HEAD~ --name-only | grep results/summary.txt',
+                    output = 'results/summary.txt', incorrect_msg=msg2)
+)
+Ex().success_msg("Merged it! Well done!")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -568,7 +646,7 @@ what conflicts does Git report?
 
 Look for lines with `+` or `-` in front of them.
 
-*** =feedbacks
+*** =feedback
 - Correct: Git can merge the deletion of line A and the addition of line C automatically.
 - No: Git can merge the deletion of line A automatically.
 - No: Git can merge the addition of line C automatically.
@@ -614,7 +692,7 @@ repl.run_command('git branch')
 *** =type1: ConsoleExercise
 *** =key1: 1e11825f95
 
-*** =xp1: 10
+*** =xp1: 20
 
 *** =instructions1
 
@@ -638,15 +716,21 @@ git merge --no-edit -m "Merging altered report title" alter-report-title master
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git merge.+alter-report-title\s*master\s*',
-                           fixed=False,
-                           msg='Use `git merge branch branch`.')
+msg1 = "Make sure you are on the `master` branch when you do the `git merge` command. Use `git checkout master` first."
+msg2 = "Have you used `git merge summary-statistics master` to merge `alter-report-title` into `master`?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+                    output='master', strict=True, incorrect_msg=msg1),
+    # git diff -name-only should return report.txt twice after unsuccessful merge
+    has_expr_output(expr='git diff --name-only | grep report.txt | wc -w', output = '2', incorrect_msg=msg2)
+)
 ```
 
 *** =type2: ConsoleExercise
 *** =key2: 9ecd08b08b
 
-*** =xp2: 10
+*** =xp2: 20
 
 *** =instructions2
 
@@ -667,23 +751,33 @@ git status
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+status(.+)?\s*',
-                           fixed=False,
-                           msg='Use `git status`.')
+msg1 = "Make sure you are on the `master` branch when you do the `git merge` command. Use `git checkout master` first."
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+                    output='master', strict=True, incorrect_msg=msg1),
+    has_expr_output(incorrect_msg="Have you used `git status` to see the status of your repo?")
+)
 ```
 
 *** =type3: ConsoleExercise
 *** =key3: 4acfdd12bd
 
-*** =xp3: 10
+*** =xp3: 20
 
 *** =instructions3
 
-Use `nano` to edit the file and remove the conflict markers.
+It turns out that `report.txt` has some conflicts. Use `nano report.txt` to open it and remove some lines so that only the second title is kept. Save you work with Ctrl+O and leave the editor with Ctrl+X. You can easily remove entire lines with Ctrl+K
 
 *** =hint3
 
-Use `nano` and the filename.
+Use `nano` and the filename. Remove the following lines:
+
+- `<<<<<<< HEAD`
+- `# Seasonal Dental Surgeries (2017) 2017-18`
+- `=======`
+- `>>>>>>> alter-report-title`
+
 
 *** =sample_code3
 ```{shell}
@@ -691,21 +785,43 @@ Use `nano` and the filename.
 
 *** =solution3
 ```{shell}
-# Run this command *without* 'echo' at the front:
-echo nano report.txt
+# This solution uses another command
+# because our automated tests can't edit files interactively.
+echo -e '
+# Dental Work by Season 2017-18
+
+TODO: write executive summary.
+
+TODO: include link to raw data.
+
+TODO: remember to cite funding sources!
+
+' > report.txt
 ```
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'.*nano\s+report\.txt.*',
-                           fixed=False,
-                           msg='Use `nano filename`.')
+msg1 = "Make sure you are on the `master` branch when you do the `git merge` command. Use `git checkout master` first."
+edit=" Edit the file again with `nano report.txt` and make some more changes."
+msg2 = "The title `# Dental Work by Season 2017-18` disappeared from `report.txt`, while that was the title to keep!" + edit
+msg3patt = "It seems that there is a still a conflict marker (`%s`) in the `report.txt` file. Make sure to remove this line entirely." + edit
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+                    output='master', strict=True, incorrect_msg=msg1),
+    check_file('/home/repl/dental/report.txt').multi(
+        has_code('# Dental Work by Season 2017-18', fixed=True, incorrect_msg=msg2),
+        check_not(has_code(r'<<<<<'), incorrect_msg=msg3patt%'<<<<<<<'),
+        check_not(has_code(r'>>>>>'), incorrect_msg=msg3patt%'>>>>>>>'),
+        check_not(has_code(r'====='), incorrect_msg=msg3patt%'=======')
+    )
+)
 ```
 
 *** =type4: ConsoleExercise
 *** =key4: 323f9a133c
 
-*** =xp4: 10
+*** =xp4: 20
 
 *** =instructions4
 
@@ -726,15 +842,21 @@ git add report.txt
 
 *** =sct4
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s*add\s*report\.txt\s*',
-                           fixed=False,
-                           msg='Use `git add filename` as usual.')
+msg1 = "Make sure you are on the `master` branch when you do the `git merge` command. Use `git checkout master` first."
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+                output='master', strict=True, incorrect_msg=msg1),
+    has_expr_output(expr='git diff --name-only --staged | grep report.txt',
+                    output = 'report.txt',
+                    incorrect_msg = "It seems that `report.txt` was not added to the staging area. Have you used `git add report.txt`?")
+)
 ```
 
 *** =type5: ConsoleExercise
 *** =key5: d9b25e272f
 
-*** =xp5: 10
+*** =xp5: 20
 
 *** =instructions5
 
@@ -755,7 +877,14 @@ git commit -m "Reconciling"
 
 *** =sct5
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit.+\s*',
-                           fixed=False,
-                           msg='Use `git commit` as usual.')
+msg1 = "Make sure you are on the `master` branch when you do the `git merge` command. Use `git checkout master` first."
+msg2 = "It seems that the changes to `report.txt` that were staged with the `git add` command weren't committed. Have you used `git commit` with `-m \"any message\"`?"
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+            output='master', strict=True, incorrect_msg=msg1),
+    has_expr_output(expr='git diff HEAD~ --name-only | grep report.txt', output='report.txt',     incorrect_msg=msg2),
+    has_expr_output(expr='git diff --name-only --staged | wc -w', output='0', incorrect_msg=msg2)
+)
+Ex().success_msg("Well done! This was quite a challenge. A final yet extremely important aspect about Git is collaboration. Learn all about it in the fifth and final chapter of this course!")
 ```

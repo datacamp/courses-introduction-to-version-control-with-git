@@ -7,29 +7,17 @@ description : >-
 --- type:PureMultipleChoiceExercise lang:bash xp:50 key:6d7237913f
 ## How does Git store information?
 
-In order to make common operations fast and minimize storage space,
-Git uses a multi-level structure to store data.
-In simplified form,
-this has three key parts:
+You may wonder what information is stored by each commit that you make. Git uses a three-level structure for this.
 
-1. Every unique version of every file.
-   (Git calls these **blobs** because they can contain data of any kind.)
-2. **tree** that tracks the names and locations of a set of files.
-3. A **commit** that records the author, log message, and other properties
-   of a particular commit.
+1. A **commit** contains metadata such as the author, the commit message, and the time the commit happened. In the diagram below, the most recent commit is at the bottom (`feed0098`), and vertical arrows point up towards the previous ("parent") commits.
+2. Each commit also has a **tree**, which tracks the names and locations in the repository when that commit happened. In the oldest (top) commit, there were two files tracked by the repository.
+3. For each of the files listed in the tree, there is a **blob**. This contains a compressed snapshot of the contents of the file when the commit happened. (Blob is short for *binary large object*, which is a SQL database term for "may contain data of any kind".) In the middle commit, `report.md` and `draft.md` were changed, so the blobs are shown next to that commit. `data/northern.csv` didn't change in that commit, so the tree links to the blob from the previous commit. Reusing blobs between commits help make common operations fast and minimizes storage space.
 
 <img src="https://s3.amazonaws.com/assets.datacamp.com/production/course_5355/datasets/commit-tree-blob.png" alt="Commit-Tree-Blob Structure" />
 
-As the diagram shows,
-each blob is stored only once,
-and blobs are (frequently) shared between trees.
-While it may seem redundant to have both trees and commits,
-a later part of this lesson will show why the two have to be distinct.
-
 <hr>
 
-Looking at the diagram,
-which files changed in the last (bottom-most) commit to this repository?
+Looking at the diagram, which files changed in the most recent commit to this repository?
 
 *** =possible_answers
 - [`data/northern.csv`]
@@ -38,9 +26,9 @@ which files changed in the last (bottom-most) commit to this repository?
 
 *** =hint
 
-Look in the right-most column to see which file is new.
+Look in the bottom row, right-most column to see which file was changed.
 
-*** =feedbacks
+*** =feedback
 - Correct!
 - No: that is part of the most recent commit, but wasn't changed in it.
 - No: that file is no longer present in the tree.
@@ -88,7 +76,7 @@ Remember that you can use 'q' to quit the pager.
 *** =sct
 ```{python}
 err = "No, that is not the most recent hash."
-Ex() >> test_mc(4, [err, err, err, "Correct!"])
+Ex().has_chosen(4, [err, err, err, "Correct!"])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -98,23 +86,25 @@ Ex() >> test_mc(4, [err, err, err, "Correct!"])
 
 To view the details of a specific commit,
 you use the command `git show` with the first few characters of the commit's hash.
-For example, the command `git show 043070` produces this:
+For example, the command `git show 0da2f7` produces this:
 
-    commit 0430705487381195993bac9c21512ccfb511056d
-    Author: Rep Loop <repl@datacamp.com>
-    Date:   Wed Sep 20 13:42:26 2017 +0000
-    
-        Added year to report title.
-    
-    diff --git a/report.txt b/report.txt
-    index e713b17..4c0742a 100644
-    --- a/report.txt
-    +++ b/report.txt
-    @@ -1,4 +1,4 @@
-    -# Seasonal Dental Surgeries 2017-18
-    +# Seasonal Dental Surgeries (2017) 2017-18
-     
-     TODO: write executive summary.
+```{bash}
+commit 0da2f7ad11664ca9ed933c1ccd1f3cd24d481e42
+Author: Rep Loop <repl@datacamp.com>
+Date:   Wed Sep 5 15:39:18 2018 +0000
+
+    Added year to report title.
+
+diff --git a/report.txt b/report.txt
+index e713b17..4c0742a 100644
+--- a/report.txt
++++ b/report.txt
+@@ -1,4 +1,4 @@
+-# Seasonal Dental Surgeries 2017-18
++# Seasonal Dental Surgeries (2017) 2017-18
+
+ TODO: write executive summary.
+```
 
 The first part is the same as the log entry shown by `git log`.
 The second part shows the changes;
@@ -125,13 +115,14 @@ while lines that it added are prefixed with `+`.
 <hr>
 
 You have been put in the `dental` directory.
-(We will now stop reminding you of this...)
 Use `git log` to see the hashes of recent commits,
 and then `git show` with the first few digits of a hash
 to look at the most recent commit.
 How many files did it change?
 
-As before, press `q` to return from the log output to the command prompt.
+Reminder:
+press the space bar to page down through `git log`'s output
+and `q` to quit the paged display.
 
 *** =instructions
 - None.
@@ -155,7 +146,7 @@ repl.run_command('cd dental')
 e_more = 'No, there have been more changes than that.'
 correct = 'Correct!'
 e_fewer = 'No, there have been fewer changes than that.'
-Ex() >> test_mc(2, [e_more, correct, e_fewer, e_fewer])
+Ex().has_chosen(2, [e_more, correct, e_fewer, e_fewer])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -181,7 +172,7 @@ and that there cannot be spaces before or after the tilde.
 
 You are in the `dental` repository.
 Using a single Git command,
-look at the commit made just before the most recent one.
+show the commit made just before the most recent one.
 Which of the following files did it change?
 
 *** =instructions
@@ -202,7 +193,7 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex() >> test_mc(2, ['No, the commit `HEAD~1` did not change that file.',
+Ex().has_chosen(2, ['No, the commit `HEAD~1` did not change that file.',
                     'Correct.',
                     'No, the commit `HEAD~1` only changed one file.',
                     'No, the commit `HEAD~1` did change a file.'])
@@ -225,11 +216,14 @@ the first three lines of output from `git annotate report.txt` look something li
 5e6f92b6        (  Rep Loop     2017-09-20 13:42:26 +0000       3)TODO: write executive summary.
 ```
 
-The first column is the hash of the most recent commit to change that line.
-The other columns show who made the change,
-the date and time it was made,
-the line number,
-and the line itself.
+
+Each line contains five things, with two to four in parentheses.
+
+1. The first eight digits of the hash, `04307054`.
+2. The author, `Rep Loop`.
+3. The time of the commit, `2017-09-20 13:42:26 +0000`.
+4. The line number, `1`.
+5. The contents of the line, `# Seasonal Dental Surgeries (2017) 2017-18`.
 
 <hr>
 
@@ -240,9 +234,9 @@ How many different sets of changes have been made to this file
 
 *** =instructions
 - 1.
-- 2.
 - 3.
 - 4.
+- 7.
 
 *** =hint
 
@@ -257,10 +251,11 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-e_more = 'No, there have been more changes than that.'
-correct = 'Correct!'
-e_fewer = 'No, there have been fewer changes than that.'
-Ex() >> test_mc(3, [e_more, e_more, correct, e_fewer])
+err1 = 'No, there have been more changes than that.'
+correct = "Correct! `git annotate` let's you see who modified a file and when."
+err3 = 'No, count the number of commit hashes, not the number of non-empty lines.'
+err4 = 'No, count the number of commit hashes, not the total number of lines.'
+Ex().has_chosen(2, [err1, correct, err3, err4])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -308,7 +303,7 @@ err_more = 'Yes, but another file was changed as well.'
 err_not = 'No, that file did not change.'
 correct = 'Correct!'
 err_half = 'No, one of those files did not change.'
-Ex() >> test_mc(4, [err_more, err_more, err_not, correct, err_half])
+Ex().has_chosen(4, [err_more, err_more, err_not, correct, err_half])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -320,9 +315,11 @@ Git does not track files by default.
 Instead,
 it waits until you have used `git add` at least once
 before it starts paying attention to a file.
-To remind you to do this,
-`git status` will always tell you about files that are in your repository
-but aren't (yet) being tracked.
+
+In the diagram you saw at the start of the chapter, the untracked files won't have a blob, and won't be listed in a tree.
+
+
+The untracked files won't benefit from version control, so to make sure you don't miss anything, `git status` will always tell you about files that are in your repository but aren't (yet) being tracked.
 
 *** =pre_exercise_code
 ```{python}
@@ -335,7 +332,7 @@ repl.run_command('cd dental')
 *** =type1: ConsoleExercise
 *** =key1: 0cad38fb5f
 
-*** =xp1: 10
+*** =xp1: 30
 
 *** =instructions1
 
@@ -357,15 +354,19 @@ git status
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+status\s*',
-                           fixed=False,
-                           msg='Remember, you want to check the *status* of the repository.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_correct(
+        has_expr_output(),
+        has_code(r'\s*git\s+status\s*', incorrect_msg = "Have a look at the status of your repository with `git status`.")
+    )
+)
 ```
 
 *** =type2: ConsoleExercise
 *** =key2: 7b84819b84
 
-*** =xp2: 10
+*** =xp2: 30
 
 *** =instructions2
 
@@ -373,7 +374,7 @@ Use `git add` to add the new file to the staging area.
 
 *** =hint2
 
-Remember: `git add` shouldb e followed by either a filename or a directory name (such as '.' for the current working directory).
+Remember: `git add` should be followed by either a filename or a directory name (such as '.' for the current working directory).
 
 *** =sample_code2
 ```{shell}
@@ -386,15 +387,19 @@ git add sources.txt
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+add\s+(\.|sources\.txt)\s*',
-                           fixed=False,
-                           msg='You can add files one by one or use a directory to add them all.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git diff --name-only --staged | grep sources.txt',
+                    output = 'sources.txt',
+                    strict=True, 
+                    incorrect_msg = "It seems that `sources.txt` was not added to the staging area. Have you used `git add sources.txt`?")
+)
 ```
 
 *** =type3: ConsoleExercise
 *** =key3: 4545c769de
 
-*** =xp3: 10
+*** =xp3: 40
 
 *** =instructions3
 
@@ -416,9 +421,27 @@ git commit -m "Starting to track data sources."
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+commit\s+-m\s+"[^"]+"\s*',
-                           fixed=False,
-                           msg='Remember, you want to *commit* files.')
+not_committed_msg = "It seems that the staged changes to `sources.txt` weren't committed. Have you used `git commit` with `-m \"Starting to track data sources.\"`?"
+bad_message_msg = 'It seems the commit message was incorrect. You can amend it with `git commit --amend -m "new message"`.'
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_or(
+        has_expr_output(
+            expr='git diff HEAD~ --name-only | grep sources.txt',
+            output = 'sources.txt',
+            strict=True,
+            incorrect_msg=not_committed_msg
+        ),
+        has_code(r'\s*git\s+commit', incorrect_msg = not_committed_msg)            
+    ),
+    has_expr_output(
+        expr='git log -1 | grep --only-matching "Starting to track data sources"',
+        output = 'Starting to track data sources',
+        strict=True,
+        incorrect_msg=bad_message_msg
+    )
+)
+Ex().success_msg("That's how it's done!")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -461,7 +484,7 @@ backup
 
 To match a set of files, a `.gitignore` entry must contain a wildcard character such as `*`.
 
-*** =feedbacks
+*** =feedback
 - Correct: `pdf` does not contain any wildcards, so it only matches files called `pdf`.
 - This file *is* matched because the pattern `*.pyc` matches files in sub-directories.
 - This file *is* matched because `backup` is a directory, so all files in it are ignored.
@@ -495,12 +518,12 @@ repl.run_command('cd dental')
 *** =type1: ConsoleExercise
 *** =key1: e3a590cd63
 
-*** =xp1: 10
+*** =xp1: 30
 
 *** =instructions1
 
 You are in the `dental` repository.
-Use `ls` to see what files are present.
+Use `git status` to see the status of your repo.
 
 *** =hint1
 
@@ -512,24 +535,29 @@ Run the command as shown.
 
 *** =solution1
 ```{shell}
-ls
+git status
 ```
 
 *** =sct1
 ```{python}
-Ex() >> test_student_typed(r'\s*ls\s*',
-                           fixed=False,
-                           msg='Use `ls` without arguments.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_correct(
+        has_expr_output(),
+        has_code(r'\s*git\s+status\s*', incorrect_msg = "Have a look at the status of your repository with `git status`.")
+    )
+)
 ```
 
 *** =type2: ConsoleExercise
 *** =key2: 4bbdbc8970
 
-*** =xp2: 10
+*** =xp2: 30
 
 *** =instructions2
 
-Use a single Git command to remove unwanted files.
+`backup.log` appears to be an untracked file and it's one we don't need. Let's get rid of it.
+Use `git clean` with the appropriate flag to remove unwanted files.
 
 *** =hint2
 
@@ -546,19 +574,21 @@ git clean -f
 
 *** =sct2
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+clean\s+-f\s*',
-                           fixed=False,
-                           msg='Use `git clean` with the right flag(s).')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='ls', output=r'bin +data +report.txt +results',
+                    incorrect_msg="The directory doesn't contain only the tracked files. Have you used `git clean` with the `-f` flag?")
+)
 ```
 
 *** =type3: ConsoleExercise
 *** =key3: 0450972363
 
-*** =xp3: 10
+*** =xp3: 40
 
 *** =instructions3
 
-Use `ls` again to see what effects your Git command has had.
+List the files in your directory. `backup.log` should no longer be there!
 
 *** =hint3
 
@@ -575,9 +605,14 @@ ls
 
 *** =sct3
 ```{python}
-Ex() >> test_student_typed(r'\s*ls\s*',
-                           fixed=False,
-                           msg='Use `ls` without arguments.')
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_correct(
+        has_expr_output(),
+        has_code(r'\s*ls\s*', incorrect_msg = "Use `ls` to list the files in `dental`, your current working directory.")
+    )
+)
+Ex().success_msg("A job well done! Keeping your repository clean is crucial to keep oversight.")
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -605,9 +640,9 @@ How many local configuration values are set in for this repository?
 
 *** =instructions
 - None.
-- 1.
+- 3.
 - 4.
-- 12.
+- 7.
 
 *** =hint
 
@@ -621,10 +656,10 @@ repl.run_command('cd dental')
 
 *** =sct
 ```{python}
-Ex() >> test_mc(3, ['No, some configuration values are set.',
-                    'No, more configuration values are set than that.',
-                    'Correct!',
-                    'No, fewer configuration values are set than that.'])
+Ex().has_chosen(3, ['No, some configuration values are set.',
+                    'No, there are 3 global settings, but how many local settings are there?',
+                    'Correct! Config settings are useful for storing your name and email address (to identify you in commit logs), choosing your favorite text editor and diff view tools, and customizing things just how you like them.',
+                    'No, there are 7 settings in total, but how many local settings are there?'])
 ```
 
 <!-- -------------------------------------------------------------------------------- -->
@@ -652,7 +687,7 @@ The keys that identify your name and email address are `user.name` and `user.ema
 
 *** =instructions
 
-Change the email address configured for the current user for *all* projects
+Change the email address (`user.email`) configured for the current user for *all* projects
 to `rep.loop@datacamp.com`.
 
 *** =solution
@@ -662,7 +697,17 @@ git config --global user.email rep.loop@datacamp.com
 
 *** =sct
 ```{python}
-Ex() >> test_student_typed(r'\s*git\s+config\s+--global\s+user\.email\s+["\']?rep\.loop@datacamp.com["\']?\s*',
-                           fixed=False,
-                           msg='Use `git config --global` with the `user.email` property and the email address.')
+patt='You should use `%s` in your command.'
+Ex().check_correct(
+    has_expr_output(expr='git config --global user.email',
+                    output='rep.loop@datacamp.com',
+                    incorrect_msg="Have you used `git config --global user.email rep.loop@datacamp.com` to properly configure the email address globally?"),
+    multi(
+        has_code(r'git\s+config', incorrect_msg="Your command should start with `git config`."),
+        has_code('--global', incorrect_msg="You should use the flag `--global`."),
+        has_code('user.email', incorrect_msg="Use `user.email` to tell `git config` you're about to set the email address."),
+        has_code('rep.loop@datacamp.com', fixed=True, incorrect_msg="Make sure to set `user.email` to `rep.loop@datacamp.com`. Beware of typos!")
+    )
+)
+Ex().success_msg("Well configured! Head over to chapter 3 to continue learning about Git!")
 ```
