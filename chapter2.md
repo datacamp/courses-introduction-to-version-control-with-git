@@ -576,8 +576,12 @@ git clean -f
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    has_expr_output(expr='ls', output=r'bin +data +report.txt +results',
-                    incorrect_msg="The directory doesn't contain only the tracked files. Have you used `git clean` with the `-f` flag?")
+    check_not(
+        has_expr_output(
+            expr='ls', output='backup.log',
+        ),
+        incorrect_msg="The directory doesn't contain only the tracked files. Have you used `git clean` with the `-f` flag?"
+    )
 )
 ```
 
