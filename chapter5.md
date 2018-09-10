@@ -271,7 +271,7 @@ Run `git remote` in the `dental` repository.
 ```{shell}
 repl = connect('bash')
 repl.run_command('rm -rf dental')
-repl.run_command('git clone file:///home/thunk/repo dental')
+repl.run_command('git clone /home/thunk/repo dental')
 repl.run_command('clear')
 repl.run_command('cd dental')
 ```
@@ -321,7 +321,7 @@ repl.run_command('cd dental')
 *** =instructions1
 
 You are in the `dental` repository.
-Add `file:///home/thunk/repo` as a remote called `thunk` to it.
+Add `/home/thunk/repo` as a remote called `thunk` to it.
 
 *** =hint1
 
@@ -333,18 +333,26 @@ Be sure to count the slashes properly in the remote URL.
 
 *** =solution1
 ```{shell}
-git remote add thunk file:///home/thunk/repo
+git remote add thunk /home/thunk/repo
 ```
 
 *** =sct1
 ```{python}
 msg1="The system couldn't find a remote with the name `thunk`. Have you used `git remote add thunk <path_to_remote>`?"
-msg2="Are you sure the path of the thunk remote is correct? Have you used `git remote add thunk file:///home/thunk/repo`?"
+msg2="Are you sure the path of the thunk remote is correct? Have you used `git remote add thunk /home/thunk/repo`?"
 Ex().multi(
     has_cwd('/home/repl/dental'),
     has_expr_output('git remote', output='thunk', strict=True, incorrect_msg=msg1),
-    has_expr_output('git remote get-url thunk',
-                    output='file:///home/thunk/repo', strict=True, incorrect_msg=msg2)
+    check_or(
+        has_expr_output(
+            'git remote get-url thunk',
+             output='/home/thunk/repo', strict=True, incorrect_msg=msg2
+        ),
+        has_expr_output(
+            'git remote get-url thunk',
+             output='file:///home/thunk/repo', strict=True, incorrect_msg=msg2
+        )
+    )
 )
 Ex().success_msg("Neat! Now you added a remote to your local git repository.")
 ```
@@ -380,7 +388,7 @@ and merge them into your `quarterly-report` branch.
 ```{python}
 repl = connect('bash')
 repl.run_command('rm -rf dental')
-repl.run_command('git clone file:///home/thunk/repo dental')
+repl.run_command('git clone /home/thunk/repo dental')
 repl.run_command('git -C dental reset --hard HEAD~2')
 repl.run_command('clear')
 repl.run_command('cd dental')
@@ -437,7 +445,7 @@ and then try to pull again.
 ```{python}
 repl = connect('bash')
 repl.run_command('rm -rf dental')
-repl.run_command('git clone file:///home/thunk/repo dental')
+repl.run_command('git clone /home/thunk/repo dental')
 repl.run_command('git -C dental reset --hard HEAD~1')
 repl.run_command('echo "One final thing..." >> dental/report.txt')
 repl.run_command('clear')
@@ -575,7 +583,7 @@ it's almost always better to use the same names for branches across repositories
 ```{python}
 repl = connect('bash')
 repl.run_command('rm -rf dental')
-repl.run_command('git clone file:///home/thunk/repo dental')
+repl.run_command('git clone /home/thunk/repo dental')
 with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
 repl.run_command('clear')
@@ -727,7 +735,7 @@ unless you have merged the contents of the remote repository into your own work.
 ```{python}
 repl = connect('bash')
 repl.run_command('rm -rf dental')
-repl.run_command('git clone file:///home/thunk/repo dental')
+repl.run_command('git clone /home/thunk/repo dental')
 repl.run_command('git -C dental reset --hard HEAD~1')
 with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
