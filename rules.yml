@@ -20,3 +20,6 @@ rules:
     all_exercises_num_chars_title:
         min: 1
         max: 100
+    chapter_num_exercises_chapter_n:
+        min: 6
+        max: 15
