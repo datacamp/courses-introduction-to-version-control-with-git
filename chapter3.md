@@ -487,7 +487,7 @@ to restore the version of `data/western.csv` with message `"Adding fresh data fo
 *** =solution2
 ```{shell}
 # Replace the commit hash with the penultimate hash from git log
-git checkout 8188eb data/western.csv
+git checkout aaaaaa data/western.csv
 ```
 
 *** =sct2
