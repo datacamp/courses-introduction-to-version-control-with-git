@@ -501,6 +501,9 @@ to restore the version of `data/western.csv` that has the commit message `"Addin
 # Replace the commit hash with the penultimate hash from git log
 # git checkout aaaaaa data/western.csv
 
+# This command is run in order to satisfy the DataCamp course build system.
+# You may disregard it.
+h=$(git log -2 --pretty=%H data/western.csv | tail -1) && git checkout $h data/western.csv
 ```
 
 `@sct`
