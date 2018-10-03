@@ -512,7 +512,8 @@ Ex().multi(
     has_code(r'\s*git\s+checkout\s+[0-9a-f]{4,}\s+data/western\.csv\s*', incorrect_msg=msg),
     has_expr_output(
       expr = 'cat data/western.csv | tail -1',
-      output = '2017-10-07,incisor'
+      output = '2017-10-07,incisor',
+      strict=True
     )
 )
 
