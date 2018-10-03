@@ -460,7 +460,7 @@ xp: 25
 ```
 
 `@instructions`
-The current contents of `data/western.csv` are shown in teh terminal. Use `git log -2` to list the last two changes to that file.
+The current contents of `data/western.csv` are shown in the terminal. Use `git log -2` to list the last two changes to that file.
 
 `@hint`
 Use `git log -2` with the name of the file as an argument.
@@ -490,16 +490,16 @@ xp: 25
 
 `@instructions`
 Use `git checkout` with the first few characters of a hash
-to restore the version of `data/western.csv` with message `"Adding fresh data for western region."`.
+to restore the version of `data/western.csv` that has the commit message `"Adding fresh data for southern and western regions."`.
 
 `@hint`
 - Use `git checkout` with the hash and the name of the file as arguments (in that order).
-- The hash starts with `8`.
+- Take the hash from the second commit.
 
 `@solution`
 ```{shell}
 # Replace the commit hash with the penultimate hash from git log
-git checkout aaaaaa data/western.csv
+# git checkout aaaaaa data/western.csv
 
 ```
 
@@ -508,15 +508,11 @@ git checkout aaaaaa data/western.csv
 msg = "The checker expected changes to `data/western.csv` to be staged. Have you used `git checkout ___ data/western.csv` (fill in the blank) to checkout the previous version correctly?"
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    check_or(
-        has_expr_output(
-            expr='git diff --name-only --staged | grep data/western.csv',
-            output = 'data/western.csv',
-            strict=True, 
-            incorrect_msg = msg
-          ),
-        # to satisfy validator (as strict as possible)
-        has_code(r'\s*git\s+checkout\s+8188eb+\s+data/western\.csv\s*')
+    # the hash changes when we rebuild the course, so for now just accept any 4 hexadecimal chars
+    has_code(r'\s*git\s+checkout\s+[0-9a-f]{4,}\s+data/western\.csv\s*', incorrect_msg=msg),
+    has_expr_output(
+      expr = 'cat data/western.csv | tail -1',
+      output = '2017-10-07,incisor'
     )
 )
 
@@ -544,7 +540,6 @@ cat data/western.csv
 
 `@sct`
 ```{python}
-msg = "It seems that the changes to `data/western.csv` that were staged with the `git checkout` command weren't committed. Have you used `git commit` with `-m \"any message\"`?"
 Ex().multi(
     has_cwd('/home/repl/dental'),
     has_expr_output(incorrect_msg = 'Did you print the contents of `data/western.csv` using `cat`?')
