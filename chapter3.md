@@ -385,7 +385,7 @@ xp: 50
 ```
 
 `@instructions`
-Use `git checkout --` to undo the changes sicne the last commit for `data/northern.csv`.
+Use `git checkout --` to undo the changes since the last commit for `data/northern.csv`.
 
 `@hint`
 Use `git checkout` with two dashes and the name of the file to be restored.
