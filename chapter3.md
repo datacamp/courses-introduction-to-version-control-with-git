@@ -22,7 +22,7 @@ you should save your work in two separate commits.
 
 The syntax for staging a single file is `git add path/to/file`.
 
-If you make a mistake and accidentally commit a file you should have, you can unstage the additions with `git reset HEAD` and try again.
+If you make a mistake and accidentally stage a file you shouldn't have, you can unstage the additions with `git reset HEAD` and try again.
 
 `@pre_exercise_code`
 ```{python}
