@@ -505,6 +505,9 @@ to restore the version of `data/western.csv` that has the commit message `"Addin
 # You may disregard it.
 h=$(git log -2 --pretty=%H data/western.csv | tail -1) && git checkout $h data/western.csv
 ```
+`@solution`
+git checkout (hash from second commit) data/western.csv
+
 
 `@sct`
 ```{python}
