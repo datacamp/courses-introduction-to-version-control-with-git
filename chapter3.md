@@ -1,12 +1,15 @@
 ---
-title       : Undo
-description : >-
-  Since Git saves all the changes you've made to your files, you can
-  use it to undo those changes. This chapter shows you several ways to
-  do that.
+title: Undo
+description: 'Since Git saves all the changes you''ve made to your files, you can use it to undo those changes. This chapter shows you several ways to do that.'
+---
 
---- type:BulletConsoleExercise key:54325e15f1
 ## How can I commit changes selectively?
+
+```yaml
+type: BulletConsoleExercise
+key: 54325e15f1
+xp: 100
+```
 
 You don't have to put all of the changes you have made recently into the staging area at once.
 For example,
@@ -17,7 +20,7 @@ you want to save your work.
 Since the changes to `cleanup.R` aren't directly related to the work you're doing in `analysis.R`,
 you should save your work in two separate commits.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
@@ -28,69 +31,72 @@ repl.run_command('cd dental')
 repl.run_command('git status')
 ```
 
-*** =type1: ConsoleExercise
-*** =key1: 387ad1a970
+***
 
-*** =xp1: 10
+```yaml
+type: ConsoleExercise
+key: 387ad1a970
+xp: 50
+```
 
-*** =instructions1
-
+`@instructions`
 Stage the changes made to `data/northern.csv`
 (and *only* those changes).
 
-*** =hint1
-
+`@hint`
 Use `git add` to stage the changes to a file.
 
-*** =sample_code1
-```{shell}
-```
-
-*** =solution1
+`@solution`
 ```{shell}
 git add data/northern.csv
+
 ```
 
-*** =sct1
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+add\s+data/northern\.csv\s*',
                            fixed=False,
                            msg='Use `git add`.')
+
 ```
 
-*** =type2: ConsoleExercise
-*** =key2: 381b4ed025
+***
 
-*** =xp2: 10
+```yaml
+type: ConsoleExercise
+key: 381b4ed025
+xp: 50
+```
 
-*** =instructions2
-
+`@instructions`
 Commit those changes with the message "Adding data from northern region."
 
-*** =hint2
-
+`@hint`
 Use `git commit` with `-m "message"`.
 
-*** =sample_code2
-```{shell}
-```
-
-*** =solution2
+`@solution`
 ```{shell}
 git commit -m "Adding data from northern region."
+
 ```
 
-*** =sct2
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+commit\s+-m.*',
                            fixed=False,
                            msg='Use `git commit` with a message.')
+
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
+---
 
---- type:BulletConsoleExercise key:70a86d3080
 ## How do I re-stage files?
+
+```yaml
+type: BulletConsoleExercise
+key: 70a86d3080
+xp: 100
+```
 
 People often save their work every few minutes when they're using a desktop text editor.
 Similarly,
@@ -99,7 +105,7 @@ to save the most recent changes to a file to the staging area.
 This is particularly useful when the changes are experimental
 and you might want to undo them without cluttering up the repository's history.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 append = '''
 
@@ -114,69 +120,72 @@ with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-02,bicuspid\n')
 ```
 
-*** =type1: ConsoleExercise
-*** =key1: b5a9b33d2e
+***
 
-*** =xp1: 10
+```yaml
+type: ConsoleExercise
+key: b5a9b33d2e
+xp: 50
+```
 
-*** =instructions1
-
+`@instructions`
 You are in the `dental` repository.
 Use `git status` to check the status of the repository.
 
-*** =hint1
-
+`@hint`
 Run the command as shown.
 
-*** =sample_code1
-```{shell}
-```
-
-*** =solution1
+`@solution`
 ```{shell}
 git status
+
 ```
 
-*** =sct1
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+status\s*',
                            fixed=False,
                            msg='Remember, you want to check the *status* of the repository.')
+
 ```
 
-*** =type2: ConsoleExercise
-*** =key2: 481636c0fc
+***
 
-*** =xp2: 10
+```yaml
+type: ConsoleExercise
+key: 481636c0fc
+xp: 50
+```
 
-*** =instructions2
-
+`@instructions`
 Use `git add` to stage any files that have changes.
 
-*** =hint2
-
+`@hint`
 Remember, you can use either the name of the file or the name of a directory as an argument to `git add`.
 
-*** =sample_code2
-```{shell}
-```
-
-*** =solution2
+`@solution`
 ```{shell}
 git add data/northern.csv
+
 ```
 
-*** =sct2
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+add\s+(data/northern\.csv|data/?|\.)\s*',
                            fixed=False,
                            msg='Use `git add` with one filename.')
+
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
+---
 
---- type:BulletConsoleExercise key:7ff1cc0a0e
 ## How can I undo changes to unstaged files?
+
+```yaml
+type: BulletConsoleExercise
+key: 7ff1cc0a0e
+xp: 100
+```
 
 Suppose you have made changes to a file,
 then decide you want to **[undo](http://datacamp.github.io/glossary/#undo)** them.
@@ -196,7 +205,7 @@ from the names of the file or files you want to recover.)
 once you discard changes in this way,
 they are gone forever.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
@@ -208,42 +217,46 @@ repl.run_command('git add data/*.csv')
 repl.run_command('git status')
 ```
 
-*** =type1: ConsoleExercise
-*** =key1: 9a5bde4d0b
+***
 
-*** =xp1: 10
+```yaml
+type: ConsoleExercise
+key: 9a5bde4d0b
+xp: 100
+```
 
-*** =instructions1
-
+`@instructions`
 You are in the `dental` repository.
 Use one Git to undo the changes to the file `data/northern.csv`
 (and *only* that file).
 
-*** =hint1
-
+`@hint`
 Use `git checkout` with `--` to separate the command from the name(s) of file(s),
 and then the name(s) of file(s).
 
-*** =sample_code1
-```{shell}
-```
-
-*** =solution1
+`@solution`
 ```{shell}
 git checkout -- data/northern.csv
+
 ```
 
-*** =sct1
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+checkout\s+--\s+data/northern\.csv\s*',
                            fixed=False,
                            msg='Use `git checkout` with `--` as a separator and then a file.')
+
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
+---
 
---- type:BulletConsoleExercise key:fba584b9f1
 ## How can I unstage a file that I have staged?
+
+```yaml
+type: BulletConsoleExercise
+key: fba584b9f1
+xp: 100
+```
 
 `git checkout -- filename` will undo changes that have not yet been staged.
 If you want to undo changes that *have* been staged,
@@ -258,7 +271,7 @@ you must `git checkout -- filename` as well.
 The answer is that unstaging a file and undoing changes are both special cases
 of more powerful Git operations that you have not yet seen.)
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
@@ -270,41 +283,45 @@ repl.run_command('git add data/*.csv')
 repl.run_command('git status')
 ```
 
-*** =type1: ConsoleExercise
-*** =key1: d0aa935274
+***
 
-*** =xp1: 10
+```yaml
+type: ConsoleExercise
+key: d0aa935274
+xp: 100
+```
 
-*** =instructions1
-
+`@instructions`
 Use a single Git command to unstage the file `data/northern.csv`
 (and *only* that file).
 
-*** =hint1
-
+`@hint`
 Use `git reset` with the symbolic name of the most recent revision (which is always `HEAD`)
 and the name of the file to be restored.
 
-*** =sample_code1
-```{shell}
-```
-
-*** =solution1
+`@solution`
 ```{shell}
 git reset HEAD data/northern.csv
+
 ```
 
-*** =sct1
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+data/northern\.csv\s*',
                            fixed=False,
                            msg='Use `git reset` with two arguments.')
+
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
+---
 
---- type:BulletConsoleExercise key:61872a66b5
 ## How do I restore an old version of a file?
+
+```yaml
+type: BulletConsoleExercise
+key: 61872a66b5
+xp: 100
+```
 
 Since Git stores old versions of your files,
 you can use it to restore those files when you want to undo changes.
@@ -337,105 +354,107 @@ Instead,
 the act of restoring the file is saved as another commit,
 because you might later want to undo your undoing.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 repl = connect('bash')
 repl.run_command('cd dental')
 ```
 
-*** =type1: ConsoleExercise
-*** =key1: 8962ae79b3
+***
 
-*** =xp1: 10
-
-*** =instructions1
-
-Use `git log` to list the recent changes to `report.txt`.
-
-*** =hint1
-
-Use `git log` with the name of the file as an argument.
-
-*** =sample_code1
-```{shell}
+```yaml
+type: ConsoleExercise
+key: 8962ae79b3
+xp: 35
 ```
 
-*** =solution1
+`@instructions`
+Use `git log` to list the recent changes to `report.txt`.
+
+`@hint`
+Use `git log` with the name of the file as an argument.
+
+`@solution`
 ```{shell}
 # Run this command *without* 'cat' at the end.
 git log report.txt | cat
+
 ```
 
-*** =sct1
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+log\s+report\.txt\s*',
                            fixed=False,
                            msg='Use `git log` with a filename.')
+
 ```
 
-*** =type2: ConsoleExercise
-*** =key2: a03a79d2de
+***
 
-*** =xp2: 10
+```yaml
+type: ConsoleExercise
+key: a03a79d2de
+xp: 35
+```
 
-*** =instructions2
-
+`@instructions`
 Use `git checkout` with the first few characters of a hash
 to restore the immediately-previous version of `report.txt`.
 
-*** =hint2
-
+`@hint`
 Use `git checkout` with the hash and the name of the file as arguments (in that order).
 
-*** =sample_code2
-```{shell}
-```
-
-*** =solution2
+`@solution`
 ```{shell}
 git checkout a0a0a0a0 report.txt
+
 ```
 
-*** =sct2
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+checkout\s+[0-9a-f]+\s+report\.txt\s*',
                            fixed=False,
                            msg='Use `git checkout hash filename`.')
+
 ```
 
-*** =type3: ConsoleExercise
-*** =key3: 00df157d59
+***
 
-*** =xp3: 10
+```yaml
+type: ConsoleExercise
+key: 00df157d59
+xp: 30
+```
 
-*** =instructions3
-
+`@instructions`
 Commit the restored version of `report.txt`.
 
-*** =hint3
-
+`@hint`
 Use `git commit` as usual.
 
-*** =sample_code3
-```{shell}
-```
-
-*** =solution3
+`@solution`
 ```{shell}
 git commit -m "Restoring"
+
 ```
 
-*** =sct3
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+commit.*',
                            fixed=False,
                            msg='Use `git commit -m "message"`.')
+
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
+---
 
---- type:BulletConsoleExercise key:d45eca9a34
 ## How can I undo all of the changes I have made?
+
+```yaml
+type: BulletConsoleExercise
+key: d45eca9a34
+xp: 100
+```
 
 So far,
 you have seen how to undo changes to a single file at a time.
@@ -446,7 +465,7 @@ For example,
 `git reset HEAD data` will unstage any files from the `data` directory that you have staged,
 and `git checkout -- data` will then restore those files to their previous state.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
@@ -460,68 +479,66 @@ repl.run_command('git add dental')
 repl.run_command('git status')
 ```
 
-*** =type1: ConsoleExercise
-*** =key1: 5964997653
+***
 
-*** =xp1: 10
+```yaml
+type: ConsoleExercise
+key: 5964997653
+xp: 50
+```
 
-*** =instructions1
-
+`@instructions`
 Use `git reset` to remove all files from the staging area.
 Remember to give `git reset` two arguments:
 the revision to re-set to,
 and a directory name.
 
-*** =hint1
-
+`@hint`
 The two arguments to `git reset` should be the name of the revision (which is `HEAD`)
 and the name of the current working directory (which is '.').
 
-*** =sample_code1
-```{shell}
-```
-
-*** =solution1
+`@solution`
 ```{shell}
 git reset HEAD .
+
 ```
 
-*** =sct1
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+reset\s+HEAD\s+(\.|dental)\s*',
                            fixed=False,
                            msg='Use `git reset HEAD` and some file or directory names.')
+
 ```
 
-*** =type2: ConsoleExercise
-*** =key2: 3070c1d680
+***
 
-*** =xp2: 10
+```yaml
+type: ConsoleExercise
+key: 3070c1d680
+xp: 50
+```
 
-*** =instructions2
-
+`@instructions`
 Use `git checkout` to put those files back in their previous state.
 Use the directory name `.` to mean "all of the files in or below this directory",
 and separate it from the command with `--`.
 
-*** =hint2
-
+`@hint`
 As before,
 use `git checkout` with `--` to separate the command from the names of files or directories,
 and '.' as the name of the current working directory.
 
-*** =sample_code2
-```{shell}
-```
-
-*** =solution2
+`@solution`
 ```{shell}
 git checkout -- .
+
 ```
 
-*** =sct2
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+checkout\s+--\s+\.\s*',
                            fixed=False,
                            msg='Use `git checkout --` with `.` as an argument.')
+
 ```

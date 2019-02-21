@@ -1,12 +1,16 @@
 ---
-title       : Basic workflow
-description : >-
-  This chapter explains what version control is and why you should use
-  it, and introduces the most common steps in a common Git workflow.
+title: 'Basic workflow'
+description: 'This chapter explains what version control is and why you should use it, and introduces the most common steps in a common Git workflow.'
+---
 
-
---- type:PureMultipleChoiceExercise lang:bash xp:50 key:a3732cc273
 ## What is version control?
+
+```yaml
+type: PureMultipleChoiceExercise
+key: a3732cc273
+lang: bash
+xp: 50
+```
 
 A **[version control system](http://datacamp.github.io/glossary/#version-control-system)**
 is a tool that manages changes made to the files and directories in a project.
@@ -32,17 +36,16 @@ can and should be stored and shared using something like Git.
 
 Which of the following does Git do?
 
-*** =possible_answers
+`@hint`
+Git is a very versatile tool.
+
+`@possible_answers`
 - Keep track of changes to files.
 - Notice conflicts between changes made by different people.
 - Synchronize files between different computers.
 - [All of the above.]
 
-*** =hint
-
-Git is a very versatile tool.
-
-*** =feedbacks
+`@feedback`
 - Yes, but that's not all.
 - Yes, but that's not all.
 - Yes, but that's not all.
@@ -50,8 +53,17 @@ Git is a very versatile tool.
 
 <!-- -------------------------------------------------------------------------------- -->
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:1dac2b0a28
+---
+
 ## Where does Git store information?
+
+```yaml
+type: MultipleChoiceExercise
+key: 1dac2b0a28
+lang: shell
+xp: 50
+skills: 1
+```
 
 Each of your Git projects has two parts:
 the files and directories that you create and edit directly,
@@ -69,22 +81,21 @@ Suppose your home directory `/home/repl` contains a repository called `dental`,
 which has a sub-directory called `data`.
 Where is information about the history of the files in `/home/repl/dental/data` stored?
 
-*** =instructions
+`@possible_answers`
 - `/home/repl/.git`
 - [`/home/repl/dental/.git`]
 - `/home/repl/dental/data/.git`
 - None of the above.
 
-*** =hint
-
+`@hint`
 Use `ls -a` to see all of the contents of a directory.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{shell}
 
 ```
 
-*** =sct
+`@sct`
 ```{python}
 e1 = 'No: every repository stores its own history.'
 c2 = 'Yes: all of the information about a repository is stored under its root directory.'
@@ -93,10 +104,17 @@ e4 = 'No: one of the answers above is correct.'
 Ex() >> test_mc(2, [e1, c2, e3, e4])
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
+---
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:bc52cf1174
 ## How can I check the state of a repository?
+
+```yaml
+type: MultipleChoiceExercise
+key: bc52cf1174
+lang: shell
+xp: 50
+skills: 1
+```
 
 When you are using Git,
 you will frequently want to check the **[status](http://datacamp.github.io/glossary/#repository-status)** of your repository.
@@ -111,17 +129,16 @@ You have been put in the `dental` repository.
 Use `git status` to discover which file(s) have been changed since the last save.
 Which file(s) are listed?
 
-*** =instructions
+`@possible_answers`
 - `data/summer.csv`.
 - `report.txt`.
 - Neither of the above.
 - Both of the above.
 
-*** =hint
-
+`@hint`
 Look for filenames in the output of `git status`.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 append = '''
 
@@ -133,7 +150,7 @@ repl = connect('bash')
 repl.run_command('cd dental')
 ```
 
-*** =sct
+`@sct`
 ```{python}
 Ex() >> test_mc(2, ['No, that file has not changed.', \
                     'Correct!', \
@@ -141,10 +158,15 @@ Ex() >> test_mc(2, ['No, that file has not changed.', \
                     'No, only one file has changed.'])
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
+---
 
---- type:BulletConsoleExercise key:0dd628a298
 ## How can I tell what I have changed?
+
+```yaml
+type: BulletConsoleExercise
+key: 0dd628a298
+xp: 100
+```
 
 Git has a **[staging area](http://datacamp.github.io/glossary/#staging-area)** in which it stores files with changes you want to save
 that haven't been saved yet.
@@ -163,7 +185,7 @@ you can use `git diff filename`.
 `git diff` without any filenames will show you all the changes in your repository,
 while `git diff directory` will show you the changes to the files in some directory.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
@@ -171,40 +193,46 @@ repl = connect('bash')
 repl.run_command('cd dental')
 ```
 
-*** =type1: ConsoleExercise
-*** =key1: e9c198755a
+***
 
-*** =xp1: 10
+```yaml
+type: ConsoleExercise
+key: e9c198755a
+xp: 100
+```
 
-*** =instructions1
-
+`@instructions`
 You have been put in the `dental` repository.
 Use `git diff` to see what changes have been made to the files.
 
-*** =hint1
-
+`@hint`
 Run the command without any extra arguments.
 
-*** =sample_code1
-```{shell}
-```
-
-*** =solution1
+`@solution`
 ```{shell}
 git diff
+
 ```
 
-*** =sct1
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+diff\s*',
                            fixed=False,
                            msg='Use `git diff`.')
+
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
+---
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:eef645517f
 ## What is in a diff?
+
+```yaml
+type: MultipleChoiceExercise
+key: eef645517f
+lang: shell
+xp: 50
+skills: 1
+```
 
 A **[diff](http://datacamp.github.io/glossary/#diff)** is a formatted display of the differences between two sets of files.
 Git displays diffs like this:
@@ -248,17 +276,16 @@ You have been put in the `dental` repository.
 Use `git diff data/northern.csv` to look at the changes to that file.
 How many lines have been changed?
 
-*** =instructions
+`@possible_answers`
 - None.
 - 1.
 - 2.
 - 20.
 
-*** =hint
-
+`@hint`
 Count the number of lines with `+` or `-` in front of them in the diff.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{shell}
 with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
@@ -266,7 +293,7 @@ repl = connect('bash')
 repl.run_command('cd dental')
 ```
 
-*** =sct
+`@sct`
 ```{python}
 err_some = 'No, the commit changed some of the lines.'
 correct = 'Yes, the commit changed one line.'
@@ -274,10 +301,15 @@ err_fewer = 'No, the commit did not change that many lines.'
 Ex() >> test_mc(2, [err_some, correct, err_fewer, err_fewer])
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
+---
 
---- type:BulletConsoleExercise key:55204eee61
 ## What's the first step in saving changes?
+
+```yaml
+type: BulletConsoleExercise
+key: 55204eee61
+xp: 100
+```
 
 You commit changes to a Git repository in two steps:
 
@@ -287,7 +319,7 @@ You commit changes to a Git repository in two steps:
 To add a file to the staging area,
 use `git add filename`.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 append = '''
 
@@ -299,69 +331,72 @@ repl = connect('bash')
 repl.run_command('cd dental')
 ```
 
-*** =type1: ConsoleExercise
-*** =key1: a34bf017f0
+***
 
-*** =xp1: 10
+```yaml
+type: ConsoleExercise
+key: a34bf017f0
+xp: 50
+```
 
-*** =instructions1
-
+`@instructions`
 You have been put in the `dental` repository.
 Use `git add` to add the file `report.txt` to the staging area.
 
-*** =hint1
-
+`@hint`
 Remember: `git add` is the command, and `report.txt` is its argument.
 
-*** =sample_code1
-```{shell}
-```
-
-*** =solution1
+`@solution`
 ```{shell}
 git add report.txt
+
 ```
 
-*** =sct1
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+add\s+report\.txt\s*',
                            fixed=False,
                            msg='Use `git add` and a filename.')
+
 ```
 
-*** =type2: ConsoleExercise
-*** =key2: 961661800c
+***
 
-*** =xp2: 10
+```yaml
+type: ConsoleExercise
+key: 961661800c
+xp: 50
+```
 
-*** =instructions2
-
+`@instructions`
 Use another Git command to check the repository's status.
 
-*** =hint2
-
+`@hint`
 Use Git to check the *status* of the repository.
 
-*** =sample_code2
-```{shell}
-```
-
-*** =solution2
+`@solution`
 ```{shell}
 git status
+
 ```
 
-*** =sct2
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+status\s*',
                            fixed=False,
                            msg='Use `git status`.')
+
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
+---
 
---- type:BulletConsoleExercise key:f208f45d7d
 ## How can I tell what's going to be committed?
+
+```yaml
+type: BulletConsoleExercise
+key: f208f45d7d
+xp: 100
+```
 
 To compare a file's current state to the changes in the staging area,
 you can use `git diff -r HEAD path/to/file`.
@@ -371,7 +406,7 @@ and the path to the file is the relative to where you are
 (for example, the path from the root directory of the repository).
 We will explore other uses of `-r` and `HEAD` in the next chapter.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
@@ -382,101 +417,104 @@ repl.run_command('cd dental')
 repl.run_command('git add data/northern.csv')
 ```
 
-*** =type1: ConsoleExercise
-*** =key1: 77c975a5c8
+***
 
-*** =xp1: 10
+```yaml
+type: ConsoleExercise
+key: 77c975a5c8
+xp: 35
+```
 
-*** =instructions1
-
+`@instructions`
 You have been put in the `dental` repository,
 and `data/northern.csv` has been added to the staging area.
 Use `git diff` with `-r` and an argument to see how files differ from
 the last saved revision.
 
-*** =hint1
-
+`@hint`
 Remember that `HEAD` refers to the most recent saved version.
 
-*** =sample_code1
-```{shell}
-```
-
-*** =solution1
+`@solution`
 ```{shell}
 git diff -r HEAD
+
 ```
 
-*** =sct1
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+diff\s+-r\s+HEAD.*',
                            fixed=False,
                            msg='Use `git diff -r HEAD (with or without a directory name)`.')
+
 ```
 
-*** =type2: ConsoleExercise
-*** =key2: 5a866b3ef0
+***
 
-*** =xp2: 10
+```yaml
+type: ConsoleExercise
+key: 5a866b3ef0
+xp: 35
+```
 
-*** =instructions2
-
+`@instructions`
 Use a single Git command to view the changes in the file that has been staged
 (and *only* that file).
 
-*** =hint2
-
+`@hint`
 Use the relative path to the file `data/northern.csv`.
 
-*** =sample_code2
-```{shell}
-```
-
-*** =solution2
+`@solution`
 ```{shell}
 git diff -r HEAD data/northern.csv
+
 ```
 
-*** =sct2
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+diff\s+-r\s+HEAD\s+data/northern\.csv\s*',
                            fixed=False,
                            msg='Use `git diff -r HEAD` and a filename.')
+
 ```
 
-*** =type3: ConsoleExercise
-*** =key3: 538a9c35d4
+***
 
-*** =xp3: 10
+```yaml
+type: ConsoleExercise
+key: 538a9c35d4
+xp: 30
+```
 
-*** =instructions3
-
+`@instructions`
 Use one Git command to add the other changed file to the staging area.
 
-*** =hint3
-
+`@hint`
 Use `git add` with the name of the file to be added.
 
-*** =sample_code3
-```{shell}
-```
-
-*** =solution3
+`@solution`
 ```{shell}
 git add data/eastern.csv
+
 ```
 
-*** =sct3
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+add\s+data/eastern\.csv\s*',
                            fixed=False,
                            msg='Use `git add`.')
+
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
+---
 
---- type:ConsoleExercise lang:shell xp:100 skills:1 key:4f71d1f1a0
 ## Interlude: how can I edit a file?
+
+```yaml
+type: ConsoleExercise
+key: 4f71d1f1a0
+lang: shell
+skills: 1
+```
 
 Unix has a bewildering variety of text editors.
 In this course,
@@ -494,8 +532,7 @@ You can also do a few other operations with control-key combinations:
 - Ctrl-O: save the file ('O' stands for 'output').
 - Ctrl-X: exit the editor.
 
-*** =instructions
-
+`@instructions`
 Run `nano names.txt` to edit a new file in your home directory
 and enter the following four lines:
 
@@ -511,13 +548,21 @@ type Ctrl-O to write the file out,
 then Enter to confirm the filename,
 then Ctrl-X and Enter to exit the editor.
 
-*** =solution
+`@hint`
+
+
+`@pre_exercise_code`
+```{python}
+
+```
+
+`@solution`
 ```{shell}
 # Run this command *without* 'echo' at the front:
 echo nano names.txt
 ```
 
-*** =sct
+`@sct`
 ```{python}
 from shellwhat_ext import test_compare_file_to_file
 Ex() >> test_student_typed(r'.*nano\s+names.txt.*',
@@ -525,10 +570,15 @@ Ex() >> test_student_typed(r'.*nano\s+names.txt.*',
                            msg='Use `nano names.txt`.')
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
+---
 
---- type:BulletConsoleExercise key:dbf5aa722c
 ## How do I commit changes?
+
+```yaml
+type: BulletConsoleExercise
+key: dbf5aa722c
+xp: 100
+```
 
 To save the changes in the staging area,
 you use the command `git commit`.
@@ -552,7 +602,7 @@ to enter a single-line message like this:
 git commit -m "Program appears to have become self-aware."
 ```
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 append = '''
 
@@ -565,70 +615,75 @@ repl.run_command('cd dental')
 repl.run_command('git add report.txt')
 ```
 
-*** =type1: ConsoleExercise
-*** =key1: 17e219ea22
+***
 
-*** =xp1: 10
+```yaml
+type: ConsoleExercise
+key: 17e219ea22
+xp: 50
+```
 
-*** =instructions1
-
+`@instructions`
 You have been put in the `dental` repository,
 and `report.txt` has been added to the staging area.
 Use one Git command to check the status of the repository.
 
-*** =hint1
-
+`@hint`
 Again, you want to use Git to check the *status* of the repository.
 
-*** =sample_code1
-```{shell}
-```
-
-*** =solution1
+`@solution`
 ```{shell}
 git status
+
 ```
 
-*** =sct1
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+status\s*',
                            fixed=False,
                            msg='Remember, you want to check the *status* of the repository.')
+
 ```
 
-*** =type2: ConsoleExercise
-*** =key2: a5ce3bebb8
+***
 
-*** =xp2: 10
+```yaml
+type: ConsoleExercise
+key: a5ce3bebb8
+xp: 50
+```
 
-*** =instructions2
-
+`@instructions`
 Commit the changes in the staging area with the message "Adding a reference."
 
-*** =hint2
-
+`@hint`
 Use `-m "some message"` with the appropriate Git command.
 
-*** =sample_code2
-```{shell}
-```
-
-*** =solution2
+`@solution`
 ```{shell}
 git commit -m "Adding a reference."
+
 ```
 
-*** =sct2
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+commit\s+-m\s+("[^"]+"|\'[^\']+\')\s*',
                            fixed=False,
                            msg='Use `git commit` with `-m "message"`.')
+
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
+---
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:97ae2f8613
 ## How can I view a repository's history?
+
+```yaml
+type: MultipleChoiceExercise
+key: 97ae2f8613
+lang: shell
+xp: 50
+skills: 1
+```
 
 The command `git log` is used to view the **[log](http://datacamp.github.io/glossary/#log)** of the project's history.
 Log entries are shown most recent first,
@@ -660,32 +715,38 @@ Use a single Git command to view the repository's history.
 What is the message on the very first entry in the log
 (which is displayed last)?
 
-*** =instructions
+`@possible_answers`
 - "Added summary report file."
 - "Adding seasonal CSV data files."
 - "Fixed bug and generated results."
 - "Adding reminder to cite funding sources."
 
-*** =hint
-
+`@hint`
 Use the space bar to page down through the log and 'q' to quit.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{shell}
 repl = connect('bash')
 repl.run_command('cd dental')
 ```
 
-*** =sct
+`@sct`
 ```{python}
 err = 'Incorrect: please re-run the command and use `git log`.'
 Ex() >> test_mc(1, ['Correct', err, err, err])
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
+---
 
---- type:MultipleChoiceExercise lang:shell xp:50 skills:1 key:77aa525e25
 ## How can I view a specific file's history?
+
+```yaml
+type: MultipleChoiceExercise
+key: 77aa525e25
+lang: shell
+xp: 50
+skills: 1
+```
 
 A project's entire log can be overwhelming,
 so it's often useful to inspect only the changes to particular files or directories.
@@ -701,32 +762,36 @@ You have been put in the `dental` repository.
 Use `git log` to display only the changes made to `data/southern.csv`.
 How many have there been?
 
-*** =instructions
+`@possible_answers`
 - 0.
 - 1.
 - 2.
 - 3.
 
-*** =hint
-
+`@hint`
 Use `git log` and the path to the file you are interested in.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{shell}
 repl = connect('bash')
 repl.run_command('cd dental')
 ```
 
-*** =sct
+`@sct`
 ```{python}
 err = 'Incorrect: please use `git log data/southern.csv` and count the number of log entries.'
 Ex() >> test_mc(3, [err, err, 'Correct!', err])
 ```
 
-<!-- -------------------------------------------------------------------------------- -->
+---
 
---- type:BulletConsoleExercise key:1be0ce9219
 ## How do I write a better log message?
+
+```yaml
+type: BulletConsoleExercise
+key: 1be0ce9219
+xp: 100
+```
 
 Writing a one-line log message with `git commit -m "message"`is good enough for very small changes,
 but your collaborators (including your future self) will appreciate more information.
@@ -749,7 +814,7 @@ The lines starting with `#` are comments, and won't be saved.
 (They are there to remind you what you are supposed to do and what files you have changed.)
 Your message should go at the top, and may be as long and as detailed as you want.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 append = '''
 
@@ -762,36 +827,35 @@ repl.run_command('cd dental')
 repl.run_command('git add report.txt')
 ```
 
-*** =type1: ConsoleExercise
-*** =key1: 2f3aa2a066
+***
 
-*** =xp1: 10
+```yaml
+type: ConsoleExercise
+key: 2f3aa2a066
+xp: 100
+```
 
-*** =instructions1
-
+`@instructions`
 You have been put in the `dental` repository,
 and `report.txt` has been added to the staging area.
 The changes to `report.txt` have already been staged.
 Use `git commit` *without* `-m` to commit the changes.
 
-*** =hint1
-
+`@hint`
 Run `git commit` without any arguments.
 (Our solution uses `-m` and a message so that we can automate solution testing.)
 
-*** =sample_code1
-```{shell}
-```
-
-*** =solution1
+`@solution`
 ```{shell}
 # You should run 'git commit' *without* -m:
 git commit -m "Adding a reference."
+
 ```
 
-*** =sct1
+`@sct`
 ```{python}
 Ex() >> test_student_typed(r'\s*git\s+commit\s*',
                            fixed=False,
                            msg='Use `git add` without `-m`.')
+
 ```
