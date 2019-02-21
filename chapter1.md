@@ -1,6 +1,7 @@
 ---
 title: 'Basic workflow'
 description: 'This chapter explains what version control is and why you should use it, and introduces the most common steps in a common Git workflow.'
+free_preview: true
 ---
 
 ## What is version control?
