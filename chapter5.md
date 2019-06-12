@@ -9,7 +9,6 @@ description: 'This chapter shows Git''s other greatest feature: how you can shar
 type: ConsoleExercise
 key: a87bbd3948
 lang: shell
-xp: 100
 skills: 1
 ```
 

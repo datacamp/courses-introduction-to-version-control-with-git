@@ -534,7 +534,6 @@ type: ConsoleExercise
 key: 4f71d1f1a0
 lang: shell
 skills: 1
-xp: 100
 ```
 
 Unix has a bewildering variety of text editors.

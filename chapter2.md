@@ -732,7 +732,6 @@ type: ConsoleExercise
 key: 7c0dce348b
 lang: shell
 skills: 1
-xp: 100
 ```
 
 Most of Git's settings should be left as they are.
