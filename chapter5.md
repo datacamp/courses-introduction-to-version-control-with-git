@@ -10,6 +10,7 @@ type: ConsoleExercise
 key: a87bbd3948
 lang: shell
 skills: 1
+xp: 100
 ```
 
 So far,
