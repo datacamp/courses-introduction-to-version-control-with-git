@@ -533,8 +533,8 @@ Ex().success_msg("Great! Before we dive into actually committing the changes you
 type: ConsoleExercise
 key: 4f71d1f1a0
 lang: shell
-skills: 1
 xp: 100
+skills: 1
 ```
 
 Unix has a bewildering variety of text editors.

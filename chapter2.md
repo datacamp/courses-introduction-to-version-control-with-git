@@ -731,8 +731,8 @@ Ex().has_chosen(3, ['No, some configuration values are set.',
 type: ConsoleExercise
 key: 7c0dce348b
 lang: shell
-skills: 1
 xp: 100
+skills: 1
 ```
 
 Most of Git's settings should be left as they are.
