@@ -752,8 +752,8 @@ run the command:
 git config --global setting value
 ```
 
-with the setting's name and value in the appropriate places.
-The keys that identify your name and email address are `user.name` and `user.email` respectively.
+Using this command, you specify the `setting` you want to change and the `value` you want to set.
+The settings that identify your name and email address are `user.name` and `user.email`, respectively.
 
 `@instructions`
 Change the email address (`user.email`) configured for the current user for *all* projects
