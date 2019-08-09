@@ -628,6 +628,7 @@ git clean -f
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/dental'),
+    has_code(r'\s*git\s+clean\s*-f', incorrect_msg = "Did you use the appropriate flag with `git clean` to remove the unwanted file?"),
     check_not(
         has_expr_output(
             expr='ls', output='backup.log',
@@ -647,7 +648,7 @@ xp: 40
 ```
 
 `@instructions`
-List the files in your directory. `backup.log` should no longer be there!
+Use `ls` to list the files in your current working directory. `backup.log` should no longer be there!
 
 `@hint`
 Run the command as shown.
