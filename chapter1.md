@@ -773,6 +773,8 @@ Use a single Git command to view the repository's history.
 What is the message on the very first entry in the log
 (which is displayed last)?
 
+_Keep in mind that not all entries may be visible on the first screen, and that you might need to check additional pages to see the very first entry._
+
 `@possible_answers`
 - "Added summary report file."
 - "Added seasonal CSV data files"
