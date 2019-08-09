@@ -257,7 +257,8 @@ This shows:
 - `--- a/report.txt` and `+++ b/report.txt`,
   wherein lines being *removed* are prefixed with `-` and 
   lines being added are prefixed with `+`.
-- A line starting with `@@` that tells _where_ the changes are being made. The pairs of numbers are `start line` and `number of lines in the file`. Thus, this diff output indicates changes starting from line 1, but resulting in a consistent number of 4 lines (i.e. a change to one or more lines, or removal and addition of a consistent number of lines).
+- A line starting with `@@` that tells _where_ the changes are being made. The pairs of numbers are `start line` and `number of lines` (in that section of the file where changes occurred). This diff output indicates changes starting from line 1, but resulting in a consistent number of 4 lines (i.e. a change to one or more lines, or removal and addition of a consistent number of lines).
+     - Note that the change does not necessarily occur on the `start line`, as context lines (described below) are often included in this section of changed code.
 - A line-by-line listing of the changes
   with `-` showing deletions and `+` showing additions
   (we have also configured Git to show deletions in red and additions in green).
@@ -265,6 +266,7 @@ This shows:
   in order to give context;
   when they appear,
   they *don't* have either `+` or `-` in front of them.
+     - Here we can see why we saw a consistent number of lines (4) in the first version and the second version: a line was changed with no other additions or removals.
 
 Desktop programming tools like [RStudio](https://www.rstudio.com/) can turn diffs like this
 into a more readable side-by-side display of changes;
@@ -296,7 +298,7 @@ repl.run_command('cd dental')
 
 `@sct`
 ```{python}
-err_some = 'No, the commit changed some of the lines.'
+err_some = 'No, the commit added or removed some line(s).'
 correct = 'Yes, the commit added one line.'
 err_fewer = 'No, the commit did not change that many lines.'
 Ex().has_chosen(2, [err_some, correct, err_fewer, err_fewer])
