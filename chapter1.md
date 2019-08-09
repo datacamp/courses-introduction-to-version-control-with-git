@@ -255,13 +255,12 @@ This shows:
 - An index line showing keys into Git's internal database of changes.
   We will explore these in the next chapter.
 - `--- a/report.txt` and `+++ b/report.txt`,
-  which indicate that lines being *removed* are prefixed with `-`,
-  while lines being added are prefixed with `+`.
-- A line starting with `@@` that tells where the changes are being made. The pairs of numbers are `start line,number of lines changed`.
-  Here, the diff output shows that 4 lines from line 1 are being removed and replaced with new lines.
+  wherein lines being *removed* are prefixed with `-` and 
+  lines being added are prefixed with `+`.
+- A line starting with `@@` that tells _where_ the changes are being made. The pairs of numbers are `start line` and `number of lines in the file`. Thus, this diff output indicates changes starting from line 1, but resulting in a consistent number of 4 lines (i.e. a change to one or more lines, or removal and addition of a consistent number of lines).
 - A line-by-line listing of the changes
-  with `-` showing deletions and `+` showing additions.
-  (We have also configured Git to show deletions in red and additions in green.)
+  with `-` showing deletions and `+` showing additions
+  (we have also configured Git to show deletions in red and additions in green).
   Lines that *haven't* changed are sometimes shown before and after the ones that have
   in order to give context;
   when they appear,
@@ -276,7 +275,7 @@ or [WinMerge](http://winmerge.org/).
 
 You have been put in the `dental` repository.
 Use `git diff data/northern.csv` to look at the changes to that file.
-How many lines have been changed?
+How many lines have been added or removed?
 
 `@possible_answers`
 - None.
