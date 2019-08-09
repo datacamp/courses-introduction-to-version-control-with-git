@@ -211,7 +211,8 @@ Which of the following files did it change?
 - Neither of the above.
 
 `@hint`
-The commit before the most recent will be `HEAD~1`.
+- Use `git show` to inspect the commit.
+- The commit before the most recent will be `HEAD~1`.
 
 `@pre_exercise_code`
 ```{shell}
