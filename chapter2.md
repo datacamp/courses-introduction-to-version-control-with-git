@@ -749,7 +749,7 @@ To change a configuration value for all of your projects on a particular compute
 run the command:
 
 ```
-git config --global setting.name setting.value
+git config --global setting value
 ```
 
 with the setting's name and value in the appropriate places.
