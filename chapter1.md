@@ -920,9 +920,10 @@ git commit -m "Adding a reference."
 msg="It seems that the staged changes to `report.txt` weren't committed. Use `git commit` to interactively write a commit message. If you're struggling, you can always use the `-m \"any message\"` flag to avoid the interaction."
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    has_expr_output(expr='git diff HEAD~ --name-only | grep report.txt',
-                    output = 'report.txt', incorrect_msg=msg)
+    has_expr_output(expr='git diff HEAD~ --name-only | grep report.txt',output = 'report.txt', incorrect_msg=msg),
+                    has_code(r'\s*git\s+commit', incorrect_msg = "Did you run `git commit` without any arguments?")
 )
+
 Ex().success_msg("Neat! This concludes chapter 1, where you learned about `git diff`, `git status`, `git add` and `git commit`. Quite something! Rush over to chapter 2 to continue your Git adventure!")
 
 ```
