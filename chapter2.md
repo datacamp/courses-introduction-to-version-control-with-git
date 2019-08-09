@@ -241,8 +241,8 @@ skills: 1
 ```
 
 `git log` displays the overall history of a project or file,
-but Git can give even more information:
-the command `git annotate file` shows who made the last change to each line of a file and when.
+but Git can give even more information.
+The command `git annotate file` shows who made the last change to each line of a file and when.
 For example,
 the first three lines of output from `git annotate report.txt` look something like this:
 
@@ -253,7 +253,7 @@ the first three lines of output from `git annotate report.txt` look something li
 ```
 
 
-Each line contains five things, with two to four in parentheses.
+Each line contains five elements, with elements two to four enclosed in parentheses. When inspecting the first line, we see:
 
 1. The first eight digits of the hash, `04307054`.
 2. The author, `Rep Loop`.
@@ -266,7 +266,7 @@ Each line contains five things, with two to four in parentheses.
 You are in the `dental` repository.
 Use a single command to see the changes to `report.txt`.
 How many different sets of changes have been made to this file
-(i.e., how many different hashes show up in the first column of the output)?
+(i.e., how many _**distinct**_ hashes show up in the first column of the output)?
 
 `@possible_answers`
 - 1.
