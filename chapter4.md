@@ -31,7 +31,7 @@ a commit will have two parents when branches are being merged.
 In the diagram below, each box is a commit and the arrows point to the next ("child") commit.
 How many merges have taken place?
 
-<img src="https://s3.amazonaws.com/assets.datacamp.com/production/course_5355/datasets/branching.png" alt="Branching and Merging" />
+<img src="https://assets.datacamp.com/production/repositories/1545/datasets/836c41b57bbbd4d589a3d0a08e9befebd9807790/gds_4_1_diagram.svg" alt="Branching and Merging" width = '800'/>
 
 `@hint`
 Look for boxes with two arrows coming into them.
