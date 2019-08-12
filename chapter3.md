@@ -282,9 +282,7 @@ xp: 100
 ```
 
 `@instructions`
-You are in the `dental` repository, where all changes to `.csv` files in `data` were staged.  `git status` shows that `data/northern.csv` was changed again after it was staged.
-
-Use a Git command to undo the changes to the file `data/northern.csv`.
+You are in the `dental` repository, where all changes to `.csv` files in `data` were staged.  `git status` shows that `data/northern.csv` was changed again after it was staged. Use a Git command to undo the changes to the file `data/northern.csv`.
 
 `@hint`
 Use `git checkout` with `--` to separate the command from the name(s) of file(s),
@@ -417,7 +415,7 @@ key: 61872a66b5
 xp: 100
 ```
 
-You previously saw how to use `git checkout` to undo the change that you made since the last commit. This command can also be used to go back even further into a file's history and restore versions of that file from a commit. In this way, you can think of committing as saving your work, and **checking out** as loading that saved version.
+You previously saw how to use `git checkout` to undo the changes that you made since the last commit. This command can also be used to go back even further into a file's history and restore versions of that file from a commit. In this way, you can think of committing as saving your work, and **checking out** as loading that saved version.
 
 The syntax for restoring an old version takes two arguments: the hash that identifies the version you want to restore, and the name of the file.
 
@@ -442,7 +440,7 @@ then `git checkout 2242bd report.txt` would replace the current version of `repo
 Restoring a file doesn't erase any of the repository's history.
 Instead, the act of restoring the file is saved as another commit, because you might later want to undo your undoing.
 
-One more thing: there's another feature of `git log` that will come in handy here. Passing `-` then a number restricts the output to that many commits. For example, `git log -3 report.txt` shows you the last three commits involving `report.txt`.
+One more thing: there's another feature of `git log` that will come in handy here. Passing `-` followed by a number restricts the output to that many commits. For example, `git log -3 report.txt` shows you the last three commits involving `report.txt`.
 
 `@pre_exercise_code`
 ```{python}
@@ -531,10 +529,10 @@ xp: 25
 ```
 
 `@instructions`
-Use `cat` to display the updated contents of `data/western.csv`.
+Use `cat data/western.csv` to display the updated contents
 
 `@hint`
-Call `cat`, passing the filename.
+Call `cat`, passing the filename `cat data/western.csv`
 
 `@solution`
 ```{shell}
@@ -560,10 +558,10 @@ xp: 25
 ```
 
 `@instructions`
-Commit the restored version of `data/western.csv`.
+Commit the restored version of `data/western.csv`, and be sure to include a message.
 
 `@hint`
-Use `git commit` as usual.
+Use `git commit` as usual, specifying a message with `-m "Message."`
 
 `@solution`
 ```{shell}
