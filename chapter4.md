@@ -540,7 +540,11 @@ msg = 'Use `git diff branch-1..branch-2` to compare branches. Replace `branch-1`
 #     has_expr_output(code = 'git diff deleting-report..master', incorrect_msg = msg, strict = True),
 #     has_code(r'\s*git\s+diff\s*(deleting-report\.\.master|master\.\.deleting-report)', incorrect_msg = msg)
 # )
-Ex().has_code(r'\s*git\s+diff\s*(deleting-report\.\.master|master\.\.deleting-report)', incorrect_msg = msg)
+Ex().check_or(
+has_code(r'\s*git\s+diff\s*(deleting-report\.\.master|master\.\.deleting-report)', incorrect_msg = msg),
+has_code(r'\s*git\s+diff\s*(deleting-report master|master deleting-report)', incorrect_msg = msg)
+)
+
 Ex().success_msg("Well done. Let's have a look at merging branches now.")
 
 ```
