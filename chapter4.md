@@ -564,8 +564,7 @@ Branching lets you create parallel universes;
 When you merge one branch (call it the source) into another (call it the destination),
 Git incorporates the changes made to the source branch into the destination branch.
 If those changes don't overlap,
-the result is a new commit in the destination branch that includes everything from the source branch.
-(The next exercises describes what happens if there *are* conflicts.)
+the result is a new commit in the destination branch that includes everything from the source branch (the next exercises describe what happens if there *are* conflicts).
 
 To merge two branches,
 you run `git merge source destination`
@@ -594,8 +593,8 @@ into the `master` branch (the destination)
 with the message "Merging summary statistics."
 
 `@hint`
-Use `git merge` with `summary-statistics` as the first argument (the "from" branch)
-and `master` as the second (the "to" branch).
+Use `git merge` with `summary-statistics` as the first argument (the "source" branch)
+and `master` as the second (the "destination" branch).
 
 `@solution`
 ```{shell}
@@ -617,6 +616,7 @@ Ex().multi(
     has_expr_output(expr='git diff HEAD~ --name-only | grep results/summary.txt',
                     output = 'results/summary.txt', incorrect_msg=msg2)
 )
+
 Ex().success_msg("Merged it! Well done!")
 
 ```
