@@ -609,11 +609,11 @@ msg1 = "Make sure you are on the `master` branch when you do the `git merge` com
 msg2 = "Have you used `git merge summary-statistics master` to merge `summary-statistics` into `master`? An editor will show up. You can use Ctrl+O and then Ctrl+X to exit this. If you want to avoid this, use the `--no-edit` flag in the `git merge` command."
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+    has_expr_output( expr='git rev-parse --abbrev-ref HEAD | grep master',
                     output='master', strict=True, incorrect_msg=msg1),
-    has_expr_output(expr='git diff HEAD~ --name-only | grep bin/summary',
+    has_expr_output( expr='git diff HEAD~ --name-only | grep bin/summary',
                     output = 'bin/summary', incorrect_msg=msg2),
-    has_expr_output(expr='git diff HEAD~ --name-only | grep results/summary.txt',
+    has_expr_output( expr='git diff HEAD~ --name-only | grep results/summary.txt',
                     output = 'results/summary.txt', incorrect_msg=msg2)
 )
 
@@ -711,9 +711,8 @@ Git leaves markers that look like this to tell you where the conflicts occurred:
 >>>>>>> source-branch-name
 ```
 
-(In many cases,
-the destination branch name will be `HEAD`,
-because you will be merging into the current branch.)
+In many cases,
+the destination branch name will be `HEAD` because you will be merging into the current branch.
 To resolve the conflict,
 edit the file to remove the markers
 and make whatever other changes are needed to reconcile the changes,
@@ -752,7 +751,7 @@ git merge --no-edit -m "Merging altered report title" alter-report-title master
 `@sct`
 ```{python}
 msg1 = "Make sure you are on the `master` branch when you do the `git merge` command. Use `git checkout master` first."
-msg2 = "Have you used `git merge summary-statistics master` to merge `alter-report-title` into `master`?"
+msg2 = "Have you used `git merge source destination` to merge `alter-report-title` into `master`?"
 Ex().multi(
     has_cwd('/home/repl/dental'),
     has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
@@ -804,7 +803,7 @@ xp: 20
 ```
 
 `@instructions`
-It turns out that `report.txt` has some conflicts. Use `nano report.txt` to open it and remove some lines so that only the second title is kept. Save you work with Ctrl+O and leave the editor with Ctrl+X. You can easily remove entire lines with Ctrl+K
+It turns out that `report.txt` has some conflicts. Use `nano report.txt` to open it and remove some lines so that only the second title is kept. Save your work with Ctrl+O and leave the editor with Ctrl+X. You can easily remove entire lines with Ctrl+K
 
 `@hint`
 Use `nano` and the filename. Remove the following lines:
