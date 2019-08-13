@@ -529,10 +529,10 @@ xp: 25
 ```
 
 `@instructions`
-Use `cat data/western.csv` to display the updated contents
+Use `cat data/western.csv` to display the updated contents.
 
 `@hint`
-Call `cat`, passing the filename `cat data/western.csv`
+Call `cat`, passing the filename `cat data/western.csv`.
 
 `@solution`
 ```{shell}
