@@ -68,14 +68,13 @@ If you are new to Git,
 though,
 or working with people who are,
 you will often want to convert existing projects into repositories.
-Doing so is simple:
-just run
+Doing so is simple, just run:
 
 ```
 git init
 ```
 
-in the project's root directory, or 
+in the project's root directory, or: 
 
 ```
 git init /path/to/project
@@ -196,7 +195,7 @@ for example,
 git clone /existing/project
 ```
 
-will create a new directory called `project`.
+will create a new directory called `project` inside your home directory.
 If you want to call the clone something else,
 add the directory name you want to the command:
 
@@ -225,8 +224,7 @@ xp: 100
 You have just inherited the dental data analysis project from a colleague,
 who tells you that all of their work is in a repository in `/home/thunk/repo`.
 Use a single command to clone this repository
-to create a new repository called `dental` inside your home directory
-(so that the new repository is in `/home/repl/dental`).
+to create a new repository called `dental` inside your home directory.
 
 `@hint`
 Call `git clone`, passing the absolute path the the existing repository, and the name for the new repository.
