@@ -612,9 +612,9 @@ Ex().multi(
     has_expr_output( expr='git rev-parse --abbrev-ref HEAD | grep master',
                     output='master', strict=True, incorrect_msg=msg1),
     has_expr_output( expr='git diff HEAD~ --name-only | grep bin/summary',
-                    output = 'bin/summary', incorrect_msg=msg2),
+                    output = 'bin/summary', strict=True, incorrect_msg=msg2),
     has_expr_output( expr='git diff HEAD~ --name-only | grep results/summary.txt',
-                    output = 'results/summary.txt', incorrect_msg=msg2)
+                    output = 'results/summary.txt', strict=True, incorrect_msg=msg2)
 )
 
 Ex().success_msg("Merged it! Well done!")
