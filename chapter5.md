@@ -727,7 +727,7 @@ xp: 40
 ```
 
 `@instructions`
-Push your changes to the remote repository `origin`'s `master` branch.
+Push your changes to the remote repository `origin`, specifying the `master` branch.
 
 `@hint`
 Use `git push` with the name of the remote (`origin`) and the name of the branch (`master`).
@@ -770,6 +770,8 @@ To prevent this happening,
 Git does not allow you to push changes to a remote repository
 unless you have merged the contents of the remote repository into your own work.
 
+In this exercise, you have made and committed changes to the `dental` repository locally and want to push your changes to a remote repository.
+
 `@pre_exercise_code`
 ```{python}
 repl = connect('bash')
@@ -793,8 +795,7 @@ xp: 30
 ```
 
 `@instructions`
-You have made and committed changes to the `dental` repository locally.
-Use `git push` to push those changes to the remote repository `origin`.
+Use `git push` to push those changes to the remote repository `origin`, specifying the `master` branch.
 
 `@hint`
 Use `git push` with the name of the remote (`origin`) and the name of the branch (`master`).
