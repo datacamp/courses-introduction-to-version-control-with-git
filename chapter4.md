@@ -873,15 +873,19 @@ git add report.txt
 `@sct`
 ```{python}
 msg1 = "Make sure you are on the `master` branch when you do the `git merge` command. Use `git checkout master` first."
-Ex().multi(
-    has_cwd('/home/repl/dental'),
-    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
-                output='master', strict=True, incorrect_msg=msg1),
-    has_expr_output(expr='git diff --name-only --staged | grep report.txt',
-                    output = 'report.txt',
-                    incorrect_msg = "It seems that `report.txt` was not added to the staging area. Have you used `git add report.txt`?")
-)
+# Ex().multi(
+#     has_cwd('/home/repl/dental'),
+#     has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+#                 output='master', strict=True, incorrect_msg=msg1),
+#     has_expr_output(expr='git diff --name-only --staged | grep report.txt',
+#                     output = 'report.txt',
+#                     incorrect_msg = "It seems that `report.txt` was not added to the staging area. Have you used `git add report.txt`?")
+# )
 
+Ex().multi(
+has_cwd('/home/repl/dental'),
+has_code(r'\s*git\s+add\s+report\.txt', incorrect_msg = "It seems that `report.txt` was not added to the staging area. Have you used `git add report.txt`?")
+)
 ```
 
 ***
