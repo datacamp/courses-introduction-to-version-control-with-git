@@ -626,9 +626,8 @@ Ex().success_msg("Merged it! Well done!")
 ## What are conflicts?
 
 ```yaml
-type: PureMultipleChoiceExercise
-key: 354f733f81
-lang: bash
+type: MultipleChoiceExercise
+key: 3fd127b7fc
 xp: 50
 ```
 
@@ -665,10 +664,7 @@ B) Submit report.
 ```
 
 When you try to merge `update` and `master`,
-what conflicts does Git report?
-
-`@hint`
-Look for lines with `+` or `-` in front of them.
+what conflicts does Git report? You can use `git diff master..update` to view the difference between the two branches.
 
 `@possible_answers`
 - [Just line B, since it is the only one to change in both branches.]
@@ -676,13 +672,43 @@ Look for lines with `+` or `-` in front of them.
 - Lines B and C, since one was changed and the other deleted.
 - All three lines, since all were either added, deleted, or changed.
 
-`@feedback`
-- Correct: Git can merge the deletion of line A and the addition of line C automatically.
-- No: Git can merge the deletion of line A automatically.
-- No: Git can merge the addition of line C automatically.
-- No: Git can merge the deletion of line A and the addition of line C automatically.
+`@hint`
+What line(s) changed in both branches?
 
-<!-- -------------------------------------------------------------------------------- -->
+`@pre_exercise_code`
+```{python}
+repl = connect('bash')
+repl.run_command('cd dental')
+repl.run_command('cd init')
+repl.run_command('git checkout -b master')
+repl.run_command('touch todo.txt')
+repl.run_command('echo "A) Write report." >> todo.txt')
+repl.run_command('echo "B) Submit report." >> todo.txt')
+repl.run_command('git add todo.txt')
+repl.run_command('git commit -m "Master revisions 1."')
+repl.run_command('git checkout -b update')
+repl.run_command('cat /dev/null > todo.txt')
+repl.run_command('echo "A) Write report." >> todo.txt')
+repl.run_command('echo "B) Submit final version." >> todo.txt')
+repl.run_command('echo "C) Submit expenses." >> todo.txt')
+repl.run_command('git add todo.txt')
+repl.run_command('git commit -m "Update revisions."')
+repl.run_command('git checkout master')
+repl.run_command('cat /dev/null > todo.txt')
+repl.run_command('echo "B) Submit report." >> todo.txt')
+repl.run_command('git add todo.txt')
+repl.run_command('git commit -m "Master revisions 2."')
+repl.run_command('clear')
+    
+```
+
+`@sct`
+```{python}
+Ex().has_chosen(1, ['Correct: Git can merge the deletion of line A and the addition of line C automatically.',
+'No: Git can merge the deletion of line A automatically.',
+'No: Git can merge the addition of line C automatically.',
+'No: Git can merge the deletion of line A and the addition of line C automatically.'])
+```
 
 ---
 
