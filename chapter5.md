@@ -727,7 +727,7 @@ xp: 40
 ```
 
 `@instructions`
-Push your changes to the remote repository's `master` branch.
+Push your changes to the remote repository `origin`'s `master` branch.
 
 `@hint`
 Use `git push` with the name of the remote (`origin`) and the name of the branch (`master`).
