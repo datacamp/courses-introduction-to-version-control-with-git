@@ -14,8 +14,8 @@ skills: 1
 ```
 
 So far,
-you have been working with repositories that we created.
-If you want to create a repository for a new project,
+you have been working pre-existing repositories.
+If you want to create a repository for a new project in the current working directory,
 you can simply say `git init project-name`,
 where "project-name" is the name you want the new repository's root directory to have.
 
@@ -27,7 +27,7 @@ Very large projects occasionally need to do this,
 but most programmers and data analysts try to avoid getting into this situation.
 
 `@instructions`
-Use a single command to create a new Git repository called `optical` below your home directory.
+Use a single command to create a new Git repository called `optical` in your current directory.
 
 `@hint`
 Call `git init`, passing the name of the repository to be created.
