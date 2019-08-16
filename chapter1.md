@@ -898,7 +898,7 @@ and `report.txt` has been added to the staging area.
 The changes to `report.txt` have already been staged.
 Use `git commit` *without* `-m` to commit the changes.
 The Nano editor will open up. Write a meaningful message
-and use Ctrl+O and Ctrl+X to save and leave the editor.
+and use Ctrl+O and Enter to save, and then Ctrl+X to leave the editor.
 
 `@hint`
 Run `git commit` without any arguments.
