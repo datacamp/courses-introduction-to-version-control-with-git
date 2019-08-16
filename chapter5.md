@@ -358,7 +358,7 @@ Ex().success_msg("Neat! Now you added a remote to your local git repository.")
 ## How can I pull in changes from a remote repository?
 
 ```yaml
-type: BulletConsoleExercise
+type: ConsoleExercise
 key: 4d5be24350
 xp: 100
 ```
@@ -385,6 +385,12 @@ would get changes from `latest-analysis` branch
 in the repository associated with the remote called `thunk`
 and merge them into your `quarterly-report` branch.
 
+`@instructions`
+You are in the `master` branch of the repository `dental`. Pull the changes from the `master` branch of the remote repository called `origin`.
+
+`@hint`
+Use `git pull` with the name of the remote (`origin`) and the name of the branch (`master`).
+
 `@pre_exercise_code`
 ```{python}
 repl = connect('bash')
@@ -395,24 +401,9 @@ repl.run_command('clear')
 repl.run_command('cd dental')
 ```
 
-***
-
-```yaml
-type: ConsoleExercise
-key: cb79240464
-xp: 100
-```
-
-`@instructions`
-You are in the `master` branch of the repository `dental`. Pull the changes from the `master` branch of the remote repository called `origin`.
-
-`@hint`
-Use `git pull` with the name of the remote (`origin`) and the name of the branch (`master`).
-
 `@solution`
 ```{shell}
 git pull origin master
-
 ```
 
 `@sct`
@@ -427,7 +418,6 @@ Ex().multi(
                     incorrect_msg=msg2)
 )
 Ex().success_msg("Well done! This `git pull` went smoothly, but unfortunately that's not always the case. Let's see what can happen if you have unsaved changes when trying to pull in changes.")
-
 ```
 
 ---
