@@ -236,7 +236,7 @@ Ex().success_msg("Alright! Let's expore how you can undo some of your work.")
 ## How can I undo changes to unstaged files?
 
 ```yaml
-type: NormalExercise
+type: BulletConsoleExercise
 key: 7ff1cc0a0e
 xp: 100
 ```
@@ -259,12 +259,85 @@ from the names of the file or files you want to recover.)
 once you discard changes in this way,
 they are gone forever.
 
+`@pre_exercise_code`
+```{python}
+with open('dental/data/northern.csv', 'a') as writer:
+    writer.write('2017-11-01,bicuspid\n')
+with open('dental/data/eastern.csv', 'a') as writer:
+    writer.write('2017-11-02,molar\n')
+repl = connect('bash')
+repl.run_command('cd dental')
+repl.run_command('git add data/*.csv')
+with open('dental/data/northern.csv', 'a') as writer:
+    writer.write('2017-11-02,bicuspid\n')
+repl.run_command('git status')
+```
+
+***
+
+```yaml
+type: ConsoleExercise
+key: 9a5bde4d0b
+xp: 100
+```
+
 `@instructions`
 You are in the `dental` repository, where all changes to `.csv` files in `data` were staged.  `git status` shows that `data/northern.csv` was changed again after it was staged. Use a Git command to undo the changes to the file `data/northern.csv`.
 
 `@hint`
 Use `git checkout` with `--` to separate the command from the name(s) of file(s),
 and then the name(s) of file(s).
+
+`@solution`
+```{shell}
+git checkout -- data/northern.csv
+
+```
+
+`@sct`
+```{python}
+msg = "After running your command, there should be no changes that can be staged. Have you used `git checkout` on `data/northern.csv` correctly? Make sure to use a `--` to separate the command from the name of the file."
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    has_expr_output(expr='git diff --name-only | wc -w', output='0', incorrect_msg=msg)
+)
+Ex().success_msg("Good job! This was about undoing changes that weren't staged yet. What about undoing changes that you staged already with `git add`? Find out in the next exercise.")
+
+```
+
+---
+
+## How can I undo changes to unstaged files?
+
+```yaml
+type: NormalExercise
+key: ea415f73d5
+xp: 100
+```
+
+Suppose you have made changes to a file,
+then decide you want to **undo** them.
+Your text editor may be able to do this,
+but a more reliable way is to let Git do the work.
+The command:
+
+```
+git checkout -- filename
+```
+
+will discard the changes that have not yet been staged.
+(The double dash `--` must be there to separate the `git checkout` command
+from the names of the file or files you want to recover.)
+
+*Use this command carefully:*
+once you discard changes in this way,
+they are gone forever.
+
+`@instructions`
+
+
+`@hint`
+
 
 `@pre_exercise_code`
 ```{python}
@@ -287,17 +360,12 @@ repl.run_command('git status')
 
 `@solution`
 ```{shell}
-git checkout -- data/northern.csv
+
 ```
 
 `@sct`
 ```{python}
-msg = "After running your command, there should be no changes that can be staged. Have you used `git checkout` on `data/northern.csv` correctly? Make sure to use a `--` to separate the command from the name of the file."
-Ex().multi(
-    has_cwd('/home/repl/dental'),
-    has_expr_output(expr='git diff --name-only | wc -w', output='0', incorrect_msg=msg)
-)
-Ex().success_msg("Good job! This was about undoing changes that weren't staged yet. What about undoing changes that you staged already with `git add`? Find out in the next exercise.")
+
 ```
 
 ---
