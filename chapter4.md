@@ -627,7 +627,7 @@ Ex().success_msg("Merged it! Well done!")
 
 ```yaml
 type: MultipleChoiceExercise
-key: 3fd127b7fc
+key: 354f733f81
 xp: 50
 ```
 
