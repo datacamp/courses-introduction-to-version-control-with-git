@@ -9,13 +9,13 @@ description: 'This chapter shows Git''s other greatest feature: how you can shar
 type: ConsoleExercise
 key: a87bbd3948
 lang: shell
-skills: 1
 xp: 100
+skills: 1
 ```
 
 So far,
-you have been working with repositories that we created.
-If you want to create a repository for a new project,
+you have been working with pre-existing repositories.
+If you want to create a repository for a new project in the current working directory,
 you can simply say `git init project-name`,
 where "project-name" is the name you want the new repository's root directory to have.
 
@@ -27,7 +27,7 @@ Very large projects occasionally need to do this,
 but most programmers and data analysts try to avoid getting into this situation.
 
 `@instructions`
-Use a single command to create a new Git repository called `optical` below your home directory.
+Use a single command to create a new Git repository called `optical` in your current directory.
 
 `@hint`
 Call `git init`, passing the name of the repository to be created.
@@ -68,14 +68,13 @@ If you are new to Git,
 though,
 or working with people who are,
 you will often want to convert existing projects into repositories.
-Doing so is simple:
-just run
+Doing so is simple, just run:
 
 ```
 git init
 ```
 
-in the project's root directory, or 
+in the project's root directory, or: 
 
 ```
 git init /path/to/project
@@ -163,7 +162,7 @@ Ex().success_msg("Interesting: after initializing the folder into a repository, 
 ## How can I create a copy of an existing repository?
 
 ```yaml
-type: BulletConsoleExercise
+type: ConsoleExercise
 key: 9fb3b2ed49
 xp: 100
 ```
@@ -196,13 +195,19 @@ for example,
 git clone /existing/project
 ```
 
-will create a new directory called `project`.
+will create a new directory called `project` inside your home directory.
 If you want to call the clone something else,
 add the directory name you want to the command:
 
 ```
 git clone /existing/project newprojectname
 ```
+
+`@instructions`
+
+
+`@hint`
+
 
 `@pre_exercise_code`
 ```{python}
@@ -213,39 +218,13 @@ repl.run_command('pwd')
 repl.run_command('ls')
 ```
 
-***
-
-```yaml
-type: ConsoleExercise
-key: 2b06ff535f
-xp: 100
-```
-
-`@instructions`
-You have just inherited the dental data analysis project from a colleague,
-who tells you that all of their work is in a repository in `/home/thunk/repo`.
-Use a single command to clone this repository
-to create a new repository called `dental` inside your home directory
-(so that the new repository is in `/home/repl/dental`).
-
-`@hint`
-Call `git clone`, passing the absolute path the the existing repository, and the name for the new repository.
-
 `@solution`
 ```{shell}
-git clone /home/thunk/repo dental
 
 ```
 
 `@sct`
 ```{python}
-msgpatt = "There is no folder %s in %s. Have you used `git clone` with the original repository location and the new name?"
-Ex().multi(
-    has_cwd('/home/repl'),
-    has_dir('/home/repl/dental', incorrect_msg=msgpatt % ('`dental`', '`/home/repl`')),
-    has_dir('/home/repl/dental/.git', incorrect_msg=msgpatt % ('`.git`', 'the `dental` folder'))
-)
-Ex().success_msg("Well done! Let's continue!")
 
 ```
 
@@ -311,7 +290,7 @@ Ex().has_chosen(2, ['No: Look at the output from `git remote`.',
 ## How can I define remotes?
 
 ```yaml
-type: BulletConsoleExercise
+type: ConsoleExercise
 key: 1e327efda1
 xp: 100
 ```
@@ -335,20 +314,6 @@ You can connect any two Git repositories this way,
 but in practice,
 you will almost always connect repositories that share some common ancestry.
 
-`@pre_exercise_code`
-```{python}
-repl = connect('bash')
-repl.run_command('cd dental')
-```
-
-***
-
-```yaml
-type: ConsoleExercise
-key: a0e2cf2d0f
-xp: 100
-```
-
 `@instructions`
 You are in the `dental` repository.
 Add `/home/thunk/repo` as a remote called `thunk` to it.
@@ -356,10 +321,15 @@ Add `/home/thunk/repo` as a remote called `thunk` to it.
 `@hint`
 Be sure to count the slashes properly in the remote URL.
 
+`@pre_exercise_code`
+```{python}
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
 `@solution`
 ```{shell}
 git remote add thunk /home/thunk/repo
-
 ```
 
 `@sct`
@@ -381,7 +351,6 @@ Ex().multi(
     )
 )
 Ex().success_msg("Neat! Now you added a remote to your local git repository.")
-
 ```
 
 ---
@@ -389,7 +358,7 @@ Ex().success_msg("Neat! Now you added a remote to your local git repository.")
 ## How can I pull in changes from a remote repository?
 
 ```yaml
-type: BulletConsoleExercise
+type: ConsoleExercise
 key: 4d5be24350
 xp: 100
 ```
@@ -416,6 +385,12 @@ would get changes from `latest-analysis` branch
 in the repository associated with the remote called `thunk`
 and merge them into your `quarterly-report` branch.
 
+`@instructions`
+You are in the `master` branch of the repository `dental`. Pull the changes from the `master` branch of the remote repository called `origin`.
+
+`@hint`
+Use `git pull` with the name of the remote (`origin`) and the name of the branch (`master`).
+
 `@pre_exercise_code`
 ```{python}
 repl = connect('bash')
@@ -426,24 +401,9 @@ repl.run_command('clear')
 repl.run_command('cd dental')
 ```
 
-***
-
-```yaml
-type: ConsoleExercise
-key: cb79240464
-xp: 100
-```
-
-`@instructions`
-You are in the `master` branch of the repository `dental`. Pull the changes from the `master` branch of the remote repository called `origin`.
-
-`@hint`
-Use `git pull` with the name of the remote (`origin`) and the name of the branch (`master`).
-
 `@solution`
 ```{shell}
 git pull origin master
-
 ```
 
 `@sct`
@@ -458,7 +418,6 @@ Ex().multi(
                     incorrect_msg=msg2)
 )
 Ex().success_msg("Well done! This `git pull` went smoothly, but unfortunately that's not always the case. Let's see what can happen if you have unsaved changes when trying to pull in changes.")
-
 ```
 
 ---
@@ -729,7 +688,7 @@ xp: 40
 ```
 
 `@instructions`
-Push your changes to the remote repository's `master` branch.
+Push your changes to the remote repository `origin`, specifying the `master` branch.
 
 `@hint`
 Use `git push` with the name of the remote (`origin`) and the name of the branch (`master`).
@@ -772,6 +731,8 @@ To prevent this happening,
 Git does not allow you to push changes to a remote repository
 unless you have merged the contents of the remote repository into your own work.
 
+In this exercise, you have made and committed changes to the `dental` repository locally and want to push your changes to a remote repository.
+
 `@pre_exercise_code`
 ```{python}
 repl = connect('bash')
@@ -795,8 +756,7 @@ xp: 30
 ```
 
 `@instructions`
-You have made and committed changes to the `dental` repository locally.
-Use `git push` to push those changes to the remote repository `origin`.
+Use `git push` to push those changes to the remote repository `origin`, specifying the `master` branch.
 
 `@hint`
 Use `git push` with the name of the remote (`origin`) and the name of the branch (`master`).

@@ -31,7 +31,7 @@ a commit will have two parents when branches are being merged.
 In the diagram below, each box is a commit and the arrows point to the next ("child") commit.
 How many merges have taken place?
 
-<img src="https://s3.amazonaws.com/assets.datacamp.com/production/course_5355/datasets/branching.png" alt="Branching and Merging" />
+<img src="https://assets.datacamp.com/production/repositories/1545/datasets/836c41b57bbbd4d589a3d0a08e9befebd9807790/gds_4_1_diagram.svg" alt="Branching and Merging" width = '800'/>
 
 `@hint`
 Look for boxes with two arrows coming into them.
@@ -540,7 +540,11 @@ msg = 'Use `git diff branch-1..branch-2` to compare branches. Replace `branch-1`
 #     has_expr_output(code = 'git diff deleting-report..master', incorrect_msg = msg, strict = True),
 #     has_code(r'\s*git\s+diff\s*(deleting-report\.\.master|master\.\.deleting-report)', incorrect_msg = msg)
 # )
-Ex().has_code(r'\s*git\s+diff\s*(deleting-report\.\.master|master\.\.deleting-report)', incorrect_msg = msg)
+Ex().check_or(
+has_code(r'\s*git\s+diff\s*(deleting-report\.\.master|master\.\.deleting-report)', incorrect_msg = msg),
+has_code(r'\s*git\s+diff\s*(deleting-report master|master deleting-report)', incorrect_msg = msg)
+)
+
 Ex().success_msg("Well done. Let's have a look at merging branches now.")
 
 ```
@@ -560,8 +564,7 @@ Branching lets you create parallel universes;
 When you merge one branch (call it the source) into another (call it the destination),
 Git incorporates the changes made to the source branch into the destination branch.
 If those changes don't overlap,
-the result is a new commit in the destination branch that includes everything from the source branch.
-(The next exercises describes what happens if there *are* conflicts.)
+the result is a new commit in the destination branch that includes everything from the source branch (the next exercises describe what happens if there *are* conflicts).
 
 To merge two branches,
 you run `git merge source destination`
@@ -590,8 +593,8 @@ into the `master` branch (the destination)
 with the message "Merging summary statistics."
 
 `@hint`
-Use `git merge` with `summary-statistics` as the first argument (the "from" branch)
-and `master` as the second (the "to" branch).
+Use `git merge` with `summary-statistics` as the first argument (the "source" branch)
+and `master` as the second (the "destination" branch).
 
 `@solution`
 ```{shell}
@@ -606,13 +609,14 @@ msg1 = "Make sure you are on the `master` branch when you do the `git merge` com
 msg2 = "Have you used `git merge summary-statistics master` to merge `summary-statistics` into `master`? An editor will show up. You can use Ctrl+O and then Ctrl+X to exit this. If you want to avoid this, use the `--no-edit` flag in the `git merge` command."
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+    has_expr_output( expr='git rev-parse --abbrev-ref HEAD | grep master',
                     output='master', strict=True, incorrect_msg=msg1),
-    has_expr_output(expr='git diff HEAD~ --name-only | grep bin/summary',
-                    output = 'bin/summary', incorrect_msg=msg2),
-    has_expr_output(expr='git diff HEAD~ --name-only | grep results/summary.txt',
-                    output = 'results/summary.txt', incorrect_msg=msg2)
+    has_expr_output( expr='git diff HEAD~ --name-only | grep bin/summary',
+                    output = 'bin/summary', strict=True, incorrect_msg=msg2),
+    has_expr_output( expr='git diff HEAD~ --name-only | grep results/summary.txt',
+                    output = 'results/summary.txt', strict=True, incorrect_msg=msg2)
 )
+
 Ex().success_msg("Merged it! Well done!")
 
 ```
@@ -622,9 +626,8 @@ Ex().success_msg("Merged it! Well done!")
 ## What are conflicts?
 
 ```yaml
-type: PureMultipleChoiceExercise
+type: MultipleChoiceExercise
 key: 354f733f81
-lang: bash
 xp: 50
 ```
 
@@ -661,10 +664,7 @@ B) Submit report.
 ```
 
 When you try to merge `update` and `master`,
-what conflicts does Git report?
-
-`@hint`
-Look for lines with `+` or `-` in front of them.
+what conflicts does Git report? You can use `git diff master..update` to view the difference between the two branches.
 
 `@possible_answers`
 - [Just line B, since it is the only one to change in both branches.]
@@ -672,13 +672,43 @@ Look for lines with `+` or `-` in front of them.
 - Lines B and C, since one was changed and the other deleted.
 - All three lines, since all were either added, deleted, or changed.
 
-`@feedback`
-- Correct: Git can merge the deletion of line A and the addition of line C automatically.
-- No: Git can merge the deletion of line A automatically.
-- No: Git can merge the addition of line C automatically.
-- No: Git can merge the deletion of line A and the addition of line C automatically.
+`@hint`
+What line(s) changed in both branches?
 
-<!-- -------------------------------------------------------------------------------- -->
+`@pre_exercise_code`
+```{python}
+repl = connect('bash')
+repl.run_command('cd dental')
+repl.run_command('cd init')
+repl.run_command('git checkout -b master')
+repl.run_command('touch todo.txt')
+repl.run_command('echo "A) Write report." >> todo.txt')
+repl.run_command('echo "B) Submit report." >> todo.txt')
+repl.run_command('git add todo.txt')
+repl.run_command('git commit -m "Master revisions 1."')
+repl.run_command('git checkout -b update')
+repl.run_command('cat /dev/null > todo.txt')
+repl.run_command('echo "A) Write report." >> todo.txt')
+repl.run_command('echo "B) Submit final version." >> todo.txt')
+repl.run_command('echo "C) Submit expenses." >> todo.txt')
+repl.run_command('git add todo.txt')
+repl.run_command('git commit -m "Update revisions."')
+repl.run_command('git checkout master')
+repl.run_command('cat /dev/null > todo.txt')
+repl.run_command('echo "B) Submit report." >> todo.txt')
+repl.run_command('git add todo.txt')
+repl.run_command('git commit -m "Master revisions 2."')
+repl.run_command('clear')
+    
+```
+
+`@sct`
+```{python}
+Ex().has_chosen(1, ['Correct: Git can merge the deletion of line A and the addition of line C automatically.',
+'No: Git can merge the deletion of line A automatically.',
+'No: Git can merge the addition of line C automatically.',
+'No: Git can merge the deletion of line A and the addition of line C automatically.'])
+```
 
 ---
 
@@ -707,9 +737,8 @@ Git leaves markers that look like this to tell you where the conflicts occurred:
 >>>>>>> source-branch-name
 ```
 
-(In many cases,
-the destination branch name will be `HEAD`,
-because you will be merging into the current branch.)
+In many cases,
+the destination branch name will be `HEAD` because you will be merging into the current branch.
 To resolve the conflict,
 edit the file to remove the markers
 and make whatever other changes are needed to reconcile the changes,
@@ -748,7 +777,7 @@ git merge --no-edit -m "Merging altered report title" alter-report-title master
 `@sct`
 ```{python}
 msg1 = "Make sure you are on the `master` branch when you do the `git merge` command. Use `git checkout master` first."
-msg2 = "Have you used `git merge summary-statistics master` to merge `alter-report-title` into `master`?"
+msg2 = "Have you used `git merge source destination` to merge `alter-report-title` into `master`?"
 Ex().multi(
     has_cwd('/home/repl/dental'),
     has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
@@ -800,7 +829,7 @@ xp: 20
 ```
 
 `@instructions`
-It turns out that `report.txt` has some conflicts. Use `nano report.txt` to open it and remove some lines so that only the second title is kept. Save you work with Ctrl+O and leave the editor with Ctrl+X. You can easily remove entire lines with Ctrl+K
+It turns out that `report.txt` has some conflicts. Use `nano report.txt` to open it and remove some lines so that only the second title is kept. Save your work with Ctrl+O and Enter, and then leave the editor with Ctrl+X. You can easily remove entire lines with Ctrl+K.
 
 `@hint`
 Use `nano` and the filename. Remove the following lines:
@@ -870,15 +899,19 @@ git add report.txt
 `@sct`
 ```{python}
 msg1 = "Make sure you are on the `master` branch when you do the `git merge` command. Use `git checkout master` first."
-Ex().multi(
-    has_cwd('/home/repl/dental'),
-    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
-                output='master', strict=True, incorrect_msg=msg1),
-    has_expr_output(expr='git diff --name-only --staged | grep report.txt',
-                    output = 'report.txt',
-                    incorrect_msg = "It seems that `report.txt` was not added to the staging area. Have you used `git add report.txt`?")
-)
+# Ex().multi(
+#     has_cwd('/home/repl/dental'),
+#     has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
+#                 output='master', strict=True, incorrect_msg=msg1),
+#     has_expr_output(expr='git diff --name-only --staged | grep report.txt',
+#                     output = 'report.txt',
+#                     incorrect_msg = "It seems that `report.txt` was not added to the staging area. Have you used `git add report.txt`?")
+# )
 
+Ex().multi(
+has_cwd('/home/repl/dental'),
+has_code(r'\s*git\s+add\s+report\.txt', incorrect_msg = "It seems that `report.txt` was not added to the staging area. Have you used `git add report.txt`?")
+)
 ```
 
 ***

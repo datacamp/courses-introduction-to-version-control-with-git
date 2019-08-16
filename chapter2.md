@@ -14,11 +14,11 @@ xp: 50
 
 You may wonder what information is stored by each commit that you make. Git uses a three-level structure for this.
 
-1. A **commit** contains metadata such as the author, the commit message, and the time the commit happened. In the diagram below, the most recent commit is at the bottom (`feed0098`), and vertical arrows point up towards the previous ("parent") commits.
+1. A **commit** contains metadata such as the author, the commit message, and the time the commit happened. In the diagram below, the most recent commit is at the bottom (`feed0098`), underneath its parent commits.
 2. Each commit also has a **tree**, which tracks the names and locations in the repository when that commit happened. In the oldest (top) commit, there were two files tracked by the repository.
-3. For each of the files listed in the tree, there is a **blob**. This contains a compressed snapshot of the contents of the file when the commit happened. (Blob is short for *binary large object*, which is a SQL database term for "may contain data of any kind".) In the middle commit, `report.md` and `draft.md` were changed, so the blobs are shown next to that commit. `data/northern.csv` didn't change in that commit, so the tree links to the blob from the previous commit. Reusing blobs between commits help make common operations fast and minimizes storage space.
+3. For each of the files listed in the tree, there is a **blob**. This contains a compressed snapshot of the contents of the file when the commit happened (blob is short for *binary large object*, which is a SQL database term for "may contain data of any kind"). In the middle commit, `report.md` and `draft.md` were changed, so the blobs are shown next to that commit. `data/northern.csv` didn't change in that commit, so the tree links to the blob from the previous commit. Reusing blobs between commits help make common operations fast and minimizes storage space.
 
-<img src="https://s3.amazonaws.com/assets.datacamp.com/production/course_5355/datasets/commit-tree-blob.png" alt="Commit-Tree-Blob Structure" />
+<img src="https://assets.datacamp.com/production/repositories/1545/datasets/71c08f5726f7192c0303d4ce84d4ecb9336c6fa5/gds_2_1_diagram.svg" alt="Commit-Tree-Blob Structure" width="800"  />
 
 <hr>
 
@@ -211,7 +211,8 @@ Which of the following files did it change?
 - Neither of the above.
 
 `@hint`
-The commit before the most recent will be `HEAD~1`.
+- Use `git show` to inspect the commit.
+- The commit before the most recent will be `HEAD~1`.
 
 `@pre_exercise_code`
 ```{shell}
@@ -240,8 +241,8 @@ skills: 1
 ```
 
 `git log` displays the overall history of a project or file,
-but Git can give even more information:
-the command `git annotate file` shows who made the last change to each line of a file and when.
+but Git can give even more information.
+The command `git annotate file` shows who made the last change to each line of a file and when.
 For example,
 the first three lines of output from `git annotate report.txt` look something like this:
 
@@ -252,7 +253,7 @@ the first three lines of output from `git annotate report.txt` look something li
 ```
 
 
-Each line contains five things, with two to four in parentheses.
+Each line contains five elements, with elements two to four enclosed in parentheses. When inspecting the first line, we see:
 
 1. The first eight digits of the hash, `04307054`.
 2. The author, `Rep Loop`.
@@ -265,7 +266,7 @@ Each line contains five things, with two to four in parentheses.
 You are in the `dental` repository.
 Use a single command to see the changes to `report.txt`.
 How many different sets of changes have been made to this file
-(i.e., how many different hashes show up in the first column of the output)?
+(i.e., how many _**distinct**_ hashes show up in the first column of the output)?
 
 `@possible_answers`
 - 1.
@@ -627,6 +628,7 @@ git clean -f
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/dental'),
+    has_code(r'\s*git\s+clean\s*-f', incorrect_msg = "Did you use the appropriate flag with `git clean` to remove the unwanted file?"),
     check_not(
         has_expr_output(
             expr='ls', output='backup.log',
@@ -646,7 +648,7 @@ xp: 40
 ```
 
 `@instructions`
-List the files in your directory. `backup.log` should no longer be there!
+Use `ls` to list the files in your current working directory. `backup.log` should no longer be there!
 
 `@hint`
 Run the command as shown.
@@ -731,8 +733,8 @@ Ex().has_chosen(3, ['No, some configuration values are set.',
 type: ConsoleExercise
 key: 7c0dce348b
 lang: shell
-skills: 1
 xp: 100
+skills: 1
 ```
 
 Most of Git's settings should be left as they are.
@@ -747,11 +749,11 @@ To change a configuration value for all of your projects on a particular compute
 run the command:
 
 ```
-git config --global setting.name setting.value
+git config --global setting value
 ```
 
-with the setting's name and value in the appropriate places.
-The keys that identify your name and email address are `user.name` and `user.email` respectively.
+Using this command, you specify the `setting` you want to change and the `value` you want to set.
+The settings that identify your name and email address are `user.name` and `user.email`, respectively.
 
 `@instructions`
 Change the email address (`user.email`) configured for the current user for *all* projects

@@ -161,7 +161,7 @@ Ex().has_chosen(2, ['No, that file has not changed.', \
 ## How can I tell what I have changed?
 
 ```yaml
-type: BulletConsoleExercise
+type: ConsoleExercise
 key: 0dd628a298
 xp: 100
 ```
@@ -183,6 +183,13 @@ you can use `git diff filename`.
 `git diff` without any filenames will show you all the changes in your repository,
 while `git diff directory` will show you the changes to the files in some directory.
 
+`@instructions`
+You have been put in the `dental` repository.
+Use `git diff` to see what changes have been made to the files.
+
+`@hint`
+Run the command without any extra arguments.
+
 `@pre_exercise_code`
 ```{python}
 with open('dental/data/northern.csv', 'a') as writer:
@@ -191,25 +198,9 @@ repl = connect('bash')
 repl.run_command('cd dental')
 ```
 
-***
-
-```yaml
-type: ConsoleExercise
-key: e9c198755a
-xp: 100
-```
-
-`@instructions`
-You have been put in the `dental` repository.
-Use `git diff` to see what changes have been made to the files.
-
-`@hint`
-Run the command without any extra arguments.
-
 `@solution`
 ```{shell}
 git diff
-
 ```
 
 `@sct`
@@ -221,7 +212,6 @@ Ex().multi(
         has_code(r'\s*git\s+diff\s*', incorrect_msg='Use `git` followed by `diff` without extra arguments.')
     )
 )
-
 ```
 
 ---
@@ -243,11 +233,10 @@ Git displays diffs like this:
     index e713b17..4c0742a 100644
     --- a/report.txt
     +++ b/report.txt
-    @@ -1,4 +1,4 @@
+    @@ -1,4 +1,5 @@
     -# Seasonal Dental Surgeries 2017-18
     +# Seasonal Dental Surgeries (2017) 2017-18
-     
-     TODO: write executive summary.
+    +# TODO: write new summary
 
 This shows:
 - The command used to produce the output (in this case, `diff --git`).
@@ -255,13 +244,12 @@ This shows:
 - An index line showing keys into Git's internal database of changes.
   We will explore these in the next chapter.
 - `--- a/report.txt` and `+++ b/report.txt`,
-  which indicate that lines being *removed* are prefixed with `-`,
-  while lines being added are prefixed with `+`.
-- A line starting with `@@` that tells where the changes are being made. The pairs of numbers are `start line,number of lines changed`.
-  Here, the diff output shows that 4 lines from line 1 are being removed and replaced with new lines.
+  wherein lines being *removed* are prefixed with `-` and 
+  lines being added are prefixed with `+`.
+- A line starting with `@@` that tells _where_ the changes are being made. The pairs of numbers are `start line` and `number of lines` (in that section of the file where changes occurred). This diff output indicates changes starting at line 1, with 5 lines where there were once 4.
 - A line-by-line listing of the changes
-  with `-` showing deletions and `+` showing additions.
-  (We have also configured Git to show deletions in red and additions in green.)
+  with `-` showing deletions and `+` showing additions
+  (we have also configured Git to show deletions in red and additions in green).
   Lines that *haven't* changed are sometimes shown before and after the ones that have
   in order to give context;
   when they appear,
@@ -276,7 +264,7 @@ or [WinMerge](http://winmerge.org/).
 
 You have been put in the `dental` repository.
 Use `git diff data/northern.csv` to look at the changes to that file.
-How many lines have been changed?
+How many lines have been added or removed?
 
 `@possible_answers`
 - None.
@@ -297,7 +285,7 @@ repl.run_command('cd dental')
 
 `@sct`
 ```{python}
-err_some = 'No, the commit changed some of the lines.'
+err_some = 'No, the commit added or removed some line(s).'
 correct = 'Yes, the commit added one line.'
 err_fewer = 'No, the commit did not change that many lines.'
 Ex().has_chosen(2, [err_some, correct, err_fewer, err_fewer])
@@ -533,8 +521,8 @@ Ex().success_msg("Great! Before we dive into actually committing the changes you
 type: ConsoleExercise
 key: 4f71d1f1a0
 lang: shell
-skills: 1
 xp: 100
+skills: 1
 ```
 
 Unix has a bewildering variety of text editors.
@@ -772,6 +760,8 @@ Use a single Git command to view the repository's history.
 What is the message on the very first entry in the log
 (which is displayed last)?
 
+_Keep in mind that not all entries may be visible on the first screen, and that you might need to check additional pages to see the very first entry._
+
 `@possible_answers`
 - "Added summary report file."
 - "Added seasonal CSV data files"
@@ -842,10 +832,10 @@ Ex().has_chosen(3, [err, err, 'Correct!', err])
 
 ---
 
-## How do I write a better log message?
+## How do I write a better log message
 
 ```yaml
-type: BulletConsoleExercise
+type: ConsoleExercise
 key: 1be0ce9219
 xp: 100
 ```
@@ -871,6 +861,18 @@ The lines starting with `#` are comments, and won't be saved.
 (They are there to remind you what you are supposed to do and what files you have changed.)
 Your message should go at the top, and may be as long and as detailed as you want.
 
+`@instructions`
+You have been put in the `dental` repository,
+and `report.txt` has been added to the staging area.
+The changes to `report.txt` have already been staged.
+Use `git commit` *without* `-m` to commit the changes.
+The Nano editor will open up. Write a meaningful message
+and use Ctrl+O and Enter to save, and then Ctrl+X to leave the editor.
+
+`@hint`
+Run `git commit` without any arguments.
+(Our solution uses `-m` and a message so that we can automate solution testing.)
+
 `@pre_exercise_code`
 ```{python}
 append = '''
@@ -884,32 +886,11 @@ repl.run_command('cd dental')
 repl.run_command('git add report.txt')
 ```
 
-***
-
-```yaml
-type: ConsoleExercise
-key: 2f3aa2a066
-xp: 100
-```
-
-`@instructions`
-You have been put in the `dental` repository,
-and `report.txt` has been added to the staging area.
-The changes to `report.txt` have already been staged.
-Use `git commit` *without* `-m` to commit the changes.
-The Nano editor will open up. Write a meaningful message
-and use Ctrl+O and Ctrl+X to save and leave the editor.
-
-`@hint`
-Run `git commit` without any arguments.
-(Our solution uses `-m` and a message so that we can automate solution testing.)
-
 `@solution`
 ```{shell}
 # This solution uses another command
 # because our automated tests can't edit files interactively.
 git commit -m "Adding a reference."
-
 ```
 
 `@sct`
@@ -917,9 +898,9 @@ git commit -m "Adding a reference."
 msg="It seems that the staged changes to `report.txt` weren't committed. Use `git commit` to interactively write a commit message. If you're struggling, you can always use the `-m \"any message\"` flag to avoid the interaction."
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    has_expr_output(expr='git diff HEAD~ --name-only | grep report.txt',
-                    output = 'report.txt', incorrect_msg=msg)
+    has_expr_output(expr='git diff HEAD~ --name-only | grep report.txt',output = 'report.txt', incorrect_msg=msg),
+                    has_code(r'\s*git\s+commit', incorrect_msg = "Did you run `git commit` without any arguments?")
 )
-Ex().success_msg("Neat! This concludes chapter 1, where you learned about `git diff`, `git status`, `git add` and `git commit`. Quite something! Rush over to chapter 2 to continue your Git adventure!")
 
+Ex().success_msg("Neat! This concludes chapter 1, where you learned about `git diff`, `git status`, `git add` and `git commit`. Quite something! Rush over to chapter 2 to continue your Git adventure!")
 ```
