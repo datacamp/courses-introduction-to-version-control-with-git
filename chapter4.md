@@ -829,7 +829,7 @@ xp: 20
 ```
 
 `@instructions`
-It turns out that `report.txt` has some conflicts. Use `nano report.txt` to open it and remove some lines so that only the second title is kept. Save your work with Ctrl+O and leave the editor with Ctrl+X. You can easily remove entire lines with Ctrl+K
+It turns out that `report.txt` has some conflicts. Use `nano report.txt` to open it and remove some lines so that only the second title is kept. Save your work with Ctrl+O and Enter, and then leave the editor with Ctrl+X. You can easily remove entire lines with Ctrl+K.
 
 `@hint`
 Use `nano` and the filename. Remove the following lines:
