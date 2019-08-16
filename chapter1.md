@@ -161,7 +161,7 @@ Ex().has_chosen(2, ['No, that file has not changed.', \
 ## How can I tell what I have changed?
 
 ```yaml
-type: NormalExercise
+type: ConsoleExercise
 key: 0dd628a298
 xp: 100
 ```
@@ -196,11 +196,6 @@ with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
 repl = connect('bash')
 repl.run_command('cd dental')
-```
-
-`@sample_code`
-```{shell}
-
 ```
 
 `@solution`
@@ -837,10 +832,10 @@ Ex().has_chosen(3, [err, err, 'Correct!', err])
 
 ---
 
-## How do I write a better log message?
+## How do I write a better log message
 
 ```yaml
-type: BulletConsoleExercise
+type: ConsoleExercise
 key: 1be0ce9219
 xp: 100
 ```
@@ -866,6 +861,18 @@ The lines starting with `#` are comments, and won't be saved.
 (They are there to remind you what you are supposed to do and what files you have changed.)
 Your message should go at the top, and may be as long and as detailed as you want.
 
+`@instructions`
+You have been put in the `dental` repository,
+and `report.txt` has been added to the staging area.
+The changes to `report.txt` have already been staged.
+Use `git commit` *without* `-m` to commit the changes.
+The Nano editor will open up. Write a meaningful message
+and use Ctrl+O and Enter to save, and then Ctrl+X to leave the editor.
+
+`@hint`
+Run `git commit` without any arguments.
+(Our solution uses `-m` and a message so that we can automate solution testing.)
+
 `@pre_exercise_code`
 ```{python}
 append = '''
@@ -879,32 +886,11 @@ repl.run_command('cd dental')
 repl.run_command('git add report.txt')
 ```
 
-***
-
-```yaml
-type: ConsoleExercise
-key: 2f3aa2a066
-xp: 100
-```
-
-`@instructions`
-You have been put in the `dental` repository,
-and `report.txt` has been added to the staging area.
-The changes to `report.txt` have already been staged.
-Use `git commit` *without* `-m` to commit the changes.
-The Nano editor will open up. Write a meaningful message
-and use Ctrl+O and Enter to save, and then Ctrl+X to leave the editor.
-
-`@hint`
-Run `git commit` without any arguments.
-(Our solution uses `-m` and a message so that we can automate solution testing.)
-
 `@solution`
 ```{shell}
 # This solution uses another command
 # because our automated tests can't edit files interactively.
 git commit -m "Adding a reference."
-
 ```
 
 `@sct`
@@ -917,5 +903,4 @@ Ex().multi(
 )
 
 Ex().success_msg("Neat! This concludes chapter 1, where you learned about `git diff`, `git status`, `git add` and `git commit`. Quite something! Rush over to chapter 2 to continue your Git adventure!")
-
 ```
