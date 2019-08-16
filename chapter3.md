@@ -236,7 +236,7 @@ Ex().success_msg("Alright! Let's expore how you can undo some of your work.")
 ## How can I undo changes to unstaged files?
 
 ```yaml
-type: BulletConsoleExercise
+type: ConsoleExercise
 key: 7ff1cc0a0e
 xp: 100
 ```
@@ -259,6 +259,13 @@ from the names of the file or files you want to recover.)
 once you discard changes in this way,
 they are gone forever.
 
+`@instructions`
+You are in the `dental` repository, where all changes to `.csv` files in `data` were staged.  `git status` shows that `data/northern.csv` was changed again after it was staged. Use a Git command to undo the changes to the file `data/northern.csv`.
+
+`@hint`
+Use `git checkout` with `--` to separate the command from the name(s) of file(s),
+and then the name(s) of file(s).
+
 `@pre_exercise_code`
 ```{python}
 with open('dental/data/northern.csv', 'a') as writer:
@@ -273,25 +280,9 @@ with open('dental/data/northern.csv', 'a') as writer:
 repl.run_command('git status')
 ```
 
-***
-
-```yaml
-type: ConsoleExercise
-key: 9a5bde4d0b
-xp: 100
-```
-
-`@instructions`
-You are in the `dental` repository, where all changes to `.csv` files in `data` were staged.  `git status` shows that `data/northern.csv` was changed again after it was staged. Use a Git command to undo the changes to the file `data/northern.csv`.
-
-`@hint`
-Use `git checkout` with `--` to separate the command from the name(s) of file(s),
-and then the name(s) of file(s).
-
 `@solution`
 ```{shell}
 git checkout -- data/northern.csv
-
 ```
 
 `@sct`
@@ -302,7 +293,6 @@ Ex().multi(
     has_expr_output(expr='git diff --name-only | wc -w', output='0', incorrect_msg=msg)
 )
 Ex().success_msg("Good job! This was about undoing changes that weren't staged yet. What about undoing changes that you staged already with `git add`? Find out in the next exercise.")
-
 ```
 
 ---
