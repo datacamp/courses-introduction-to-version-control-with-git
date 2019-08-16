@@ -290,7 +290,7 @@ Ex().has_chosen(2, ['No: Look at the output from `git remote`.',
 ## How can I define remotes?
 
 ```yaml
-type: BulletConsoleExercise
+type: ConsoleExercise
 key: 1e327efda1
 xp: 100
 ```
@@ -314,20 +314,6 @@ You can connect any two Git repositories this way,
 but in practice,
 you will almost always connect repositories that share some common ancestry.
 
-`@pre_exercise_code`
-```{python}
-repl = connect('bash')
-repl.run_command('cd dental')
-```
-
-***
-
-```yaml
-type: ConsoleExercise
-key: a0e2cf2d0f
-xp: 100
-```
-
 `@instructions`
 You are in the `dental` repository.
 Add `/home/thunk/repo` as a remote called `thunk` to it.
@@ -335,10 +321,15 @@ Add `/home/thunk/repo` as a remote called `thunk` to it.
 `@hint`
 Be sure to count the slashes properly in the remote URL.
 
+`@pre_exercise_code`
+```{python}
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
 `@solution`
 ```{shell}
 git remote add thunk /home/thunk/repo
-
 ```
 
 `@sct`
@@ -360,7 +351,6 @@ Ex().multi(
     )
 )
 Ex().success_msg("Neat! Now you added a remote to your local git repository.")
-
 ```
 
 ---

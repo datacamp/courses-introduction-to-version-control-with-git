@@ -554,7 +554,7 @@ Ex().success_msg("Well done. Let's have a look at merging branches now.")
 ## How can I merge two branches?
 
 ```yaml
-type: ConsoleExercise
+type: BulletConsoleExercise
 key: 3812382b52
 xp: 100
 ```
@@ -572,6 +572,20 @@ you run `git merge source destination`
 Git automatically opens an editor so that you can write a log message for the merge;
 you can either keep its default message or fill in something more informative.
 
+`@pre_exercise_code`
+```{python}
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
+***
+
+```yaml
+type: ConsoleExercise
+key: 7a4bb39d31
+xp: 100
+```
+
 `@instructions`
 You are in the `master` branch of the `dental` repository.
 Merge the changes *from* the `summary-statistics` branch (the source)
@@ -582,16 +596,11 @@ with the message "Merging summary statistics."
 Use `git merge` with `summary-statistics` as the first argument (the "source" branch)
 and `master` as the second (the "destination" branch).
 
-`@pre_exercise_code`
-```{python}
-repl = connect('bash')
-repl.run_command('cd dental')
-```
-
 `@solution`
 ```{shell}
 # Run this command *without* the '-no-edit' flag:
 git merge --no-edit summary-statistics master
+
 ```
 
 `@sct`
@@ -609,6 +618,7 @@ Ex().multi(
 )
 
 Ex().success_msg("Merged it! Well done!")
+
 ```
 
 ---
