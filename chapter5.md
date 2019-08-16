@@ -203,6 +203,12 @@ add the directory name you want to the command:
 git clone /existing/project newprojectname
 ```
 
+`@instructions`
+
+
+`@hint`
+
+
 `@pre_exercise_code`
 ```{python}
 repl = connect('bash')
@@ -212,38 +218,13 @@ repl.run_command('pwd')
 repl.run_command('ls')
 ```
 
-***
-
-```yaml
-type: ConsoleExercise
-key: 2b06ff535f
-xp: 100
-```
-
-`@instructions`
-You have just inherited the dental data analysis project from a colleague,
-who tells you that all of their work is in a repository in `/home/thunk/repo`.
-Use a single command to clone this repository
-to create a new repository called `dental` inside your home directory.
-
-`@hint`
-Call `git clone`, passing the absolute path the the existing repository, and the name for the new repository.
-
 `@solution`
 ```{shell}
-git clone /home/thunk/repo dental
 
 ```
 
 `@sct`
 ```{python}
-msgpatt = "There is no folder %s in %s. Have you used `git clone` with the original repository location and the new name?"
-Ex().multi(
-    has_cwd('/home/repl'),
-    has_dir('/home/repl/dental', incorrect_msg=msgpatt % ('`dental`', '`/home/repl`')),
-    has_dir('/home/repl/dental/.git', incorrect_msg=msgpatt % ('`.git`', 'the `dental` folder'))
-)
-Ex().success_msg("Well done! Let's continue!")
 
 ```
 
