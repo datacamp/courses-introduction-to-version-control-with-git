@@ -226,6 +226,69 @@ Ex().multi(
 
 ---
 
+## How can I tell what I have changed?
+
+```yaml
+type: NormalExercise
+key: abf06268f9
+xp: 100
+```
+
+Git has a **staging area** in which it stores files with changes you want to save
+that haven't been saved yet.
+Putting files in the staging area is like putting things in a box,
+while **committing** those changes is like putting that box in the mail:
+you can add more things to the box or take things out as often as you want,
+but once you put it in the mail,
+you can't make further changes.
+
+<img src="https://s3.amazonaws.com/assets.datacamp.com/production/course_5355/datasets/staging-area.png" alt="Staging Area" />
+
+`git status` shows you which files are in this staging area,
+and which files have changes that haven't yet been put there.
+In order to compare the file as it currently is to what you last saved,
+you can use `git diff filename`.
+`git diff` without any filenames will show you all the changes in your repository,
+while `git diff directory` will show you the changes to the files in some directory.
+
+`@instructions`
+You have been put in the `dental` repository.
+Use `git diff` to see what changes have been made to the files.
+
+`@hint`
+Run the command without any extra arguments.
+
+`@pre_exercise_code`
+```{shell}
+with open('dental/data/northern.csv', 'a') as writer:
+    writer.write('2017-11-01,bicuspid\n')
+repl = connect('bash')
+repl.run_command('cd dental')
+```
+
+`@sample_code`
+```{shell}
+
+```
+
+`@solution`
+```{shell}
+git diff
+```
+
+`@sct`
+```{python}
+Ex().multi(
+    has_cwd('/home/repl/dental'),
+    check_or(
+        has_expr_output(),
+        has_code(r'\s*git\s+diff\s*', incorrect_msg='Use `git` followed by `diff` without extra arguments.')
+    )
+)
+```
+
+---
+
 ## What is in a diff?
 
 ```yaml
@@ -286,7 +349,7 @@ How many lines have been added or removed?
 Count the number of lines with `+` or `-` in front of them in the diff.
 
 `@pre_exercise_code`
-```{shell}
+```{python}
 with open('dental/data/northern.csv', 'a') as writer:
     writer.write('2017-11-01,bicuspid\n')
 repl = connect('bash')
@@ -636,7 +699,7 @@ git commit --amend - m "new message"
 ```
 
 `@pre_exercise_code`
-```{python}
+```{shell}
 append = '''
 
 Fehrenbach: "Dental Anatomy Coloring Book" (2e), 2013.
@@ -829,7 +892,7 @@ How many have there been?
 Use `git log` and the path to the file you are interested in.
 
 `@pre_exercise_code`
-```{shell}
+```{python}
 repl = connect('bash')
 repl.run_command('cd dental')
 ```
