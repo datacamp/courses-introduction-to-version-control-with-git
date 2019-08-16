@@ -14,7 +14,7 @@ skills: 1
 ```
 
 So far,
-you have been working pre-existing repositories.
+you have been working with pre-existing repositories.
 If you want to create a repository for a new project in the current working directory,
 you can simply say `git init project-name`,
 where "project-name" is the name you want the new repository's root directory to have.
