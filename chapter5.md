@@ -162,7 +162,7 @@ Ex().success_msg("Interesting: after initializing the folder into a repository, 
 ## How can I create a copy of an existing repository?
 
 ```yaml
-type: BulletConsoleExercise
+type: ConsoleExercise
 key: 9fb3b2ed49
 xp: 100
 ```
