@@ -1,6 +1,6 @@
 ---
 title: 'Working with branches'
-description: 'Branching is one of Git''s most powerful features, since it allows you to work on several things at once without tripping over yourself.  This chapter shows you how to create and manage branches.'
+description: 'Branching is one of Git''s most powerful features, since it allows you to work on several things at once. This chapter shows you how to create and manage branches.'
 ---
 
 ## What is a branch?

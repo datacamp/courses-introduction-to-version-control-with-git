@@ -1,6 +1,6 @@
 ---
 title: Collaborating
-description: 'This chapter shows Git''s other greatest feature: how you can share changes between repositories to collaborate at scale.'
+description: 'This chapter showcases how Git allows you to share changes between repositories to collaborate at scale.'
 ---
 
 ## How can I create a brand new repository?
