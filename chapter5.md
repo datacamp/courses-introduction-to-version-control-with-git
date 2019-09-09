@@ -807,14 +807,16 @@ git pull --no-edit origin master
 
 `@sct`
 ```{python}
-msg1 = "Make sure you are on the `master` branch (use `git checkout master` to switch to it)."
-msg2 = "If the `git pull` went well, you should have 16 commits in your repo, but you don't. Make sure you use `git pull origin master`. If you want to avoid the editor from opening, you can use the `--no-edit` flag."
+# msg1 = "Make sure you are on the `master` branch (use `git checkout master` to switch to it)."
+msg2 = "Make sure you use `git pull origin master`. If you want to avoid the editor from opening, you can use the `--no-edit` flag after `git pull`."
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    has_expr_output(expr='git rev-parse --abbrev-ref HEAD | grep master',
-                    output='master', strict=True, incorrect_msg=msg1),
-    has_expr_output(expr='git rev-list --all --count',
-                    output= '16', strict=True, incorrect_msg=msg2)
+    check_or(
+    has_code(r'\s*git\s+pull\s+origin\s+master\s*',
+             fixed=False, incorrect_msg=msg2),
+    has_code(r'\s*git\s+pull\s+--no-edit\s+origin\s+master\s*',
+             fixed=False, incorrect_msg=msg2)
+)
 )
 
 ```
