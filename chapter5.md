@@ -185,11 +185,8 @@ https://github.com/datacamp/project.git
 ```
 
 but for this lesson,
-we will use a repository on the local file system, so you can just use a path to that directory.
-
-When you clone a repository,
-Git uses the name of the existing repository as the name of the clone's root directory:
-for example,
+we will use a repository on the local file system, so you can just use a path to that directory. When you clone a repository,
+Git uses the name of the existing repository as the name of the clone's root directory, for example:
 
 ```
 git clone /existing/project
@@ -204,10 +201,10 @@ git clone /existing/project newprojectname
 ```
 
 `@instructions`
-
+You have just inherited the dental data analysis project from a colleague, who tells you that all of their work is in a repository in `/home/thunk/repo`. Use a single command to clone this repository to create a new repository called `dental` inside your home directory.
 
 `@hint`
-
+Call `git clone`, passing the absolute path the the existing repository, and the name for the new repository.
 
 `@pre_exercise_code`
 ```{python}
@@ -220,12 +217,20 @@ repl.run_command('ls')
 
 `@solution`
 ```{shell}
-
+git clone /home/thunk/repo dental
 ```
 
 `@sct`
 ```{python}
+msgpatt = "There is no folder %s in %s. Have you used `git clone` with the original repository location and the new name?"
 
+Ex().multi(
+    has_cwd('/home/repl'),
+    has_dir('/home/repl/dental', incorrect_msg=msgpatt % ('`dental`', '`/home/repl`')),
+    has_dir('/home/repl/dental/.git', incorrect_msg=msgpatt % ('`.git`', 'the `dental` folder'))
+)
+
+Ex().success_msg("Well done! Let's continue!")
 ```
 
 ---
