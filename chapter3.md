@@ -205,7 +205,7 @@ xp: 50
 ```
 
 `@instructions`
-It appers that some changes to `data/northern.csv` have already been staged, but there are new changes that haven't been staged yet.
+It appears that some changes to `data/northern.csv` have already been staged, but there are new changes that haven't been staged yet.
 Use `git add` to stage these latest changes to `data/northern.csv` again.
 
 `@hint`
@@ -227,7 +227,7 @@ Ex().multi(
                     output='data/northern.csv', strict=True, incorrect_msg=msg1),
     has_expr_output(expr='git diff --name-only | wc -w', output='0', incorrect_msg=msg2)
 )
-Ex().success_msg("Alright! Let's expore how you can undo some of your work.")
+Ex().success_msg("Alright! Let's explore how you can undo some of your work.")
 
 ```
 
