@@ -18,7 +18,7 @@ You may wonder what information is stored by each commit that you make. Git uses
 2. Each commit also has a **tree**, which tracks the names and locations in the repository when that commit happened. In the oldest (top) commit, there were two files tracked by the repository.
 3. For each of the files listed in the tree, there is a **blob**. This contains a compressed snapshot of the contents of the file when the commit happened (blob is short for *binary large object*, which is a SQL database term for "may contain data of any kind"). In the middle commit, `report.md` and `draft.md` were changed, so the blobs are shown next to that commit. `data/northern.csv` didn't change in that commit, so the tree links to the blob from the previous commit. Reusing blobs between commits help make common operations fast and minimizes storage space.
 
-<img src="https://assets.datacamp.com/production/repositories/1545/datasets/71c08f5726f7192c0303d4ce84d4ecb9336c6fa5/gds_2_1_diagram.svg" alt="Commit-Tree-Blob Structure" width="800"  />
+<img src="https://assets.datacamp.com/production/repositories/1545/datasets/1bb404075fe1164d8b3fd78f4065b0bf3d86bc16/gds_2_1_SVG.svg" alt="Commit-Tree-Blob Structure" width="800"  />
 
 <hr>
 
