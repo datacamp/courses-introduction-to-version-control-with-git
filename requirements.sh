@@ -69,3 +69,6 @@ echo 'References to PS1 in /.course_home/.bashrc'
 grep PS1 ${HOME_COPY}/.bashrc
 echo 'Configuration of thunk repository'
 git -C /home/thunk/repo config -l
+
+echo 'locking protowhat'
+pip install git+https://github.com/datacamp/protowhat.git@v1.14.1 --target /var/lib/python/site-packages
