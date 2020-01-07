@@ -47,8 +47,8 @@ git init optical
 msgpatt = "There is no folder %s in %s. Have you used `git init optical` appropriately to create a new Git repository?"
 Ex().multi(
     has_cwd('/home/repl'),
-    has_dir('/home/repl/optical', incorrect_msg=msgpatt % ('`optical`', '`/home/repl`')),
-    has_dir('/home/repl/optical/.git', incorrect_msg=msgpatt % ('`.git`', 'the `optical` folder'))
+    has_dir('/home/repl/optical', msg=msgpatt % ('`optical`', '`/home/repl`')),
+    has_dir('/home/repl/optical/.git', msg=msgpatt % ('`.git`', 'the `optical` folder'))
 )
 Ex().success_msg("Well done! This was starting from scratch, but you'll often want to turn an existing folder into a Git repo as well. Find out how in the next exercise.")
 ```
@@ -118,7 +118,7 @@ git init
 msg = "There is no `.git` folder in `dental`. Are you sure you used `git init` correctly?"
 Ex().multi(
     has_cwd('/home/repl/dental'),
-    has_dir('/home/repl/dental/.git', incorrect_msg=msg)
+    has_dir('/home/repl/dental/.git', msg=msg)
 )
 
 ```
@@ -150,7 +150,7 @@ Ex().multi(
     has_cwd('/home/repl/dental'),
     check_correct(
         has_expr_output(),
-        has_code(r'\s*git\s+status\s*', incorrect_msg = msg)
+        has_code(r'\s*git\s+status\s*', incorrect_msg= msg)
     )
 )
 Ex().success_msg("Interesting: after initializing the folder into a repository, Git immediately notices that there are a bunch of changes that can be staged (and afterwards, committed).")
@@ -226,8 +226,8 @@ msgpatt = "There is no folder %s in %s. Have you used `git clone` with the origi
 
 Ex().multi(
     has_cwd('/home/repl'),
-    has_dir('/home/repl/dental', incorrect_msg=msgpatt % ('`dental`', '`/home/repl`')),
-    has_dir('/home/repl/dental/.git', incorrect_msg=msgpatt % ('`.git`', 'the `dental` folder'))
+    has_dir('/home/repl/dental', msg=msgpatt % ('`dental`', '`/home/repl`')),
+    has_dir('/home/repl/dental/.git', msg=msgpatt % ('`.git`', 'the `dental` folder'))
 )
 
 Ex().success_msg("Well done! Let's continue!")
