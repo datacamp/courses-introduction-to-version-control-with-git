@@ -1,6 +1,8 @@
 ---
-title: 'Basic workflow'
-description: 'This chapter explains what version control is and why you should use it, and introduces the most common steps in a common Git workflow.'
+title: Basic workflow
+description: >-
+  This chapter explains what version control is and why you should use it, and
+  introduces the most common steps in a common Git workflow.
 free_preview: true
 ---
 
@@ -60,7 +62,8 @@ type: MultipleChoiceExercise
 key: 1dac2b0a28
 lang: shell
 xp: 50
-skills: 1
+skills:
+  - 1
 ```
 
 Each of your Git projects has two parts:
@@ -111,7 +114,8 @@ type: MultipleChoiceExercise
 key: bc52cf1174
 lang: shell
 xp: 50
-skills: 1
+skills:
+  - 1
 ```
 
 When you are using Git,
@@ -223,7 +227,8 @@ type: MultipleChoiceExercise
 key: eef645517f
 lang: shell
 xp: 50
-skills: 1
+skills:
+  - 1
 ```
 
 A **diff** is a formatted display of the differences between two sets of files.
@@ -522,7 +527,8 @@ type: ConsoleExercise
 key: 4f71d1f1a0
 lang: shell
 xp: 100
-skills: 1
+skills:
+  - 1
 ```
 
 Unix has a bewildering variety of text editors.
@@ -727,7 +733,8 @@ type: MultipleChoiceExercise
 key: 97ae2f8613
 lang: shell
 xp: 50
-skills: 1
+skills:
+  - 1
 ```
 
 The command `git log` is used to view the **log** of the project's history.
@@ -792,7 +799,8 @@ type: MultipleChoiceExercise
 key: 77aa525e25
 lang: shell
 xp: 50
-skills: 1
+skills:
+  - 1
 ```
 
 A project's entire log can be overwhelming,

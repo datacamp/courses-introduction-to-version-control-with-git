@@ -1,6 +1,8 @@
 ---
 title: Undo
-description: 'Since Git saves all the changes you''ve made to your files, you can use it to undo those changes. This chapter shows you several ways to do that.'
+description: >-
+  Since Git saves all the changes you've made to your files, you can use it to
+  undo those changes. This chapter shows you several ways to do that.
 ---
 
 ## How can I commit changes selectively?
@@ -613,7 +615,7 @@ repl.run_command('git status')
 
 ```yaml
 type: ConsoleExercise
-key: 5964997653
+key: '5964997653'
 xp: 50
 ```
 

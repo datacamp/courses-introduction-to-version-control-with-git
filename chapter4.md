@@ -1,6 +1,9 @@
 ---
-title: 'Working with branches'
-description: 'Branching is one of Git''s most powerful features, since it allows you to work on several things at once. This chapter shows you how to create and manage branches.'
+title: Working with branches
+description: >-
+  Branching is one of Git's most powerful features, since it allows you to work
+  on several things at once. This chapter shows you how to create and manage
+  branches.
 ---
 
 ## What is a branch?
@@ -59,7 +62,8 @@ type: MultipleChoiceExercise
 key: f48d0ea4cf
 lang: shell
 xp: 50
-skills: 1
+skills:
+  - 1
 ```
 
 By default,
@@ -106,7 +110,8 @@ type: MultipleChoiceExercise
 key: 7333c66616
 lang: shell
 xp: 50
-skills: 1
+skills:
+  - 1
 ```
 
 Branches and revisions are closely connected,
@@ -207,7 +212,7 @@ Ex().multi(
 
 ```yaml
 type: ConsoleExercise
-key: 6193872406
+key: '6193872406'
 xp: 16
 ```
 

@@ -1,6 +1,8 @@
 ---
 title: Collaborating
-description: 'This chapter showcases how Git allows you to share changes between repositories to collaborate at scale.'
+description: >-
+  This chapter showcases how Git allows you to share changes between
+  repositories to collaborate at scale.
 ---
 
 ## How can I create a brand new repository?
@@ -10,7 +12,8 @@ type: ConsoleExercise
 key: a87bbd3948
 lang: shell
 xp: 100
-skills: 1
+skills:
+  - 1
 ```
 
 So far,
@@ -242,7 +245,8 @@ type: MultipleChoiceExercise
 key: 61567f27d4
 lang: shell
 xp: 50
-skills: 1
+skills:
+  - 1
 ```
 
 When you a clone a repository,

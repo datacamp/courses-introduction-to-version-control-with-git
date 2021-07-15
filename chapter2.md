@@ -1,6 +1,8 @@
 ---
 title: Repositories
-description: 'This chapter digs a little deeper into how Git stores information and how you can explore a repository''s history.'
+description: >-
+  This chapter digs a little deeper into how Git stores information and how you
+  can explore a repository's history.
 ---
 
 ## How does Git store information?
@@ -104,7 +106,8 @@ type: MultipleChoiceExercise
 key: d03c5fa3e6
 lang: shell
 xp: 50
-skills: 1
+skills:
+  - 1
 ```
 
 To view the details of a specific commit,
@@ -180,7 +183,8 @@ type: MultipleChoiceExercise
 key: 1bc30ab583
 lang: shell
 xp: 50
-skills: 1
+skills:
+  - 1
 ```
 
 A hash is like an absolute path:
@@ -237,7 +241,8 @@ type: MultipleChoiceExercise
 key: f76c7f5965
 lang: shell
 xp: 50
-skills: 1
+skills:
+  - 1
 ```
 
 `git log` displays the overall history of a project or file,
@@ -302,7 +307,8 @@ type: MultipleChoiceExercise
 key: 9862ae22bd
 lang: shell
 xp: 50
-skills: 1
+skills:
+  - 1
 ```
 
 `git show` with a commit ID shows the changes made *in* a particular commit.
@@ -681,7 +687,8 @@ type: MultipleChoiceExercise
 key: ee41a600fb
 lang: shell
 xp: 50
-skills: 1
+skills:
+  - 1
 ```
 
 Like most complex pieces of software,
@@ -734,7 +741,8 @@ type: ConsoleExercise
 key: 7c0dce348b
 lang: shell
 xp: 100
-skills: 1
+skills:
+  - 1
 ```
 
 Most of Git's settings should be left as they are.
