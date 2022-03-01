@@ -7,4 +7,4 @@ description: >-
   and software developers, and show you how to use it to get more done in less
   time and with less pain.
 programming_language: shell
-from: 'shell-base-prod:v1.0.0'
+from: 'shell-base-prod:v1.1.3'
