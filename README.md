@@ -1,4 +1,4 @@
-# Introduction to Git for Data Science
+# Introduction to Version Control with Git
 
 - Teach: https://www.datacamp.com/teach/repositories/1545
 - Campus: https://www.datacamp.com/courses/introduction-to-git-for-data-science
